@@ -5,18 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breccia Inmuebles y Negocios | Administración de Consorcios e Inmobiliaria</title>
     <link rel="stylesheet" href="breccia.css">
-    <link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="shortcut icon" href="/favicon.ico">
-
-    
+    <link rel="icon" href="/favicon-V3.ico" sizes="any">
+    <link rel="shortcut icon" href="/favicon-V3.ico">
+    <style>
+        /* Estilos adicionales para las tarjetas interactivas */
+        .service-card {
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+        
+        .service-card::after {
+            content: '→';
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            color: #8b3a4f;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        
+        .service-card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(107, 44, 62, 0.25);
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-    <span class="logo-main">BRECCIA</span>
-    <span class="logo-sub">Inmuebles y Negocios</span>
-</div>
+                <span class="logo-main">BRECCIA</span>
+                <span class="logo-sub">Inmuebles y Negocios</span>
+            </div>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
@@ -24,25 +54,20 @@
                 <li><a href="#novedades">Novedades</a></li>
                 <li><a href="#contacto">Contacto</a></li>
                 <li>
-  <a 
-    href="https://joinup.i-data.com.ar/ingresar" 
-    class="portal-link" 
-    target="_blank" 
-    rel="noopener noreferrer">
-    Acceso Propietarios
-  </a>
-</li>
+                    <a href="https://joinup.i-data.com.ar/ingresar" class="portal-link" target="_blank" rel="noopener noreferrer">
+                        Acceso Propietarios
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
 
     <section id="inicio" class="hero">
         <div class="hero-box">
-  <h1>La administración profesional que tu consorcio necesita</h1>
-  <p>Experiencia, transparencia y tecnología al servicio de tu propiedad</p>
-  <a href="#contacto" class="cta-button">Contactanos</a>
-</div>
-
+            <h1>La administración profesional que tu consorcio necesita</h1>
+            <p>Experiencia, transparencia y tecnología al servicio de tu propiedad</p>
+            <a href="#contacto" class="cta-button">Contactanos</a>
+        </div>
     </section>
 
     <!-- Emergencias 24/7 -->
@@ -60,24 +85,39 @@
     </section>
 
     <section id="servicios" class="services">
-        <h2 class="fade-in">Nuestros Servicios</h2>
-        <div class="services-grid">
-            <div class="service-card scale-in stagger-1">
+    <h2 class="fade-in">Nuestros Servicios</h2>
+    <p class="services-intro fade-in">Soluciones integrales en administración de consorcios e inmobiliaria con más de 15 años de experiencia</p>
+    
+    <div class="services-grid">
+        <a href="administracion.html" class="service-card scale-in stagger-1">
+            <div class="service-header">
+                <span class="service-badge">⭐ Servicio Principal</span>
                 <div class="service-icon">🏢</div>
                 <h3>Administración de Consorcios</h3>
+            </div>
+            <div class="service-description">
                 <ul>
                     <li>Gestión administrativa integral</li>
                     <li>Liquidación de expensas</li>
                     <li>Cobranzas y control de morosidad</li>
                     <li>Atención a propietarios</li>
-                    <li>Coordinación de mantenimiento</li>
+                    <li>Coordinación de proveedores y gremios</li>
                     <li>Asesoramiento legal</li>
+                    <li>Visita presencial semanal al consorcio</li>
                 </ul>
+                <div class="service-cta">
+                    <span>Ver más detalles</span>
+                    <span class="service-cta-arrow">→</span>
+                </div>
             </div>
+        </a>
 
-            <div class="service-card scale-in stagger-2">
+        <a href="inmobiliaria.html" class="service-card scale-in stagger-2">
+            <div class="service-header">
                 <div class="service-icon">🏠</div>
                 <h3>Servicios Inmobiliarios</h3>
+            </div>
+            <div class="service-description">
                 <ul>
                     <li>Compra y venta de propiedades</li>
                     <li>Alquileres temporarios y permanentes</li>
@@ -85,10 +125,16 @@
                     <li>Asesoramiento en inversiones</li>
                     <li>Administración de propiedades</li>
                     <li>Gestión de documentación</li>
+                    <li>Acompañamiento en operaciones inmobiliarias</li>
                 </ul>
+                <div class="service-cta">
+                    <span>Ver más detalles</span>
+                    <span class="service-cta-arrow">→</span>
+                </div>
             </div>
-        </div>
-    </section>
+        </a>
+    </div>
+</section>
 
     <!-- Sección de Expensas -->
     <section class="expensas-section">
@@ -133,9 +179,8 @@
                 </div>
             </div>
             <button class="portal-button" onclick="window.open('https://joinup.i-data.com.ar/ingresar', '_blank')">
-  Acceder al Portal
-</button>
-
+                Acceder al Portal
+            </button>
         </div>
     </section>
 
@@ -144,26 +189,14 @@
         <h2 class="fade-in">Novedades</h2>
         <div class="novedades-grid">
             <div class="novedad-card scale-in stagger-1">
-    <div class="novedad-image">📢</div>
-    <h3>Nuevos medios de pago</h3>
-
-    <p>
-      Ahora podés pagar tus expensas con más opciones: transferencia bancaria, 
-      tarjetas de crédito y débito.
-    </p>
-
-    <!-- 👇 ACÁ TIENE QUE IR EL LINK -->
-    <a 
-      href="https://www.expensaspagas.com.ar/como-pago/"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="novedad-btn"
-    >
-      Cómo pagar expensas →
-    </a>
-
-    <span class="novedad-date">Enero 2026</span>
-</div>
+                <div class="novedad-image">📢</div>
+                <h3>Nuevos medios de pago</h3>
+                <p>Ahora podés pagar tus expensas con más opciones: transferencia bancaria, tarjetas de crédito y débito.</p>
+                <a href="https://www.expensaspagas.com.ar/como-pago/" target="_blank" rel="noopener noreferrer" class="novedad-btn">
+                    Cómo pagar expensas →
+                </a>
+                <span class="novedad-date">Enero 2026</span>
+            </div>
             <div class="novedad-card scale-in stagger-2">
                 <div class="novedad-image">🏢</div>
                 <h3>Sistema de gestión mejorado</h3>
@@ -175,7 +208,6 @@
                 <h3>Portal renovado</h3>
                 <p>Nuevo diseño y funcionalidades en nuestro portal para propietarios.</p>
                 <span class="novedad-date">Noviembre 2025</span>
-                
             </div>
         </div>
     </section>

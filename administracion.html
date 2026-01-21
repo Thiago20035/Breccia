@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Consorcios | Breccia</title>
+    <link rel="stylesheet" href="breccia.css">
+    <link rel="stylesheet" href="admi.css">
+    <link rel="icon" href="/favicon-V3.ico" sizes="any">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-main">BRECCIA</span>
+                <span class="logo-sub">Inmuebles y Negocios</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#servicios">Servicios</a></li>
+                <li><a href="index.html#nosotros">Nosotros</a></li>
+                <li><a href="index.html#novedades">Novedades</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+                <li>
+                    <a href="https://joinup.i-data.com.ar/ingresar" class="portal-link" target="_blank" rel="noopener noreferrer">
+                        Acceso Propietarios
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="admin-hero">
+         <video class="hero-video" autoplay muted loop playsinline>
+            <source src="VideoHeroAdministracion.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+        <div class="hero-overlay"></div>
+        <div style="position: relative; z-index: 2;">
+            <h1>Administración de Consorcios</h1>
+            <p>Gestión profesional y transparente para tu edificio</p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE ESTADÍSTICAS Y CTA -->
+    <section style="background: #f8f9fa; padding: 60px 2rem;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <a href="index.html#servicios" class="back-button">
+                    ← Volver a Servicios
+                </a>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div style="background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
+                    <div style="font-size: 3rem; color: #8b3a4f; margin-bottom: 0.5rem;">48+</div>
+                    <div style="color: #666; font-weight: 600;">Edificios</div>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
+                    <div style="font-size: 3rem; color: #8b3a4f; margin-bottom: 0.5rem;">1500+</div>
+                    <div style="color: #666; font-weight: 600;">Unidades</div>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
+                    <div style="font-size: 3rem; color: #8b3a4f; margin-bottom: 0.5rem;">15+</div>
+                    <div style="color: #666; font-weight: 600;">Años</div>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
+                    <div style="font-size: 3rem; color: #8b3a4f; margin-bottom: 0.5rem;">24/7</div>
+                    <div style="color: #666; font-weight: 600;">Soporte</div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #6b2c3e, #8b3a4f); padding: 3rem 2rem; border-radius: 20px; text-align: center; color: white;">
+                <h2 style="font-size: 2rem; margin-bottom: 1rem;">¿Querés que administremos tu consorcio?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">
+                    Consulta gratuita y sin compromiso • Respuesta en 24hs
+                </p>
+                <a href="index.html#contacto" class="cta-button" style="background: white; color: #6b2c3e;">
+                    Solicitar Información →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARRUSEL DE SERVICIOS -->
+    <section class="carousel-section">
+        <h2 class="fade-in" style="text-align: center; color: #6b2c3e; font-size: 2.5rem; margin-bottom: 3rem;">Nuestros Servicios</h2>
+        
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Slide 1 -->
+                <div class="carousel-slide">
+                    <h3><span>📋</span> Gestión Administrativa</h3>
+                    <ul>
+                        <li>Liquidación mensual de expensas ordinarias y extraordinarias</li>
+                        <li>Control y seguimiento de morosidad</li>
+                        <li>Gestión de cobranzas judiciales y extrajudiciales</li>
+                        <li>Confección de presupuestos anuales</li>
+                        <li>Rendición de cuentas mensual detallada</li>
+                        <li>Archivo digital de toda la documentación</li>
+                    </ul>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <h3><span>🔧</span> Mantenimiento y Obras</h3>
+                    <ul>
+                        <li>Coordinación de proveedores y contratistas</li>
+                        <li>Supervisión de trabajos de mantenimiento</li>
+                        <li>Gestión de obras y refacciones</li>
+                        <li>Pedido y evaluación de presupuestos</li>
+                        <li>Control de calidad de servicios</li>
+                        <li>Planificación de mantenimiento preventivo</li>
+                    </ul>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <h3><span>⚖️</span> Asesoramiento Legal</h3>
+                    <ul>
+                        <li>Consultas sobre Ley de Propiedad Horizontal</li>
+                        <li>Asesoramiento en asambleas de propietarios</li>
+                        <li>Redacción y actualización de reglamentos</li>
+                        <li>Gestión de conflictos entre propietarios</li>
+                        <li>Tramitación de seguros del consorcio</li>
+                        <li>Interpretación de normativas vigentes</li>
+                    </ul>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="carousel-slide">
+                    <h3><span>💻</span> Portal Digital</h3>
+                    <ul>
+                        <li>Acceso 24/7 a información del consorcio</li>
+                        <li>Descarga de liquidaciones de expensas</li>
+                        <li>Estado de cuenta actualizado</li>
+                        <li>Pago online de expensas</li>
+                        <li>Sistema de reclamos y consultas</li>
+                        <li>Notificaciones automáticas por email</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button class="carousel-btn" id="prevBtn">‹</button>
+            <div class="carousel-indicators" id="indicators">
+                <div class="indicator active" data-slide="0"></div>
+                <div class="indicator" data-slide="1"></div>
+                <div class="indicator" data-slide="2"></div>
+                <div class="indicator" data-slide="3"></div>
+            </div>
+            <button class="carousel-btn" id="nextBtn">›</button>
+        </div>
+    </section>
+
+    <!-- Edificios Administrados -->
+    <section class="edificios-section">
+        <div style="text-align: center; max-width: 900px; margin: 0 auto 3rem;">
+            <h2 class="fade-in" style="color: #6b2c3e; font-size: 2.5rem; margin-bottom: 1rem;">
+                Edificios que Administramos
+            </h2>
+            <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem;">
+                Más de 48 consorcios en Mar del Plata confían en nuestra gestión profesional
+            </p>
+            
+            <!-- Badges informativos -->
+            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: #f8f9fa; border-radius: 50px; border: 2px solid #e0e0e0;">
+                    <span style="font-size: 1.3rem;">🏢</span>
+                    <span style="color: #666; font-weight: 600;">48 Edificios</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: #f8f9fa; border-radius: 50px; border: 2px solid #e0e0e0;">
+                    <span style="font-size: 1.3rem;">📍</span>
+                    <span style="color: #666; font-weight: 600;">Toda la ciudad</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: #f8f9fa; border-radius: 50px; border: 2px solid #e0e0e0;">
+                    <span style="font-size: 1.3rem;">✓</span>
+                    <span style="color: #666; font-weight: 600;">Gestión integral</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Grid de Edificios -->
+        <div class="edificios-grid" id="edificiosGrid">
+            <!-- Los edificios se cargan aquí dinámicamente -->
+        </div>
+
+        <!-- Paginación -->
+        <div class="pagination" id="pagination">
+            <!-- Botones de paginación se generan dinámicamente -->
+        </div>
+
+        <div class="edificios-summary">
+            <p>Mostrando <span id="showing">12</span> de <span id="total">48</span> edificios</p>
+        </div>
+    </section>
+
+    <!-- Equipo -->
+    <section class="equipo-section">
+        <h2 class="fade-in" style="text-align: center; color: #6b2c3e; font-size: 2.5rem; margin-bottom: 1rem;">Nuestro Equipo</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #666;">
+            Profesionales comprometidos con la excelencia en la administración de consorcios
+        </p>
+        
+        <div class="equipo-grid">
+            <div class="team-card scale-in">
+                <div class="team-avatar">👩‍💼</div>
+                <h3>María Luján Breccia</h3>
+                <p class="team-role">Administradora Principal</p>
+                <p style="color: #666;">Responsable de la gestión integral de todos los consorcios administrados</p>
+            </div>
+
+            <div class="team-card scale-in stagger-1">
+                <div class="team-avatar">👩‍💼</div>
+                <h3>María José Zwicker</h3>
+                <p class="team-role">Contadora</p>
+                <p style="color: #666;">Liquidación de expensas, balance de cuentas y gestión financiera</p>
+            </div>
+
+            <div class="team-card scale-in stagger-2">
+                <div class="team-avatar">👩‍💻</div>
+                <h3>Magali Parodi</h3>
+                <p class="team-role">Gestión Administrativa</p>
+                <p style="color: #666;">Coordinación de trámites y documentación de consorcios</p>
+            </div>
+
+            <div class="team-card scale-in stagger-3">
+                <div class="team-avatar">👨‍💻</div>
+                <h3>Joaquín Parodi</h3>
+                <p class="team-role">Gestión Administrativa</p>
+                <p style="color: #666;">Organización y seguimiento de procesos administrativos</p>
+            </div>
+
+            <div class="team-card scale-in stagger-1">
+                <div class="team-avatar">👩‍💼</div>
+                <h3>Valentina Sánchez Breccia</h3>
+                <p class="team-role">Gestión Administrativa</p>
+                <p style="color: #666;">Coordinación general y soporte operativo</p>
+            </div>
+
+            <div class="team-card scale-in stagger-2">
+                <div class="team-avatar">👩‍💻</div>
+                <h3>Rosario Montiel</h3>
+                <p class="team-role">Atención al Cliente</p>
+                <p style="color: #666;">Gestión de reclamos, consultas y atención a propietarios</p>
+            </div>
+
+            <div class="team-card scale-in stagger-3">
+                <div class="team-avatar">👨‍🔧</div>
+                <h3>Adán Tarricone</h3>
+                <p class="team-role">Inspector</p>
+                <p style="color: #666;">Inspección y control de mantenimiento en consorcios</p>
+            </div>
+
+            <div class="team-card scale-in stagger-1">
+                <div class="team-avatar">👨‍🔧</div>
+                <h3>Juan Barrios</h3>
+                <p class="team-role">Inspector</p>
+                <p style="color: #666;">Supervisión de obras y tareas de mantenimiento</p>
+            </div>
+
+            <div class="team-card scale-in stagger-2">
+                <div class="team-avatar">👨‍🔧</div>
+                <h3>Thiago Tarricone</h3>
+                <p class="team-role">Inspector</p>
+                <p style="color: #666;">Control de calidad y seguimiento de proveedores</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background: linear-gradient(135deg, #6b2c3e, #8b3a4f); padding: 80px 2rem; text-align: center; color: white;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">¿Querés que administremos tu consorcio?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">Contactanos para una consulta sin compromiso</p>
+        <a href="index.html#contacto" class="cta-button">Solicitar Información</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Breccia Inmuebles y Negocios. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="breccia.js"></script>
+    <script src="admi.js"></script>
+</body>
+</html>
