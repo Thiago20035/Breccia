@@ -279,7 +279,7 @@ Fecha: ${new Date().toLocaleString('es-AR')}
             "Expensas bajas",
             "Diseño moderno y funcional"
         ],
-        imagenes: Array.from({length: 40}, (_, i) => `FotosGascon2356/g${i + 1}.jpg`)
+        imagenes: Array.from({length: 40}, (_, i) => `FotosGascon2356/G${i + 1}.jpg`)
     },
     2: {
         titulo: "Departamento Frente al Mar",
