@@ -3,7 +3,36 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+  /* Estilos adicionales para las tarjetas interactivas */
+        .service-card {
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+        
+        .service-card::after {
+            content: '→';
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            color: #8b3a4f;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        
+        .service-card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(107, 44, 62, 0.25);
+        }
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;

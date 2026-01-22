@@ -1,44 +1,108 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breccia Inmuebles y Negocios | Administración de Consorcios e Inmobiliaria</title>
+    
+    <!-- SEO BÁSICO -->
+    <title>Breccia Inmuebles y Negocios | Administración de Consorcios e Inmobiliaria en Mar del Plata</title>
+    <meta name="description" content="Breccia Inmuebles: Administración profesional de consorcios en Mar del Plata. +25 años de experiencia, 48 edificios, 1500+ unidades. Servicios inmobiliarios: compra, venta, alquiler y tasaciones.">
+    <meta name="keywords" content="administración de consorcios mar del plata, inmobiliaria mar del plata, breccia inmuebles, administración edificios, compra venta propiedades, alquiler mar del plata, tasaciones, consorcios mar del plata, administradora de consorcios">
+    <meta name="author" content="Breccia Inmuebles y Negocios">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <!-- GEO LOCALIZACIÓN -->
+    <meta name="geo.region" content="AR-B">
+    <meta name="geo.placename" content="Mar del Plata">
+    <meta name="geo.position" content="-38.0055;-57.5426">
+    <meta name="ICBM" content="-38.0055, -57.5426">
+    
+    <!-- OPEN GRAPH (FACEBOOK/WHATSAPP) -->
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Breccia Inmuebles y Negocios | Administración de Consorcios e Inmobiliaria">
+    <meta property="og:description" content="Administración profesional de consorcios en Mar del Plata. +25 años de experiencia. Servicios inmobiliarios integrales.">
+    <meta property="og:url" content="https://www.brecciainmuebles.com.ar">
+    <meta property="og:site_name" content="Breccia Inmuebles y Negocios">
+    
+    <!-- TWITTER CARDS -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Breccia Inmuebles y Negocios | Mar del Plata">
+    <meta name="twitter:description" content="Administración de consorcios y servicios inmobiliarios en Mar del Plata. +25 años de experiencia.">
+    
+    <!-- CANONICAL URL -->
+    <link rel="canonical" href="https://www.brecciainmuebles.com.ar">
+    
+    <!-- SCHEMA.ORG - JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "name": "Breccia Inmuebles y Negocios",
+      "description": "Administración profesional de consorcios y servicios inmobiliarios en Mar del Plata",
+      "url": "https://www.brecciainmuebles.com.ar",
+      "telephone": "+54-223-495-7908",
+      "email": "administracion@breccianegocios.com.ar",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Olavarría 2838 2°B",
+        "addressLocality": "Mar del Plata",
+        "addressRegion": "Buenos Aires",
+        "postalCode": "7600",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-38.0055",
+        "longitude": "-57.5426"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Mar del Plata"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "13:30"
+      }
+    }
+    </script>
+    
+    <!-- LOCAL BUSINESS SCHEMA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Breccia Inmuebles y Negocios",
+      "@id": "https://www.brecciainmuebles.com.ar",
+      "url": "https://www.brecciainmuebles.com.ar",
+      "telephone": "+54-223-495-7908",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Olavarría 2838 2°B",
+        "addressLocality": "Mar del Plata",
+        "addressRegion": "Buenos Aires",
+        "postalCode": "7600",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -38.0055,
+        "longitude": -57.5426
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "13:30"
+      }
+    }
+    </script>
+    
     <link rel="stylesheet" href="breccia.css">
     <link rel="icon" href="/favicon-V3.ico" sizes="any">
     <link rel="shortcut icon" href="/favicon-V3.ico">
-    <style>
-        /* Estilos adicionales para las tarjetas interactivas */
-        .service-card {
-            cursor: pointer;
-            position: relative;
-            text-decoration: none;
-            display: block;
-            color: inherit;
-        }
-        
-        .service-card::after {
-            content: '→';
-            position: absolute;
-            bottom: 2rem;
-            right: 2rem;
-            font-size: 2rem;
-            color: #8b3a4f;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: opacity 0.3s, transform 0.3s;
-        }
-        
-        .service-card:hover::after {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(107, 44, 62, 0.25);
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -84,57 +148,100 @@
         </div>
     </section>
 
-    <section id="servicios" class="services">
-    <h2 class="fade-in">Nuestros Servicios</h2>
-    <p class="services-intro fade-in">Soluciones integrales en administración de consorcios e inmobiliaria con más de 25 años de experiencia</p>
-    
-    <div class="services-grid">
-        <a href="administracion.html" class="service-card scale-in stagger-1">
-            <div class="service-header">
-                <span class="service-badge">⭐ Servicio Principal</span>
-                <div class="service-icon">🏢</div>
-                <h3>Administración de Consorcios</h3>
-            </div>
-            <div class="service-description">
-                <ul>
-                    <li>Gestión administrativa integral</li>
-                    <li>Liquidación de expensas</li>
-                    <li>Cobranzas y control de morosidad</li>
-                    <li>Atención a propietarios</li>
-                    <li>Coordinación de proveedores y gremios</li>
-                    <li>Asesoramiento legal</li>
-                    <li>Visita presencial semanal al consorcio</li>
-                </ul>
-                <div class="service-cta">
-                    <span>Ver más detalles</span>
-                    <span class="service-cta-arrow">→</span>
+    <!-- SECCIÓN DE SERVICIOS MEJORADA -->
+    <section id="servicios" style="padding: 100px 2rem; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); position: relative; overflow: hidden;">
+        <!-- Decoración de fondo -->
+        <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: linear-gradient(135deg, rgba(107, 44, 62, 0.03), rgba(139, 58, 79, 0.03)); border-radius: 50%; z-index: 0;"></div>
+        <div style="position: absolute; bottom: -150px; left: -150px; width: 500px; height: 500px; background: linear-gradient(135deg, rgba(107, 44, 62, 0.02), rgba(139, 58, 79, 0.02)); border-radius: 50%; z-index: 0;"></div>
+        
+        <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+            <!-- Encabezado -->
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <div style="display: inline-block; padding: 0.5rem 1.5rem; background: linear-gradient(135deg, rgba(107, 44, 62, 0.1), rgba(139, 58, 79, 0.1)); border-radius: 50px; margin-bottom: 1.5rem;">
+                    <span style="color: #8b3a4f; font-weight: 700; font-size: 0.9rem; letter-spacing: 1px;">✦ NUESTROS SERVICIOS ✦</span>
                 </div>
+                <h2 style="color: #6b2c3e; font-size: 3rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2;">
+                    Soluciones Integrales en <br>
+                    <span style="background: linear-gradient(135deg, #6b2c3e, #8b3a4f); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Administración e Inmobiliaria</span>
+                </h2>
+                <p style="color: #666; font-size: 1.2rem; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                    Más de <strong style="color: #8b3a4f;">25 años de experiencia</strong> brindando servicios profesionales de administración de consorcios y asesoramiento inmobiliario en Mar del Plata
+                </p>
             </div>
-        </a>
 
-        <a href="inmobiliaria.html" class="service-card scale-in stagger-2">
-            <div class="service-header">
-                <div class="service-icon">🏠</div>
-                <h3>Servicios Inmobiliarios</h3>
-            </div>
-            <div class="service-description">
-                <ul>
-                    <li>Compra y venta de propiedades</li>
-                    <li>Alquileres temporarios y permanentes</li>
-                    <li>Tasaciones profesionales</li>
-                    <li>Asesoramiento en inversiones</li>
-                    <li>Administración de propiedades</li>
-                    <li>Gestión de documentación</li>
-                    <li>Acompañamiento en operaciones inmobiliarias</li>
-                </ul>
-                <div class="service-cta">
-                    <span>Ver más detalles</span>
-                    <span class="service-cta-arrow">→</span>
+            <!-- Stats destacados -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏢</div>
+                    <div style="font-size: 2.5rem; font-weight: 700; color: #8b3a4f; margin-bottom: 0.3rem;">48+</div>
+                    <div style="color: #666; font-weight: 600;">Edificios Administrados</div>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏠</div>
+                    <div style="font-size: 2.5rem; font-weight: 700; color: #8b3a4f; margin-bottom: 0.3rem;">1500+</div>
+                    <div style="color: #666; font-weight: 600;">Unidades Gestionadas</div>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">⭐</div>
+                    <div style="font-size: 2.5rem; font-weight: 700; color: #8b3a4f; margin-bottom: 0.3rem;">25+</div>
+                    <div style="color: #666; font-weight: 600;">Años de Experiencia</div>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">💼</div>
+                    <div style="font-size: 2.5rem; font-weight: 700; color: #8b3a4f; margin-bottom: 0.3rem;">100%</div>
+                    <div style="color: #666; font-weight: 600;">Profesionalismo</div>
                 </div>
             </div>
-        </a>
-    </div>
-</section>
+
+            <!-- Cards de servicios (las que ya tenías) -->
+            <div class="services-grid">
+                <a href="administracion.html" class="service-card scale-in stagger-1">
+                    <div class="service-header">
+                        <span class="service-badge">⭐ Servicio Principal</span>
+                        <div class="service-icon">🏢</div>
+                        <h3>Administración de Consorcios</h3>
+                    </div>
+                    <div class="service-description">
+                        <ul>
+                            <li>Gestión administrativa integral</li>
+                            <li>Liquidación de expensas</li>
+                            <li>Cobranzas y control de morosidad</li>
+                            <li>Atención a propietarios</li>
+                            <li>Coordinación de proveedores y gremios</li>
+                            <li>Asesoramiento legal</li>
+                            <li>Visita presencial semanal al consorcio</li>
+                        </ul>
+                        <div class="service-cta">
+                            <span>Ver más detalles</span>
+                            <span class="service-cta-arrow">→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="inmobiliaria.html" class="service-card scale-in stagger-2">
+                    <div class="service-header">
+                        <div class="service-icon">🏠</div>
+                        <h3>Servicios Inmobiliarios</h3>
+                    </div>
+                    <div class="service-description">
+                        <ul>
+                            <li>Compra y venta de propiedades</li>
+                            <li>Alquileres temporarios y permanentes</li>
+                            <li>Tasaciones profesionales</li>
+                            <li>Asesoramiento en inversiones</li>
+                            <li>Administración de propiedades</li>
+                            <li>Gestión de documentación</li>
+                            <li>Acompañamiento en operaciones inmobiliarias</li>
+                        </ul>
+                        <div class="service-cta">
+                            <span>Ver más detalles</span>
+                            <span class="service-cta-arrow">→</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Sección de Expensas -->
     <section class="expensas-section">
