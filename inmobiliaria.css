@@ -1247,3 +1247,130 @@
         height: 50px;
     }
 }
+/* TARJETAS DE PROPIEDADES - ALTURA UNIFORME */
+.propiedad-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ocupa toda la altura disponible del grid */
+}
+
+.propiedad-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(107, 44, 62, 0.2);
+}
+
+.propiedad-card.hidden {
+    display: none;
+}
+
+.propiedad-image-container {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0; /* No se encoge */
+}
+
+.propiedad-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Crece para ocupar el espacio disponible */
+}
+
+.propiedad-content h3 {
+    color: #6b2c3e;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    min-height: 3.5rem; /* Altura mínima para 2 líneas de título */
+}
+
+.propiedad-ubicacion {
+    color: #666;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.propiedad-detalles {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    flex-shrink: 0; /* No se encoge */
+}
+
+.detalle-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
+}
+
+.propiedad-precio {
+    font-size: 1.8rem;
+    color: #8b3a4f;
+    font-weight: 700;
+    margin-top: auto; /* Empuja hacia abajo */
+    margin-bottom: 1rem;
+}
+
+.consultar-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #6b2c3e, #8b3a4f);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s;
+    border: none;
+    cursor: pointer;
+    margin-top: 0; /* Sin margen superior porque el precio ya tiene margin-bottom */
+}
+
+.consultar-btn:hover {
+    transform: translateY(-2px);
+}
+/* RESPONSIVE PARA EQUIPO 2x2 */
+@media (max-width: 768px) {
+    /* En móviles, las tarjetas se apilan en 1 columna */
+    .equipo-section > div > div {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Ajustar ancho máximo en móviles */
+    .equipo-section > div {
+        max-width: 100% !important;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* En pantallas muy pequeñas, reducir padding de las cards */
+    .team-card {
+        padding: 1.5rem !important;
+    }
+    
+    .team-avatar {
+        width: 100px !important;
+        height: 100px !important;
+        font-size: 2.5rem !important;
+    }
+}
+.propiedades-section > .back-button {
+    display: block;
+    text-align: center;
+    width: fit-content;
+    margin: 2rem auto;
+}

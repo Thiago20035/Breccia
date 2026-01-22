@@ -203,7 +203,7 @@ document.querySelectorAll('.propiedad-image-container').forEach((container, inde
         
         const formData = new FormData(e.target);
         const datos = {
-            access_key: "TU_WEB3FORMS_ACCESS_KEY",
+            access_key: "f4521112-daef-4171-b0b7-0a994aeb27f3",
             subject: `Consulta de Propiedad: ${propiedadActual.nombre}`,
             from_name: `${formData.get('nombre')} ${formData.get('apellido')}`,
             email: formData.get('email'),
@@ -256,14 +256,17 @@ Fecha: ${new Date().toLocaleString('es-AR')}
     // MODAL DETALLE - ARREGLADO
     // ============================================
   const propiedadesDetalle = {
+    // PROPIEDAD 1: Gascón 2356
     1: {
         titulo: "Departamento Tipo Semipiso de Tres (3) Ambientes",
-        ubicacion: "Plaza Colon, Mar del Plata",
+        ubicacion: "Gascón 2356, Plaza Colón",
         precio: "USD 175.000",
         tipo: "Venta",
         dormitorios: "2",
         banos: "2",
         superficie: "69 m²",
+        // Campos estándar para departamentos
+        esLote: false,
         descripcion: "Impecable departamento tipo semipiso de tres (3) ambientes con cochera doble. Ubicado en una excelente zona como lo es próximo a la Plaza Colón, al entorno al Shopping Paseo Aldrey y a la comercial calle Alberti. Consta de un amplio living-comedor con pisos cerámicos con salida al balcón sobre la calle Gascón, cómoda cocina semi-integrada muy bien equipada con espacio para conexión lavarropas y práctica barra que separa visualmente ambos espacios, dormitorio principal en suite con gran vestidor y funcional espacio de escritorio cerrado muy luminoso, segundo dormitorio con placard, toilette de recepción con ducha y cochera doble cubierta con acceso con control remoto. Su superficie total es de 69 m² y su calefacción es por radiadores. Es una propiedad muy luminosa porque tanto el living como los 2 dormitorios cuentan con vistas abiertas. El consorcio posee una antigüedad de 10 años y está muy bien administrado. Sus expensas son bajas (a enero 2026 $ 130.000.-) La propiedad cuenta con un diseño muy moderno y funcional. Ideal para un matrimonio solo y/o pareja joven con un hijo/a. El barrio por su cercanía a la calle Alberti cuenta con numerosos negocios de cercanías como farmacias, polirrubros, panaderías, café, despensas, verdulerías y transporte público de pasajeros (taxis y colectivos).",
         caracteristicas: [
             "Cocina equipada con mobiliario moderno",
@@ -281,58 +284,78 @@ Fecha: ${new Date().toLocaleString('es-AR')}
         ],
         imagenes: Array.from({length: 40}, (_, i) => `FotosGascon2356/G${i + 1}.jpg`)
     },
+    
+    // PROPIEDAD 2: Arenales 2445
     2: {
-        titulo: "Departamento Frente al Mar",
-        ubicacion: "Av. Costanera, Mar del Plata",
-        precio: "$450.000/mes",
-        tipo: "Alquiler",
-        dormitorios: "2",
-        banos: "1",
-        superficie: "65 m²",
-        descripcion: "Hermoso departamento con vista panorámica al mar. Ubicado sobre la avenida costanera, este departamento ofrece una experiencia única con vistas directas al océano. Cuenta con amplios ventanales que permiten disfrutar del paisaje marino desde el living-comedor. La propiedad está totalmente equipada y amoblada, lista para habitar. Ideal para quienes buscan la experiencia de vivir frente al mar con todas las comodidades.",
-        caracteristicas: [
-            "Vista panorámica al mar",
-            "Totalmente amoblado",
-            "Cocina equipada",
-            "Balcón con vista al océano",
-            "Ubicación privilegiada",
-            "Luminoso y ventilado",
-            "Cerca de restaurantes y comercios",
-            "Acceso a playa"
-        ],
-        imagenes: [
-            'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80'
-        ]
-    },
-    3: {
-        titulo: "Oficina Centro Comercial",
-        ubicacion: "Centro, Mar del Plata",
-        precio: "USD 95.000",
+        titulo: "Departamento de Dos Ambientes",
+        ubicacion: "Arenales 2445, Mar del Plata",
+        precio: "Consultar",
         tipo: "Venta",
-        dormitorios: "2 privados",
+        dormitorios: "1",
         banos: "1",
-        superficie: "45 m²",
-        descripcion: "Moderna oficina ubicada en el corazón comercial de Mar del Plata. Perfecta para profesionales o pequeñas empresas que buscan un espacio de trabajo en una zona de alto tránsito. La oficina cuenta con dos espacios privados ideales para consultorios o despachos, recepción, baño completo y kitchenette. Edificio con buena administración, seguridad y servicios completos. Excelente oportunidad de inversión.",
+        superficie: "40 m²",
+        // Campos estándar para departamentos
+        esLote: false,
+        descripcion: "Ubicado en una zona privilegiada de Mar del Plata a 200 metros de la Plaza Colón, de la Av. Colón y de la comercial calle Alberti. Se trata de un departamento de 2 ambientes al lateral y al contrafrente, luminoso y muy cómodo. Consta de amplio living-comedor con pisos cerámicos, dormitorio con placard, cómoda cocina y baño completo. Superficie cubierta de 40 m² y sus expensas son bajas. Muy buen estado de conservación y mantenimiento. ¡Oportunidad de inversión para futura renta! Ideal para alquilarlo por temporada de verano y luego a estudiantes. El barrio cuenta con una gran variedad de negocios tales como farmacias, café, almacenes, panaderías, peluquerías, Rapipagos, rotiserías y transporte público de pasajeros (taxis, colectivos). Caminando 15 minutos se llega a la gastronómica calle Olavarría y la comercial calle Güemes.",
         caracteristicas: [
-            "Dos espacios privados",
-            "Recepción amplia",
-            "Kitchenette equipada",
+            "Amplio living-comedor con pisos cerámicos",
+            "Dormitorio con placard",
+            "Cocina cómoda y funcional",
             "Baño completo",
-            "Aire acondicionado",
-            "Luminosa",
-            "Edificio con seguridad",
-            "Ubicación céntrica",
-            "Cerca de transporte público",
-            "Zona comercial"
+            "A 200 metros de Plaza Colón",
+            "Cerca de Av. Colón y calle Alberti",
+            "Departamento lateral y al contrafrente",
+            "Muy luminoso",
+            "Expensas bajas",
+            "Excelente estado de conservación",
+            "Ideal para inversión y renta",
+            "Perfecto para alquiler temporario",
+            "Apto para estudiantes",
+            "Zona con todos los servicios",
+            "Farmacias, cafés y comercios cercanos",
+            "Transporte público accesible",
+            "A 15 min. caminando de calle Olavarría",
+            "Cerca de la comercial calle Güemes"
         ],
-        imagenes: [
-            'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80'
-        ]
+        imagenes: Array.from({length: 12}, (_, i) => `Arenales2445/PA${i + 1}.jpg`)
     },
+    
+    // PROPIEDAD 3: Francia 3741
+    3: {
+        titulo: "Lote con Construcción en Parque Luro",
+        ubicacion: "Francia 3741, Parque Luro",
+        precio: "Consultar",
+        tipo: "Venta",
+        // Campos personalizados para lote
+        esLote: true,
+        dimensiones: "10x33m",
+        construccion: "70 m²",
+        superficieTotal: "330 m²",
+        descripcion: "¡Excelente oportunidad de inversión en la zona del residencial barrio de Parque Luro! Ubicado a 100 metros de la comercial Av. Jara. Se trata de una construcción al fondo de 70 m² a reciclar sobre un lote de 10 metros de frente por 33 metros de profundidad. IDEAL para desarrollo de dúplex, complejo de unidades tipo P.H. o para vivienda familiar. Es una zona residencial con mucha población estable y el barrio cuenta con muchos comercios de cercanías como mercados, panaderías, centros de pago, negocios de ropa, farmacias, etc. La zona norte de la ciudad de Mar del Plata está tomando mucho impulso como un lugar muy buscado por los marplatenses para vivir todo el año. ¡No deje de consultar por esta oportunidad!",
+        caracteristicas: [
+            "Lote de 10m x 33m (330 m²)",
+            "Construcción existente de 70 m²",
+            "A 100 metros de Av. Jara",
+            "Zona residencial Parque Luro",
+            "Ideal para desarrollo inmobiliario",
+            "Perfecto para dúplex",
+            "Apto para complejo de P.H.",
+            "Opción para vivienda familiar",
+            "A reciclar completamente",
+            "Barrio con población estable",
+            "Comercios de cercanía",
+            "Mercados y panaderías cercanas",
+            "Centros de pago accesibles",
+            "Farmacias y negocios de ropa",
+            "Zona norte en desarrollo",
+            "Muy buscado para vivir todo el año",
+            "Excelente oportunidad de inversión",
+            "Alto potencial de revalorización"
+        ],
+        imagenes: ['Francia371/F3.jpg', 'Francia371/F4.jpg']
+    },
+    
+    // PROPIEDAD 4: Ficticia (oculta)
     4: {
         titulo: "Casa Playa Serena",
         ubicacion: "Playa Serena, Mar del Plata",
@@ -341,6 +364,7 @@ Fecha: ${new Date().toLocaleString('es-AR')}
         dormitorios: "4",
         banos: "2",
         superficie: "220 m²",
+        esLote: false,
         descripcion: "Amplia casa familiar ideal para vacaciones en una de las zonas más tranquilas de Mar del Plata. La propiedad ofrece espacios generosos tanto en interiores como exteriores, perfecta para disfrutar en familia o con amigos. Cuenta con jardín con parrilla, quincho y pileta. Los dormitorios son amplios y luminosos. A pocas cuadras de la playa. Disponible para temporada de verano.",
         caracteristicas: [
             "Cuatro dormitorios amplios",
@@ -366,7 +390,7 @@ Fecha: ${new Date().toLocaleString('es-AR')}
     let imagenActualDetalle = 0;
     let imagenesDetalle = [];
 
-    window.abrirDetallePropiedad = function(idPropiedad) {
+   window.abrirDetallePropiedad = function(idPropiedad) {
         console.log('Abriendo detalle propiedad:', idPropiedad);
         
         const propiedad = propiedadesDetalle[idPropiedad];
@@ -379,14 +403,68 @@ Fecha: ${new Date().toLocaleString('es-AR')}
         imagenesDetalle = propiedad.imagenes;
         imagenActualDetalle = 0;
         
-        // Llenar info
+        // Llenar info básica
         document.getElementById('detalleBadge').textContent = propiedad.tipo;
         document.getElementById('detalleTitulo').textContent = propiedad.titulo;
         document.getElementById('detalleUbicacion').textContent = propiedad.ubicacion;
         document.getElementById('detallePrecio').textContent = propiedad.precio;
-        document.getElementById('detalleDormitorios').textContent = propiedad.dormitorios;
-        document.getElementById('detalleBanos').textContent = propiedad.banos;
-        document.getElementById('detalleSuperficie').textContent = propiedad.superficie;
+        
+        // Actualizar specs según el tipo de propiedad
+        const specsContainer = document.querySelector('.detalle-specs');
+        
+        if (propiedad.esLote) {
+            // Para lotes: mostrar dimensiones, construcción y superficie total
+            specsContainer.innerHTML = `
+                <div class="spec-item">
+                    <span class="spec-icon">📐</span>
+                    <div>
+                        <strong>Dimensiones</strong>
+                        <p>${propiedad.dimensiones}</p>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">🏗️</span>
+                    <div>
+                        <strong>Construcción</strong>
+                        <p>${propiedad.construccion}</p>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">📏</span>
+                    <div>
+                        <strong>Superficie</strong>
+                        <p>${propiedad.superficieTotal}</p>
+                    </div>
+                </div>
+            `;
+        } else {
+            // Para propiedades normales: mostrar dormitorios, baños y superficie
+            specsContainer.innerHTML = `
+                <div class="spec-item">
+                    <span class="spec-icon">🛏️</span>
+                    <div>
+                        <strong>Dormitorios</strong>
+                        <p>${propiedad.dormitorios}</p>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">🚿</span>
+                    <div>
+                        <strong>Baños</strong>
+                        <p>${propiedad.banos}</p>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">📏</span>
+                    <div>
+                        <strong>Superficie</strong>
+                        <p>${propiedad.superficie}</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Descripción
         document.getElementById('detalleDescripcion').textContent = propiedad.descripcion;
         
         // Características
@@ -506,5 +584,93 @@ Fecha: ${new Date().toLocaleString('es-AR')}
             if (e.key === 'Escape') window.cerrarModalConsulta();
         }
     });
+   // ============================================
+    // MODAL DE CONTACTO GENERAL
+    // ============================================
+    
+    window.abrirModalContactoGeneral = function() {
+        document.getElementById('modalContactoGeneral').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 
+    window.cerrarModalContactoGeneral = function() {
+        document.getElementById('modalContactoGeneral').classList.remove('active');
+        document.body.style.overflow = 'auto';
+        document.getElementById('formContactoGeneral').reset();
+        document.getElementById('successMessageGeneral').classList.remove('show');
+    }
+
+    // Cerrar al hacer click fuera del modal
+    document.getElementById('modalContactoGeneral').addEventListener('click', function(e) {
+        if (e.target === this) window.cerrarModalContactoGeneral();
+    });
+
+    // Enviar formulario
+    window.enviarContactoGeneral = async function(e) {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submitBtnGeneral');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+        
+        const formData = new FormData(e.target);
+        const datos = {
+            access_key: "f4521112-daef-4171-b0b7-0a994aeb27f3", // Reemplazar con tu key
+            subject: "Consulta desde Servicios Inmobiliarios",
+            from_name: `${formData.get('nombre')} ${formData.get('apellido')}`,
+            email: formData.get('email'),
+            to: "administracion@breccianegocios.com.ar",
+            message: `
+CONSULTA GENERAL - SERVICIOS INMOBILIARIOS
+==========================================
+
+DATOS DEL CONTACTO:
+- Nombre: ${formData.get('nombre')} ${formData.get('apellido')}
+- Email: ${formData.get('email')}
+- Teléfono: ${formData.get('telefono')}
+- Motivo: ${formData.get('motivoConsulta')}
+
+MENSAJE:
+${formData.get('mensaje')}
+
+Fecha: ${new Date().toLocaleString('es-AR')}
+            `.trim()
+        };
+        
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Accept': 'application/json' 
+                },
+                body: JSON.stringify(datos)
+            });
+            
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById('successMessageGeneral').classList.add('show');
+                document.getElementById('formContactoGeneral').reset();
+                setTimeout(() => window.cerrarModalContactoGeneral(), 3000);
+            } else {
+                throw new Error('Error en el envío');
+            }
+        } catch (error) {
+            alert('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente o contáctanos por email a administracion@breccianegocios.com.ar');
+            console.error('Error:', error);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enviar Mensaje';
+        }
+    }
+
+    // Cerrar con tecla Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const modalGeneral = document.getElementById('modalContactoGeneral');
+            if (modalGeneral && modalGeneral.classList.contains('active')) {
+                window.cerrarModalContactoGeneral();
+            }
+        }
+    });
     console.log('Todo inicializado correctamente');
+    

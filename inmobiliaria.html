@@ -42,11 +42,11 @@
         </div>
     </section>
 
- <!-- Propiedades Destacadas -->
+<!-- Propiedades Destacadas -->
     <section class="propiedades-section">
-        <a href="index.html#servicios" class="back-button">← Volver a Servicios</a>
+        <a href="index.html#servicios" class="back-button">← Volver a Todos los Servicios</a>
         <h2 class="fade-in" style="text-align: center; color: #6b2c3e; font-size: 2.5rem; margin-bottom: 1rem;">Propiedades Destacadas</h2>
-        <p style="text-align: center; color: #666; margin-bottom: 3rem;">Propiedad disponible en venta</p>
+        <p style="text-align: center; color: #666; margin-bottom: 3rem;">Propiedades disponibles en venta</p>
         
         <!-- Filtros OCULTOS temporalmente -->
         <div class="propiedades-controls" style="display: none;">
@@ -57,7 +57,7 @@
         </div>
         
         <div class="propiedades-grid" id="propiedadesGrid">
-            <!-- Propiedad 1 - ÚNICA VISIBLE -->
+            <!-- Propiedad 1 - Gascón 2356 -->
             <div class="propiedad-card" data-tipo="venta" data-propiedad-id="1">
                 <div class="propiedad-image-container">
                     <div class="propiedad-carousel" data-carousel="0">
@@ -82,7 +82,7 @@
                     <h3>Departamento Tipo Semipiso de Tres (3) Ambientes</h3>
                     <div class="propiedad-ubicacion">
                         <span>📍</span>
-                        <span>Plaza Colon, Mar del Plata</span>
+                        <span>Gascón 2356, Plaza Colón</span>
                     </div>
                     <div class="propiedad-detalles">
                         <div class="detalle-item">
@@ -99,108 +99,100 @@
                         </div>
                     </div>
                     <div class="propiedad-precio">USD 175.000</div>
-                    <button class="consultar-btn" onclick="event.stopPropagation(); abrirModalConsulta('Departamento Tipo Semipiso de Tres (3) Ambientes', 'Plaza Colon, Mar del Plata', 'USD 175.000')">Consultar</button>
+                    <button class="consultar-btn" onclick="event.stopPropagation(); abrirModalConsulta('Departamento Tipo Semipiso de Tres (3) Ambientes', 'Gascón 2356, Plaza Colón', 'USD 175.000')">Consultar</button>
                 </div>
             </div>
 
-            <!-- Propiedad 2 - OCULTA -->
-            <div class="propiedad-card" data-tipo="alquiler" style="display: none;">
+            <!-- Propiedad 2 - Arenales 2445 -->
+            <div class="propiedad-card" data-tipo="venta" data-propiedad-id="2">
                 <div class="propiedad-image-container">
                     <div class="propiedad-carousel" data-carousel="1">
-                        <div class="propiedad-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="propiedad-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="propiedad-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="propiedad-carousel-item" style="background-image: url('Arenales2445/PA3.jpg');"></div>
+                        <div class="propiedad-carousel-item" style="background-image: url('Arenales2445/PA5.jpg');"></div>
+                        <div class="propiedad-carousel-item" style="background-image: url('Arenales2445/PA8.jpg');"></div>
+                        <div class="propiedad-carousel-item" style="background-image: url('Arenales2445/PA9.jpg');"></div>
                     </div>
-                    <button class="carousel-nav prev" onclick="moveCarousel(1, -1)">‹</button>
-                    <button class="carousel-nav next" onclick="moveCarousel(1, 1)">›</button>
+                    <button class="carousel-nav prev" onclick="event.stopPropagation(); moveCarousel(1, -1)">‹</button>
+                    <button class="carousel-nav next" onclick="event.stopPropagation(); moveCarousel(1, 1)">›</button>
                     <div class="carousel-dots">
-                        <span class="carousel-dot active" onclick="goToSlide(1, 0)"></span>
-                        <span class="carousel-dot" onclick="goToSlide(1, 1)"></span>
-                        <span class="carousel-dot" onclick="goToSlide(1, 2)"></span>
-                    </div>
-                    <div class="propiedad-badge">Alquiler</div>
-                </div>
-                <div class="propiedad-content">
-                    <h3>Departamento Frente al Mar</h3>
-                    <div class="propiedad-ubicacion">
-                        <span>📍</span>
-                        <span>Av. Costanera, Mar del Plata</span>
-                    </div>
-                    <div class="propiedad-detalles">
-                        <div class="detalle-item">
-                            <span>🛏️</span>
-                            <span>2 dorm</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>🚿</span>
-                            <span>1 baño</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>📏</span>
-                            <span>65 m²</span>
-                        </div>
-                    </div>
-                    <div class="propiedad-precio">$450.000/mes</div>
-                    <button class="consultar-btn" onclick="abrirModalConsulta('Departamento Frente al Mar', 'Av. Costanera, Mar del Plata', '$450.000/mes')">Consultar</button>
-                </div>
-            </div>
-
-            <!-- Propiedad 3 - OCULTA -->
-            <div class="propiedad-card" data-tipo="venta" style="display: none;">
-                <div class="propiedad-image-container">
-                    <div class="propiedad-carousel" data-carousel="2">
-                        <div class="propiedad-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="propiedad-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="propiedad-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80');"></div>
-                    </div>
-                    <button class="carousel-nav prev" onclick="moveCarousel(2, -1)">‹</button>
-                    <button class="carousel-nav next" onclick="moveCarousel(2, 1)">›</button>
-                    <div class="carousel-dots">
-                        <span class="carousel-dot active" onclick="goToSlide(2, 0)"></span>
-                        <span class="carousel-dot" onclick="goToSlide(2, 1)"></span>
-                        <span class="carousel-dot" onclick="goToSlide(2, 2)"></span>
+                        <span class="carousel-dot active" onclick="event.stopPropagation(); goToSlide(1, 0)"></span>
+                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(1, 1)"></span>
+                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(1, 2)"></span>
+                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(1, 3)"></span>
+                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(1, 4)"></span>
                     </div>
                     <div class="propiedad-badge">Venta</div>
                 </div>
                 <div class="propiedad-content">
-                    <h3>Oficina Centro Comercial</h3>
+                    <h3>Departamento en Arenales</h3>
                     <div class="propiedad-ubicacion">
                         <span>📍</span>
-                        <span>Centro, Mar del Plata</span>
+                        <span>Arenales 2445, Mar del Plata</span>
                     </div>
                     <div class="propiedad-detalles">
                         <div class="detalle-item">
-                            <span>🏢</span>
-                            <span>2 privados</span>
+                            <span>🛏️</span>
+                            <span>1 dorm</span>
                         </div>
                         <div class="detalle-item">
                             <span>🚿</span>
-                            <span>1 baño</span>
+                            <span>1 baños</span>
                         </div>
                         <div class="detalle-item">
                             <span>📏</span>
-                            <span>45 m²</span>
+                            <span>40 m²</span>
                         </div>
                     </div>
-                    <div class="propiedad-precio">USD 95.000</div>
-                    <button class="consultar-btn" onclick="abrirModalConsulta('Oficina Centro Comercial', 'Centro, Mar del Plata', 'USD 95.000')">Consultar</button>
+                    <div class="propiedad-precio">USD 55.000</div>
+                    <button class="consultar-btn" onclick="event.stopPropagation(); abrirModalConsulta('Departamento en Arenales', 'Arenales 2445, Mar del Plata', 'Consultar')">Consultar</button>
                 </div>
             </div>
 
-            <!-- Propiedad 4 - OCULTA -->
+            <!-- Propiedad 3 - Francia 3741 -->
+<div class="propiedad-card" data-tipo="venta" data-propiedad-id="3">
+    <div class="propiedad-image-container">
+        <div class="propiedad-carousel" data-carousel="2">
+            <div class="propiedad-carousel-item" style="background-image: url('Francia371/F3.jpg');"></div>
+            <div class="propiedad-carousel-item" style="background-image: url('Francia371/F4.jpg');"></div>
+        </div>
+        <button class="carousel-nav prev" onclick="event.stopPropagation(); moveCarousel(2, -1)">‹</button>
+        <button class="carousel-nav next" onclick="event.stopPropagation(); moveCarousel(2, 1)">›</button>
+        <div class="carousel-dots">
+            <span class="carousel-dot active" onclick="event.stopPropagation(); goToSlide(2, 0)"></span>
+            <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(2, 1)"></span>
+        </div>
+        <div class="propiedad-badge">Venta</div>
+    </div>
+    <div class="propiedad-content">
+        <h3>Lote con Construcción en Parque Luro</h3>
+        <div class="propiedad-ubicacion">
+            <span>📍</span>
+            <span>Francia 371, Parque Luro</span>
+        </div>
+        <div class="propiedad-detalles">
+            <div class="detalle-item">
+                <span>📐</span>
+                <span>10x33m</span>
+            </div>
+            <div class="detalle-item">
+                <span>🏗️</span>
+                <span>70 m² const.</span>
+            </div>
+            <div class="detalle-item">
+                <span>📏</span>
+                <span>330 m² lote</span>
+            </div>
+        </div>
+        <div class="propiedad-precio">USD 120.000</div>
+        <button class="consultar-btn" onclick="event.stopPropagation(); abrirModalConsulta('Lote con Construcción en Parque Luro', 'Francia 3741, Parque Luro', 'Consultar')">Consultar</button>
+    </div>
+</div>
+
+            <!-- Propiedad 4 - OCULTA (ficticia) -->
             <div class="propiedad-card" data-tipo="alquiler-temporario" style="display: none;">
                 <div class="propiedad-image-container">
                     <div class="propiedad-carousel" data-carousel="3">
                         <div class="propiedad-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="propiedad-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="propiedad-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80');"></div>
-                    </div>
-                    <button class="carousel-nav prev" onclick="moveCarousel(3, -1)">‹</button>
-                    <button class="carousel-nav next" onclick="moveCarousel(3, 1)">›</button>
-                    <div class="carousel-dots">
-                        <span class="carousel-dot active" onclick="goToSlide(3, 0)"></span>
-                        <span class="carousel-dot" onclick="goToSlide(3, 1)"></span>
-                        <span class="carousel-dot" onclick="goToSlide(3, 2)"></span>
                     </div>
                     <div class="propiedad-badge">Alquiler Temporario</div>
                 </div>
@@ -307,66 +299,135 @@
     </section>
 
     <!-- Equipo -->
-<section class="equipo-section">
-    <h2 class="fade-in" style="text-align: center; color: #6b2c3e; font-size: 2.5rem; margin-bottom: 1rem;">Red de Profesionales Inmobiliarios</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #666;">
-        Trabajamos en conjunto con destacados profesionales del sector inmobiliario
-    </p>
-    
-    <div class="equipo-grid">
-        <!-- María Luján Breccia -->
-        <div class="team-card scale-in team-card-clickable">
-            <div class="team-avatar">👩‍💼</div>
-            <h3>María Luján Breccia</h3>
-            <p class="team-role">Breccia Inmuebles y Negocios</p>
-            <p style="color: #666;">Responsable principal de operaciones de compra-venta, alquileres y administración de propiedades</p>
-            <div class="team-location">📍 Mar del Plata</div>
+<!-- Equipo -->
+    <section class="equipo-section">
+        <h2 class="fade-in" style="text-align: center; color: #6b2c3e; font-size: 2.5rem; margin-bottom: 1rem;">Red de Profesionales Inmobiliarios</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #666;">
+            Trabajamos en conjunto con destacados profesionales del sector inmobiliario
+        </p>
+        
+        <!-- Fila 1: María Luján y Joaquín -->
+        <div style="max-width: 800px; margin: 0 auto 2rem;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                <!-- María Luján Breccia -->
+                <div class="team-card scale-in team-card-clickable">
+                    <div class="team-avatar">👩‍💼</div>
+                    <h3>María Luján Breccia</h3>
+                    <p class="team-role">Breccia Inmuebles y Negocios</p>
+                    <p style="color: #666;">Responsable principal de operaciones de compra-venta, alquileres y administración de propiedades</p>
+                    <div class="team-location">📍 Mar del Plata</div>
+                </div>
+
+                <!-- Joaquín Sánchez Breccia -->
+                <div class="team-card scale-in stagger-1 team-card-clickable">
+                    <div class="team-avatar">👨‍💼</div>
+                    <h3>Joaquín Sánchez Breccia</h3>
+                    <p class="team-role">Breccia Inmuebles y Negocios</p>
+                    <p style="color: #666;">Encargado de gestión operativa inmobiliaria y coordinación de servicios</p>
+                    <div class="team-location">📍 Mar del Plata</div>
+                </div>
+            </div>
         </div>
 
-        <!-- Joaquín Sánchez Breccia - NUEVO -->
-        <div class="team-card scale-in stagger-1 team-card-clickable">
-            <div class="team-avatar">👨‍💼</div>
-            <h3>Joaquín Sánchez Breccia</h3>
-            <p class="team-role">Breccia Inmuebles y Negocios</p>
-            <p style="color: #666;">Encargado de gestión operativa inmobiliaria y coordinación de servicios</p>
-            <div class="team-location">📍 Mar del Plata</div>
+        <!-- Fila 2: Patricia y Pablo -->
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                <!-- Patricia Schafer -->
+                <a href="https://schaferprop.com.ar/" target="_blank" rel="noopener noreferrer" class="team-card scale-in stagger-2 team-card-clickable">
+                    <div class="external-link-badge">🔗</div>
+                    <div class="team-avatar">👩‍💼</div>
+                    <h3>Patricia Schafer</h3>
+                    <p class="team-role">SCHAFER Y ASOC. Negocios Inmobiliarios</p>
+                    <p style="color: #666;">Profesional inmobiliaria con amplia experiencia en el mercado de Mar del Plata</p>
+                    <div class="team-location">📍 Mar del Plata</div>
+                    <div class="visit-website">Visitar sitio web →</div>
+                </a>
+
+                <!-- Pablo Ferreccio -->
+                <a href="https://ferrecciopropiedades.com.ar/" target="_blank" rel="noopener noreferrer" class="team-card scale-in stagger-3 team-card-clickable">
+                    <div class="external-link-badge">🔗</div>
+                    <div class="team-avatar">👨‍💼</div>
+                    <h3>Pablo Ferreccio</h3>
+                    <p class="team-role">Ferreccio Propiedades - Mar del Plata</p>
+                    <p style="color: #666;">Experto en tasaciones y operaciones inmobiliarias en la zona</p>
+                    <div class="team-location">📍 Mar del Plata</div>
+                    <div class="visit-website">Visitar sitio web →</div>
+                </a>
+            </div>
         </div>
-
-        <!-- Patricia Schafer -->
-        <a href="https://schaferprop.com.ar/" target="_blank" rel="noopener noreferrer" class="team-card scale-in stagger-2 team-card-clickable">
-            <div class="external-link-badge">🔗</div>
-            <div class="team-avatar">👩‍💼</div>
-            <h3>Patricia Schafer</h3>
-            <p class="team-role">SCHAFER Y ASOC. Negocios Inmobiliarios</p>
-            <p style="color: #666;">Profesional inmobiliaria con amplia experiencia en el mercado de Mar del Plata</p>
-            <div class="team-location">📍 Mar del Plata</div>
-            <div class="visit-website">Visitar sitio web →</div>
-        </a>
-
-        <!-- Pablo Ferreccio -->
-        <a href="https://ferrecciopropiedades.com.ar/" target="_blank" rel="noopener noreferrer" class="team-card scale-in stagger-3 team-card-clickable">
-            <div class="external-link-badge">🔗</div>
-            <div class="team-avatar">👨‍💼</div>
-            <h3>Pablo Ferreccio</h3>
-            <p class="team-role">Ferreccio Propiedades - Mar del Plata</p>
-            <p style="color: #666;">Experto en tasaciones y operaciones inmobiliarias en la zona</p>
-            <div class="team-location">📍 Mar del Plata</div>
-            <div class="visit-website">Visitar sitio web →</div>
-        </a>
-    </div>
-</section>
+    </section>
 
     <!-- CTA -->
     <section style="background: linear-gradient(135deg, #6b2c3e, #8b3a4f); padding: 80px 2rem; text-align: center; color: white;">
         <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">¿Buscás comprar, vender o alquilar?</h2>
         <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">Te ayudamos a encontrar la propiedad ideal</p>
-        <a href="index.html#contacto" class="cta-button">Contactar Ahora</a>
+        <button onclick="abrirModalContactoGeneral()" class="cta-button" style="cursor: pointer; border: none;">
+            Contactar Ahora
+        </button>
     </section>
 
     <footer>
         <p>&copy; 2026 Breccia Inmuebles y Negocios. Todos los derechos reservados.</p>
     </footer>
-
+<!-- MODAL DE CONTACTO GENERAL -->
+<div id="modalContactoGeneral" class="modal-consulta">
+    <div class="modal-content-consulta">
+        <button class="close-modal-consulta" onclick="cerrarModalContactoGeneral()">×</button>
+        
+        <div class="success-message" id="successMessageGeneral">
+            ✓ Tu mensaje ha sido enviado correctamente. Te contactaremos a la brevedad.
+        </div>
+        
+        <h2>Contactanos</h2>
+        <p class="modal-subtitle">Completá tus datos y nos pondremos en contacto</p>
+        
+        <form id="formContactoGeneral" onsubmit="enviarContactoGeneral(event)">
+            <div class="form-row">
+                <div class="form-group-consulta">
+                    <label>Nombre *</label>
+                    <input type="text" name="nombre" required placeholder="Tu nombre">
+                </div>
+                <div class="form-group-consulta">
+                    <label>Apellido *</label>
+                    <input type="text" name="apellido" required placeholder="Tu apellido">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group-consulta">
+                    <label>Email *</label>
+                    <input type="email" name="email" required placeholder="tu@email.com">
+                </div>
+                <div class="form-group-consulta">
+                    <label>Teléfono *</label>
+                    <input type="tel" name="telefono" required placeholder="223 xxx-xxxx">
+                </div>
+            </div>
+            
+            <div class="form-group-consulta">
+                <label>Motivo de Consulta *</label>
+                <select name="motivoConsulta" required>
+                    <option value="">Seleccionar...</option>
+                    <option value="Comprar Propiedad">Comprar Propiedad</option>
+                    <option value="Vender Propiedad">Vender Propiedad</option>
+                    <option value="Alquilar Propiedad">Alquilar Propiedad</option>
+                    <option value="Tasación">Tasación</option>
+                    <option value="Consulta General">Consulta General</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+            
+            <div class="form-group-consulta">
+                <label>Mensaje *</label>
+                <textarea name="mensaje" required placeholder="Dejanos tu consulta o comentario..."></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn-consulta" id="submitBtnGeneral">
+                Enviar Mensaje
+            </button>
+        </form>
+    </div>
+</div>
     <!-- MODAL DE CONSULTA -->
     <div id="modalConsulta" class="modal-consulta">
         <div class="modal-content-consulta">
