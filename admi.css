@@ -497,3 +497,95 @@ body {
         grid-template-columns: 1fr;
     }
 }
+/* ============================================
+   EQUIPO - GRIDS OPTIMIZADOS
+   ============================================ */
+
+.equipo-grupo {
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
+}
+
+.equipo-grupo-titulo {
+    text-align: center;
+    color: #8b3a4f;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+/* Grid de 3 columnas (Dirección e Inspectores) */
+.equipo-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+/* Grid de 4 columnas (Gestión Administrativa) */
+.equipo-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+/* ============================================
+   RESPONSIVE - EQUIPO
+   ============================================ */
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    .equipo-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .equipo-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Móviles (hasta 768px) */
+@media (max-width: 768px) {
+    .equipo-grupo {
+        padding: 0 1rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .equipo-grupo-titulo {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* TODAS las grids en 1 columna en móvil */
+    .equipo-grid-3,
+    .equipo-grid-4 {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .team-card {
+        max-width: 100%;
+        margin: 0;
+    }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+    .equipo-grupo {
+        padding: 0 0.5rem;
+    }
+    
+    .equipo-grupo-titulo {
+        font-size: 1.1rem;
+    }
+    
+    .team-card {
+        padding: 1.2rem;
+    }
+    
+    .team-avatar {
+        width: 90px !important;
+        height: 90px !important;
+        font-size: 2.2rem !important;
+    }
+}
