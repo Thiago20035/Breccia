@@ -1146,3 +1146,293 @@ footer::before {
         font-size: 8rem;
     }
 }
+/* ============================================
+   MENÚ MÓVIL HAMBURGUESA
+   ============================================ */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+    position: relative;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.mobile-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: none;
+}
+
+.mobile-backdrop.active {
+    opacity: 1;
+}
+
+/* ============================================
+   RESPONSIVE MÓVIL
+   ============================================ */
+@media (max-width: 768px) {
+    /* Menú hamburguesa */
+    .hamburger-btn {
+        display: flex;
+    }
+    
+    .mobile-backdrop {
+        display: block;
+    }
+    
+    /* Nav móvil */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 80%;
+        max-width: 300px;
+        background: linear-gradient(135deg, #6b2c3e 0%, #8b3a4f 100%);
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        transition: right 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+        gap: 0;
+    }
+    
+    .nav-links.mobile-active {
+        right: 0;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+    
+    .nav-links a {
+        display: block;
+        padding: 15px 20px;
+        border-radius: 8px;
+        transition: background 0.3s;
+        text-align: left;
+    }
+    
+    .nav-links a:hover {
+        background: rgba(255,255,255,0.1);
+    }
+    
+    .portal-link {
+        margin-top: 1rem;
+        display: block;
+        text-align: center;
+    }
+    
+    body.menu-open {
+        overflow: hidden;
+    }
+    
+    /* Header móvil */
+    nav {
+        padding: 0 1rem;
+    }
+    
+    .logo-main {
+        font-size: 1.2rem;
+    }
+    
+    /* Hero móvil */
+    .hero {
+        padding: 140px 1.5rem 80px;
+        min-height: 400px;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    /* Emergency section móvil */
+    .emergency-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .emergency-phone a {
+        font-size: 1.8rem;
+    }
+    
+    /* Expensas móvil */
+    .expensas-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .expense-icon {
+        font-size: 8rem;
+    }
+    
+    /* Servicios móvil */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .service-card {
+        max-width: 100%;
+    }
+    
+    /* Stats móvil */
+    #servicios > div > div:first-child {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+    }
+    
+    /* Contact móvil */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Novedades móvil */
+    .novedades-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Modal móvil */
+    .modal-content {
+        width: 95%;
+        padding: 2rem 1.5rem;
+    }
+    
+    /* Forms móvil */
+    input, textarea, select {
+        font-size: 16px !important; /* Prevenir zoom iOS */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .emergency-text h3 {
+        font-size: 1.4rem;
+    }
+    
+    .services h2,
+    .about h2,
+    .contact h2 {
+        font-size: 1.8rem;
+    }
+    
+    /* Stats en 1 columna en móviles pequeños */
+    #servicios > div > div:first-child {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ============================================
+   ACCESIBILIDAD
+   ============================================ */
+.keyboard-nav *:focus {
+    outline: 3px solid #8b3a4f;
+    outline-offset: 2px;
+}
+
+.keyboard-nav *:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* ============================================
+   OPTIMIZACIONES DE RENDIMIENTO
+   ============================================ */
+.low-performance * {
+    animation-duration: 0.1s !important;
+    transition-duration: 0.1s !important;
+}
+
+.slow-connection video {
+    display: none;
+}
+
+.slow-connection .hero {
+    background-image: none !important;
+}
+
+body {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+/* ============================================
+   MEJORAS TOUCH
+   ============================================ */
+.touch-device a,
+.touch-device button {
+    -webkit-tap-highlight-color: rgba(139, 58, 79, 0.3);
+}
+
+.touch-device * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.touch-device input,
+.touch-device textarea {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+/* Scroll suave en móviles */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Header con sombra al scroll */
+header.scrolled {
+    box-shadow: 0 4px 20px rgba(107, 44, 62, 0.5);
+}
