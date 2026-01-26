@@ -349,3 +349,27 @@ window.addEventListener('load', () => {
     console.log('✓ Sitio cargado completamente');
     document.body.classList.add('loaded');
 });
+/* ============================================
+   JAVASCRIPT PARA DROPDOWN
+   Agregar al final de tu breccia.js
+   ============================================ */
+
+// Dropdown en móvil
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownTrigger = document.querySelector('.dropdown-trigger');
+    const navDropdown = document.querySelector('.nav-dropdown');
+    
+    if (dropdownTrigger && window.innerWidth <= 768) {
+        dropdownTrigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            navDropdown.classList.toggle('active');
+        });
+    }
+    
+    // Recargar al cambiar tamaño de pantalla
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            navDropdown.classList.remove('active');
+        }
+    });
+});

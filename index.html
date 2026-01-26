@@ -126,24 +126,39 @@
 </a>
 <body>
     <header>
-        <nav>
-            <div class="logo">
-                <span class="logo-main">BRECCIA</span>
-                <span class="logo-sub">Inmuebles y Negocios</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#novedades">Novedades</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-                <li>
-                    <a href="https://joinup.i-data.com.ar/ingresar" class="portal-link" target="_blank" rel="noopener noreferrer">
-                        Acceso Propietarios
-                    </a>
-                </li>
+       <!-- MENÚ CON DROPDOWN - Reemplazar el <nav> completo -->
+<nav>
+    <div class="logo">
+        <span class="logo-main">BRECCIA</span>
+        <span class="logo-sub">Inmuebles y Negocios</span>
+    </div>
+    <button class="hamburger-btn" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        
+        <!-- DROPDOWN DE SERVICIOS -->
+        <li class="nav-dropdown">
+            <a href="#servicios" class="dropdown-trigger">
+                Servicios
+                <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                    <path d="M2 4l4 4 4-4H2z"/>
+                </svg>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="administracion.html">Administración de Consorcios</a></li>
+                <li><a href="inmobiliaria.html">Servicios Inmobiliarios</a></li>
             </ul>
-        </nav>
+        </li>
+        
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="portal.html" class="portal-link">Acceso Propietarios</a></li>
+    </ul>
+</nav>
     </header>
 
     <section id="inicio" class="hero">
@@ -311,86 +326,279 @@
         </div>
     </section>
 
-    <!-- Novedades -->
-    <section id="novedades" class="novedades-section">
-        <h2 class="fade-in">Novedades</h2>
-        <div class="novedades-grid">
-            <div class="novedad-card scale-in stagger-1">
-                <div class="novedad-image">📢</div>
-                <h3>Nuevos medios de pago</h3>
-                <p>Ahora podés pagar tus expensas con más opciones: transferencia bancaria, tarjetas de crédito y débito.</p>
-                <a href="https://www.expensaspagas.com.ar/como-pago/" target="_blank" rel="noopener noreferrer" class="novedad-btn">
-                    Cómo pagar expensas →
-                </a>
-                <span class="novedad-date">Enero 2026</span>
-            </div>
-            <div class="novedad-card scale-in stagger-2">
-                <div class="novedad-image">🏢</div>
-                <h3>Sistema de gestión mejorado</h3>
-                <p>Implementamos nuevas tecnologías para optimizar la administración de tu consorcio.</p>
-                <span class="novedad-date">Diciembre 2025</span>
-            </div>
-            <div class="novedad-card scale-in stagger-3">
-                <div class="novedad-image">✨</div>
-                <h3>Portal renovado</h3>
-                <p>Nuevo diseño y funcionalidades en nuestro portal para propietarios.</p>
-                <span class="novedad-date">Noviembre 2025</span>
-            </div>
-        </div>
-    </section>
+   <!-- SECCIÓN SOBRE NOSOTROS - VERSIÓN PROFESIONAL -->
+<section id="nosotros" class="nosotros-profesional-section">
+    
+    <!-- Header de sección -->
+    <div class="nosotros-header fade-in">
+        <span class="nosotros-badge">✦ CONOCENOS ✦</span>
+        <h2>Sobre Nosotros</h2>
+        <div class="header-line"></div>
+    </div>
 
-    <section id="nosotros" class="about">
-        <div class="about-content">
-            <h2 class="fade-in">Sobre Nosotros</h2>
-            <p class="slide-left stagger-1">
+    <div class="nosotros-container">
+        
+        <!-- Intro principal - PRIMER CUADRO -->
+        <div class="nosotros-intro scale-in">
+            <div class="intro-icon">🏢</div>
+            <h3>Más de 25 años construyendo confianza</h3>
+            <p class="intro-text">
                 En Breccia Inmuebles y Negocios nos especializamos en ofrecer soluciones integrales 
                 para la administración de consorcios y servicios inmobiliarios. Con años de experiencia 
                 en el sector, brindamos un servicio personalizado y profesional que garantiza la tranquilidad 
                 de nuestros clientes.
             </p>
-            <p class="slide-right stagger-2">
+        </div>
+
+        <!-- Valores - SEGUNDO CUADRO -->
+        <div class="nosotros-intro scale-in">  <!-- ← Usamos la misma clase para que tenga el mismo estilo -->
+            <div class="intro-icon">💎</div>
+            <h3>Nuestros Valores</h3>
+            <p class="intro-text">
                 Nuestro equipo de profesionales está comprometido con la excelencia, transparencia y 
                 eficiencia en cada uno de los servicios que ofrecemos, siempre poniendo las necesidades 
                 de nuestros clientes en primer lugar.
             </p>
         </div>
-    </section>
 
-    <section id="contacto" class="contact">
-        <h2 class="fade-in">Vías de Contacto</h2>
-        <p class="contact-intro fade-in">Brindar una pronta respuesta a nuestros propietarios forma parte de nuestras prioridades. Nuestras vías de contacto están siempre a su disposición.</p>
+    </div>
+</section>
+   <!-- NUEVA SECCIÓN DE CONTACTO PROFESIONAL -->
+<section id="contacto" class="contacto-profesional-section">
+    <!-- Hero de Contacto -->
+    <div class="contacto-hero">
+        <div class="contacto-hero-content fade-in">
+            <span class="contacto-badge">✦ ESTAMOS PARA VOS ✦</span>
+            <h2>Contactate con Nosotros</h2>
+            <p>Respuesta rápida y atención personalizada. Tu tranquilidad es nuestra prioridad.</p>
+        </div>
+    </div>
+
+    <div class="contacto-container">
         
-        <div class="contact-grid">
-            <div class="contact-item scale-in stagger-1">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚨</div>
-                <h3>Emergencias 24/7</h3>
-                <p><a href="tel:2234260505" class="contact-phone">223 426-0505</a></p>
-                <span class="contact-label">Atención inmediata</span>
+        <!-- CARD DESTACADA: EMERGENCIAS -->
+        <!-- EMERGENCIAS - VERSIÓN PROFESIONAL Y SOBRIA -->
+<div class="emergencia-destacada scale-in">
+    
+    <!-- Header -->
+    <div class="emergencia-header">
+        <div class="emergencia-icon-simple">🚨</div>
+        <div class="emergencia-text-header">
+            <h3>Emergencias 24/7</h3>
+            <p>Atención inmediata ante cualquier eventualidad en tu consorcio</p>
+        </div>
+        <div class="emergencia-status">
+            <span class="status-dot-emergency"></span>
+            <span>Disponible ahora</span>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="emergencia-content-grid">
+        
+        <!-- Teléfono -->
+        <div class="emergencia-phone-section">
+            <div class="emergencia-phone-label">Línea de Emergencias</div>
+            <a href="tel:2234260505" class="emergencia-phone-number">223 426-0505</a>
+            <p class="emergencia-phone-subtitle">Respuesta inmediata las 24 horas</p>
+        </div>
+
+        <!-- Features -->
+        <div class="emergencia-features-grid">
+            <div class="emergencia-feature-item">
+                <div class="emergencia-feature-icon">⚡</div>
+                <div class="emergencia-feature-text">
+                    <strong>Respuesta Inmediata</strong>
+                    <span>Atención prioritaria en minutos</span>
+                </div>
             </div>
             
-            <div class="contact-item scale-in stagger-2">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem;">📞</div>
-                <h3>Administración</h3>
-                <p><a href="tel:4957908" class="contact-phone">495-7908</a></p>
-                <span class="contact-label">Lunes a Viernes 9 a 13:30hs</span>
+            <div class="emergencia-feature-item">
+                <div class="emergencia-feature-icon">🔧</div>
+                <div class="emergencia-feature-text">
+                    <strong>Red de Proveedores</strong>
+                    <span>Profesionales confiables disponibles</span>
+                </div>
             </div>
             
-            <div class="contact-item scale-in stagger-3">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem;">✉️</div>
-                <h3>Email</h3>
-                <p><a href="mailto:contacto@breccianegocios.com.ar" class="contact-email">contacto@breccianegocios.com.ar</a></p>
-                <span class="contact-label">Consultas generales</span>
-            </div>
-            
-            <div class="contact-item scale-in stagger-1">
-                <div style="font-size: 2.5rem; margin-bottom: 1rem;">📍</div>
-                <h3>Dirección</h3>
-                <p class="contact-highlight">Olavarria 2838 2°B</p>
-                <p>Mar del Plata<br>Buenos Aires, Argentina</p>
-                <span class="contact-label">Visitanos</span>
+            <div class="emergencia-feature-item">
+                <div class="emergencia-feature-icon">📞</div>
+                <div class="emergencia-feature-text">
+                    <strong>Línea Directa 24hs</strong>
+                    <span>Sin intermediarios, contacto directo</span>
+                </div>
             </div>
         </div>
-    </section>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="emergencia-footer">
+        <div class="emergencia-horario">
+            <div class="emergencia-horario-icon">⏰</div>
+            <div class="emergencia-horario-text">
+                <strong>Disponibilidad Total</strong>
+                <span>365 días al año, 24 horas al día</span>
+            </div>
+        </div>
+        <a href="tel:2234260505" class="emergencia-action-btn">
+            <span>Llamar ahora</span>
+            <span>→</span>
+        </a>
+    </div>
+
+</div>
+
+        <!-- Grid de Contactos -->
+        <div class="contacto-grid">
+            
+            <!-- Oficina/Administración -->
+            <div class="contacto-card scale-in stagger-1">
+                <div class="contacto-card-header">
+                    <div class="contacto-icon">📞</div>
+                    <div class="contacto-status">
+                        <span class="status-dot active"></span>
+                        <span class="status-text">Horario de oficina</span>
+                    </div>
+                </div>
+                <h3>Administración</h3>
+                <p class="contacto-description">Consultas generales y trámites administrativos</p>
+                
+                <div class="contacto-info-group">
+                    <div class="info-label">Teléfono</div>
+                    <a href="tel:4957908" class="info-value phone-link">495-7908</a>
+                </div>
+                
+                <div class="contacto-info-group">
+                    <div class="info-label">Horario</div>
+                    <div class="info-value">Lunes a Viernes<br>9:00 a 13:30hs</div>
+                </div>
+                
+                <button class="contacto-action-btn" onclick="window.location.href='tel:4957908'">
+                    <span>Llamar ahora</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Email -->
+            <div class="contacto-card scale-in stagger-2">
+                <div class="contacto-card-header">
+                    <div class="contacto-icon">✉️</div>
+                    <div class="contacto-status">
+                        <span class="status-dot active"></span>
+                        <span class="status-text">Respondemos en 24hs</span>
+                    </div>
+                </div>
+                <h3>Email</h3>
+                <p class="contacto-description">Consultas, sugerencias y solicitudes por escrito</p>
+                
+                <div class="contacto-info-group">
+                    <div class="info-label">Correo electrónico</div>
+                    <a href="mailto:contacto@breccianegocios.com.ar" class="info-value email-link">contacto@breccianegocios.com.ar</a>
+                </div>
+                
+                <div class="contacto-info-group">
+                    <div class="info-label">Tiempo de respuesta</div>
+                    <div class="info-value">Máximo 24 horas hábiles</div>
+                </div>
+                
+                <button class="contacto-action-btn" onclick="window.location.href='mailto:contacto@breccianegocios.com.ar'">
+                    <span>Enviar email</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Ubicación -->
+            <div class="contacto-card scale-in stagger-3">
+                <div class="contacto-card-header">
+                    <div class="contacto-icon">📍</div>
+                    <div class="contacto-status">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Visitanos</span>
+                    </div>
+                </div>
+                <h3>Nuestra Oficina</h3>
+                <p class="contacto-description">Te esperamos en nuestras oficinas en el centro de Mar del Plata</p>
+                
+                <div class="contacto-info-group">
+                    <div class="info-label">Dirección</div>
+                    <div class="info-value address-highlight">Olavarría 2838 2°B</div>
+                    <div class="info-value-secondary">Mar del Plata, Buenos Aires</div>
+                </div>
+                
+                <div class="contacto-info-group">
+                    <div class="info-label">Zona</div>
+                    <div class="info-value">Centro - Mar del Plata</div>
+                </div>
+                
+                <button class="contacto-action-btn" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Olavarría+2838+2B+Mar+del+Plata', '_blank')">
+                    <span>Ver en mapa</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="contacto-card contacto-card-whatsapp scale-in stagger-1">
+                <div class="contacto-card-header">
+                    <div class="contacto-icon">💬</div>
+                    <div class="contacto-status">
+                        <span class="status-dot active pulse"></span>
+                        <span class="status-text">Online</span>
+                    </div>
+                </div>
+                <h3>WhatsApp</h3>
+                <p class="contacto-description">Chateá con nosotros por WhatsApp para consultas rápidas</p>
+                
+                <div class="contacto-info-group">
+                    <div class="info-label">Número</div>
+                    <div class="info-value">+54 9 223 577-1240</div>
+                </div>
+                
+                <div class="contacto-info-group">
+                    <div class="info-label">Horario</div>
+                    <div class="info-value">Lunes a Viernes 9 a 13:30hs</div>
+                </div>
+                
+                <button class="contacto-action-btn whatsapp-btn" onclick="window.open('https://wa.me/5492235771240?text=Hola,%20quiero%20consultar%20sobre%20', '_blank')">
+                    <span>Abrir WhatsApp</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- CTA Final -->
+        <div class="contacto-cta-final fade-in">
+            <div class="cta-content">
+                <h3>¿Necesitás ayuda inmediata?</h3>
+                <p>Nuestro equipo está disponible para atenderte. Elegí el canal que prefieras y contactanos ahora.</p>
+                <div class="cta-buttons">
+                    <a href="tel:2234260505" class="cta-btn cta-btn-primary">
+                        <span>Llamar ahora</span>
+                        <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/>
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/5492235771240?text=Hola,%20quiero%20consultar%20sobre%20" target="_blank" class="cta-btn cta-btn-secondary">
+                        <span>WhatsApp</span>
+                        <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
 
     <footer>
         <p>&copy; 2026 Breccia Inmuebles y Negocios. Todos los derechos reservados.</p>
