@@ -1,3 +1,4 @@
+
 // ============================================
 // CARRUSEL DE SERVICIOS INMOBILIARIOS
 // ============================================
@@ -355,35 +356,35 @@ Fecha: ${new Date().toLocaleString('es-AR')}
         imagenes: ['Francia371/F3.jpg', 'Francia371/F4.jpg']
     },
     
-    // PROPIEDAD 4: Ficticia (oculta)
     4: {
-        titulo: "Casa Playa Serena",
-        ubicacion: "Playa Serena, Mar del Plata",
-        precio: "Consultar",
-        tipo: "Alquiler Temporario",
-        dormitorios: "4",
-        banos: "2",
-        superficie: "220 m²",
-        esLote: false,
-        descripcion: "Amplia casa familiar ideal para vacaciones en una de las zonas más tranquilas de Mar del Plata. La propiedad ofrece espacios generosos tanto en interiores como exteriores, perfecta para disfrutar en familia o con amigos. Cuenta con jardín con parrilla, quincho y pileta. Los dormitorios son amplios y luminosos. A pocas cuadras de la playa. Disponible para temporada de verano.",
-        caracteristicas: [
-            "Cuatro dormitorios amplios",
-            "Dos baños completos",
-            "Jardín con parrilla",
-            "Quincho techado",
-            "Pileta",
-            "Garage para dos autos",
-            "Living-comedor espacioso",
-            "Cocina completa",
-            "Cerca de la playa",
-            "Zona tranquila y segura"
-        ],
-        imagenes: [
-            'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80'
-        ]
-    }
+    titulo: "Departamento de 4 Ambientes con Gran Patio",
+    ubicacion: "San Juan y Avellaneda, Mar del Plata",
+    precio: "USD 85.000",
+    tipo: "Venta",
+    dormitorios: "3",
+    banos: "1",
+    superficie: "Consultar",
+    esLote: false,
+    descripcion: "Ubicado en la zona de San Juan y Avellaneda, esta unidad se caracteriza por ser muy cómoda para una familia numerosa y por contar con un amplio patio propio con plantas. La propiedad cuenta con una superficie total de 129,71 m², de los cuales 68,56 m² son cubiertos, lo que brinda un excelente equilibrio entre espacios interiores y exteriores. Al ingresar nos encontramos con un living-comedor con salida directa al patio, cómoda cocina con espacio de lavadero para lavarropas, baño completo y tres (3) dormitorios con pisos de parquet y placard. El patio es de uso exclusivo, ideal para colocar mesa, sombrilla y sillas, y disfrutar de un agradable espacio verde al aire libre. La unidad se ubica al frente y lateral del edificio, lo que permite una excelente luminosidad natural durante todo el día.",
+    caracteristicas: [
+        "Living-comedor con salida al patio",
+        "Tres dormitorios con pisos de parquet",
+        "Todos los dormitorios con placard",
+        "Baño completo",
+        "Cocina con espacio para lavadero",
+        "Patio propio amplio con plantas",
+        "Ideal para familia numerosa",
+        "Perfecto para colocar mesa y sombrillas",
+        "Espacio verde propio",
+        "Unidad al frente y lateral",
+        "Muy luminoso todo el día",
+        "Zona de San Juan y Avellaneda",
+        "Excelente ubicación",
+        "Pisos de parquet en dormitorios",
+        "Espacio de lavadero integrado"
+    ],
+    imagenes: Array.from({length: 27}, (_, i) => `SanJuan3052/SJ${i + 2}.jpg`)
+},
 };
 
     let propiedadActualDetalle = {};

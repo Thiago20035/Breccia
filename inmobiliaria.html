@@ -39,7 +39,6 @@
                 <li><a href="index.html#inicio">Inicio</a></li>
                 <li><a href="index.html#servicios">Servicios</a></li>
                 <li><a href="index.html#nosotros">Nosotros</a></li>
-                <li><a href="index.html#novedades">Novedades</a></li>
                 <li><a href="index.html#contacto">Contacto</a></li>
                 <li>
                     <a href="https://joinup.i-data.com.ar/ingresar" class="portal-link" target="_blank" rel="noopener noreferrer">
@@ -207,40 +206,53 @@
         <button class="consultar-btn" onclick="event.stopPropagation(); abrirModalConsulta('Lote con Construcción en Parque Luro', 'Francia 3741, Parque Luro', 'Consultar')">Consultar</button>
     </div>
 </div>
+<!-- NUEVA PROPIEDAD 4 - San Juan 3052 -->
+<!-- Agregar DESPUÉS de la Propiedad 3 (Francia 3741) y ANTES de la ficticia -->
 
-            <!-- Propiedad 4 - OCULTA (ficticia) -->
-            <div class="propiedad-card" data-tipo="alquiler-temporario" style="display: none;">
-                <div class="propiedad-image-container">
-                    <div class="propiedad-carousel" data-carousel="3">
-                        <div class="propiedad-carousel-item" style="background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80');"></div>
-                    </div>
-                    <div class="propiedad-badge">Alquiler Temporario</div>
-                </div>
-                <div class="propiedad-content">
-                    <h3>Casa Playa Serena</h3>
-                    <div class="propiedad-ubicacion">
-                        <span>📍</span>
-                        <span>Playa Serena, Mar del Plata</span>
-                    </div>
-                    <div class="propiedad-detalles">
-                        <div class="detalle-item">
-                            <span>🛏️</span>
-                            <span>4 dorm</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>🚿</span>
-                            <span>2 baños</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>📏</span>
-                            <span>220 m²</span>
-                        </div>
-                    </div>
-                    <div class="propiedad-precio">Consultar</div>
-                    <button class="consultar-btn" onclick="abrirModalConsulta('Casa Playa Serena', 'Playa Serena, Mar del Plata', 'A consultar')">Consultar</button>
-                </div>
+<div class="propiedad-card" data-tipo="venta" data-propiedad-id="4">
+    <div class="propiedad-image-container">
+        <div class="propiedad-carousel" data-carousel="3">
+            <div class="propiedad-carousel-item" style="background-image: url('SanJuan3052/SJ8.jpg');"></div>
+            <div class="propiedad-carousel-item" style="background-image: url('SanJuan3052/SJ28.jpg');"></div>
+            <div class="propiedad-carousel-item" style="background-image: url('SanJuan3052/SJ21.jpg');"></div>
+            <div class="propiedad-carousel-item" style="background-image: url('SanJuan3052/SJ24.jpg');"></div>
+            <div class="propiedad-carousel-item" style="background-image: url('SanJuan3052/SJ19.jpg');"></div>
+        </div>
+        <button class="carousel-nav prev" onclick="event.stopPropagation(); moveCarousel(3, -1)">‹</button>
+        <button class="carousel-nav next" onclick="event.stopPropagation(); moveCarousel(3, 1)">›</button>
+        <div class="carousel-dots">
+            <span class="carousel-dot active" onclick="event.stopPropagation(); goToSlide(3, 0)"></span>
+            <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(3, 1)"></span>
+            <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(3, 2)"></span>
+            <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(3, 3)"></span>
+            <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(3, 4)"></span>
+        </div>
+        <div class="propiedad-badge">Venta</div>
+    </div>
+    <div class="propiedad-content">
+        <h3>Departamento de 4 Ambientes con Gran Patio</h3>
+        <div class="propiedad-ubicacion">
+            <span>📍</span>
+            <span>San Juan y Avellaneda, Mar del Plata</span>
+        </div>
+        <div class="propiedad-detalles">
+            <div class="detalle-item">
+                <span>🛏️</span>
+                <span>3 dorm</span>
+            </div>
+            <div class="detalle-item">
+                <span>🚿</span>
+                <span>1 baño</span>
+            </div>
+            <div class="detalle-item">
+                <span>🌳</span>
+                <span>Patio propio</span>
             </div>
         </div>
+        <div class="propiedad-precio">USD 85.000</div>
+        <button class="consultar-btn" onclick="event.stopPropagation(); abrirModalConsulta('Departamento de 4 Ambientes con Gran Patio', 'San Juan y Avellaneda, Mar del Plata', 'USD 85.000')">Consultar</button>
+    </div>
+</div>
     </section>
 
     <!-- Servicios Inmobiliarios -->
