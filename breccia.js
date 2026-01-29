@@ -22,24 +22,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Observar elementos animados
     const animatedElements = document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in');
     animatedElements.forEach(el => observer.observe(el));
-    
+
     // Optimización para touch devices
     if (isTouchDevice()) {
         document.body.classList.add('touch-device');
         optimizeForTouch();
     }
-    
+
     // Prevenir zoom en inputs en iOS
     preventIOSZoom();
-    
+
     // Mejorar rendimiento de scroll
     optimizeScrollPerformance();
-    
+
     // Inicializar menú móvil
     if (window.innerWidth <= 768) {
         initMobileMenu();
     }
-    
+
     // Inicializar lazy loading
     initLazyLoading();
 });
@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================
 function isTouchDevice() {
     return (('ontouchstart' in window) ||
-            (navigator.maxTouchPoints > 0) ||
-            (navigator.msMaxTouchPoints > 0));
+        (navigator.maxTouchPoints > 0) ||
+        (navigator.msMaxTouchPoints > 0));
 }
 
 // ============================================
@@ -62,10 +62,10 @@ function optimizeForTouch() {
     clickableElements.forEach(el => {
         el.style.minHeight = '44px'; // Tamaño mínimo recomendado para touch
     });
-    
+
     // Prevenir double-tap zoom en enlaces
     let lastTap = 0;
-    document.addEventListener('touchend', function(e) {
+    document.addEventListener('touchend', function (e) {
         const currentTime = new Date().getTime();
         const tapLength = currentTime - lastTap;
         if (tapLength < 300 && tapLength > 0) {
@@ -94,26 +94,26 @@ function preventIOSZoom() {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
-        
+
         // Ignorar si es solo "#"
         if (href === '#') {
             e.preventDefault();
             return;
         }
-        
+
         const target = document.querySelector(href);
         if (target) {
             e.preventDefault();
-            
+
             // Calcular offset para header fijo
             const headerHeight = document.querySelector('header')?.offsetHeight || 70;
             const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-            
+
             window.scrollTo({
                 top: targetPosition,
                 behavior: 'smooth'
             });
-            
+
             // Cerrar menú móvil si está abierto
             closeMobileMenu();
         }
@@ -127,12 +127,12 @@ function toggleMobileMenu() {
     const nav = document.querySelector('.nav-links');
     const body = document.body;
     const hamburger = document.querySelector('.hamburger-btn');
-    
+
     if (nav) {
         nav.classList.toggle('mobile-active');
         body.classList.toggle('menu-open');
         hamburger?.classList.toggle('active');
-        
+
         // Crear backdrop si no existe
         let backdrop = document.querySelector('.mobile-backdrop');
         if (!backdrop && nav.classList.contains('mobile-active')) {
@@ -153,12 +153,12 @@ function closeMobileMenu() {
     const backdrop = document.querySelector('.mobile-backdrop');
     const body = document.body;
     const hamburger = document.querySelector('.hamburger-btn');
-    
+
     if (nav?.classList.contains('mobile-active')) {
         nav.classList.remove('mobile-active');
         body.classList.remove('menu-open');
         hamburger?.classList.remove('active');
-        
+
         if (backdrop) {
             backdrop.classList.remove('active');
             setTimeout(() => backdrop.remove(), 300);
@@ -170,7 +170,7 @@ function closeMobileMenu() {
 function initMobileMenu() {
     const nav = document.querySelector('nav');
     if (!nav || document.querySelector('.hamburger-btn')) return;
-    
+
     const hamburgerBtn = document.createElement('button');
     hamburgerBtn.className = 'hamburger-btn';
     hamburgerBtn.setAttribute('aria-label', 'Menú');
@@ -180,7 +180,7 @@ function initMobileMenu() {
         <span></span>
     `;
     hamburgerBtn.addEventListener('click', toggleMobileMenu);
-    
+
     nav.appendChild(hamburgerBtn);
 }
 
@@ -204,7 +204,7 @@ function openPortalModal() {
 }
 
 // Cerrar modal al hacer click fuera
-window.addEventListener('click', function(e) {
+window.addEventListener('click', function (e) {
     const modal = document.getElementById('portalModal');
     if (e.target === modal) {
         closePortalModal();
@@ -212,7 +212,7 @@ window.addEventListener('click', function(e) {
 });
 
 // Cerrar modal con tecla ESC
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
         closePortalModal();
         closeMobileMenu();
@@ -224,18 +224,18 @@ document.addEventListener('keydown', function(e) {
 // ============================================
 function handlePortalLogin(e) {
     e.preventDefault();
-    
+
     const usuario = document.getElementById('usuario')?.value;
     const password = document.getElementById('password')?.value;
-    
+
     if (!usuario || !password) {
         alert('Por favor completá todos los campos');
         return;
     }
-    
+
     // Aquí conectarías con tu sistema de autenticación
     alert('Funcionalidad de login en desarrollo. Usuario: ' + usuario);
-    
+
     // Limpiar formulario
     const form = document.getElementById('portalForm');
     if (form) form.reset();
@@ -246,7 +246,7 @@ function handlePortalLogin(e) {
 // ============================================
 function optimizeScrollPerformance() {
     let ticking = false;
-    
+
     window.addEventListener('scroll', () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
@@ -261,7 +261,7 @@ function optimizeScrollPerformance() {
 function handleScroll() {
     const header = document.querySelector('header');
     if (!header) return;
-    
+
     if (window.scrollY > 100) {
         header.classList.add('scrolled');
     } else {
@@ -274,7 +274,7 @@ function handleScroll() {
 // ============================================
 function initLazyLoading() {
     const images = document.querySelectorAll('img[data-src]');
-    
+
     const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -285,7 +285,7 @@ function initLazyLoading() {
             }
         });
     });
-    
+
     images.forEach(img => imageObserver.observe(img));
 }
 
@@ -300,12 +300,12 @@ window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
             closeMobileMenu();
         }
-        
+
         // Re-inicializar menú si se redimensiona a móvil
         if (window.innerWidth <= 768 && !document.querySelector('.hamburger-btn')) {
             initMobileMenu();
         }
-        
+
         // Actualizar font-size en inputs
         preventIOSZoom();
     }, 250);
@@ -355,19 +355,19 @@ window.addEventListener('load', () => {
    ============================================ */
 
 // Dropdown en móvil
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const dropdownTrigger = document.querySelector('.dropdown-trigger');
     const navDropdown = document.querySelector('.nav-dropdown');
-    
+
     if (dropdownTrigger && window.innerWidth <= 768) {
-        dropdownTrigger.addEventListener('click', function(e) {
+        dropdownTrigger.addEventListener('click', function (e) {
             e.preventDefault();
             navDropdown.classList.toggle('active');
         });
     }
-    
+
     // Recargar al cambiar tamaño de pantalla
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
         if (window.innerWidth > 768) {
             navDropdown.classList.remove('active');
         }

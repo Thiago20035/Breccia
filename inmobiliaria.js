@@ -2,9 +2,9 @@
 // ============================================
 // CARRUSEL DE SERVICIOS INMOBILIARIOS
 // ============================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('Página cargada');
-    
+
     // Carrusel de servicios
     let currentSlideInmo = 0;
     const trackInmo = document.getElementById('carouselTrackInmo');
@@ -52,163 +52,175 @@ document.addEventListener('DOMContentLoaded', function() {
     // CARRUSEL DE IMÁGENES PROPIEDADES
     // ============================================
     const carouselStates = {};
-    
-    window.moveCarousel = function(carouselId, direction) {
-    const carousel = document.querySelector(`[data-carousel="${carouselId}"]`);
-    if (!carousel) return;
-    
-    const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
-    const totalItems = carousel.children.length;
-    
-    if (!carouselStates[carouselId]) carouselStates[carouselId] = 0;
-    
-    carouselStates[carouselId] += direction;
-    
-    if (carouselStates[carouselId] < 0) {
-        carouselStates[carouselId] = totalItems - 1;
-    } else if (carouselStates[carouselId] >= totalItems) {
-        carouselStates[carouselId] = 0;
-    }
-    
-    carousel.style.transform = `translateX(-${carouselStates[carouselId] * 100}%)`;
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === carouselStates[carouselId]);
-    });
-    window.moveCarousel = function(carouselId, direction) {
-    const carousel = document.querySelector(`[data-carousel="${carouselId}"]`);
-    if (!carousel) return;
-    
-    const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
-    const totalItems = carousel.children.length;
-    
-    if (!carouselStates[carouselId]) carouselStates[carouselId] = 0;
-    
-    carouselStates[carouselId] += direction;
-    
-    if (carouselStates[carouselId] < 0) {
-        carouselStates[carouselId] = totalItems - 1;
-    } else if (carouselStates[carouselId] >= totalItems) {
-        carouselStates[carouselId] = 0;
-    }
-    
-    carousel.style.transform = `translateX(-${carouselStates[carouselId] * 100}%)`;
-    
-    // Actualizar dots y reiniciar animación
-    dots.forEach((dot, index) => {
-        const isActive = index === carouselStates[carouselId];
-        dot.classList.toggle('active', isActive);
-        
-        // Reiniciar animación en el dot activo
-        if (isActive) {
-            dot.style.animation = 'none';
-            setTimeout(() => {
-                dot.style.animation = '';
-            }, 10);
-        }
-    });
-}
-}
 
-    window.goToSlide = function(carouselId, slideIndex) {
-    const carousel = document.querySelector(`[data-carousel="${carouselId}"]`);
-    if (!carousel) return;
-    
-    const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
-    carouselStates[carouselId] = slideIndex;
-    carousel.style.transform = `translateX(-${slideIndex * 100}%)`;
-    
-    // Actualizar dots y reiniciar animación
-    dots.forEach((dot, index) => {
-        const isActive = index === slideIndex;
-        dot.classList.toggle('active', isActive);
-        
-        // Reiniciar animación en el dot activo
-        if (isActive) {
-            dot.style.animation = 'none';
-            setTimeout(() => {
-                dot.style.animation = '';
-            }, 10);
-        }
-    });
-}
+    window.moveCarousel = function (carouselId, direction) {
+        const carousel = document.querySelector(`[data-carousel="${carouselId}"]`);
+        if (!carousel) return;
 
-    // Autoplay al hover
-   // Autoplay SIEMPRE ACTIVO (no se pausa al hover)
-// Autoplay SOLO al hover
-let autoplayIntervals = {};
-document.querySelectorAll('.propiedad-image-container').forEach((container, index) => {
-    container.addEventListener('mouseenter', () => {
-        // Iniciar autoplay cuando entra el cursor
-        autoplayIntervals[index] = setInterval(() => window.moveCarousel(index, 1), 2500);
-    });
-    container.addEventListener('mouseleave', () => {
-        // Detener autoplay cuando sale el cursor
-        if (autoplayIntervals[index]) {
-            clearInterval(autoplayIntervals[index]);
-            delete autoplayIntervals[index];
-        }
-    });
-});
-});
+        const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
+        const totalItems = carousel.children.length;
 
-    // ============================================
-    // FILTROS
-    // ============================================
-    document.querySelectorAll('.filter-btn-prop').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.filter-btn-prop').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            
-            const tipo = this.dataset.tipo;
-            document.querySelectorAll('.propiedad-card').forEach(prop => {
-                if (tipo === 'todas' || prop.dataset.tipo === tipo) {
-                    prop.classList.remove('hidden');
-                } else {
-                    prop.classList.add('hidden');
+        if (!carouselStates[carouselId]) carouselStates[carouselId] = 0;
+
+        carouselStates[carouselId] += direction;
+
+        if (carouselStates[carouselId] < 0) {
+            carouselStates[carouselId] = totalItems - 1;
+        } else if (carouselStates[carouselId] >= totalItems) {
+            carouselStates[carouselId] = 0;
+        }
+
+        carousel.style.transform = `translateX(-${carouselStates[carouselId] * 100}%)`;
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === carouselStates[carouselId]);
+        });
+        window.moveCarousel = function (carouselId, direction) {
+            const carousel = document.querySelector(`[data-carousel="${carouselId}"]`);
+            if (!carousel) return;
+
+            const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
+            const totalItems = carousel.children.length;
+
+            if (!carouselStates[carouselId]) carouselStates[carouselId] = 0;
+
+            carouselStates[carouselId] += direction;
+
+            if (carouselStates[carouselId] < 0) {
+                carouselStates[carouselId] = totalItems - 1;
+            } else if (carouselStates[carouselId] >= totalItems) {
+                carouselStates[carouselId] = 0;
+            }
+
+            carousel.style.transform = `translateX(-${carouselStates[carouselId] * 100}%)`;
+
+            // Actualizar dots y reiniciar animación
+            dots.forEach((dot, index) => {
+                const isActive = index === carouselStates[carouselId];
+                dot.classList.toggle('active', isActive);
+
+                // Reiniciar animación en el dot activo
+                if (isActive) {
+                    dot.style.animation = 'none';
+                    setTimeout(() => {
+                        dot.style.animation = '';
+                    }, 10);
                 }
             });
+        }
+    }
+
+    window.goToSlide = function (carouselId, slideIndex) {
+        const carousel = document.querySelector(`[data-carousel="${carouselId}"]`);
+        if (!carousel) return;
+
+        const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
+        carouselStates[carouselId] = slideIndex;
+        carousel.style.transform = `translateX(-${slideIndex * 100}%)`;
+
+        // Actualizar dots y reiniciar animación
+        dots.forEach((dot, index) => {
+            const isActive = index === slideIndex;
+            dot.classList.toggle('active', isActive);
+
+            // Reiniciar animación en el dot activo
+            if (isActive) {
+                dot.style.animation = 'none';
+                setTimeout(() => {
+                    dot.style.animation = '';
+                }, 10);
+            }
+        });
+    }
+
+    // Autoplay al hover
+    // Autoplay SIEMPRE ACTIVO (no se pausa al hover)
+    // Autoplay SOLO al hover
+    let autoplayIntervals = {};
+    document.querySelectorAll('.propiedad-image-container').forEach((container, index) => {
+        container.addEventListener('mouseenter', () => {
+            // Iniciar autoplay cuando entra el cursor
+            autoplayIntervals[index] = setInterval(() => window.moveCarousel(index, 1), 2500);
+        });
+        container.addEventListener('mouseleave', () => {
+            // Detener autoplay cuando sale el cursor
+            if (autoplayIntervals[index]) {
+                clearInterval(autoplayIntervals[index]);
+                delete autoplayIntervals[index];
+            }
         });
     });
+});
 
-    // ============================================
-    // MODAL CONSULTA
-    // ============================================
-    let propiedadActual = {};
+// ============================================
+// FILTROS
+// ============================================
+// ============================================
+// FILTROS
+// ============================================
+document.querySelectorAll('.filter-btn-prop').forEach(btn => {
+    btn.addEventListener('click', function () {
+        console.log('Filtro clickeado:', this.dataset.tipo);
+        
+        document.querySelectorAll('.filter-btn-prop').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
 
-    window.abrirModalConsulta = function(nombre, ubicacion, precio) {
-        propiedadActual = { nombre, ubicacion, precio };
-        document.getElementById('propiedadInfoModal').innerHTML = `
+        const categoria = this.dataset.tipo;
+        
+        let visibleCount = 0;
+        document.querySelectorAll('.propiedad-card').forEach(prop => {
+            const propCategoria = prop.dataset.categoria;  // ✅ Usar data-categoria
+            
+            if (categoria === 'todas' || propCategoria === categoria) {  // ✅ Comparar con data-categoria
+                prop.classList.remove('hidden');
+                visibleCount++;
+            } else {
+                prop.classList.add('hidden');
+            }
+        });
+        
+        console.log('Propiedades visibles:', visibleCount);
+    });
+});
+
+// ============================================
+// MODAL CONSULTA
+// ============================================
+let propiedadActual = {};
+
+window.abrirModalConsulta = function (nombre, ubicacion, precio) {
+    propiedadActual = { nombre, ubicacion, precio };
+    document.getElementById('propiedadInfoModal').innerHTML = `
             <h4>${nombre}</h4>
             <p>📍 ${ubicacion} • 💰 ${precio}</p>
         `;
-        document.getElementById('modalConsulta').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+    document.getElementById('modalConsulta').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-    window.cerrarModalConsulta = function() {
-        document.getElementById('modalConsulta').classList.remove('active');
-        document.body.style.overflow = 'auto';
-        document.getElementById('formConsulta').reset();
-        document.getElementById('successMessage').classList.remove('show');
-    }
+window.cerrarModalConsulta = function () {
+    document.getElementById('modalConsulta').classList.remove('active');
+    document.body.style.overflow = 'auto';
+    document.getElementById('formConsulta').reset();
+    document.getElementById('successMessage').classList.remove('show');
+}
 
-    document.getElementById('modalConsulta').addEventListener('click', function(e) {
-        if (e.target === this) window.cerrarModalConsulta();
-    });
+document.getElementById('modalConsulta').addEventListener('click', function (e) {
+    if (e.target === this) window.cerrarModalConsulta();
+});
 
-    window.enviarConsulta = async function(e) {
-        e.preventDefault();
-        const submitBtn = document.getElementById('submitBtn');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Enviando...';
-        
-        const formData = new FormData(e.target);
-        const datos = {
-            access_key: "f4521112-daef-4171-b0b7-0a994aeb27f3",
-            subject: `Consulta de Propiedad: ${propiedadActual.nombre}`,
-            from_name: `${formData.get('nombre')} ${formData.get('apellido')}`,
-            email: formData.get('email'),
-            message: `
+window.enviarConsulta = async function (e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+
+    const formData = new FormData(e.target);
+    const datos = {
+        access_key: "f4521112-daef-4171-b0b7-0a994aeb27f3",
+        subject: `Consulta de Propiedad: ${propiedadActual.nombre}`,
+        from_name: `${formData.get('nombre')} ${formData.get('apellido')}`,
+        email: formData.get('email'),
+        message: `
 CONSULTA DE PROPIEDAD
 ====================
 PROPIEDAD:
@@ -227,36 +239,36 @@ ${formData.get('mensaje') || 'Sin mensaje adicional'}
 
 Fecha: ${new Date().toLocaleString('es-AR')}
             `.trim()
-        };
-        
-        try {
-            const response = await fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify(datos)
-            });
-            
-            const result = await response.json();
-            if (result.success) {
-                document.getElementById('successMessage').classList.add('show');
-                document.getElementById('formConsulta').reset();
-                setTimeout(() => window.cerrarModalConsulta(), 3000);
-            } else {
-                throw new Error('Error en el envío');
-            }
-        } catch (error) {
-            alert('Hubo un error al enviar la consulta. Por favor, intenta nuevamente o contáctanos por teléfono al 495-7908.');
-            console.error('Error:', error);
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Enviar Consulta';
-        }
-    }
+    };
 
-    // ============================================
-    // MODAL DETALLE - ARREGLADO
-    // ============================================
-  const propiedadesDetalle = {
+    try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(datos)
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            document.getElementById('successMessage').classList.add('show');
+            document.getElementById('formConsulta').reset();
+            setTimeout(() => window.cerrarModalConsulta(), 3000);
+        } else {
+            throw new Error('Error en el envío');
+        }
+    } catch (error) {
+        alert('Hubo un error al enviar la consulta. Por favor, intenta nuevamente o contáctanos por teléfono al 495-7908.');
+        console.error('Error:', error);
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar Consulta';
+    }
+}
+
+// ============================================
+// MODAL DETALLE - ARREGLADO
+// ============================================
+const propiedadesDetalle = {
     // PROPIEDAD 1: Gascón 2356
     1: {
         titulo: "Departamento Tipo Semipiso de Tres (3) Ambientes",
@@ -283,9 +295,9 @@ Fecha: ${new Date().toLocaleString('es-AR')}
             "Expensas bajas",
             "Diseño moderno y funcional"
         ],
-        imagenes: Array.from({length: 40}, (_, i) => `FotosGascon2356/G${i + 1}.jpg`)
+        imagenes: Array.from({ length: 40 }, (_, i) => `FotosGascon2356/G${i + 1}.jpg`)
     },
-    
+
     // PROPIEDAD 2: Arenales 2445
     2: {
         titulo: "Departamento de Dos Ambientes",
@@ -318,9 +330,9 @@ Fecha: ${new Date().toLocaleString('es-AR')}
             "A 15 min. caminando de calle Olavarría",
             "Cerca de la comercial calle Güemes"
         ],
-        imagenes: Array.from({length: 12}, (_, i) => `Arenales2445/PA${i + 1}.jpg`)
+        imagenes: Array.from({ length: 12 }, (_, i) => `Arenales2445/PA${i + 1}.jpg`)
     },
-    
+
     // PROPIEDAD 3: Francia 3741
     3: {
         titulo: "Lote con Construcción en Parque Luro",
@@ -355,67 +367,129 @@ Fecha: ${new Date().toLocaleString('es-AR')}
         ],
         imagenes: ['Francia371/F3.jpg', 'Francia371/F4.jpg']
     },
-    
+
     4: {
-    titulo: "Departamento de 4 Ambientes con Gran Patio",
-    ubicacion: "San Juan y Avellaneda, Mar del Plata",
-    precio: "USD 85.000",
-    tipo: "Venta",
-    dormitorios: "3",
-    banos: "1",
-    superficie: "Consultar",
-    esLote: false,
-    descripcion: "Ubicado en la zona de San Juan y Avellaneda, esta unidad se caracteriza por ser muy cómoda para una familia numerosa y por contar con un amplio patio propio con plantas. La propiedad cuenta con una superficie total de 129,71 m², de los cuales 68,56 m² son cubiertos, lo que brinda un excelente equilibrio entre espacios interiores y exteriores. Al ingresar nos encontramos con un living-comedor con salida directa al patio, cómoda cocina con espacio de lavadero para lavarropas, baño completo y tres (3) dormitorios con pisos de parquet y placard. El patio es de uso exclusivo, ideal para colocar mesa, sombrilla y sillas, y disfrutar de un agradable espacio verde al aire libre. La unidad se ubica al frente y lateral del edificio, lo que permite una excelente luminosidad natural durante todo el día.",
-    caracteristicas: [
-        "Living-comedor con salida al patio",
-        "Tres dormitorios con pisos de parquet",
-        "Todos los dormitorios con placard",
-        "Baño completo",
-        "Cocina con espacio para lavadero",
-        "Patio propio amplio con plantas",
-        "Ideal para familia numerosa",
-        "Perfecto para colocar mesa y sombrillas",
-        "Espacio verde propio",
-        "Unidad al frente y lateral",
-        "Muy luminoso todo el día",
-        "Zona de San Juan y Avellaneda",
-        "Excelente ubicación",
-        "Pisos de parquet en dormitorios",
-        "Espacio de lavadero integrado"
-    ],
-    imagenes: Array.from({length: 27}, (_, i) => `SanJuan3052/SJ${i + 2}.jpg`)
-},
+        titulo: "Departamento de 4 Ambientes con Gran Patio",
+        ubicacion: "San Juan y Avellaneda, Mar del Plata",
+        precio: "USD 85.000",
+        tipo: "Venta",
+        dormitorios: "3",
+        banos: "1",
+        superficie: "Consultar",
+        esLote: false,
+        descripcion: "Ubicado en la zona de San Juan y Avellaneda, esta unidad se caracteriza por ser muy cómoda para una familia numerosa y por contar con un amplio patio propio con plantas. La propiedad cuenta con una superficie total de 129,71 m², de los cuales 68,56 m² son cubiertos, lo que brinda un excelente equilibrio entre espacios interiores y exteriores. Al ingresar nos encontramos con un living-comedor con salida directa al patio, cómoda cocina con espacio de lavadero para lavarropas, baño completo y tres (3) dormitorios con pisos de parquet y placard. El patio es de uso exclusivo, ideal para colocar mesa, sombrilla y sillas, y disfrutar de un agradable espacio verde al aire libre. La unidad se ubica al frente y lateral del edificio, lo que permite una excelente luminosidad natural durante todo el día.",
+        caracteristicas: [
+            "Living-comedor con salida al patio",
+            "Tres dormitorios con pisos de parquet",
+            "Todos los dormitorios con placard",
+            "Baño completo",
+            "Cocina con espacio para lavadero",
+            "Patio propio amplio con plantas",
+            "Ideal para familia numerosa",
+            "Perfecto para colocar mesa y sombrillas",
+            "Espacio verde propio",
+            "Unidad al frente y lateral",
+            "Muy luminoso todo el día",
+            "Zona de San Juan y Avellaneda",
+            "Excelente ubicación",
+            "Pisos de parquet en dormitorios",
+            "Espacio de lavadero integrado"
+        ],
+        imagenes: Array.from({ length: 27 }, (_, i) => `SanJuan3052/SJ${i + 2}.jpg`)
+    },
+    // AGREGAR DENTRO DEL OBJETO propiedadesDetalle en inmobiliaria.js
+    // Agregar DESPUÉS de la propiedad 4 (San Juan 3052)
+
+    5: {
+        titulo: "Cocheras en Edificio Céntrico - 2 Unidades Disponibles",
+        ubicacion: "Corrientes entre Rivadavia y Belgrano, Centro",
+        precio: "USD 13.000 c/u",
+        tipo: "Venta",
+        // Campos personalizados para cocheras
+        esCochera: true,
+        unidades: "702 y 703",
+        expensas: "$70.000",
+        antiguedad: "45 años",
+        descripcion: "Cochera para un (1) vehículo en edificio de cocheras en el centro de Mar del Plata, en la calle Corrientes entre Rivadavia y Belgrano. Se puede acceder tanto por rampa como por ascensor (montacarga). El edificio cuenta con seguridad las 24 horas. Unidades Nº 702 y 703. Valor U$S 13.000.- CADA UNA. Se escuchan ofertas por una unidad o por las 2 cocheras. Escribanía designada. Ideal para profesionales y/o comerciantes con actividades en ese radio de ubicación. Tranquilidad por seguridad y que siempre tendrá su propio lugar para estacionar sin dar tantas vueltas para encontrar espacio. Expensas: $70.000",
+        caracteristicas: [
+            "2 cocheras disponibles (Unidades 702 y 703)",
+            "USD 13.000 cada una",
+            "Se escuchan ofertas por ambas",
+            "Acceso por rampa o ascensor montacarga",
+            "Seguridad 24 horas",
+            "Ubicación céntrica privilegiada",
+            "Calle Corrientes entre Rivadavia y Belgrano",
+            "Ideal para profesionales",
+            "Perfecto para comerciantes de la zona",
+            "Lugar propio garantizado",
+            "Sin vueltas para estacionar",
+            "Edificio exclusivo de cocheras",
+            "Expensas: $70.000",
+            "Antigüedad: 45 años",
+            "Escribanía designada",
+            "Agua corriente",
+            "Cloacas",
+            "Electricidad",
+            "Edificio bien mantenido"
+        ],
+        imagenes: Array.from({ length: 9 }, (_, i) => `LeblonCochera/L${i + 1}.jpeg`)
+    },
 };
 
-    let propiedadActualDetalle = {};
-    let imagenActualDetalle = 0;
-    let imagenesDetalle = [];
+let propiedadActualDetalle = {};
+let imagenActualDetalle = 0;
+let imagenesDetalle = [];
 
-   window.abrirDetallePropiedad = function(idPropiedad) {
-        console.log('Abriendo detalle propiedad:', idPropiedad);
-        
-        const propiedad = propiedadesDetalle[idPropiedad];
-        if (!propiedad) {
-            console.error('Propiedad no encontrada:', idPropiedad);
-            return;
-        }
-        
-        propiedadActualDetalle = propiedad;
-        imagenesDetalle = propiedad.imagenes;
-        imagenActualDetalle = 0;
-        
-        // Llenar info básica
-        document.getElementById('detalleBadge').textContent = propiedad.tipo;
-        document.getElementById('detalleTitulo').textContent = propiedad.titulo;
-        document.getElementById('detalleUbicacion').textContent = propiedad.ubicacion;
-        document.getElementById('detallePrecio').textContent = propiedad.precio;
-        
-        // Actualizar specs según el tipo de propiedad
-        const specsContainer = document.querySelector('.detalle-specs');
-        
-        if (propiedad.esLote) {
-            // Para lotes: mostrar dimensiones, construcción y superficie total
-            specsContainer.innerHTML = `
+window.abrirDetallePropiedad = function (idPropiedad) {
+    console.log('Abriendo detalle propiedad:', idPropiedad);
+
+    const propiedad = propiedadesDetalle[idPropiedad];
+    if (!propiedad) {
+        console.error('Propiedad no encontrada:', idPropiedad);
+        return;
+    }
+
+    propiedadActualDetalle = propiedad;
+    imagenesDetalle = propiedad.imagenes;
+    imagenActualDetalle = 0;
+
+    // Llenar info básica
+    document.getElementById('detalleBadge').textContent = propiedad.tipo;
+    document.getElementById('detalleTitulo').textContent = propiedad.titulo;
+    document.getElementById('detalleUbicacion').textContent = propiedad.ubicacion;
+    document.getElementById('detallePrecio').textContent = propiedad.precio;
+
+    // Actualizar specs según el tipo de propiedad
+    const specsContainer = document.querySelector('.detalle-specs');
+
+    if (propiedad.esCochera) {
+        // Para cocheras: mostrar unidades, expensas y antigüedad
+        specsContainer.innerHTML = `
+                <div class="spec-item">
+                    <span class="spec-icon">🏢</span>
+                    <div>
+                        <strong>Unidades</strong>
+                        <p>${propiedad.unidades}</p>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">💰</span>
+                    <div>
+                        <strong>Expensas</strong>
+                        <p>${propiedad.expensas}</p>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">📅</span>
+                    <div>
+                        <strong>Antigüedad</strong>
+                        <p>${propiedad.antiguedad}</p>
+                    </div>
+                </div>
+            `;
+    } else if (propiedad.esLote) {
+        // Para lotes: mostrar dimensiones, construcción y superficie total
+        specsContainer.innerHTML = `
                 <div class="spec-item">
                     <span class="spec-icon">📐</span>
                     <div>
@@ -438,9 +512,9 @@ Fecha: ${new Date().toLocaleString('es-AR')}
                     </div>
                 </div>
             `;
-        } else {
-            // Para propiedades normales: mostrar dormitorios, baños y superficie
-            specsContainer.innerHTML = `
+    } else {
+        // Para propiedades normales: mostrar dormitorios, baños y superficie
+        specsContainer.innerHTML = `
                 <div class="spec-item">
                     <span class="spec-icon">🛏️</span>
                     <div>
@@ -463,164 +537,164 @@ Fecha: ${new Date().toLocaleString('es-AR')}
                     </div>
                 </div>
             `;
-        }
-        
-        // Descripción
-        document.getElementById('detalleDescripcion').textContent = propiedad.descripcion;
-        
-        // Características
-        const caracEl = document.getElementById('detalleCaracteristicas');
-        caracEl.innerHTML = propiedad.caracteristicas.map(c => `<li>${c}</li>`).join('');
-        
-        // Cargar miniaturas PRIMERO
-        cargarMiniaturas();
-        
-        // Luego actualizar la imagen principal
-        actualizarImagenDetalle();
-        
-        // Mostrar modal
-        document.getElementById('modalDetalle').classList.add('active');
-        document.body.style.overflow = 'hidden';
-        
-        console.log('Modal detalle abierto correctamente');
     }
 
-    window.cerrarDetallePropiedad = function() {
-        document.getElementById('modalDetalle').classList.remove('active');
-        document.body.style.overflow = 'auto';
+    // Descripción
+    document.getElementById('detalleDescripcion').textContent = propiedad.descripcion;
+
+    // Características
+    const caracEl = document.getElementById('detalleCaracteristicas');
+    caracEl.innerHTML = propiedad.caracteristicas.map(c => `<li>${c}</li>`).join('');
+
+    // Cargar miniaturas PRIMERO
+    cargarMiniaturas();
+
+    // Luego actualizar la imagen principal
+    actualizarImagenDetalle();
+
+    // Mostrar modal
+    document.getElementById('modalDetalle').classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    console.log('Modal detalle abierto correctamente');
+}
+
+window.cerrarDetallePropiedad = function () {
+    document.getElementById('modalDetalle').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+function actualizarImagenDetalle() {
+    console.log('Actualizando imagen:', imagenActualDetalle, imagenesDetalle[imagenActualDetalle]);
+
+    const img = document.getElementById('imagenPrincipal');
+    if (img) {
+        img.style.backgroundImage = `url('${imagenesDetalle[imagenActualDetalle]}')`;
     }
 
-    function actualizarImagenDetalle() {
-        console.log('Actualizando imagen:', imagenActualDetalle, imagenesDetalle[imagenActualDetalle]);
-        
-        const img = document.getElementById('imagenPrincipal');
-        if (img) {
-            img.style.backgroundImage = `url('${imagenesDetalle[imagenActualDetalle]}')`;
-        }
-        
-        const contador = document.getElementById('contadorImagenes');
-        if (contador) {
-            contador.textContent = `${imagenActualDetalle + 1} / ${imagenesDetalle.length}`;
-        }
-        
-        // Actualizar miniaturas activas
-        document.querySelectorAll('.miniatura').forEach((mini, index) => {
-            mini.classList.toggle('active', index === imagenActualDetalle);
-        });
+    const contador = document.getElementById('contadorImagenes');
+    if (contador) {
+        contador.textContent = `${imagenActualDetalle + 1} / ${imagenesDetalle.length}`;
     }
 
-    function cargarMiniaturas() {
-        const miniaturas = document.getElementById('miniaturas');
-        if (!miniaturas) return;
-        
-        miniaturas.innerHTML = imagenesDetalle.map((img, index) => `
+    // Actualizar miniaturas activas
+    document.querySelectorAll('.miniatura').forEach((mini, index) => {
+        mini.classList.toggle('active', index === imagenActualDetalle);
+    });
+}
+
+function cargarMiniaturas() {
+    const miniaturas = document.getElementById('miniaturas');
+    if (!miniaturas) return;
+
+    miniaturas.innerHTML = imagenesDetalle.map((img, index) => `
             <div class="miniatura ${index === 0 ? 'active' : ''}" 
                  style="background-image: url('${img}')" 
                  onclick="irAImagenDetalle(${index})"></div>
         `).join('');
-        
-        console.log('Miniaturas cargadas:', imagenesDetalle.length);
-    }
 
-    window.irAImagenDetalle = function(index) {
-        console.log('Ir a imagen:', index);
-        imagenActualDetalle = index;
-        actualizarImagenDetalle();
-    }
+    console.log('Miniaturas cargadas:', imagenesDetalle.length);
+}
 
-    function navegarImagenDetalle(direccion) {
-        imagenActualDetalle += direccion;
-        if (imagenActualDetalle < 0) {
-            imagenActualDetalle = imagenesDetalle.length - 1;
-        } else if (imagenActualDetalle >= imagenesDetalle.length) {
-            imagenActualDetalle = 0;
+window.irAImagenDetalle = function (index) {
+    console.log('Ir a imagen:', index);
+    imagenActualDetalle = index;
+    actualizarImagenDetalle();
+}
+
+function navegarImagenDetalle(direccion) {
+    imagenActualDetalle += direccion;
+    if (imagenActualDetalle < 0) {
+        imagenActualDetalle = imagenesDetalle.length - 1;
+    } else if (imagenActualDetalle >= imagenesDetalle.length) {
+        imagenActualDetalle = 0;
+    }
+    actualizarImagenDetalle();
+}
+
+// Botones de navegación
+const detallePrevBtn = document.getElementById('detallePrevBtn');
+const detalleNextBtn = document.getElementById('detalleNextBtn');
+if (detallePrevBtn) detallePrevBtn.addEventListener('click', () => navegarImagenDetalle(-1));
+if (detalleNextBtn) detalleNextBtn.addEventListener('click', () => navegarImagenDetalle(1));
+
+// Click fuera del modal
+document.getElementById('modalDetalle').addEventListener('click', function (e) {
+    if (e.target === this) window.cerrarDetallePropiedad();
+});
+
+// ============================================
+// CLICKS EN TARJETAS
+// ============================================
+document.querySelectorAll('.propiedad-card').forEach(card => {
+    card.addEventListener('click', function (event) {
+        // Evitar abrir modal si se hizo click en botones o controles del carrusel
+        if (event.target.closest('.consultar-btn') ||
+            event.target.closest('.carousel-nav') ||
+            event.target.closest('.carousel-dot')) {
+            return;
         }
-        actualizarImagenDetalle();
-    }
 
-    // Botones de navegación
-    const detallePrevBtn = document.getElementById('detallePrevBtn');
-    const detalleNextBtn = document.getElementById('detalleNextBtn');
-    if (detallePrevBtn) detallePrevBtn.addEventListener('click', () => navegarImagenDetalle(-1));
-    if (detalleNextBtn) detalleNextBtn.addEventListener('click', () => navegarImagenDetalle(1));
-
-    // Click fuera del modal
-    document.getElementById('modalDetalle').addEventListener('click', function(e) {
-        if (e.target === this) window.cerrarDetallePropiedad();
-    });
-
-    // ============================================
-    // CLICKS EN TARJETAS
-    // ============================================
-    document.querySelectorAll('.propiedad-card').forEach(card => {
-        card.addEventListener('click', function(event) {
-            // Evitar abrir modal si se hizo click en botones o controles del carrusel
-            if (event.target.closest('.consultar-btn') || 
-                event.target.closest('.carousel-nav') || 
-                event.target.closest('.carousel-dot')) {
-                return;
-            }
-            
-            const propiedadId = this.dataset.propiedadId;
-            if (propiedadId) {
-                event.preventDefault();
-                console.log('Click en tarjeta propiedad:', propiedadId);
-                window.abrirDetallePropiedad(parseInt(propiedadId));
-            }
-        });
-    });
-
-    // ============================================
-    // TECLADO
-    // ============================================
-    document.addEventListener('keydown', function(e) {
-        const modalDetalle = document.getElementById('modalDetalle');
-        const modalConsulta = document.getElementById('modalConsulta');
-        
-        if (modalDetalle.classList.contains('active')) {
-            if (e.key === 'ArrowLeft') navegarImagenDetalle(-1);
-            if (e.key === 'ArrowRight') navegarImagenDetalle(1);
-            if (e.key === 'Escape') window.cerrarDetallePropiedad();
-        } else if (modalConsulta.classList.contains('active')) {
-            if (e.key === 'Escape') window.cerrarModalConsulta();
+        const propiedadId = this.dataset.propiedadId;
+        if (propiedadId) {
+            event.preventDefault();
+            console.log('Click en tarjeta propiedad:', propiedadId);
+            window.abrirDetallePropiedad(parseInt(propiedadId));
         }
     });
-   // ============================================
-    // MODAL DE CONTACTO GENERAL
-    // ============================================
-    
-    window.abrirModalContactoGeneral = function() {
-        document.getElementById('modalContactoGeneral').classList.add('active');
-        document.body.style.overflow = 'hidden';
+});
+
+// ============================================
+// TECLADO
+// ============================================
+document.addEventListener('keydown', function (e) {
+    const modalDetalle = document.getElementById('modalDetalle');
+    const modalConsulta = document.getElementById('modalConsulta');
+
+    if (modalDetalle.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') navegarImagenDetalle(-1);
+        if (e.key === 'ArrowRight') navegarImagenDetalle(1);
+        if (e.key === 'Escape') window.cerrarDetallePropiedad();
+    } else if (modalConsulta.classList.contains('active')) {
+        if (e.key === 'Escape') window.cerrarModalConsulta();
     }
+});
+// ============================================
+// MODAL DE CONTACTO GENERAL
+// ============================================
 
-    window.cerrarModalContactoGeneral = function() {
-        document.getElementById('modalContactoGeneral').classList.remove('active');
-        document.body.style.overflow = 'auto';
-        document.getElementById('formContactoGeneral').reset();
-        document.getElementById('successMessageGeneral').classList.remove('show');
-    }
+window.abrirModalContactoGeneral = function () {
+    document.getElementById('modalContactoGeneral').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-    // Cerrar al hacer click fuera del modal
-    document.getElementById('modalContactoGeneral').addEventListener('click', function(e) {
-        if (e.target === this) window.cerrarModalContactoGeneral();
-    });
+window.cerrarModalContactoGeneral = function () {
+    document.getElementById('modalContactoGeneral').classList.remove('active');
+    document.body.style.overflow = 'auto';
+    document.getElementById('formContactoGeneral').reset();
+    document.getElementById('successMessageGeneral').classList.remove('show');
+}
 
-    // Enviar formulario
-    window.enviarContactoGeneral = async function(e) {
-        e.preventDefault();
-        const submitBtn = document.getElementById('submitBtnGeneral');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Enviando...';
-        
-        const formData = new FormData(e.target);
-        const datos = {
-            access_key: "f4521112-daef-4171-b0b7-0a994aeb27f3", // Reemplazar con tu key
-            subject: "Consulta desde Servicios Inmobiliarios",
-            from_name: `${formData.get('nombre')} ${formData.get('apellido')}`,
-            email: formData.get('email'),
-            to: "administracion@breccianegocios.com.ar",
-            message: `
+// Cerrar al hacer click fuera del modal
+document.getElementById('modalContactoGeneral').addEventListener('click', function (e) {
+    if (e.target === this) window.cerrarModalContactoGeneral();
+});
+
+// Enviar formulario
+window.enviarContactoGeneral = async function (e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('submitBtnGeneral');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+
+    const formData = new FormData(e.target);
+    const datos = {
+        access_key: "f4521112-daef-4171-b0b7-0a994aeb27f3", // Reemplazar con tu key
+        subject: "Consulta desde Servicios Inmobiliarios",
+        from_name: `${formData.get('nombre')} ${formData.get('apellido')}`,
+        email: formData.get('email'),
+        to: "administracion@breccianegocios.com.ar",
+        message: `
 CONSULTA GENERAL - SERVICIOS INMOBILIARIOS
 ==========================================
 
@@ -635,43 +709,43 @@ ${formData.get('mensaje')}
 
 Fecha: ${new Date().toLocaleString('es-AR')}
             `.trim()
-        };
-        
-        try {
-            const response = await fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json', 
-                    'Accept': 'application/json' 
-                },
-                body: JSON.stringify(datos)
-            });
-            
-            const result = await response.json();
-            if (result.success) {
-                document.getElementById('successMessageGeneral').classList.add('show');
-                document.getElementById('formContactoGeneral').reset();
-                setTimeout(() => window.cerrarModalContactoGeneral(), 3000);
-            } else {
-                throw new Error('Error en el envío');
-            }
-        } catch (error) {
-            alert('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente o contáctanos por email a administracion@breccianegocios.com.ar');
-            console.error('Error:', error);
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Enviar Mensaje';
+    };
+
+    try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(datos)
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            document.getElementById('successMessageGeneral').classList.add('show');
+            document.getElementById('formContactoGeneral').reset();
+            setTimeout(() => window.cerrarModalContactoGeneral(), 3000);
+        } else {
+            throw new Error('Error en el envío');
+        }
+    } catch (error) {
+        alert('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente o contáctanos por email a administracion@breccianegocios.com.ar');
+        console.error('Error:', error);
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar Mensaje';
+    }
+}
+
+// Cerrar con tecla Escape
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        const modalGeneral = document.getElementById('modalContactoGeneral');
+        if (modalGeneral && modalGeneral.classList.contains('active')) {
+            window.cerrarModalContactoGeneral();
         }
     }
+});
+console.log('Todo inicializado correctamente');
 
-    // Cerrar con tecla Escape
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const modalGeneral = document.getElementById('modalContactoGeneral');
-            if (modalGeneral && modalGeneral.classList.contains('active')) {
-                window.cerrarModalContactoGeneral();
-            }
-        }
-    });
-    console.log('Todo inicializado correctamente');
-    

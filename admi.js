@@ -9,10 +9,10 @@ const totalSlides = slides.length;
 
 function updateCarousel() {
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    
+
     indicators.forEach((indicator, index) => {
         indicator.classList.toggle('active', index === currentSlide);
-        
+
         if (index === currentSlide) {
             indicator.style.animation = 'none';
             setTimeout(() => {
@@ -120,7 +120,7 @@ const itemsPerPage = 12;
 function renderEdificios() {
     const grid = document.getElementById('edificiosGrid');
     if (!grid) return;
-    
+
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const pageEdificios = filteredEdificios.slice(start, end);
@@ -145,7 +145,7 @@ function renderEdificios() {
 function renderPagination() {
     const pagination = document.getElementById('pagination');
     if (!pagination) return;
-    
+
     const totalPages = Math.ceil(filteredEdificios.length / itemsPerPage);
 
     let buttons = `
@@ -173,7 +173,7 @@ function changePage(page) {
     currentPage = page;
     renderEdificios();
     renderPagination();
-    
+
     const section = document.querySelector('.edificios-section');
     if (section) {
         section.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -183,15 +183,15 @@ function changePage(page) {
 function filterEdificios() {
     const searchInput = document.getElementById('searchEdificio');
     const activeBtn = document.querySelector('.filter-btn.active');
-    
+
     if (!searchInput || !activeBtn) return;
-    
+
     const searchTerm = searchInput.value.toLowerCase();
     const activeZona = activeBtn.dataset.zona;
 
     filteredEdificios = edificios.filter(ed => {
-        const matchSearch = ed.nombre.toLowerCase().includes(searchTerm) || 
-                          ed.direccion.toLowerCase().includes(searchTerm);
+        const matchSearch = ed.nombre.toLowerCase().includes(searchTerm) ||
+            ed.direccion.toLowerCase().includes(searchTerm);
         const matchZona = activeZona === 'todas' || ed.zona === activeZona;
         return matchSearch && matchZona;
     });
@@ -208,7 +208,7 @@ if (searchInput) {
 }
 
 document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
         filterEdificios();
