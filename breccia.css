@@ -1065,49 +1065,79 @@ nav {
     }
 }
 
+/* ============================================
+   DROPDOWN EN MÓVIL - CSS MEJORADO
+   Agregar/Actualizar en breccia.css
+   ============================================ */
+
+/* Desktop - Hover funciona normal */
+@media (min-width: 769px) {
+    .nav-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .nav-dropdown:hover .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+}
+
+/* Mobile - Click para abrir/cerrar */
 @media (max-width: 768px) {
-    .servicios-destacados-section {
-        padding: 40px 1.5rem;
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background: transparent;
+        padding: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
     }
 
-    .servicios-destacados-header h2 {
-        font-size: 1.7rem;
+    .nav-dropdown.active .dropdown-menu {
+        max-height: 300px; /* Aumentado para asegurar que se vean ambas opciones */
     }
 
-    .servicios-destacados-header p {
+    .nav-dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+
+    .dropdown-menu a {
+        padding: 0.8rem 1rem 0.8rem 2.5rem;
+        color: rgba(255, 255, 255, 0.9);
         font-size: 0.9rem;
+        border-left: 3px solid transparent;
     }
 
-    .servicios-destacados-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
+    .dropdown-menu a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-left-color: white;
+        color: white;
     }
 
-    .servicio-destacado-card {
-        padding: 1.5rem 1.2rem;
-        max-width: 500px;
-        margin: 0 auto;
+    .dropdown-menu li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .card-icon {
-        font-size: 2.2rem;
+    .dropdown-menu li:last-child {
+        border-bottom: none;
     }
 
-    .servicio-destacado-card h3 {
-        font-size: 1.1rem;
+    .dropdown-arrow {
+        margin-left: auto;
+        transition: transform 0.3s ease;
     }
 
-    .servicios-destacados-cta {
-        padding: 1.5rem 1.2rem;
-    }
-
-    .servicios-destacados-cta h3 {
-        font-size: 1.3rem;
-    }
-
-    .cta-button-destacado {
-        padding: 10px 20px;
-        font-size: 0.85rem;
+    /* Asegurar que el trigger no navegue en móvil */
+    .dropdown-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
     }
 }
 

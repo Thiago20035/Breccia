@@ -391,26 +391,26 @@ window.addEventListener('load', () => {
     console.log('✓ Sitio cargado completamente');
     document.body.classList.add('loaded');
 });
-/* ============================================
-   JAVASCRIPT PARA DROPDOWN
-   Agregar al final de tu breccia.js
-   ============================================ */
-
-// Dropdown en móvil
+// Dropdown en móvil - VERSIÓN MEJORADA
 document.addEventListener('DOMContentLoaded', function () {
     const dropdownTrigger = document.querySelector('.dropdown-trigger');
     const navDropdown = document.querySelector('.nav-dropdown');
 
-    if (dropdownTrigger && window.innerWidth <= 768) {
+    if (dropdownTrigger) {
         dropdownTrigger.addEventListener('click', function (e) {
-            e.preventDefault();
-            navDropdown.classList.toggle('active');
+            // En móvil (menos de 768px), prevenir navegación y abrir dropdown
+            if (window.innerWidth <= 768) {
+                e.preventDefault(); // ✅ Prevenir que vaya a #servicios
+                navDropdown.classList.toggle('active');
+                console.log('Dropdown toggle en móvil');
+            }
+            // En desktop, permitir hover normal (no hacer nada aquí)
         });
     }
 
     // Recargar al cambiar tamaño de pantalla
     window.addEventListener('resize', function () {
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > 768 && navDropdown) {
             navDropdown.classList.remove('active');
         }
     });
