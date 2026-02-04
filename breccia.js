@@ -167,21 +167,63 @@ function closeMobileMenu() {
 }
 
 // Agregar botón hamburguesa si no existe
+// ============================================
+// MENÚ MÓVIL HAMBURGUESA - VERSIÓN CORREGIDA
+// ============================================
+function toggleMobileMenu() {
+    const nav = document.querySelector('.nav-links');
+    const body = document.body;
+    const hamburger = document.querySelector('.hamburger-btn');
+
+    if (nav) {
+        nav.classList.toggle('mobile-active');
+        body.classList.toggle('menu-open');
+        hamburger?.classList.toggle('active');
+
+        // Crear backdrop si no existe
+        let backdrop = document.querySelector('.mobile-backdrop');
+        if (!backdrop && nav.classList.contains('mobile-active')) {
+            backdrop = document.createElement('div');
+            backdrop.className = 'mobile-backdrop';
+            backdrop.addEventListener('click', closeMobileMenu);
+            document.body.appendChild(backdrop);
+            setTimeout(() => backdrop.classList.add('active'), 10);
+        } else if (backdrop && !nav.classList.contains('mobile-active')) {
+            backdrop.classList.remove('active');
+            setTimeout(() => backdrop.remove(), 300);
+        }
+    }
+}
+
+function closeMobileMenu() {
+    const nav = document.querySelector('.nav-links');
+    const backdrop = document.querySelector('.mobile-backdrop');
+    const body = document.body;
+    const hamburger = document.querySelector('.hamburger-btn');
+
+    if (nav?.classList.contains('mobile-active')) {
+        nav.classList.remove('mobile-active');
+        body.classList.remove('menu-open');
+        hamburger?.classList.remove('active');
+
+        if (backdrop) {
+            backdrop.classList.remove('active');
+            setTimeout(() => backdrop.remove(), 300);
+        }
+    }
+}
+
+// Inicializar menú móvil - VERSIÓN CORREGIDA
 function initMobileMenu() {
-    const nav = document.querySelector('nav');
-    if (!nav || document.querySelector('.hamburger-btn')) return;
-
-    const hamburgerBtn = document.createElement('button');
-    hamburgerBtn.className = 'hamburger-btn';
-    hamburgerBtn.setAttribute('aria-label', 'Menú');
-    hamburgerBtn.innerHTML = `
-        <span></span>
-        <span></span>
-        <span></span>
-    `;
-    hamburgerBtn.addEventListener('click', toggleMobileMenu);
-
-    nav.appendChild(hamburgerBtn);
+    const hamburger = document.querySelector('.hamburger-btn');
+    
+    // Si el botón ya existe en el HTML, solo agregarle el evento
+    if (hamburger) {
+        console.log('Botón hamburguesa encontrado, agregando evento');
+        hamburger.addEventListener('click', toggleMobileMenu);
+    } else {
+        console.log('Botón hamburguesa NO encontrado');
+    }
 }
 
 // ============================================
