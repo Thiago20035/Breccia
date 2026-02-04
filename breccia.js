@@ -2,8 +2,8 @@
 // INTERSECTION OBSERVER - OPTIMIZADO
 // ============================================
 const observerOptions = {
-    threshold: 0.05, // Reducido para móviles
-    rootMargin: '0px 0px -30px 0px' // Ajustado para mejor rendimiento
+    threshold: 0.05,
+    rootMargin: '0px 0px -30px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -11,7 +11,6 @@ const observer = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
         }
-        // No removemos 'visible' para mantener animaciones en móviles
     });
 }, observerOptions);
 
@@ -57,13 +56,11 @@ function isTouchDevice() {
 // OPTIMIZACIONES PARA TOUCH
 // ============================================
 function optimizeForTouch() {
-    // Mejorar área de click en móviles
     const clickableElements = document.querySelectorAll('a, button, .service-card, .propiedad-card, .team-card');
     clickableElements.forEach(el => {
-        el.style.minHeight = '44px'; // Tamaño mínimo recomendado para touch
+        el.style.minHeight = '44px';
     });
 
-    // Prevenir double-tap zoom en enlaces
     let lastTap = 0;
     document.addEventListener('touchend', function (e) {
         const currentTime = new Date().getTime();
@@ -81,7 +78,6 @@ function optimizeForTouch() {
 function preventIOSZoom() {
     const inputs = document.querySelectorAll('input, textarea, select');
     inputs.forEach(input => {
-        // Asegurar que el font-size sea mínimo 16px en móviles
         if (window.innerWidth < 768) {
             input.style.fontSize = '16px';
         }
@@ -95,7 +91,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
 
-        // Ignorar si es solo "#"
         if (href === '#') {
             e.preventDefault();
             return;
@@ -105,7 +100,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (target) {
             e.preventDefault();
 
-            // Calcular offset para header fijo
             const headerHeight = document.querySelector('header')?.offsetHeight || 70;
             const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
 
@@ -114,7 +108,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth'
             });
 
-            // Cerrar menú móvil si está abierto
             closeMobileMenu();
         }
     });
@@ -133,7 +126,6 @@ function toggleMobileMenu() {
         body.classList.toggle('menu-open');
         hamburger?.classList.toggle('active');
 
-        // Crear backdrop si no existe
         let backdrop = document.querySelector('.mobile-backdrop');
         if (!backdrop && nav.classList.contains('mobile-active')) {
             backdrop = document.createElement('div');
@@ -166,65 +158,64 @@ function closeMobileMenu() {
     }
 }
 
-// Agregar botón hamburguesa si no existe
-// ============================================
-// MENÚ MÓVIL HAMBURGUESA - VERSIÓN CORREGIDA
-// ============================================
-function toggleMobileMenu() {
-    const nav = document.querySelector('.nav-links');
-    const body = document.body;
-    const hamburger = document.querySelector('.hamburger-btn');
-
-    if (nav) {
-        nav.classList.toggle('mobile-active');
-        body.classList.toggle('menu-open');
-        hamburger?.classList.toggle('active');
-
-        // Crear backdrop si no existe
-        let backdrop = document.querySelector('.mobile-backdrop');
-        if (!backdrop && nav.classList.contains('mobile-active')) {
-            backdrop = document.createElement('div');
-            backdrop.className = 'mobile-backdrop';
-            backdrop.addEventListener('click', closeMobileMenu);
-            document.body.appendChild(backdrop);
-            setTimeout(() => backdrop.classList.add('active'), 10);
-        } else if (backdrop && !nav.classList.contains('mobile-active')) {
-            backdrop.classList.remove('active');
-            setTimeout(() => backdrop.remove(), 300);
-        }
-    }
-}
-
-function closeMobileMenu() {
-    const nav = document.querySelector('.nav-links');
-    const backdrop = document.querySelector('.mobile-backdrop');
-    const body = document.body;
-    const hamburger = document.querySelector('.hamburger-btn');
-
-    if (nav?.classList.contains('mobile-active')) {
-        nav.classList.remove('mobile-active');
-        body.classList.remove('menu-open');
-        hamburger?.classList.remove('active');
-
-        if (backdrop) {
-            backdrop.classList.remove('active');
-            setTimeout(() => backdrop.remove(), 300);
-        }
-    }
-}
-
-// Inicializar menú móvil - VERSIÓN CORREGIDA
 function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger-btn');
-
-    // Si el botón ya existe en el HTML, solo agregarle el evento
+    
     if (hamburger) {
-        console.log('Botón hamburguesa encontrado, agregando evento');
+        console.log('Botón hamburguesa encontrado');
         hamburger.addEventListener('click', toggleMobileMenu);
-    } else {
-        console.log('Botón hamburguesa NO encontrado');
     }
 }
+
+// ============================================
+// DROPDOWN EN MÓVIL
+// ============================================
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdownTrigger = document.querySelector('.dropdown-trigger');
+    const navDropdown = document.querySelector('.nav-dropdown');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    // Manejar dropdown
+    if (dropdownTrigger) {
+        dropdownTrigger.addEventListener('click', function (e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                navDropdown.classList.toggle('active');
+                console.log('Dropdown toggle - menú permanece abierto');
+                return false;
+            }
+        });
+    }
+
+    // Cerrar menú SOLO cuando se hace click en enlaces (NO en dropdown trigger)
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Si es el dropdown trigger en móvil, NO cerrar
+            if (this.classList.contains('dropdown-trigger') && window.innerWidth <= 768) {
+                return;
+            }
+            
+            // Si es un enlace del dropdown menu, cerrar el menú
+            if (this.closest('.dropdown-menu')) {
+                setTimeout(closeMobileMenu, 100);
+                return;
+            }
+            
+            // Si es cualquier otro enlace normal, cerrar el menú
+            if (!this.classList.contains('dropdown-trigger')) {
+                setTimeout(closeMobileMenu, 100);
+            }
+        });
+    });
+
+    // Resize handler
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 768 && navDropdown) {
+            navDropdown.classList.remove('active');
+        }
+    });
+});
 
 // ============================================
 // MODAL UTILITIES
@@ -245,7 +236,6 @@ function openPortalModal() {
     }
 }
 
-// Cerrar modal al hacer click fuera
 window.addEventListener('click', function (e) {
     const modal = document.getElementById('portalModal');
     if (e.target === modal) {
@@ -253,7 +243,6 @@ window.addEventListener('click', function (e) {
     }
 });
 
-// Cerrar modal con tecla ESC
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
         closePortalModal();
@@ -275,10 +264,8 @@ function handlePortalLogin(e) {
         return;
     }
 
-    // Aquí conectarías con tu sistema de autenticación
     alert('Funcionalidad de login en desarrollo. Usuario: ' + usuario);
 
-    // Limpiar formulario
     const form = document.getElementById('portalForm');
     if (form) form.reset();
 }
@@ -338,17 +325,14 @@ let resizeTimer;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-        // Cerrar menú móvil si se redimensiona a desktop
         if (window.innerWidth > 768) {
             closeMobileMenu();
         }
 
-        // Re-inicializar menú si se redimensiona a móvil
         if (window.innerWidth <= 768 && !document.querySelector('.hamburger-btn')) {
             initMobileMenu();
         }
 
-        // Actualizar font-size en inputs
         preventIOSZoom();
     }, 250);
 });
@@ -357,7 +341,6 @@ window.addEventListener('resize', () => {
 // ACCESIBILIDAD - NAVEGACIÓN POR TECLADO
 // ============================================
 document.addEventListener('keydown', (e) => {
-    // Tab para navegar por elementos focuseables
     if (e.key === 'Tab') {
         document.body.classList.add('keyboard-nav');
     }
@@ -390,30 +373,4 @@ if ('connection' in navigator) {
 window.addEventListener('load', () => {
     console.log('✓ Sitio cargado completamente');
     document.body.classList.add('loaded');
-});
-
-// Dropdown en móvil - VERSIÓN DEFINITIVA
-document.addEventListener('DOMContentLoaded', function () {
-    const dropdownTrigger = document.querySelector('.dropdown-trigger');
-    const navDropdown = document.querySelector('.nav-dropdown');
-
-    if (dropdownTrigger) {
-        dropdownTrigger.addEventListener('click', function (e) {
-            // En móvil (menos de 768px), prevenir navegación y abrir dropdown
-            if (window.innerWidth <= 768) {
-                e.preventDefault(); // NO ir a #servicios
-                e.stopPropagation(); // ✅ CRÍTICO: NO cerrar el menú hamburguesa
-                navDropdown.classList.toggle('active');
-                console.log('Dropdown toggle en móvil - Menú permanece abierto');
-            }
-            // En desktop, permitir hover normal (no hacer nada aquí)
-        });
-    }
-
-    // Recargar al cambiar tamaño de pantalla
-    window.addEventListener('resize', function () {
-        if (window.innerWidth > 768 && navDropdown) {
-            navDropdown.classList.remove('active');
-        }
-    });
 });
