@@ -216,7 +216,7 @@ function closeMobileMenu() {
 // Inicializar menú móvil - VERSIÓN CORREGIDA
 function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger-btn');
-    
+
     // Si el botón ya existe en el HTML, solo agregarle el evento
     if (hamburger) {
         console.log('Botón hamburguesa encontrado, agregando evento');
@@ -391,7 +391,8 @@ window.addEventListener('load', () => {
     console.log('✓ Sitio cargado completamente');
     document.body.classList.add('loaded');
 });
-// Dropdown en móvil - VERSIÓN MEJORADA
+
+// Dropdown en móvil - VERSIÓN DEFINITIVA
 document.addEventListener('DOMContentLoaded', function () {
     const dropdownTrigger = document.querySelector('.dropdown-trigger');
     const navDropdown = document.querySelector('.nav-dropdown');
@@ -400,9 +401,10 @@ document.addEventListener('DOMContentLoaded', function () {
         dropdownTrigger.addEventListener('click', function (e) {
             // En móvil (menos de 768px), prevenir navegación y abrir dropdown
             if (window.innerWidth <= 768) {
-                e.preventDefault(); // ✅ Prevenir que vaya a #servicios
+                e.preventDefault(); // NO ir a #servicios
+                e.stopPropagation(); // ✅ CRÍTICO: NO cerrar el menú hamburguesa
                 navDropdown.classList.toggle('active');
-                console.log('Dropdown toggle en móvil');
+                console.log('Dropdown toggle en móvil - Menú permanece abierto');
             }
             // En desktop, permitir hover normal (no hacer nada aquí)
         });
