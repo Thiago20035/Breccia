@@ -273,7 +273,7 @@ const propiedadesDetalle = {
     1: {
         titulo: "Departamento Tipo Semipiso de Tres (3) Ambientes",
         ubicacion: "Gascón 2356, Plaza Colón",
-        precio: "USD 175.000",
+        precio: "USD 169.000",
         tipo: "Venta",
         dormitorios: "2",
         banos: "2",
