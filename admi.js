@@ -59,7 +59,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ============================================
-// SISTEMA DE EDIFICIOS - DATOS CORREGIDOS
+// SISTEMA DE EDIFICIOS - DATOS ACTUALIZADOS
 // ============================================
 
 const edificios = [
@@ -67,7 +67,7 @@ const edificios = [
     { nombre: "Vista del Cabo", direccion: "Bolivar 989", zona: "centro", unidades: 6, pisos: 6 },
     { nombre: "Consorcio 25 de Mayo 3020", direccion: "25 de Mayo 3020", zona: "centro", unidades: 53, pisos: 10 },
     { nombre: "Consorcio Edificio San Lorenzo", direccion: "San Lorenzo 1641", zona: "centro", unidades: 9, pisos: 4 },
-    { nombre: "Consorcio de Propietarios", direccion: "San Juan 3052", zona: "centro", unidades: 32, pisos: 3 },
+    { nombre: "San Juan 3052", direccion: "San Juan 3052", zona: "centro", unidades: 32, pisos: 4 }, // ✅ ACTUALIZADO: nombre visible y pisos
     { nombre: "Consorcio Edificio Ocean View", direccion: "F.U Camet 1101", zona: "camet", unidades: 12, pisos: 6 },
     { nombre: "Consorcio Propietarios Brown 2317", direccion: "Brown 2317", zona: "centro", unidades: 6, pisos: 1 },
     { nombre: "Consorcio Neptuno XII", direccion: "La Rioja 3147", zona: "centro", unidades: 30, pisos: 4 },
@@ -79,7 +79,7 @@ const edificios = [
     { nombre: "Consorcio de Propietarios Chernomar II", direccion: "Catamarca 1271", zona: "centro", unidades: 59, pisos: 6 },
     { nombre: "Consorcio de Propietarios Olague XII", direccion: "Arenales 2445", zona: "centro", unidades: 105, pisos: 9 },
     { nombre: "Edificio Gacela", direccion: "Bolivar 3229", zona: "centro", unidades: 94, pisos: 12 },
-    { nombre: "Consorcio de Propietarios Luchetti XV", direccion: "Bvard Maritimo 1411", zona: "centro", unidades: 7, pisos: 4 },
+    // ❌ ELIMINADO: Luchetti XV (Bvard Maritimo 1411)
     { nombre: "Fideicomiso Terminal Guemes Trust", direccion: "Castelli 1575", zona: "centro", unidades: 9, pisos: 5 },
     { nombre: "Consorcio de Propietarios Ondina IV", direccion: "Jose Marmol 1053", zona: "centro", unidades: 13, pisos: 0 },
     { nombre: "Consorcio Oriana", direccion: "Bv. Maritimo P.P. Ramos 1599", zona: "playa grande", unidades: 9, pisos: 6 },
@@ -97,20 +97,24 @@ const edificios = [
     { nombre: "Arizona Cumbre", direccion: "San Luis 2390", zona: "centro", unidades: 17, pisos: 8 },
     { nombre: "1° de Octubre Torre I", direccion: "Av. Independencia 4320", zona: "centro", unidades: 112, pisos: 14 },
     { nombre: "Consorcio de Propietarios Esmeralda", direccion: "Belgrano 2321", zona: "centro", unidades: 34, pisos: 8 },
-    { nombre: "Torreta IV", direccion: "Derqui 1015", zona: "centro", unidades: 11, pisos: 3 },
+    // ❌ ELIMINADO: Torreta IV (Derqui 1015)
     { nombre: "Consorcio de Propietarios Magaluf V", direccion: "Sarmiento 2465", zona: "centro", unidades: 57, pisos: 10 },
-    { nombre: "Consorcio de Propietarios", direccion: "Hipolito Yrigoyen 3415", zona: "centro", unidades: 7, pisos: 3 },
+    { nombre: "Majes", direccion: "Hipolito Yrigoyen 3415", zona: "centro", unidades: 7, pisos: 3 }, // ✅ ACTUALIZADO: Nombre
     { nombre: "Consorcio de Propietarios", direccion: "Las Heras 2876/90", zona: "centro", unidades: 39, pisos: 6 },
     { nombre: "Consorcio de Propietarios", direccion: "Hipolito Yrigoyen 1206", zona: "centro", unidades: 19, pisos: 10 },
     { nombre: "Edificio Uruguay 1604/16", direccion: "Uruguay 1604/16", zona: "centro", unidades: 11, pisos: 4 },
-    { nombre: "Consorcio de Propietario", direccion: "J. Acevedo 4217", zona: "centro", unidades: 20, pisos: 4 },
+    { nombre: "Vitto", direccion: "J. Acevedo 4217", zona: "centro", unidades: 20, pisos: 4 }, // ✅ ACTUALIZADO: Nombre
     { nombre: "Consorcio de Propietarios", direccion: "Salta 4342", zona: "centro", unidades: 15, pisos: 2 },
     { nombre: "Consorcio Independencia 4149", direccion: "Independencia 4149", zona: "centro", unidades: 16, pisos: 3 },
     { nombre: "Consorcio de Propietarios Storni II", direccion: "Alice 4380", zona: "centro", unidades: 14, pisos: 5 },
     { nombre: "Consorcio de Propietarios Storni III", direccion: "Sargento Cabral 31", zona: "centro", unidades: 16, pisos: 6 },
     { nombre: "Consorcio de Propietarios Orbia", direccion: "25 de Mayo 3073", zona: "centro", unidades: 72, pisos: 9 },
     { nombre: "Consorcio de Propietarios Costa Alsina", direccion: "Alsina 2478", zona: "centro", unidades: 15, pisos: 9 },
-    { nombre: "Consorcio de Propietarios", direccion: "San Luis 1729", zona: "centro", unidades: 4, pisos: 4 }
+    { nombre: "Consorcio de Propietarios San Luis 1729", direccion: "San Luis 1729", zona: "centro", unidades: 4, pisos: 4 },
+    // ✅ NUEVOS EDIFICIOS:
+    { nombre: "Santana", direccion: "Corrientes 2927", zona: "centro", unidades: 9, pisos: 0 },
+    { nombre: "Consorcio de Propietarios Rondeau 112", direccion: "Rondeau 112", zona: "centro", unidades: 6, pisos: 0 },
+    { nombre: "Ripalda IX", direccion: "9 de Julio 2857", zona: "centro", unidades: 0, pisos: 10 } // ✅ NUEVO
 ];
 
 let filteredEdificios = [...edificios];

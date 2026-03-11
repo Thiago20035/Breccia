@@ -160,7 +160,7 @@ function closeMobileMenu() {
 
 function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger-btn');
-    
+
     if (hamburger) {
         console.log('Botón hamburguesa encontrado');
         hamburger.addEventListener('click', toggleMobileMenu);
@@ -190,18 +190,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Cerrar menú SOLO cuando se hace click en enlaces (NO en dropdown trigger)
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             // Si es el dropdown trigger en móvil, NO cerrar
             if (this.classList.contains('dropdown-trigger') && window.innerWidth <= 768) {
                 return;
             }
-            
+
             // Si es un enlace del dropdown menu, cerrar el menú
             if (this.closest('.dropdown-menu')) {
                 setTimeout(closeMobileMenu, 100);
                 return;
             }
-            
+
             // Si es cualquier otro enlace normal, cerrar el menú
             if (!this.classList.contains('dropdown-trigger')) {
                 setTimeout(closeMobileMenu, 100);
