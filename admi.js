@@ -59,7 +59,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ============================================
-// SISTEMA DE EDIFICIOS - DATOS ACTUALIZADOS
+// SISTEMA DE EDIFICIOS - DATOS DEFINITIVOS
 // ============================================
 
 const edificios = [
@@ -67,7 +67,7 @@ const edificios = [
     { nombre: "Vista del Cabo", direccion: "Bolivar 989", zona: "centro", unidades: 6, pisos: 6 },
     { nombre: "Consorcio 25 de Mayo 3020", direccion: "25 de Mayo 3020", zona: "centro", unidades: 53, pisos: 10 },
     { nombre: "Consorcio Edificio San Lorenzo", direccion: "San Lorenzo 1641", zona: "centro", unidades: 9, pisos: 4 },
-    { nombre: "San Juan 3052", direccion: "San Juan 3052", zona: "centro", unidades: 32, pisos: 4 }, // ✅ ACTUALIZADO: nombre visible y pisos
+    { nombre: "San Juan 3052", direccion: "San Juan 3052", zona: "centro", unidades: 32, pisos: 3 }, // ✅ CORREGIDO: 3 pisos
     { nombre: "Consorcio Edificio Ocean View", direccion: "F.U Camet 1101", zona: "camet", unidades: 12, pisos: 6 },
     { nombre: "Consorcio Propietarios Brown 2317", direccion: "Brown 2317", zona: "centro", unidades: 6, pisos: 1 },
     { nombre: "Consorcio Neptuno XII", direccion: "La Rioja 3147", zona: "centro", unidades: 30, pisos: 4 },
@@ -111,10 +111,10 @@ const edificios = [
     { nombre: "Consorcio de Propietarios Orbia", direccion: "25 de Mayo 3073", zona: "centro", unidades: 72, pisos: 9 },
     { nombre: "Consorcio de Propietarios Costa Alsina", direccion: "Alsina 2478", zona: "centro", unidades: 15, pisos: 9 },
     { nombre: "Consorcio de Propietarios San Luis 1729", direccion: "San Luis 1729", zona: "centro", unidades: 4, pisos: 4 },
-    // ✅ NUEVOS EDIFICIOS:
-    { nombre: "Santana", direccion: "Corrientes 2927", zona: "centro", unidades: 9, pisos: 0 },
-    { nombre: "Consorcio de Propietarios Rondeau 112", direccion: "Rondeau 112", zona: "centro", unidades: 6, pisos: 0 },
-    { nombre: "Ripalda IX", direccion: "9 de Julio 2857", zona: "centro", unidades: 0, pisos: 10 } // ✅ NUEVO
+    // ✅ NUEVOS EDIFICIOS - DATOS COMPLETOS:
+    { nombre: "Santana", direccion: "Corrientes 2927", zona: "centro", unidades: 9, pisos: 5 }, // ✅ ACTUALIZADO: 5 pisos
+    { nombre: "Consorcio de Propietarios Rondeau 112", direccion: "Rondeau 112", zona: "centro", unidades: 6, pisos: 2 }, // ✅ ACTUALIZADO: 2 pisos
+    { nombre: "Ripalda IX", direccion: "9 de Julio 2857", zona: "centro", unidades: 45, pisos: 10 } // ✅ COMPLETO: 45 UF, 10 pisos
 ];
 
 let filteredEdificios = [...edificios];
