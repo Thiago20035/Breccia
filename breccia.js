@@ -34,10 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mejorar rendimiento de scroll
     optimizeScrollPerformance();
 
-    // Inicializar menú móvil
-    if (window.innerWidth <= 768) {
-        initMobileMenu();
-    }
+    // Inicializar menú móvil (siempre, no solo en móvil)
+    initMobileMenu();
 
     // Inicializar lazy loading
     initLazyLoading();
@@ -162,7 +160,6 @@ function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger-btn');
 
     if (hamburger) {
-        console.log('Botón hamburguesa encontrado');
         hamburger.addEventListener('click', toggleMobileMenu);
     }
 }
@@ -182,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 e.preventDefault();
                 e.stopPropagation();
                 navDropdown.classList.toggle('active');
-                console.log('Dropdown toggle - menú permanece abierto');
                 return false;
             }
         });
@@ -250,25 +246,6 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-// ============================================
-// MANEJO DE LOGIN
-// ============================================
-function handlePortalLogin(e) {
-    e.preventDefault();
-
-    const usuario = document.getElementById('usuario')?.value;
-    const password = document.getElementById('password')?.value;
-
-    if (!usuario || !password) {
-        alert('Por favor completá todos los campos');
-        return;
-    }
-
-    alert('Funcionalidad de login en desarrollo. Usuario: ' + usuario);
-
-    const form = document.getElementById('portalForm');
-    if (form) form.reset();
-}
 
 // ============================================
 // OPTIMIZACIÓN DE RENDIMIENTO
