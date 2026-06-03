@@ -1,0 +1,1743 @@
+/* ============================================================
+   BRECCIA PREMIUM v2 — ENHANCED VISUAL EXPERIENCE
+   Paleta: #6b2c3e (primario) · #8b3a4f (secundario)
+   Tipografía: sistema (Segoe UI / sans-serif — sin Google Fonts)
+   ============================================================ */
+
+/* ──────────────────────────────────────────
+   1. DESIGN TOKENS
+────────────────────────────────────────── */
+:root {
+    --b-primary:   #6b2c3e;
+    --b-secondary: #8b3a4f;
+    --b-light:     #a84d61;
+    --b-dark:      #4a1d2a;
+    --b-glow:      rgba(107, 44, 62, 0.30);
+    --b-glow-sm:   rgba(107, 44, 62, 0.12);
+
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ──────────────────────────────────────────
+   2. BASE
+────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+
+/* ──────────────────────────────────────────
+   3. SCROLLBAR PREMIUM
+────────────────────────────────────────── */
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: #f4eff0; }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--b-secondary), var(--b-primary));
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--b-dark); }
+
+/* ──────────────────────────────────────────
+   4. SCROLL PROGRESS BAR
+────────────────────────────────────────── */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--b-light), var(--b-primary), var(--b-secondary), var(--b-light));
+    background-size: 300% 100%;
+    z-index: 99999;
+    transition: width 0.1s linear;
+    animation: progressShimmer 4s linear infinite;
+    pointer-events: none;
+}
+@keyframes progressShimmer {
+    0%   { background-position: 0% 0%; }
+    100% { background-position: 300% 0%; }
+}
+
+/* ──────────────────────────────────────────
+   5. HEADER — GLASSMORPHISM
+────────────────────────────────────────── */
+header {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    transition: all 0.45s var(--ease-smooth);
+}
+
+header.scrolled {
+    box-shadow:
+        0 8px 32px rgba(107, 44, 62, 0.38),
+        0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Nav links con underline animado */
+.nav-links > li > a { position: relative; }
+
+.nav-links > li > a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.75);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.3s var(--ease-smooth);
+    border-radius: 1px;
+}
+.nav-links > li > a:hover::after { transform: scaleX(1); }
+
+/* Portal button glass */
+.portal-link {
+    background: rgba(255, 255, 255, 0.13) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s var(--ease-spring) !important;
+}
+.portal-link::after { display: none !important; }
+.portal-link:hover {
+    background: rgba(255, 255, 255, 0.24) !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18) !important;
+}
+
+/* ──────────────────────────────────────────
+   6. HERO — WORLD CLASS
+────────────────────────────────────────── */
+.hero {
+    min-height: 100vh;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(74, 29, 42, 0.97) 0%,
+            rgba(107, 44, 62, 0.93) 50%,
+            rgba(139, 58, 79, 0.90) 100%
+        ),
+        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 769px) { .hero { background-attachment: fixed; } }
+
+/* Orbe flotante */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 8%;
+    right: 6%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle at center, rgba(168, 77, 97, 0.22) 0%, transparent 65%);
+    border-radius: 50%;
+    animation: orbFloat 14s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1);           opacity: 0.75; }
+    33%       { transform: translate(28px, -40px) scale(1.07); opacity: 1;    }
+    66%       { transform: translate(-18px, 22px) scale(0.93); opacity: 0.65; }
+}
+
+.hero-box, .slider-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 2rem;
+}
+
+.hero h1 {
+    font-size: clamp(2.4rem, 5.5vw, 5rem);
+    font-weight: 800;
+    line-height: 1.14;
+    margin-bottom: 1.8rem;
+    background: linear-gradient(145deg, #ffffff 0%, rgba(255, 228, 232, 0.97) 55%, rgba(255, 195, 210, 0.90) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleReveal 1.1s var(--ease-out) both;
+}
+
+@keyframes titleReveal {
+    from { opacity: 0; transform: translateY(55px); filter: blur(10px); }
+    to   { opacity: 1; transform: translateY(0);    filter: blur(0);    }
+}
+
+.hero p {
+    font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+    font-weight: 300;
+    letter-spacing: 0.4px;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.92);
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 3rem;
+    animation: subtitleReveal 1.1s 0.22s var(--ease-out) both;
+}
+
+@keyframes subtitleReveal {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+
+.cta-button {
+    font-weight: 700;
+    font-size: 0.94rem;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    padding: 18px 52px;
+    border-radius: 60px;
+    background: white;
+    color: var(--b-primary);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition: all 0.4s var(--ease-spring);
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    animation: ctaReveal 1.1s 0.44s var(--ease-out) both;
+}
+
+@keyframes ctaReveal {
+    from { opacity: 0; transform: translateY(22px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: rgba(107, 44, 62, 0.09);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s var(--ease-smooth), height 0.5s var(--ease-smooth);
+    pointer-events: none;
+}
+.cta-button:hover::before { width: 350px; height: 350px; }
+.cta-button:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    color: var(--b-dark);
+}
+
+/* Indicador de scroll */
+.hero-scroll-hint {
+    position: absolute;
+    bottom: 2.2rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.62rem;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    z-index: 3;
+    cursor: pointer;
+    animation: ctaReveal 1s 1.1s var(--ease-out) both;
+    transition: color 0.3s;
+    user-select: none;
+}
+.hero-scroll-hint:hover { color: rgba(255, 255, 255, 0.8); }
+.hero-scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 38px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, transparent 100%);
+    animation: scrollPulse 2.2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+    0%, 100% { transform: scaleY(1);    opacity: 0.5; }
+    50%       { transform: scaleY(1.45); opacity: 1;   }
+}
+
+/* ──────────────────────────────────────────
+   7. EMERGENCIAS
+────────────────────────────────────────── */
+.emergency-section { position: relative; overflow: hidden; }
+.emergency-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 36px 36px;
+    pointer-events: none;
+    z-index: 0;
+}
+.emergency-content { position: relative; z-index: 1; }
+
+.emergency-phone {
+    background: rgba(255, 255, 255, 0.97) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2), 0 0 0 4px rgba(255, 255, 255, 0.1), inset 0 1px 0 white;
+    transition: all 0.4s var(--ease-spring);
+}
+.emergency-phone:hover {
+    transform: scale(1.04) translateY(-2px);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.25), 0 0 0 6px rgba(255, 255, 255, 0.15), inset 0 1px 0 white;
+}
+
+/* ──────────────────────────────────────────
+   8. STATS DRAMÁTICOS — OSCURO + COLORES MARCA
+────────────────────────────────────────── */
+.stats-breccia-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: linear-gradient(135deg, var(--b-dark) 0%, var(--b-primary) 50%, var(--b-secondary) 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 4rem;
+    box-shadow:
+        0 20px 60px rgba(107, 44, 62, 0.38),
+        0 8px 20px rgba(107, 44, 62, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    position: relative;
+}
+
+/* Dot-grid pattern de fondo */
+.stats-breccia-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.stat-breccia-item {
+    padding: 2.8rem 1.8rem;
+    text-align: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
+    transition: background 0.35s var(--ease-smooth);
+    cursor: default;
+}
+.stat-breccia-item:last-child { border-right: none; }
+.stat-breccia-item:hover { background: rgba(255, 255, 255, 0.08); }
+
+.stat-breccia-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.9rem;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+    transition: transform 0.35s var(--ease-spring);
+}
+.stat-breccia-item:hover .stat-breccia-icon { transform: scale(1.15) translateY(-3px); }
+
+.stat-breccia-number {
+    display: block;
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+    margin-bottom: 0.55rem;
+    letter-spacing: -1px;
+    transition: transform 0.35s var(--ease-spring);
+}
+.stat-breccia-item:hover .stat-breccia-number { transform: scale(1.07); }
+
+.stat-breccia-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    line-height: 1.35;
+}
+
+@media (max-width: 768px) {
+    .stats-breccia-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-breccia-item:nth-child(2) { border-right: none; }
+    .stat-breccia-item { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    .stat-breccia-item:nth-child(3),
+    .stat-breccia-item:nth-child(4) { border-bottom: none; }
+}
+@media (max-width: 480px) {
+    .stat-breccia-item { padding: 2rem 1rem; }
+    .stat-breccia-number { font-size: 2.6rem; }
+    .stat-breccia-icon { font-size: 1.6rem; }
+}
+
+/* ──────────────────────────────────────────
+   9. SERVICE CARDS — SPLIT HORIZONTAL
+   Panel izquierdo: color de marca | Panel derecho: contenido
+────────────────────────────────────────── */
+.services-grid {
+    gap: 2.5rem !important;
+}
+
+.service-card {
+    display: flex !important;
+    flex-direction: row !important;
+    min-height: 370px !important;
+    border-radius: 20px !important;
+    box-shadow:
+        0 4px 10px rgba(107, 44, 62, 0.06),
+        0 15px 35px rgba(107, 44, 62, 0.09),
+        0 30px 65px rgba(107, 44, 62, 0.05) !important;
+    border: none !important;
+    transition: all 0.5s var(--ease-spring) !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+}
+
+.service-card:hover {
+    transform: translateY(-18px) scale(1.015) !important;
+    box-shadow:
+        0 28px 58px rgba(107, 44, 62, 0.22),
+        0 50px 95px rgba(107, 44, 62, 0.13) !important;
+}
+
+/* Desactivar decoraciones de breccia.css que conflictúan */
+.service-card::before { display: none !important; }
+.service-card::after  { display: none !important; }
+
+/* ── Panel izquierdo (brand) ── */
+.service-header {
+    width: 44% !important;
+    flex-shrink: 0 !important;
+    background: linear-gradient(160deg, var(--b-dark) 0%, var(--b-primary) 55%, var(--b-secondary) 100%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 2.5rem 2rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Orbe decorativo dentro del panel */
+.service-header::before {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -50px !important;
+    right: -50px !important;
+    width: 160px !important;
+    height: 160px !important;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 65%) !important;
+    border-radius: 50% !important;
+    transform: none !important;
+    transform-origin: unset !important;
+    transition: none !important;
+}
+
+.service-header::after {
+    content: '' !important;
+    position: absolute !important;
+    top: -40px !important;
+    left: -40px !important;
+    width: 120px !important;
+    height: 120px !important;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 65%) !important;
+    border-radius: 50% !important;
+    transform: none !important;
+    transition: none !important;
+    left: auto !important;
+    top: auto !important;
+    opacity: 1 !important;
+}
+
+.service-header .service-icon {
+    font-size: 5rem !important;
+    margin-bottom: 1.4rem !important;
+    display: block !important;
+    transform: scale(1) !important;
+    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.35)) !important;
+    transition: transform 0.45s var(--ease-spring) !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+.service-card:hover .service-header .service-icon { transform: scale(1.14) !important; }
+
+.service-card h3 {
+    color: white !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    line-height: 1.25 !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+.service-badge {
+    position: absolute !important;
+    top: 1.1rem !important;
+    right: 1.1rem !important;
+    background: rgba(255, 255, 255, 0.18) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    backdrop-filter: blur(8px) !important;
+    color: white !important;
+    font-size: 0.68rem !important;
+    padding: 0.3rem 0.85rem !important;
+    z-index: 2 !important;
+}
+
+/* ── Panel derecho (blanco) ── */
+.service-description {
+    flex: 1 !important;
+    padding: 2.2rem 2.2rem 1.8rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    background: white !important;
+}
+
+.service-card ul { margin-bottom: 0.8rem !important; }
+
+.service-card li {
+    padding: 0.6rem 0 !important;
+    padding-left: 1.8rem !important;
+    font-size: 0.94rem !important;
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5) !important;
+    color: #444 !important;
+    transition: color 0.2s, padding-left 0.25s var(--ease-smooth) !important;
+}
+.service-card li:last-child { border-bottom: none !important; }
+.service-card:hover li { color: #222 !important; }
+.service-card:hover li:hover { padding-left: 2.2rem !important; color: var(--b-primary) !important; }
+
+.service-cta {
+    padding: 1rem 0 0 !important;
+    border-top: 2px solid rgba(139, 58, 79, 0.12) !important;
+    margin-top: 0.5rem !important;
+    font-weight: 700 !important;
+    color: var(--b-secondary) !important;
+    transition: color 0.3s !important;
+    background: transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+}
+.service-card:hover .service-cta { background: transparent !important; color: var(--b-primary) !important; }
+.service-card:hover .service-cta-arrow { transform: translateX(10px) !important; }
+
+/* Mobile: stacked */
+@media (max-width: 768px) {
+    .service-card {
+        flex-direction: column !important;
+        min-height: unset !important;
+    }
+    .service-header {
+        width: 100% !important;
+        min-height: 190px !important;
+        padding: 2rem !important;
+    }
+    .service-card:hover { transform: translateY(-8px) !important; }
+}
+
+/* ──────────────────────────────────────────
+   10. SERVICIOS DESTACADOS
+────────────────────────────────────────── */
+.servicios-destacados-section {
+    background: linear-gradient(160deg, #f8f5f6 0%, #fafafa 60%, #f8f5f6 100%);
+}
+.servicio-destacado-card {
+    border-radius: 16px !important;
+    transition: all 0.42s var(--ease-spring) !important;
+    box-shadow: 0 2px 8px rgba(107, 44, 62, 0.05), 0 8px 20px rgba(107, 44, 62, 0.04) !important;
+    border: 1px solid rgba(229, 231, 235, 0.8) !important;
+}
+.servicio-destacado-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 14px 32px rgba(107, 44, 62, 0.13), 0 22px 50px rgba(107, 44, 62, 0.07) !important;
+    border-color: rgba(139, 58, 79, 0.15) !important;
+}
+.servicios-destacados-cta {
+    border-radius: 16px !important;
+    border-color: rgba(139, 58, 79, 0.12) !important;
+    box-shadow: 0 4px 20px rgba(107, 44, 62, 0.06) !important;
+}
+
+/* ──────────────────────────────────────────
+   11. EXPENSAS
+────────────────────────────────────────── */
+.expensas-image {
+    border-radius: 28px !important;
+    box-shadow: 0 15px 45px rgba(107, 44, 62, 0.1), 0 30px 70px rgba(107, 44, 62, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+    transition: all 0.4s var(--ease-smooth) !important;
+}
+.expensas-image:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 25px 60px rgba(107, 44, 62, 0.16), 0 45px 90px rgba(107, 44, 62, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ──────────────────────────────────────────
+   12. PORTAL
+────────────────────────────────────────── */
+.portal-section-compacto { position: relative; overflow: hidden; }
+.portal-section-compacto::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, transparent 65%);
+    border-radius: 50%;
+    animation: orbFloat 16s ease-in-out infinite reverse;
+    pointer-events: none;
+}
+.portal-feature-compacto {
+    background: rgba(255, 255, 255, 0.11) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.20) !important;
+    border-radius: 16px !important;
+    transition: all 0.38s var(--ease-spring) !important;
+}
+.portal-feature-compacto:hover {
+    background: rgba(255, 255, 255, 0.20) !important;
+    border-color: rgba(255, 255, 255, 0.32) !important;
+    transform: translateY(-6px) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16) !important;
+}
+.portal-button-compacto {
+    font-weight: 700 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    border-radius: 60px !important;
+    padding: 17px 52px !important;
+    background: white !important;
+    color: var(--b-primary) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
+    transition: all 0.4s var(--ease-spring) !important;
+}
+.portal-button-compacto:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
+}
+
+/* ──────────────────────────────────────────
+   13. NOSOTROS
+────────────────────────────────────────── */
+.nosotros-intro {
+    border-radius: 28px !important;
+    box-shadow: 0 8px 25px rgba(107, 44, 62, 0.07), 0 20px 50px rgba(107, 44, 62, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(229, 231, 235, 0.5) !important;
+    transition: all 0.42s var(--ease-smooth) !important;
+}
+.nosotros-intro:hover {
+    transform: translateY(-7px) !important;
+    box-shadow: 0 18px 48px rgba(107, 44, 62, 0.12), 0 38px 75px rgba(107, 44, 62, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+/* ──────────────────────────────────────────
+   14. CONTACTO
+────────────────────────────────────────── */
+.contacto-hero {
+    background: linear-gradient(135deg, var(--b-dark) 0%, var(--b-primary) 55%, var(--b-secondary) 100%) !important;
+    position: relative; overflow: hidden;
+}
+.contacto-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none; z-index: 0;
+}
+.contacto-hero-content { position: relative; z-index: 1; }
+
+.contacto-card {
+    border-radius: 20px !important;
+    box-shadow: 0 4px 10px rgba(107, 44, 62, 0.05), 0 12px 30px rgba(107, 44, 62, 0.06) !important;
+    border: 1px solid rgba(229, 231, 235, 0.6) !important;
+    position: relative; overflow: hidden;
+    transition: all 0.42s var(--ease-spring) !important;
+}
+.contacto-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--b-primary), var(--b-secondary));
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.42s var(--ease-smooth);
+    pointer-events: none;
+}
+.contacto-card:hover::after { transform: scaleX(1); }
+.contacto-card:hover {
+    transform: translateY(-9px) !important;
+    box-shadow: 0 18px 44px rgba(107, 44, 62, 0.15), 0 32px 65px rgba(107, 44, 62, 0.08) !important;
+}
+
+/* ──────────────────────────────────────────
+   15. EMERGENCIA DESTACADA
+────────────────────────────────────────── */
+.emergencia-destacada {
+    border-radius: 22px !important;
+    box-shadow: 0 10px 30px rgba(107, 44, 62, 0.10), 0 20px 60px rgba(107, 44, 62, 0.06), 0 0 0 1px rgba(239, 68, 68, 0.12) !important;
+    transition: all 0.42s var(--ease-spring) !important;
+}
+.emergencia-destacada:hover {
+    transform: translateY(-9px) !important;
+    box-shadow: 0 22px 52px rgba(107, 44, 62, 0.16), 0 36px 80px rgba(107, 44, 62, 0.09), 0 0 0 2px rgba(239, 68, 68, 0.22) !important;
+}
+.emergencia-action-btn { transition: all 0.32s var(--ease-spring) !important; }
+.emergencia-action-btn:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 10px 28px rgba(239, 68, 68, 0.38) !important;
+}
+
+/* ──────────────────────────────────────────
+   16. WHATSAPP
+────────────────────────────────────────── */
+.whatsapp-float {
+    background: linear-gradient(135deg, #25d366 0%, #128C7E 100%) !important;
+    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.38), 0 3px 10px rgba(0, 0, 0, 0.18) !important;
+    border: 2px solid rgba(255, 255, 255, 0.25) !important;
+    transition: all 0.4s var(--ease-spring) !important;
+}
+.whatsapp-float:hover {
+    transform: scale(1.18) translateY(-4px) !important;
+    box-shadow: 0 18px 45px rgba(37, 211, 102, 0.48), 0 6px 16px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* ──────────────────────────────────────────
+   17. BUTTONS
+────────────────────────────────────────── */
+.contacto-action-btn { transition: all 0.32s var(--ease-spring) !important; }
+.contacto-action-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 22px rgba(107, 44, 62, 0.22) !important;
+}
+.cta-button-destacado {
+    font-weight: 600;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--b-primary) 0%, var(--b-secondary) 100%);
+    box-shadow: 0 4px 16px rgba(107, 44, 62, 0.28);
+    transition: all 0.38s var(--ease-spring);
+}
+.cta-button-destacado:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(107, 44, 62, 0.38) !important;
+}
+
+/* ──────────────────────────────────────────
+   18. FOOTER
+────────────────────────────────────────── */
+footer { position: relative; overflow: hidden; }
+footer::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+}
+
+/* ──────────────────────────────────────────
+   19. HEROES CON VIDEO (admin + inmo)
+────────────────────────────────────────── */
+
+/* Dot-pattern sobre el overlay */
+.admin-hero .hero-overlay::after,
+.inmo-hero .hero-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+}
+
+/* Reveal animado para el h1 y p de heroes internos */
+.admin-hero h1, .inmo-hero h1 {
+    animation: titleReveal 1s var(--ease-out) both;
+}
+.admin-hero p, .inmo-hero p {
+    animation: subtitleReveal 1s 0.2s var(--ease-out) both;
+}
+
+/* ──────────────────────────────────────────
+   20. BACK BUTTON
+────────────────────────────────────────── */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px 24px;
+    background: white;
+    color: var(--b-primary);
+    border: 2px solid rgba(107, 44, 62, 0.15);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.35s var(--ease-spring);
+    box-shadow: 0 3px 12px rgba(107, 44, 62, 0.08);
+}
+.back-button:hover {
+    background: var(--b-primary);
+    color: white;
+    border-color: var(--b-primary);
+    transform: translateX(-4px);
+    box-shadow: 0 8px 22px rgba(107, 44, 62, 0.28);
+}
+
+/* ──────────────────────────────────────────
+   21. CTA BRECCIA CARD (sección degradada)
+────────────────────────────────────────── */
+.cta-breccia-card {
+    border-radius: 24px !important;
+    box-shadow: 0 18px 55px rgba(107, 44, 62, 0.38) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+.cta-breccia-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+}
+.cta-breccia-card > * { position: relative; z-index: 1; }
+
+/* ──────────────────────────────────────────
+   22. INFO BADGES PILLS
+────────────────────────────────────────── */
+.info-badges-grid {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.info-badge-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1.6rem;
+    background: white;
+    border-radius: 50px;
+    border: 2px solid rgba(139, 58, 79, 0.12);
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 12px rgba(107, 44, 62, 0.07);
+    transition: all 0.32s var(--ease-spring);
+    cursor: default;
+}
+.info-badge-pill:hover {
+    border-color: rgba(139, 58, 79, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(107, 44, 62, 0.14);
+    color: var(--b-primary);
+}
+.info-badge-pill span:first-child { font-size: 1.2rem; }
+
+/* ──────────────────────────────────────────
+   23. CAROUSEL (admin + inmo)
+────────────────────────────────────────── */
+.carousel-container,
+.carousel-container-inmo {
+    border-radius: 24px !important;
+    box-shadow:
+        0 10px 30px rgba(107, 44, 62, 0.10),
+        0 25px 60px rgba(107, 44, 62, 0.07) !important;
+    overflow: hidden;
+}
+
+/* Línea de acento en cada slide */
+.carousel-slide,
+.carousel-slide-inmo {
+    background: white !important;
+    position: relative !important;
+}
+.carousel-slide::before,
+.carousel-slide-inmo::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--b-primary), var(--b-secondary));
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Items de lista: estilos base (sobreescritos en BLOQUE V3) */
+.carousel-slide li,
+.carousel-slide-inmo li {
+    transition: all 0.28s var(--ease-spring) !important;
+}
+
+/* Botones de carrusel */
+.carousel-btn,
+.carousel-btn-inmo {
+    box-shadow: 0 4px 15px rgba(107, 44, 62, 0.3) !important;
+    transition: all 0.32s var(--ease-spring) !important;
+}
+.carousel-btn:hover,
+.carousel-btn-inmo:hover {
+    transform: scale(1.12) !important;
+    box-shadow: 0 8px 25px rgba(107, 44, 62, 0.4) !important;
+}
+
+/* ──────────────────────────────────────────
+   24. EDIFICIO CARDS
+────────────────────────────────────────── */
+.edificio-card {
+    border-radius: 16px !important;
+    border: 1px solid rgba(229, 231, 235, 0.6) !important;
+    border-left: 4px solid var(--b-secondary) !important;
+    box-shadow:
+        0 3px 8px rgba(107, 44, 62, 0.05),
+        0 10px 25px rgba(107, 44, 62, 0.06) !important;
+    transition: all 0.42s var(--ease-spring) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Barra dinámica derecha en hover */
+.edificio-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 4px;
+    height: 0%;
+    background: linear-gradient(180deg, var(--b-light), var(--b-primary));
+    transition: height 0.45s var(--ease-smooth);
+    pointer-events: none;
+    border-radius: 0 0 0 4px;
+}
+.edificio-card:hover::after { height: 100%; }
+
+.edificio-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow:
+        0 14px 34px rgba(107, 44, 62, 0.16),
+        0 28px 58px rgba(107, 44, 62, 0.10) !important;
+    border-left-color: var(--b-primary) !important;
+    border-color: rgba(139, 58, 79, 0.18) !important;
+}
+
+.info-badge {
+    border-radius: 8px !important;
+    background: rgba(107, 44, 62, 0.05) !important;
+    border-color: rgba(139, 58, 79, 0.15) !important;
+    font-weight: 600 !important;
+    transition: all 0.25s !important;
+    font-size: 0.82rem !important;
+}
+.edificio-card:hover .info-badge {
+    background: rgba(107, 44, 62, 0.1) !important;
+    border-color: rgba(139, 58, 79, 0.25) !important;
+}
+
+/* ──────────────────────────────────────────
+   25. PAGINACIÓN
+────────────────────────────────────────── */
+.page-btn {
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s var(--ease-spring) !important;
+}
+.page-btn.active {
+    box-shadow: 0 4px 15px rgba(107, 44, 62, 0.32) !important;
+    transform: scale(1.07) !important;
+}
+.page-btn:hover:not(.active) {
+    border-color: rgba(139, 58, 79, 0.3) !important;
+    background: rgba(107, 44, 62, 0.05) !important;
+    color: var(--b-primary) !important;
+    transform: scale(1.07) !important;
+}
+
+/* ──────────────────────────────────────────
+   26. TEAM CARDS
+────────────────────────────────────────── */
+.equipo-section {
+    background: linear-gradient(160deg, #f8f5f6 0%, #fafafa 60%, #f8f5f6 100%) !important;
+}
+
+.team-card {
+    border-radius: 20px !important;
+    box-shadow:
+        0 4px 12px rgba(107, 44, 62, 0.06),
+        0 12px 30px rgba(107, 44, 62, 0.05) !important;
+    border: 1px solid rgba(229, 231, 235, 0.6) !important;
+    transition: all 0.42s var(--ease-spring) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Barra inferior en hover */
+.team-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--b-primary), var(--b-secondary));
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.42s var(--ease-smooth);
+    pointer-events: none;
+}
+.team-card:hover::after { transform: scaleX(1); }
+
+.team-card:hover {
+    transform: translateY(-12px) !important;
+    box-shadow:
+        0 18px 44px rgba(107, 44, 62, 0.15),
+        0 36px 72px rgba(107, 44, 62, 0.09) !important;
+    border-color: rgba(139, 58, 79, 0.15) !important;
+}
+
+.team-avatar {
+    box-shadow: 0 8px 25px rgba(107, 44, 62, 0.25) !important;
+    transition: transform 0.42s var(--ease-spring) !important;
+}
+.team-card:hover .team-avatar {
+    transform: scale(1.09) translateY(-3px) !important;
+}
+
+/* Badge de link externo */
+.external-link-badge {
+    transition: all 0.3s var(--ease-spring) !important;
+    box-shadow: 0 3px 10px rgba(107, 44, 62, 0.15) !important;
+}
+.team-card:hover .external-link-badge {
+    transform: scale(1.15) rotate(10deg) !important;
+    box-shadow: 0 6px 18px rgba(107, 44, 62, 0.25) !important;
+}
+
+.visit-website {
+    border-radius: 50px !important;
+    transition: all 0.32s var(--ease-spring) !important;
+    box-shadow: 0 3px 12px rgba(107, 44, 62, 0.2) !important;
+}
+.visit-website:hover {
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 8px 22px rgba(107, 44, 62, 0.32) !important;
+}
+
+/* ──────────────────────────────────────────
+   27. PROPERTY CARDS (inmobiliaria)
+────────────────────────────────────────── */
+.propiedad-card {
+    border-radius: 20px !important;
+    box-shadow:
+        0 4px 10px rgba(107, 44, 62, 0.05),
+        0 12px 30px rgba(107, 44, 62, 0.07),
+        0 25px 55px rgba(107, 44, 62, 0.04) !important;
+    border: 1px solid rgba(229, 231, 235, 0.7) !important;
+    overflow: hidden;
+    transition: all 0.45s var(--ease-spring) !important;
+}
+.propiedad-card:hover {
+    transform: translateY(-14px) !important;
+    box-shadow:
+        0 20px 46px rgba(107, 44, 62, 0.17),
+        0 42px 82px rgba(107, 44, 62, 0.10) !important;
+    border-color: rgba(139, 58, 79, 0.15) !important;
+}
+
+.propiedad-badge {
+    border-radius: 30px !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22) !important;
+}
+
+.consultar-btn {
+    font-weight: 600 !important;
+    transition: all 0.35s var(--ease-spring) !important;
+    box-shadow: 0 4px 16px rgba(107, 44, 62, 0.25) !important;
+    border-radius: 50px !important;
+}
+.consultar-btn:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 12px 30px rgba(107, 44, 62, 0.36) !important;
+}
+
+/* Efecto de scale en imagen al hover */
+.propiedad-image-container { overflow: hidden; }
+.propiedad-card:hover .propiedad-carousel {
+    transform: scale(1.04);
+    transition: transform 0.6s var(--ease-smooth) !important;
+}
+
+/* ──────────────────────────────────────────
+   28. FILTER BUTTONS (inmobiliaria)
+────────────────────────────────────────── */
+.propiedades-controls {
+    border-radius: 20px !important;
+    box-shadow: 0 4px 15px rgba(107, 44, 62, 0.07) !important;
+    border: 1px solid rgba(229, 231, 235, 0.6) !important;
+}
+
+.filter-btn-prop {
+    border-radius: 30px !important;
+    font-weight: 600 !important;
+    transition: all 0.32s var(--ease-spring) !important;
+    border-color: rgba(229, 231, 235, 0.9) !important;
+}
+.filter-btn-prop:hover:not(.active) {
+    border-color: rgba(139, 58, 79, 0.35) !important;
+    color: var(--b-primary) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(107, 44, 62, 0.13) !important;
+}
+.filter-btn-prop.active {
+    box-shadow: 0 6px 20px rgba(107, 44, 62, 0.3) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* ──────────────────────────────────────────
+   29. MODALS
+────────────────────────────────────────── */
+.modal-content-consulta {
+    border-radius: 24px !important;
+    box-shadow: 0 25px 65px rgba(0, 0, 0, 0.40) !important;
+}
+
+.form-group-consulta input:focus,
+.form-group-consulta textarea:focus,
+.form-group-consulta select:focus {
+    border-color: var(--b-secondary) !important;
+    box-shadow: 0 0 0 3px rgba(139, 58, 79, 0.12) !important;
+    outline: none !important;
+    transition: all 0.25s !important;
+}
+
+.submit-btn-consulta {
+    transition: all 0.35s var(--ease-spring) !important;
+    box-shadow: 0 4px 16px rgba(107, 44, 62, 0.25) !important;
+}
+.submit-btn-consulta:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 12px 30px rgba(107, 44, 62, 0.38) !important;
+}
+
+.modal-detalle-content {
+    border-radius: 24px !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55) !important;
+}
+
+.close-modal-consulta,
+.close-modal-detalle {
+    transition: all 0.3s var(--ease-spring) !important;
+}
+.close-modal-consulta:hover,
+.close-modal-detalle:hover {
+    transform: rotate(90deg) scale(1.1) !important;
+}
+
+/* ──────────────────────────────────────────
+   30. CTA INMO (full-width section)
+────────────────────────────────────────── */
+.cta-inmo-section {
+    position: relative;
+    overflow: hidden;
+}
+.cta-inmo-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+}
+.cta-inmo-section > * { position: relative; z-index: 1; }
+
+/* ──────────────────────────────────────────
+   31. ANIMACIONES
+────────────────────────────────────────── */
+.fade-in, .slide-left, .slide-right, .scale-in {
+    will-change: transform, opacity;
+    transition-timing-function: var(--ease-out);
+    transition-duration: 0.75s;
+}
+
+/* Headings de sección (usado en varias páginas) */
+.edificios-section h2,
+.equipo-section h2,
+.propiedades-section h2,
+.servicios-inmo-section h2,
+.carousel-section h2 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+/* ──────────────────────────────────────────
+   20. MOBILE
+────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .hero { min-height: 90vh; background-attachment: scroll; }
+    .hero h1 { font-size: clamp(2.1rem, 9vw, 3.2rem); }
+    .hero p  { font-size: 1.05rem; }
+    .cta-button { padding: 15px 38px; }
+    .nosotros-intro:hover    { transform: translateY(-4px) !important; }
+    .contacto-card:hover     { transform: translateY(-5px) !important; }
+    .emergencia-destacada:hover { transform: translateY(-5px) !important; }
+}
+@media (max-width: 480px) {
+    .hero { min-height: 85vh; }
+    .hero h1 { font-size: 2.1rem; }
+    .hero p  { font-size: 1rem; }
+    #scroll-progress { height: 2px; }
+}
+@media print {
+    #scroll-progress, .hero::after, .hero-scroll-hint,
+    .emergency-section::after, .portal-section-compacto::after,
+    footer::before { display: none !important; }
+}
+
+/* ============================================================
+   BLOQUE V3 — CAROUSELS · EXPENSAS · NOSOTROS
+   ============================================================ */
+
+/* ──────────────────────────────────────────
+   A. CAROUSEL SECTIONS — FONDO DIFERENCIADO
+────────────────────────────────────────── */
+.carousel-section,
+.servicios-inmo-section {
+    background: linear-gradient(160deg, #f8f5f6 0%, #fafafa 60%, #f8f5f6 100%);
+    position: relative;
+}
+
+/* Títulos de sección — más impacto */
+.carousel-section > h2,
+.servicios-inmo-section > h2 {
+    font-size: clamp(2rem, 4vw, 3rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    position: relative !important;
+}
+
+.carousel-section > h2::after,
+.servicios-inmo-section > h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--b-primary), var(--b-secondary));
+    margin: 1rem auto 0;
+    border-radius: 2px;
+}
+
+/* ──────────────────────────────────────────
+   B. CAROUSEL SLIDES — REDESIGN TOTAL
+────────────────────────────────────────── */
+
+/* Fondo del slide */
+.carousel-slide,
+.carousel-slide-inmo {
+    background: linear-gradient(160deg, #ffffff 0%, #fdf9fb 100%) !important;
+    padding: 3rem 3.5rem !important;
+}
+
+/* Título del slide */
+.carousel-slide h3,
+.carousel-slide-inmo h3 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    color: var(--b-primary) !important;
+    padding-bottom: 1.5rem !important;
+    margin-bottom: 2.5rem !important;
+    border-bottom: 2px solid rgba(107, 44, 62, 0.08) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.8rem !important;
+}
+
+/* ── Neutralizar ::before original (tick / flecha) ── */
+.carousel-slide li::before,
+.carousel-slide-inmo li::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* ──────────────────────────────────────────
+   SLIDE: fondo oscuro de marca + dot-grid
+   Mismo lenguaje visual que stats y Nosotros
+────────────────────────────────────────── */
+.carousel-slide,
+.carousel-slide-inmo {
+    background: linear-gradient(
+        140deg,
+        var(--b-dark) 0%,
+        var(--b-primary) 52%,
+        var(--b-secondary) 100%
+    ) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 3rem 3.5rem !important;
+}
+
+/* Reemplazar barra top por dot-grid full-cover */
+.carousel-slide::before,
+.carousel-slide-inmo::before {
+    background:   none !important;
+    height:       100% !important;
+    top:          0 !important;
+    border-radius: 0 !important;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px) !important;
+    background-size: 24px 24px !important;
+    z-index:      0 !important;
+}
+
+/* Título en blanco sobre fondo oscuro */
+.carousel-slide h3,
+.carousel-slide-inmo h3 {
+    color:                  white !important;
+    -webkit-text-fill-color: white !important;
+    font-size:    clamp(1.8rem, 3vw, 2.4rem) !important;
+    font-weight:  800 !important;
+    letter-spacing: -0.02em !important;
+    padding-bottom: 1.5rem !important;
+    margin-bottom:  2.5rem !important;
+    border-bottom: 2px solid rgba(255,255,255,0.12) !important;
+    display:        flex !important;
+    align-items:    center !important;
+    gap:            0.8rem !important;
+    position:       relative !important;
+    z-index:        1 !important;
+}
+
+/* Counter reset en el ul */
+.carousel-slide ul,
+.carousel-slide-inmo ul {
+    counter-reset: slide-item;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* ──────────────────────────────────────────
+   ITEMS: glassmorphism + número watermark
+────────────────────────────────────────── */
+.carousel-slide li,
+.carousel-slide-inmo li {
+    counter-increment: slide-item;
+    padding:       1.2rem 1.5rem !important;
+    background:    rgba(255, 255, 255, 0.09) !important;
+    border:        1px solid rgba(255, 255, 255, 0.15) !important;
+    border-left:   1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 16px !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    color:         rgba(255, 255, 255, 0.92) !important;
+    font-weight:   500 !important;
+    font-size:     0.93rem !important;
+    line-height:   1.45 !important;
+    text-align:    left !important;
+    box-shadow:    inset 0 1px 0 rgba(255,255,255,0.12),
+                   0 4px 12px rgba(0,0,0,0.15) !important;
+    transition:    all 0.32s var(--ease-spring) !important;
+    position:      relative !important;
+    overflow:      hidden !important;
+}
+
+/* Número watermark en cada card */
+.carousel-slide li::after,
+.carousel-slide-inmo li::after {
+    display:         block !important;
+    content:         counter(slide-item, decimal-leading-zero) !important;
+    position:        absolute !important;
+    right:           0.7rem !important;
+    bottom:          -0.6rem !important;
+    font-size:       4rem !important;
+    font-weight:     900 !important;
+    color:           rgba(255, 255, 255, 0.07) !important;
+    line-height:     1 !important;
+    pointer-events:  none !important;
+    transition:      color 0.3s !important;
+    letter-spacing:  -2px !important;
+}
+
+.carousel-slide li:hover,
+.carousel-slide-inmo li:hover {
+    background:    rgba(255, 255, 255, 0.20) !important;
+    border-color:  rgba(255, 255, 255, 0.35) !important;
+    transform:     translateY(-6px) scale(1.02) !important;
+    box-shadow:    0 16px 36px rgba(0,0,0,0.25),
+                   inset 0 1px 0 rgba(255,255,255,0.25) !important;
+    color:         white !important;
+}
+
+.carousel-slide li:hover::after,
+.carousel-slide-inmo li:hover::after {
+    color: rgba(255, 255, 255, 0.14) !important;
+}
+
+/* ──────────────────────────────────────────
+   C. GESTIÓN DE EXPENSAS — TRANSFORMACIÓN TOTAL
+   Contenedor oscuro de marca con orbes animados
+────────────────────────────────────────── */
+
+/* Contenedor: de blanco a oscuro dramático */
+.expensas-image {
+    background: linear-gradient(
+        145deg,
+        var(--b-dark) 0%,
+        var(--b-primary) 55%,
+        var(--b-secondary) 100%
+    ) !important;
+    border: none !important;
+    overflow: hidden !important;
+    position: relative !important;
+    min-height: 320px !important;
+}
+
+/* ::before → reemplazar barra gradiente por dot-grid */
+.expensas-image::before {
+    background: none !important;
+    height: 100% !important;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px) !important;
+    background-size: 22px 22px !important;
+    border-radius: 0 !important;
+}
+
+/* ::after → orbe animado en la esquina */
+.expensas-image::after {
+    bottom: auto !important;
+    right: auto !important;
+    background: none !important;
+    top: -60px !important;
+    right: -60px !important;
+    width: 220px !important;
+    height: 220px !important;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, transparent 62%) !important;
+    border-radius: 50% !important;
+    animation: orbFloat 10s ease-in-out infinite !important;
+    z-index: 1 !important;
+}
+
+/* Orbe secundario abajo-izquierda via shadow en el ícono */
+.expensas-image .expense-icon {
+    position: relative !important;
+    z-index: 2 !important;
+    filter: drop-shadow(0 12px 35px rgba(255, 255, 255, 0.18)) !important;
+    animation: floatIcon 5.5s ease-in-out infinite !important;
+    will-change: transform !important;
+    font-size: 13rem !important;
+}
+
+@keyframes floatIcon {
+    0%, 100% { transform: scale(1)    translateY(0)    rotate(0deg);  }
+    33%       { transform: scale(1.04) translateY(-12px) rotate(3deg);  }
+    66%       { transform: scale(0.97) translateY(5px)   rotate(-2deg); }
+}
+
+/* Segundo orbe decorativo vía pseudo en ::after de la sección */
+.expensas-section {
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Pausa animación en hover + scale dramático */
+.expensas-image:hover .expense-icon {
+    animation-play-state: paused !important;
+    transform: scale(1.1) rotate(8deg) !important;
+    filter: drop-shadow(0 16px 50px rgba(255, 255, 255, 0.25)) !important;
+}
+
+/* ──────────────────────────────────────────
+   D. SOBRE NOSOTROS — SIDE-BY-SIDE + CONTRASTE
+────────────────────────────────────────── */
+
+/* Contenedor en dos columnas */
+.nosotros-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2.5rem !important;
+    max-width: 1100px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Eliminar max-width individual (ahora el grid lo controla) */
+.nosotros-intro {
+    max-width: unset !important;
+    margin: 0 !important;
+}
+
+/* Segunda tarjeta — oscura con colores de marca */
+.nosotros-intro:nth-child(2) {
+    background: linear-gradient(
+        145deg,
+        var(--b-dark) 0%,
+        var(--b-primary) 55%,
+        var(--b-secondary) 100%
+    ) !important;
+    box-shadow:
+        0 15px 45px rgba(107, 44, 62, 0.38),
+        0 30px 70px rgba(107, 44, 62, 0.22) !important;
+    border: none !important;
+}
+
+/* Barra superior de la segunda tarjeta */
+.nosotros-intro:nth-child(2)::before {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.15)) !important;
+    height: 4px !important;
+}
+
+/* Dot-grid decorativo en segunda tarjeta */
+.nosotros-intro:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+/* Textos de la segunda tarjeta — blancos */
+.nosotros-intro:nth-child(2) h3 {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+}
+.nosotros-intro:nth-child(2) .intro-text {
+    color: rgba(255, 255, 255, 0.88) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.88) !important;
+}
+.nosotros-intro:nth-child(2) .intro-icon {
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.28));
+    position: relative;
+    z-index: 1;
+}
+.nosotros-intro:nth-child(2):hover {
+    transform: translateY(-7px) !important;
+    box-shadow:
+        0 25px 60px rgba(107, 44, 62, 0.48),
+        0 45px 90px rgba(107, 44, 62, 0.28) !important;
+}
+
+/* Mobile — volver a una columna */
+@media (max-width: 900px) {
+    .nosotros-container {
+        grid-template-columns: 1fr !important;
+        max-width: 700px !important;
+    }
+}
+
+/* ──────────────────────────────────────────
+   E. EXTRAS — LISTA EXPENSAS + SECTION BADGE
+────────────────────────────────────────── */
+
+/* Items de lista en expensas — más elegantes */
+.expensas-text li {
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(107, 44, 62, 0.05) !important;
+    transition: all 0.3s var(--ease-spring) !important;
+}
+.expensas-text li:hover {
+    transform: translateX(10px) !important;
+    box-shadow: 0 8px 22px rgba(107, 44, 62, 0.14) !important;
+    border-left-color: var(--b-primary) !important;
+    background: linear-gradient(135deg, white, rgba(107, 44, 62, 0.03)) !important;
+}
+
+/* Badges de sección más premium */
+.nosotros-badge {
+    font-size: 0.7rem !important;
+    letter-spacing: 3px !important;
+    font-weight: 700 !important;
+    padding: 0.55rem 1.8rem !important;
+}
+
+/* ============================================================
+   BLOQUE V4 — EDIFICIOS: DARK DASHBOARD
+   Lenguaje visual: mismo que stats · carousel · nosotros
+   ============================================================ */
+
+/* ──────────────────────────────────────────
+   SECCIÓN: fondo oscuro profundo
+────────────────────────────────────────── */
+.edificios-section {
+    background: linear-gradient(
+        160deg,
+        #160810 0%,
+        #2a1018 40%,
+        #3f1a26 70%,
+        #4a1d2a 100%
+    ) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 80px 2rem !important;
+}
+
+/* Dot-grid atmospheric */
+.edificios-section::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px) !important;
+    background-size: 30px 30px !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+/* Orbe de luz suave en esquina superior-derecha */
+.edificios-section::after {
+    content: '' !important;
+    position: absolute !important;
+    top: -150px !important;
+    right: -150px !important;
+    width: 500px !important;
+    height: 500px !important;
+    background: radial-gradient(circle, rgba(139, 58, 79, 0.18) 0%, transparent 65%) !important;
+    border-radius: 50% !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+/* Todos los hijos sobre el fondo */
+.edificios-section > * { position: relative !important; z-index: 1 !important; }
+
+/* ── Textos de la sección ── */
+.edificios-section h2 {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+}
+
+.edificios-section > div > p,
+.edificios-section p {
+    color: rgba(255, 255, 255, 0.58) !important;
+}
+
+/* ── Info badges glass ── */
+.info-badges-grid .info-badge-pill {
+    background: rgba(255, 255, 255, 0.09) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    color: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+.info-badges-grid .info-badge-pill:hover {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 255, 255, 0.32) !important;
+    color: white !important;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255,255,255,0.18) !important;
+}
+
+/* ──────────────────────────────────────────
+   CARDS DE EDIFICIOS: dark glass + glow
+────────────────────────────────────────── */
+.edificio-card {
+    background: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(255, 255, 255, 0.11) !important;
+    border-left: 3px solid rgba(168, 77, 97, 0.7) !important;
+    border-radius: 18px !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.10),
+        0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    transition: all 0.38s var(--ease-spring) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Barra derecha que crece: override con color claro */
+.edificio-card::after {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(168, 77, 97, 0.8)) !important;
+    width: 3px !important;
+}
+
+/* Textos dentro del card */
+.edificio-card h3 {
+    color: rgba(255, 255, 255, 0.95) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 700 !important;
+}
+
+.edificio-ubicacion,
+.edificio-card .edificio-ubicacion {
+    color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Badges unidades/pisos: glass chips */
+.edificio-card .info-badge {
+    background: rgba(255, 255, 255, 0.10) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+}
+
+/* HOVER: glow dramático */
+.edificio-card:hover {
+    background: rgba(255, 255, 255, 0.13) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+    border-left-color: rgba(255, 255, 255, 0.7) !important;
+    transform: translateY(-10px) scale(1.01) !important;
+    box-shadow:
+        0 0 0 1px rgba(168, 77, 97, 0.45),
+        0 0 35px rgba(139, 58, 79, 0.25),
+        0 22px 50px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+}
+
+.edificio-card:hover h3 {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+}
+
+.edificio-card:hover .info-badge {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 255, 255, 0.28) !important;
+    color: white !important;
+}
+
+/* ──────────────────────────────────────────
+   PAGINACIÓN sobre fondo oscuro
+────────────────────────────────────────── */
+.pagination .page-btn {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+    color: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.pagination .page-btn.active {
+    color: white !important;
+    box-shadow: 0 4px 18px rgba(139, 58, 79, 0.45) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.pagination .page-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.16) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* ── Texto "Mostrando X de Y edificios" ── */
+.edificios-summary p {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* ──────────────────────────────────────────
+   MOBILE
+────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .edificio-card:hover {
+        transform: translateY(-5px) !important;
+    }
+}
+

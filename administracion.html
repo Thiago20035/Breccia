@@ -11,6 +11,7 @@
     <meta name="description" content="Administración profesional de consorcios en Mar del Plata. Breccia gestiona más de 49 edificios con transparencia, tecnología y más de 25 años de experiencia.">
     <link rel="stylesheet" href="breccia.css">
     <link rel="stylesheet" href="admi.css">
+    <link rel="stylesheet" href="premium.css">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon-V3.ico?v=20260125143000">
     <link rel="shortcut icon" href="/favicon-V3.ico?v=20260125143000">
@@ -22,6 +23,7 @@
 </head>
 
 <body>
+    <div id="scroll-progress"></div>
     <!-- Botón flotante de WhatsApp -->
     <a href="https://wa.me/5492235771240?text=Hola,%20quiero%20consultar%20sobre%20" class="whatsapp-float" target="_blank"
         rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
@@ -77,31 +79,31 @@
                 </a>
             </div>
 
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
-                <div
-                    style="background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
-                    <div style="font-size: 3rem; color: #8b3a4f; margin-bottom: 0.5rem;">48+</div>
-                    <div style="color: #666; font-weight: 600;">Edificios</div>
+            <!-- Stats destacados — diseño premium -->
+            <div class="stats-breccia-grid" style="margin-bottom: 2rem;">
+                <div class="stat-breccia-item">
+                    <span class="stat-breccia-icon">🏢</span>
+                    <span class="stat-breccia-number" data-target="48" data-suffix="+">48+</span>
+                    <span class="stat-breccia-label">Edificios</span>
                 </div>
-                <div
-                    style="background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
-                    <div style="font-size: 3rem; color: #8b3a4f; margin-bottom: 0.5rem;">1500+</div>
-                    <div style="color: #666; font-weight: 600;">Unidades</div>
+                <div class="stat-breccia-item">
+                    <span class="stat-breccia-icon">🏠</span>
+                    <span class="stat-breccia-number" data-target="1500" data-suffix="+">1500+</span>
+                    <span class="stat-breccia-label">Unidades</span>
                 </div>
-                <div
-                    style="background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
-                    <div style="font-size: 3rem; color: #8b3a4f; margin-bottom: 0.5rem;">25+</div>
-                    <div style="color: #666; font-weight: 600;">Años</div>
+                <div class="stat-breccia-item">
+                    <span class="stat-breccia-icon">⭐</span>
+                    <span class="stat-breccia-number" data-target="25" data-suffix="+">25+</span>
+                    <span class="stat-breccia-label">Años</span>
                 </div>
-                <div
-                    style="background: white; padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.08);">
-                    <div style="font-size: 3rem; color: #8b3a4f; margin-bottom: 0.5rem;">24/7</div>
-                    <div style="color: #666; font-weight: 600;">Soporte</div>
+                <div class="stat-breccia-item">
+                    <span class="stat-breccia-icon">🕐</span>
+                    <span class="stat-breccia-number" data-target="24" data-suffix="/7">24/7</span>
+                    <span class="stat-breccia-label">Soporte</span>
                 </div>
             </div>
 
-            <div
+            <div class="cta-breccia-card"
                 style="background: linear-gradient(135deg, #6b2c3e, #8b3a4f); padding: 3rem 2rem; border-radius: 20px; text-align: center; color: white;">
                 <h2 style="font-size: 2rem; margin-bottom: 1rem;">¿Querés que administremos tu consorcio?</h2>
                 <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">
@@ -197,22 +199,19 @@
                 Más de 49 consorcios en Mar del Plata confían en nuestra gestión profesional
             </p>
 
-            <!-- Badges informativos -->
-            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <div
-                    style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: #f8f9fa; border-radius: 50px; border: 2px solid #e0e0e0;">
-                    <span style="font-size: 1.3rem;">🏢</span>
-                    <span style="color: #666; font-weight: 600;">49 Edificios</span>
+            <!-- Badges informativos — premium -->
+            <div class="info-badges-grid">
+                <div class="info-badge-pill">
+                    <span>🏢</span>
+                    <span>49 Edificios</span>
                 </div>
-                <div
-                    style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: #f8f9fa; border-radius: 50px; border: 2px solid #e0e0e0;">
-                    <span style="font-size: 1.3rem;">📍</span>
-                    <span style="color: #666; font-weight: 600;">Toda la ciudad</span>
+                <div class="info-badge-pill">
+                    <span>📍</span>
+                    <span>Toda la ciudad</span>
                 </div>
-                <div
-                    style="display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: #f8f9fa; border-radius: 50px; border: 2px solid #e0e0e0;">
-                    <span style="font-size: 1.3rem;">✓</span>
-                    <span style="color: #666; font-weight: 600;">Gestión integral</span>
+                <div class="info-badge-pill">
+                    <span>✓</span>
+                    <span>Gestión integral</span>
                 </div>
             </div>
         </div>

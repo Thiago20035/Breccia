@@ -109,6 +109,7 @@
     </script>
 
     <link rel="stylesheet" href="breccia.css">
+    <link rel="stylesheet" href="premium.css">
     <!-- Favicon -->
 
     <link rel="icon" type="image/x-icon" href="/favicon-V3.ico?v=20260125143000">
@@ -121,6 +122,9 @@
 </head>
 
 <body>
+    <!-- Barra de progreso de scroll -->
+    <div id="scroll-progress"></div>
+
     <!-- Botón flotante de WhatsApp -->
     <a href="https://wa.me/5492235771240?text=Hola,%20quiero%20consultar%20sobre%20" class="whatsapp-float" target="_blank"
         rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
@@ -171,6 +175,7 @@
             <p>Experiencia, transparencia y tecnología al servicio de tu propiedad</p>
             <a href="#contacto" class="cta-button">Contactanos</a>
         </div>
+        <span class="hero-scroll-hint" onclick="document.querySelector('#servicios').scrollIntoView({behavior:'smooth'})">Descubrí más</span>
     </section>
 
     <!-- Emergencias 24/7 -->
@@ -218,36 +223,27 @@
                 </p>
             </div>
 
-            <!-- Stats destacados -->
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
-                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s;"
-                    onmouseover="this.style.transform='translateY(-10px)'"
-                    onmouseout="this.style.transform='translateY(0)'">
-                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏢</div>
-                    <div style="font-size: 2.5rem; font-weight: 700; color: #8b3a4f; margin-bottom: 0.3rem;">49+</div>
-                    <div style="color: #666; font-weight: 600;">Edificios Administrados</div>
+            <!-- Stats destacados — diseño premium -->
+            <div class="stats-breccia-grid">
+                <div class="stat-breccia-item">
+                    <span class="stat-breccia-icon">🏢</span>
+                    <span class="stat-breccia-number" data-target="49" data-suffix="+">49+</span>
+                    <span class="stat-breccia-label">Edificios Administrados</span>
                 </div>
-                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s;"
-                    onmouseover="this.style.transform='translateY(-10px)'"
-                    onmouseout="this.style.transform='translateY(0)'">
-                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏠</div>
-                    <div style="font-size: 2.5rem; font-weight: 700; color: #8b3a4f; margin-bottom: 0.3rem;">1500+</div>
-                    <div style="color: #666; font-weight: 600;">Unidades Gestionadas</div>
+                <div class="stat-breccia-item">
+                    <span class="stat-breccia-icon">🏠</span>
+                    <span class="stat-breccia-number" data-target="1500" data-suffix="+">1500+</span>
+                    <span class="stat-breccia-label">Unidades Gestionadas</span>
                 </div>
-                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s;"
-                    onmouseover="this.style.transform='translateY(-10px)'"
-                    onmouseout="this.style.transform='translateY(0)'">
-                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">⭐</div>
-                    <div style="font-size: 2.5rem; font-weight: 700; color: #8b3a4f; margin-bottom: 0.3rem;">25+</div>
-                    <div style="color: #666; font-weight: 600;">Años de Experiencia</div>
+                <div class="stat-breccia-item">
+                    <span class="stat-breccia-icon">⭐</span>
+                    <span class="stat-breccia-number" data-target="25" data-suffix="+">25+</span>
+                    <span class="stat-breccia-label">Años de Experiencia</span>
                 </div>
-                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s;"
-                    onmouseover="this.style.transform='translateY(-10px)'"
-                    onmouseout="this.style.transform='translateY(0)'">
-                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">💼</div>
-                    <div style="font-size: 2.5rem; font-weight: 700; color: #8b3a4f; margin-bottom: 0.3rem;">100%</div>
-                    <div style="color: #666; font-weight: 600;">Profesionalismo</div>
+                <div class="stat-breccia-item">
+                    <span class="stat-breccia-icon">💼</span>
+                    <span class="stat-breccia-number" data-target="100" data-suffix="%">100%</span>
+                    <span class="stat-breccia-label">Profesionalismo</span>
                 </div>
             </div>
 

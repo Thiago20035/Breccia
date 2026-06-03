@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in');
     animatedElements.forEach(el => observer.observe(el));
 
+    // Animación de conteo en stats premium
+    initStatsCounter();
+
     // Optimización para touch devices
     if (isTouchDevice()) {
         document.body.classList.add('touch-device');
@@ -273,6 +276,15 @@ function handleScroll() {
     } else {
         header.classList.remove('scrolled');
     }
+
+    // Barra de progreso de scroll
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressBar.style.width = progress + '%';
+    }
 }
 
 // ============================================
@@ -342,6 +354,44 @@ if ('connection' in navigator) {
     if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
         document.body.classList.add('slow-connection');
     }
+}
+
+// ============================================
+// ANIMACIÓN DE CONTEO — STATS PREMIUM
+// ============================================
+function initStatsCounter() {
+    const counters = document.querySelectorAll('.stat-breccia-number');
+    if (!counters.length) return;
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.counted) {
+                entry.target.dataset.counted = 'true';
+                const target = parseInt(entry.target.dataset.target, 10);
+                const suffix = entry.target.dataset.suffix || '';
+                animateCounter(entry.target, target, suffix);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+}
+
+function animateCounter(el, target, suffix) {
+    const duration = 1800;
+    const start = performance.now();
+
+    function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = target + suffix;
+    }
+
+    requestAnimationFrame(update);
 }
 
 // ============================================
