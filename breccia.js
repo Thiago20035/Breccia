@@ -401,3 +401,14 @@ window.addEventListener('load', () => {
     console.log('✓ Sitio cargado completamente');
     document.body.classList.add('loaded');
 });
+
+// ============================================
+// ATAJO SECRETO ACCESO PANEL ADMIN (Ctrl + Shift + A  o  Alt + A)
+// ============================================
+document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) ||
+        (e.altKey && (e.key === 'A' || e.key === 'a'))) {
+        e.preventDefault();
+        window.location.href = 'admin.html';
+    }
+});

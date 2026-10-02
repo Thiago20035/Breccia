@@ -422,9 +422,9 @@ body {
 
 /* EQUIPO */
 .equipo-section {
-    background: #f8f9fa;
+    background: #ffffff;
     padding: 80px 2rem;
-    margin-top: 80px;
+    margin-top: 0;
 }
 
 .equipo-grid {

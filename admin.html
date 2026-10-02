@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | Breccia Inmuebles</title>
+
+    <!-- Hojas de estilo -->
+    <link rel="stylesheet" href="breccia.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="premium.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon-V3.ico?v=20260125143000">
+    <meta name="theme-color" content="#6b2c3e">
+</head>
+
+<body class="admin-body">
+
+
+
+    <!-- ENCABEZADO PANEL ADMIN -->
+    <header class="admin-header">
+        <div class="admin-header-brand">
+            <div class="logo">
+                <span class="logo-main" style="font-size: 1.3rem;">BRECCIA</span>
+                <span class="logo-sub" style="font-size: 0.65rem;">Inmuebles y Negocios</span>
+            </div>
+            <span class="admin-badge">PANEL DE CONTROL</span>
+        </div>
+        <div class="admin-header-actions">
+            <a href="inmobiliaria.html" class="btn-header-link" target="_blank">
+                <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>Ver Inmobiliaria</span>
+            </a>
+            <button id="btnLogout" class="btn-logout">
+                <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                <span>Cerrar Sesión</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="admin-container">
+
+        <!-- METRICAS DASHBOARD -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12h12"/><path d="M6 7h12"/><path d="M6 17h12"/></svg>
+                </div>
+                <div class="stat-info">
+                    <h4>Total Propiedades</h4>
+                    <div class="stat-value" id="statTotal">0</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2H2v10l11.29 11.29a1 1 0 0 0 1.41 0l7.3-7.3a1 1 0 0 0 0-1.41L12 2z"/><circle cx="7" cy="7" r="1.5"/></svg>
+                </div>
+                <div class="stat-info">
+                    <h4>En Venta</h4>
+                    <div class="stat-value" id="statVentas">0</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 2-2 2m-3 3 2 2-6.5 6.5a4 4 0 1 1-2.83-2.83L15 4.5l1.5-1.5L18 4.5 19.5 3 21 2z"/><circle cx="7.5" cy="16.5" r="1.5"/></svg>
+                </div>
+                <div class="stat-info">
+                    <h4>En Alquiler</h4>
+                    <div class="stat-value" id="statAlquileres">0</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                </div>
+                <div class="stat-info">
+                    <h4>Fotos Cargadas</h4>
+                    <div class="stat-value" id="statFotos">0</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NAVEGACIÓN PESTAÑAS -->
+        <nav class="admin-tabs">
+            <button class="tab-btn active" data-tab="tabListado">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+                <span>Listado de Propiedades</span>
+            </button>
+            <button class="tab-btn" data-tab="tabFormulario">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Cargar / Editar Propiedad</span>
+            </button>
+            <button class="tab-btn" data-tab="tabRespaldos">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>Respaldos y Clave</span>
+            </button>
+        </nav>
+
+        <!-- PESTAÑA 1: LISTADO -->
+        <div id="tabListado" class="tab-content active">
+            <div class="panel-card">
+                <div class="panel-card-header">
+                    <div>
+                        <h2 class="panel-card-title">Propiedades Registradas</h2>
+                        <p class="panel-card-subtitle">Administrá las propiedades activas en la web inmobiliaria</p>
+                    </div>
+                    <button class="btn-primary" onclick="resetFormulario(); cambiarTab('tabFormulario');">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        <span>Nueva Propiedad</span>
+                    </button>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="search-box-wrapper">
+                        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" id="searchProp" class="search-input" placeholder="Buscar por título o ubicación...">
+                    </div>
+                    <select id="filterCategoria" class="select-filter">
+                        <option value="todas">Todas las categorías</option>
+                        <option value="departamento">Departamentos</option>
+                        <option value="casa">Casas</option>
+                        <option value="lote">Lotes</option>
+                        <option value="cochera">Cocheras</option>
+                        <option value="local">Locales</option>
+                    </select>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Título y Ubicación</th>
+                                <th>Categoría</th>
+                                <th>Operación</th>
+                                <th>Precio</th>
+                                <th>Origen</th>
+                                <th style="text-align: right;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaPropiedadesBody">
+                            <!-- Se carga dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- PESTAÑA 2: FORMULARIO CREAR / EDITAR -->
+        <div id="tabFormulario" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-card-header">
+                    <div>
+                        <h2 class="panel-card-title" id="formTituloHeader">Crear Nueva Propiedad</h2>
+                        <p class="panel-card-subtitle">Completá la información comercial para publicar en el catálogo</p>
+                    </div>
+                    <button class="btn-secondary" onclick="resetFormulario(); cambiarTab('tabListado');">
+                        Cancelar
+                    </button>
+                </div>
+
+                <form id="formPropiedad">
+                    <!-- Sección 1: Información Básica -->
+                    <div class="form-section-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        <span>Información Principal</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group span-2">
+                            <label for="propTitulo">Título / Nombre Comercial <span class="req">*</span></label>
+                            <input type="text" id="propTitulo" required placeholder="Ej: Departamento de 3 Ambientes con Balcón">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="propTipo">Tipo de Operación <span class="req">*</span></label>
+                            <select id="propTipo" required>
+                                <option value="Venta">Venta</option>
+                                <option value="Alquiler">Alquiler Permanente</option>
+                                <option value="Alquiler Temporario">Alquiler Temporario</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="propCategoria">Categoría de Propiedad <span class="req">*</span></label>
+                            <select id="propCategoria" required>
+                                <option value="departamento">Departamento</option>
+                                <option value="casa">Casa</option>
+                                <option value="lote">Lote / Terreno</option>
+                                <option value="cochera">Cochera</option>
+                                <option value="local">Local Comercial</option>
+                                <option value="ph">P.H.</option>
+                                <option value="oficina">Oficina</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group span-2">
+                            <label for="propUbicacion">Ubicación / Dirección <span class="req">*</span></label>
+                            <input type="text" id="propUbicacion" required placeholder="Ej: Olavarría 2800, Güemes">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="propPrecio">Precio Comercial <span class="req">*</span></label>
+                            <input type="text" id="propPrecio" required placeholder="Ej: USD 120.000 o Consultar">
+                        </div>
+                    </div>
+
+                    <!-- Sección 2: Especificaciones Adaptables -->
+                    <div class="form-section-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0l12.6 12.6z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
+                        <span>Especificaciones Técnicas</span>
+                    </div>
+
+                    <!-- Campos Vivienda / Oficina -->
+                    <div id="camposVivienda" class="form-grid">
+                        <div class="form-group">
+                            <label for="propDormitorios">Dormitorios</label>
+                            <input type="text" id="propDormitorios" placeholder="Ej: 2 dorm">
+                        </div>
+                        <div class="form-group">
+                            <label for="propBanos">Baños</label>
+                            <input type="text" id="propBanos" placeholder="Ej: 1 baño">
+                        </div>
+                        <div class="form-group">
+                            <label for="propSuperficie">Superficie Cubierta</label>
+                            <input type="text" id="propSuperficie" placeholder="Ej: 65 m²">
+                        </div>
+                    </div>
+
+                    <!-- Campos Lote -->
+                    <div id="camposLote" class="form-grid" style="display: none;">
+                        <div class="form-group">
+                            <label for="propDimensiones">Dimensiones del Lote</label>
+                            <input type="text" id="propDimensiones" placeholder="Ej: 10x33m">
+                        </div>
+                        <div class="form-group">
+                            <label for="propConstruccion">Superficie Construida</label>
+                            <input type="text" id="propConstruccion" placeholder="Ej: 70 m² const.">
+                        </div>
+                        <div class="form-group">
+                            <label for="propSuperficieTotal">Superficie Total Lote</label>
+                            <input type="text" id="propSuperficieTotal" placeholder="Ej: 330 m² lote">
+                        </div>
+                    </div>
+
+                    <!-- Campos Cochera -->
+                    <div id="camposCochera" class="form-grid" style="display: none;">
+                        <div class="form-group">
+                            <label for="propUnidadesCochera">Unidades / Identificador</label>
+                            <input type="text" id="propUnidadesCochera" placeholder="Ej: 2 cocheras (N° 702/703)">
+                        </div>
+                        <div class="form-group">
+                            <label for="propExpensasCochera">Valor Expensas</label>
+                            <input type="text" id="propExpensasCochera" placeholder="Ej: $70.000">
+                        </div>
+                        <div class="form-group">
+                            <label for="propAntiguedadCochera">Seguridad / Antigüedad</label>
+                            <input type="text" id="propAntiguedadCochera" placeholder="Ej: Seguridad 24hs">
+                        </div>
+                    </div>
+
+                    <!-- Sección 3: Descripción y Características -->
+                    <div class="form-section-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+                        <span>Descripción y Características</span>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="propDescripcion">Descripción Detallada</label>
+                        <textarea id="propDescripcion" rows="5" placeholder="Redactá una descripción completa, atractiva y destacando los puntos fuertes del inmueble..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Características Destacadas</label>
+                        <div class="add-tag-box">
+                            <input type="text" id="inputCaracteristica" placeholder="Ej: Balcón corrido, Calefacción por radiadores, Cochera cubierta">
+                            <button type="button" class="btn-secondary" id="btnAddCaracteristica">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                <span>Agregar</span>
+                            </button>
+                        </div>
+                        <div id="tagsCaracteristicas" class="tags-container"></div>
+                    </div>
+
+                    <!-- Sección 4: Fotos -->
+                    <div class="form-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                            <span>Galería de Fotografías</span>
+                        </div>
+                        <span class="gallery-count-badge" id="galleryCountBadge">0 fotos cargadas</span>
+                    </div>
+
+                    <div class="dropzone-wrapper">
+                        <div class="dropzone" id="dropzoneFotos" onclick="document.getElementById('propFotosInput').click()">
+                            <div class="dropzone-icon-container">
+                                <svg class="dropzone-icon" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                <div class="dropzone-plus-badge">+</div>
+                            </div>
+                            
+                            <h3 class="dropzone-title">Arrastrá tus fotos aquí o hacé clic para explorar</h3>
+                            <p class="dropzone-subtitle">Seleccioná múltiples imágenes de la propiedad para la galería pública</p>
+                            
+                            <div class="dropzone-btn-select">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                                <span>Seleccionar Imágenes</span>
+                            </div>
+
+                            <div class="dropzone-chips">
+                                <span class="chip-item">JPG, PNG, WEBP</span>
+                                <span class="chip-item">Compresión HD Automática</span>
+                                <span class="chip-item">La 1° foto será la Portada</span>
+                            </div>
+
+                            <input type="file" id="propFotosInput" multiple accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="gallery-actions-bar" id="galleryActionsBar" style="display: none;">
+                        <div class="gallery-hint">
+                            <span>Pasá el cursor sobre cada foto para hacerla Portada o reordenar su posición.</span>
+                        </div>
+                        <button type="button" class="btn-clear-all" onclick="eliminarTodasLasFotos()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                            <span>Eliminar todas</span>
+                        </button>
+                    </div>
+
+                    <div id="previewFotosGrid" class="image-preview-grid"></div>
+
+                    <!-- Acciones del Formulario -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="resetFormulario(); cambiarTab('tabListado');">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn-primary" id="btnGuardarPropiedad">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                            <span>Guardar Propiedad</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- PESTAÑA 3: RESPALDOS Y CONFIGURACIÓN -->
+        <div id="tabRespaldos" class="tab-content">
+            <div class="panel-card">
+                <div class="panel-card-header">
+                    <div>
+                        <h2 class="panel-card-title">Respaldos y Exportación de Datos</h2>
+                        <p class="panel-card-subtitle">Guardá una copia de seguridad o importá propiedades desde un archivo JSON</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <button class="btn-primary" id="btnExportarJSON">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span>Descargar Respaldo JSON</span>
+                    </button>
+                    <button class="btn-secondary" id="btnImportarJSON">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        <span>Importar Respaldo JSON</span>
+                    </button>
+                    <input type="file" id="inputFileImport" accept=".json" style="display: none;">
+                </div>
+
+                <hr style="border: none; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+
+                <div class="panel-card-header">
+                    <div>
+                        <h2 class="panel-card-title">Seguridad del Panel</h2>
+                        <p class="panel-card-subtitle">Cambiar la contraseña de acceso al panel de control</p>
+                    </div>
+                </div>
+                <form id="formCambiarPass" style="max-width: 480px;">
+                    <div class="form-group" style="margin-bottom: 1.25rem;">
+                        <label for="newPass">Nueva Contraseña</label>
+                        <input type="password" id="newPass" required placeholder="Mínimo 6 caracteres">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="confirmPass">Confirmar Nueva Contraseña</label>
+                        <input type="password" id="confirmPass" required placeholder="Repita la contraseña">
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <span>Guardar Nueva Contraseña</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal de Confirmación para Eliminar Propiedad -->
+    <div id="modalConfirmarEliminar" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:6px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <span>Confirmar Eliminación</span>
+                </h3>
+                <button class="modal-close" id="btnCerrarModalEliminar">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="color: #334155; font-size: 1rem; line-height: 1.5;">¿Estás seguro de que deseas eliminar la propiedad <strong id="modalNombrePropiedad" style="color: #0f172a;"></strong>?</p>
+                <p style="font-size: 0.85rem; color: #ef4444; margin-top: 0.75rem; background: #fef2f2; padding: 0.65rem 0.85rem; border-radius: 8px; border: 1px solid #fee2e2;">
+                    ⚠️ Esta acción eliminará permanentemente la propiedad de la base de datos y de la web pública.
+                </p>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+                <button type="button" class="btn-secondary" id="btnCancelarEliminar">Cancelar</button>
+                <button type="button" class="btn-primary" id="btnConfirmarEliminar" style="background: #ef4444; border-color: #ef4444; box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    <span>Eliminar Definitivemente</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="propiedades-db.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

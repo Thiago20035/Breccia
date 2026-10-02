@@ -149,6 +149,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Cargar propiedades dinámicas creadas desde el Panel Admin
+    if (typeof cargarPropiedadesDinamicas === 'function') {
+        cargarPropiedadesDinamicas();
+    }
 });
 
 // ============================================
@@ -191,7 +196,7 @@ window.abrirModalConsulta = function (nombre, ubicacion, precio) {
     propiedadActual = { nombre, ubicacion, precio };
     document.getElementById('propiedadInfoModal').innerHTML = `
             <h4>${nombre}</h4>
-            <p>📍 ${ubicacion} • 💰 ${precio}</p>
+            <p><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>${ubicacion} • <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px; margin-left:6px;"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>${precio}</p>
         `;
     document.getElementById('modalConsulta').classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -466,21 +471,21 @@ window.abrirDetallePropiedad = function (idPropiedad) {
         // Para cocheras: mostrar unidades, expensas y antigüedad
         specsContainer.innerHTML = `
                 <div class="spec-item">
-                    <span class="spec-icon">🏢</span>
+                    <span class="spec-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect></svg></span>
                     <div>
                         <strong>Unidades</strong>
                         <p>${propiedad.unidades}</p>
                     </div>
                 </div>
                 <div class="spec-item">
-                    <span class="spec-icon">💰</span>
+                    <span class="spec-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
                     <div>
                         <strong>Expensas</strong>
                         <p>${propiedad.expensas}</p>
                     </div>
                 </div>
                 <div class="spec-item">
-                    <span class="spec-icon">📅</span>
+                    <span class="spec-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span>
                     <div>
                         <strong>Antigüedad</strong>
                         <p>${propiedad.antiguedad}</p>
@@ -491,21 +496,21 @@ window.abrirDetallePropiedad = function (idPropiedad) {
         // Para lotes: mostrar dimensiones, construcción y superficie total
         specsContainer.innerHTML = `
                 <div class="spec-item">
-                    <span class="spec-icon">📐</span>
+                    <span class="spec-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L3 21"></path><path d="M15 3h6v6"></path><path d="M3 15v6h6"></path></svg></span>
                     <div>
                         <strong>Dimensiones</strong>
                         <p>${propiedad.dimensiones}</p>
                     </div>
                 </div>
                 <div class="spec-item">
-                    <span class="spec-icon">🏗️</span>
+                    <span class="spec-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect></svg></span>
                     <div>
                         <strong>Construcción</strong>
                         <p>${propiedad.construccion}</p>
                     </div>
                 </div>
                 <div class="spec-item">
-                    <span class="spec-icon">📏</span>
+                    <span class="spec-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h4"></path><path d="M3 15h4"></path><path d="M9 3v4"></path><path d="M15 3v4"></path></svg></span>
                     <div>
                         <strong>Superficie</strong>
                         <p>${propiedad.superficieTotal}</p>
@@ -516,21 +521,21 @@ window.abrirDetallePropiedad = function (idPropiedad) {
         // Para propiedades normales: mostrar dormitorios, baños y superficie
         specsContainer.innerHTML = `
                 <div class="spec-item">
-                    <span class="spec-icon">🛏️</span>
+                    <span class="spec-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"></path><path d="M2 8h18a2 2 0 0 1 2 2v10"></path><path d="M2 17h20"></path><path d="M6 8v3"></path></svg></span>
                     <div>
                         <strong>Dormitorios</strong>
                         <p>${propiedad.dormitorios}</p>
                     </div>
                 </div>
                 <div class="spec-item">
-                    <span class="spec-icon">🚿</span>
+                    <span class="spec-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><path d="M12 4v4"></path><path d="M7 4h10"></path></svg></span>
                     <div>
                         <strong>Baños</strong>
                         <p>${propiedad.banos}</p>
                     </div>
                 </div>
                 <div class="spec-item">
-                    <span class="spec-icon">📏</span>
+                    <span class="spec-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h4"></path><path d="M3 15h4"></path><path d="M9 3v4"></path><path d="M15 3v4"></path></svg></span>
                     <div>
                         <strong>Superficie</strong>
                         <p>${propiedad.superficie}</p>
@@ -748,4 +753,154 @@ document.addEventListener('keydown', function (e) {
     }
 });
 console.log('Todo inicializado correctamente');
+
+// ============================================
+// CARGA Y RENDERIZADO DE PROPIEDADES DINÁMICAS
+// ============================================
+async function cargarPropiedadesDinamicas() {
+    if (!window.propiedadesDB) return;
+
+    try {
+        const dinamicas = await window.propiedadesDB.getAll();
+        if (!dinamicas || dinamicas.length === 0) return;
+
+        const grid = document.getElementById('propiedadesGrid');
+        if (!grid) return;
+
+        dinamicas.forEach((prop) => {
+            const propId = String(prop.id);
+            const carouselId = `dyn_${propId}`;
+
+            // 1. Registrar datos en propiedadesDetalle para el modal de detalle
+            propiedadesDetalle[propId] = {
+                titulo: prop.titulo || 'Sin título',
+                ubicacion: prop.ubicacion || 'Sin ubicación',
+                precio: prop.precio || 'Consultar',
+                tipo: prop.tipo || 'Venta',
+                dormitorios: prop.dormitorios || '',
+                banos: prop.banos || '',
+                superficie: prop.superficie || '',
+                esLote: !!prop.esLote,
+                dimensiones: prop.dimensiones || '',
+                construccion: prop.construccion || '',
+                superficieTotal: prop.superficieTotal || '',
+                esCochera: !!prop.esCochera,
+                unidades: prop.unidades || '',
+                expensas: prop.expensas || '',
+                antiguedad: prop.antiguedad || '',
+                descripcion: prop.descripcion || 'Sin descripción disponible.',
+                caracteristicas: prop.caracteristicas || [],
+                imagenes: (prop.imagenes && prop.imagenes.length > 0) ? prop.imagenes : ['favicon-V3.ico']
+            };
+
+            const imagenes = propiedadesDetalle[propId].imagenes;
+
+            // 2. Construir HTML de items del carrusel
+            const carouselItemsHTML = imagenes.map(img =>
+                `<div class="propiedad-carousel-item" style="background-image: url('${img}');"></div>`
+            ).join('');
+
+            const dotsHTML = imagenes.map((_, i) =>
+                `<span class="carousel-dot ${i === 0 ? 'active' : ''}" onclick="event.stopPropagation(); goToSlide('${carouselId}', ${i})"></span>`
+            ).join('');
+
+            // Detalles mini en tarjeta
+            let detallesHTML = '';
+            if (prop.esLote) {
+                detallesHTML = `
+                    <div class="detalle-item"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L3 21"></path><path d="M15 3h6v6"></path><path d="M3 15v6h6"></path></svg></span><span>${escapeHTMLInmo(prop.dimensiones || 'Lote')}</span></div>
+                    <div class="detalle-item"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect></svg></span><span>${escapeHTMLInmo(prop.construccion || '-')}</span></div>
+                    <div class="detalle-item"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h4"></path><path d="M3 15h4"></path><path d="M9 3v4"></path><path d="M15 3v4"></path></svg></span><span>${escapeHTMLInmo(prop.superficieTotal || '-')}</span></div>
+                `;
+            } else if (prop.esCochera) {
+                detallesHTML = `
+                    <div class="detalle-item"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="8" rx="2"></rect><path d="M6 11V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5"></path></svg></span><span>${escapeHTMLInmo(prop.unidades || 'Cochera')}</span></div>
+                    <div class="detalle-item"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span><span>${escapeHTMLInmo(prop.antiguedad || 'Seguridad')}</span></div>
+                    <div class="detalle-item"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span><span>${escapeHTMLInmo(prop.expensas || '-')}</span></div>
+                `;
+            } else {
+                detallesHTML = `
+                    <div class="detalle-item"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"></path><path d="M2 8h18a2 2 0 0 1 2 2v10"></path><path d="M2 17h20"></path><path d="M6 8v3"></path></svg></span><span>${escapeHTMLInmo(prop.dormitorios || '1 dorm')}</span></div>
+                    <div class="detalle-item"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><path d="M12 4v4"></path><path d="M7 4h10"></path></svg></span><span>${escapeHTMLInmo(prop.banos || '1 baño')}</span></div>
+                    <div class="detalle-item"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h4"></path><path d="M3 15h4"></path><path d="M9 3v4"></path><path d="M15 3v4"></path></svg></span><span>${escapeHTMLInmo(prop.superficie || '-')}</span></div>
+                `;
+            }
+
+            // Crear card element
+            const card = document.createElement('div');
+            card.className = 'propiedad-card';
+            card.setAttribute('data-tipo', (prop.tipo || 'venta').toLowerCase());
+            card.setAttribute('data-categoria', (prop.categoria || 'departamento').toLowerCase());
+            card.setAttribute('data-propiedad-id', propId);
+
+            card.innerHTML = `
+                <div class="propiedad-image-container">
+                    <div class="propiedad-carousel" data-carousel="${carouselId}">
+                        ${carouselItemsHTML}
+                    </div>
+                    ${imagenes.length > 1 ? `
+                        <button class="carousel-nav prev" onclick="event.stopPropagation(); moveCarousel('${carouselId}', -1)">‹</button>
+                        <button class="carousel-nav next" onclick="event.stopPropagation(); moveCarousel('${carouselId}', 1)">›</button>
+                        <div class="carousel-dots">
+                            ${dotsHTML}
+                        </div>
+                    ` : ''}
+                    <div class="propiedad-badge">${escapeHTMLInmo(prop.tipo || 'Venta')}</div>
+                </div>
+                <div class="propiedad-content">
+                    <h3>${escapeHTMLInmo(prop.titulo)}</h3>
+                    <div class="propiedad-ubicacion">
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
+                        <span>${escapeHTMLInmo(prop.ubicacion)}</span>
+                    </div>
+                    <div class="propiedad-detalles">
+                        ${detallesHTML}
+                    </div>
+                    <div class="propiedad-precio">${escapeHTMLInmo(prop.precio)}</div>
+                    <button class="consultar-btn"
+                        onclick="event.stopPropagation(); abrirModalConsulta('${escapeHTMLInmo(prop.titulo).replace(/'/g, "\\'")}', '${escapeHTMLInmo(prop.ubicacion).replace(/'/g, "\\'")}', '${escapeHTMLInmo(prop.precio).replace(/'/g, "\\'")}')">Consultar</button>
+                </div>
+            `;
+
+            // Event listener para abrir detalle
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.consultar-btn') ||
+                    e.target.closest('.carousel-nav') ||
+                    e.target.closest('.carousel-dot')) {
+                    return;
+                }
+                e.preventDefault();
+                window.abrirDetallePropiedad(propId);
+            });
+
+            // Autoplay al hover
+            const imgContainer = card.querySelector('.propiedad-image-container');
+            if (imgContainer && imagenes.length > 1) {
+                let intervalId = null;
+                imgContainer.addEventListener('mouseenter', () => {
+                    intervalId = setInterval(() => window.moveCarousel(carouselId, 1), 2500);
+                });
+                imgContainer.addEventListener('mouseleave', () => {
+                    if (intervalId) clearInterval(intervalId);
+                });
+            }
+
+            grid.appendChild(card);
+        });
+
+        console.log(`${dinamicas.length} propiedades dinámicas cargadas correctamente.`);
+    } catch (e) {
+        console.error('Error al cargar propiedades dinámicas:', e);
+    }
+}
+
+function escapeHTMLInmo(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
 

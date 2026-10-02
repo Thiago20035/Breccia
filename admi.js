@@ -131,8 +131,8 @@ function renderEdificios() {
 
     grid.innerHTML = pageEdificios.map(ed => `
         <div class="edificio-card">
-            <h3>🏢 ${ed.nombre}</h3>
-            <div class="edificio-ubicacion">📍 ${ed.direccion}</div>
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:6px;"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg>${ed.nombre}</h3>
+            <div class="edificio-ubicacion"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>${ed.direccion}</div>
             <div class="edificio-info">
                 <div class="info-badge"><strong>${ed.unidades}</strong> unidades</div>
                 <div class="info-badge"><strong>${ed.pisos}</strong> pisos</div>
