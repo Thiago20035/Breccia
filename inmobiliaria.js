@@ -833,6 +833,21 @@ async function cargarPropiedadesDinamicas() {
             card.setAttribute('data-categoria', (prop.categoria || 'departamento').toLowerCase());
             card.setAttribute('data-propiedad-id', propId);
 
+            // ── Ribbon de estado ──────────────────────────────────────────
+            const estadoProp = prop.estado || 'disponible';
+            const ribbonConfig = {
+                reservada: { label: 'RESERVADA', cls: 'ribbon-reservada' },
+                alquilada: { label: 'ALQUILADA', cls: 'ribbon-alquilada' },
+                vendida:   { label: 'VENDIDA',   cls: 'ribbon-vendida'   }
+            };
+            const ribbonInfo = ribbonConfig[estadoProp];
+            const ribbonHTML = ribbonInfo
+                ? `<div class="prop-estado-ribbon ${ribbonInfo.cls}"><span>${ribbonInfo.label}</span></div>`
+                : '';
+            const overlayHTML = ribbonInfo
+                ? `<div class="prop-estado-overlay"></div>`
+                : '';
+
             card.innerHTML = `
                 <div class="propiedad-image-container">
                     <div class="propiedad-carousel" data-carousel="${carouselId}">
@@ -846,6 +861,8 @@ async function cargarPropiedadesDinamicas() {
                         </div>
                     ` : ''}
                     <div class="propiedad-badge">${escapeHTMLInmo(prop.tipo || 'Venta')}</div>
+                    ${ribbonHTML}
+                    ${overlayHTML}
                 </div>
                 <div class="propiedad-content">
                     <h3>${escapeHTMLInmo(prop.titulo)}</h3>

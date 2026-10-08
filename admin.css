@@ -1267,3 +1267,102 @@ body.admin-body {
     background: #f1f5f9;
     color: #0f172a;
 }
+
+/* ============================================
+   BADGES DE ESTADO DE PROPIEDAD
+   ============================================ */
+.badge-estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.badge-estado-disponible {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.badge-estado-reservada {
+    background: #fef9c3;
+    color: #854d0e;
+    border: 1px solid #fde68a;
+}
+
+.badge-estado-alquilada {
+    background: #dbeafe;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+}
+
+.badge-estado-vendida {
+    background: #fce7f3;
+    color: #9d174d;
+    border: 1px solid #fbcfe8;
+}
+
+/* ============================================
+   BOTÓN ACCIÓN - ESTADO
+   ============================================ */
+.btn-action.estado {
+    color: #c5a059;
+    border-color: rgba(197, 160, 89, 0.3);
+}
+
+.btn-action.estado:hover {
+    background: rgba(197, 160, 89, 0.12);
+    color: #b38e46;
+    border-color: #c5a059;
+}
+
+/* ============================================
+   MODAL CAMBIO DE ESTADO
+   ============================================ */
+.estado-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.estado-option-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 1rem 0.75rem;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-body);
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+}
+
+.estado-option-btn:hover {
+    border-color: var(--primary-color);
+    background: rgba(107, 44, 62, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(107, 44, 62, 0.12);
+}
+
+.estado-option-btn.active {
+    border-color: var(--primary-color);
+    background: rgba(107, 44, 62, 0.08);
+    color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(107, 44, 62, 0.15);
+}
+
+.estado-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+}

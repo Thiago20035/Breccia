@@ -127,11 +127,29 @@ document.addEventListener('DOMContentLoaded', async () => {
                 ? '<span class="badge-estatico">Estática (HTML)</span>'
                 : '<span class="badge-dinamico">Panel Admin</span>';
 
+            // Badge de Estado
+            const estadoProp = prop.estado || 'disponible';
+            const estadoConfig = {
+                disponible:  { label: 'Disponible',  cls: 'badge-estado-disponible'  },
+                reservada:   { label: 'Reservada',   cls: 'badge-estado-reservada'   },
+                alquilada:   { label: 'Alquilada',   cls: 'badge-estado-alquilada'   },
+                vendida:     { label: 'Vendida',     cls: 'badge-estado-vendida'     }
+            };
+            const estadoInfo = estadoConfig[estadoProp] || estadoConfig.disponible;
+            const badgeEstado = `<span class="badge-estado ${estadoInfo.cls}">${estadoInfo.label}</span>`;
+
+            // Botón cambiar estado (solo dinámicas)
+            const cambioEstadoBtn = prop.esEstatica ? '' : `
+                <button class="btn-action estado" onclick="cambiarEstadoPropiedad('${prop.id}')" title="Cambiar estado">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l3 3"/></svg>
+                </button>`;
+
             const acciones = prop.esEstatica
                 ? `<a href="inmobiliaria.html" target="_blank" class="btn-action view" title="Ver en Web"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a>`
                 : `
                     <a href="inmobiliaria.html" target="_blank" class="btn-action view" title="Ver en Web"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a>
                     <button class="btn-action edit" onclick="editarPropiedad('${prop.id}')" title="Editar"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                    ${cambioEstadoBtn}
                     <button class="btn-action delete" onclick="eliminarPropiedad('${prop.id}', '${(prop.titulo || '').replace(/'/g, "\\'")}')" title="Eliminar"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
                 `;
 
@@ -151,6 +169,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <span class="badge-tipo ${badgeTipoClass}">${prop.tipo || 'Venta'}</span>
                     </td>
                     <td><strong>${escapeHTML(prop.precio || 'Consultar')}</strong></td>
+                    <td>${badgeEstado}</td>
                     <td>${badgeOrigen}</td>
                     <td>
                         <div class="action-btns">${acciones}</div>
@@ -370,6 +389,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 id: editandoId || ('dyn_' + Date.now()),
                 titulo: document.getElementById('propTitulo').value.trim(),
                 tipo: document.getElementById('propTipo').value,
+                estado: document.getElementById('propEstado').value || 'disponible',
                 categoria: cat,
                 ubicacion: document.getElementById('propUbicacion').value.trim(),
                 precio: document.getElementById('propPrecio').value.trim(),
@@ -421,6 +441,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         document.getElementById('propTitulo').value = prop.titulo || '';
         document.getElementById('propTipo').value = prop.tipo || 'Venta';
+        document.getElementById('propEstado').value = prop.estado || 'disponible';
         document.getElementById('propCategoria').value = prop.categoria || 'departamento';
         document.getElementById('propUbicacion').value = prop.ubicacion || '';
         document.getElementById('propPrecio').value = prop.precio || '';
@@ -492,6 +513,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         editandoId = null;
         document.getElementById('formTituloHeader').textContent = 'Crear Nueva Propiedad';
         document.getElementById('formPropiedad').reset();
+        // Reset estado a disponible
+        const estadoEl = document.getElementById('propEstado');
+        if (estadoEl) estadoEl.value = 'disponible';
         caracteristicasLista = [];
         fotosCargadas = [];
         renderCaracteristicasTags();
@@ -586,3 +610,104 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 3500);
     }
 });
+
+// ─────────────────────────────────────────────────────────────────
+// MODAL CAMBIO RÁPIDO DE ESTADO
+// ─────────────────────────────────────────────────────────────────
+window.cambiarEstadoPropiedad = async function(id) {
+    const prop = await window.propiedadesDB.getById(id);
+    if (!prop) return;
+
+    // Crear modal de cambio de estado
+    let modal = document.getElementById('modalCambioEstado');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'modalCambioEstado';
+        modal.className = 'modal-overlay';
+        modal.style.display = 'none';
+        modal.innerHTML = `
+            <div class="modal-card" style="max-width:420px;">
+                <div class="modal-header">
+                    <h3 style="display:flex;align-items:center;gap:8px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l3 3"/></svg>
+                        Cambiar Estado
+                    </h3>
+                    <button class="modal-close" onclick="document.getElementById('modalCambioEstado').style.display='none'">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalEstadoPropNombre" style="font-weight:600;color:#0f172a;margin-bottom:1.25rem;font-size:0.95rem;"></p>
+                    <div class="estado-options-grid">
+                        <button class="estado-option-btn" data-estado="disponible">
+                            <span class="estado-icon">✅</span>
+                            <span>Disponible</span>
+                        </button>
+                        <button class="estado-option-btn" data-estado="reservada">
+                            <span class="estado-icon">🔒</span>
+                            <span>Reservada</span>
+                        </button>
+                        <button class="estado-option-btn" data-estado="alquilada">
+                            <span class="estado-icon">🏠</span>
+                            <span>Alquilada</span>
+                        </button>
+                        <button class="estado-option-btn" data-estado="vendida">
+                            <span class="estado-icon">✔️</span>
+                            <span>Vendida</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        // Cerrar al click fuera
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+    }
+
+    // Marcar opción actual
+    const estadoActual = prop.estado || 'disponible';
+    modal.querySelectorAll('.estado-option-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.estado === estadoActual);
+    });
+
+    // Título del modal
+    const propNombreEl = modal.querySelector('#modalEstadoPropNombre');
+    if (propNombreEl) propNombreEl.textContent = `"${prop.titulo || prop.id}"`;
+
+    // Handler de selección
+    modal.querySelectorAll('.estado-option-btn').forEach(btn => {
+        btn.onclick = async () => {
+            const nuevoEstado = btn.dataset.estado;
+            prop.estado = nuevoEstado;
+            await window.propiedadesDB.save(prop);
+
+            // Cerrar modal
+            modal.style.display = 'none';
+
+            // Refrescar tabla
+            const renderFn = window._renderPropiedadesTabla;
+            if (renderFn) await renderFn();
+
+            const labels = { disponible: 'Disponible', reservada: 'Reservada', alquilada: 'Alquilada', vendida: 'Vendida' };
+            // Toast notification via el sistema interno
+            const toastContainer = document.getElementById('toastContainer') || (() => {
+                const c = document.createElement('div');
+                c.id = 'toastContainer';
+                c.className = 'toast-container';
+                document.body.appendChild(c);
+                return c;
+            })();
+            const toast = document.createElement('div');
+            toast.className = 'toast success';
+            toast.innerHTML = `<span>✓</span><span>Estado actualizado a <strong>${labels[nuevoEstado]}</strong></span>`;
+            toastContainer.appendChild(toast);
+            setTimeout(() => { toast.style.opacity='0'; setTimeout(() => toast.remove(), 300); }, 3500);
+
+            // Recargar tabla completa
+            location.reload();
+        };
+    });
+
+    modal.style.display = 'flex';
+};

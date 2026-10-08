@@ -137,6 +137,7 @@
                                 <th>Categoría</th>
                                 <th>Operación</th>
                                 <th>Precio</th>
+                                <th>Estado</th>
                                 <th>Origen</th>
                                 <th style="text-align: right;">Acciones</th>
                             </tr>
@@ -180,6 +181,16 @@
                                 <option value="Venta">Venta</option>
                                 <option value="Alquiler">Alquiler Permanente</option>
                                 <option value="Alquiler Temporario">Alquiler Temporario</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="propEstado">Estado de la Propiedad</label>
+                            <select id="propEstado">
+                                <option value="disponible">✅ Disponible</option>
+                                <option value="reservada">🔒 Reservada</option>
+                                <option value="alquilada">🏠 Alquilada</option>
+                                <option value="vendida">✔️ Vendida</option>
                             </select>
                         </div>
 

@@ -1636,3 +1636,69 @@
         justify-content: center;
     }
 }
+
+/* ============================================================
+   RIBBONS DE ESTADO — Bandas premium sobre cards
+   ============================================================ */
+.prop-estado-ribbon {
+    position: absolute;
+    top: 20px;
+    right: -34px;
+    width: 150px;
+    padding: 7px 0;
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transform: rotate(40deg);
+    transform-origin: center;
+    z-index: 20;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    pointer-events: none;
+    animation: ribbonSlide 0.4s ease both;
+}
+
+.prop-estado-ribbon span {
+    display: block;
+}
+
+@keyframes ribbonSlide {
+    from { opacity: 0; transform: rotate(40deg) translateX(20px); }
+    to   { opacity: 1; transform: rotate(40deg) translateX(0); }
+}
+
+/* Colores de cada estado */
+.ribbon-reservada {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.ribbon-alquilada {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.ribbon-vendida {
+    background: linear-gradient(135deg, #6b2c3e, #4a1d2a);
+    color: #c5a059;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+/* Overlay oscuro sobre la imagen cuando la propiedad no está disponible */
+.prop-estado-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.28);
+    z-index: 10;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+/* Asegurar que el contenedor de imagen permita posicionamiento absoluto */
+.propiedad-image-container {
+    position: relative;
+    overflow: hidden;
+}
