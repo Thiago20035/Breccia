@@ -4,66 +4,387 @@
  */
 
 (function () {
+    // Mapa de respaldo completo con todas las propiedades estáticas
+    const BRECCIA_STATIC_PROPERTIES = {
+        '1': {
+            id: '1',
+            titulo: 'Departamento Tipo Semipiso de Tres (3) Ambientes',
+            ubicacion: 'Gascón 2356, Mar del Plata',
+            precio: 'USD 169.000',
+            tipo: 'Venta',
+            dormitorios: '2 dorm',
+            banos: '2 baños',
+            superficie: '69 m²',
+            imagenes: ['FotosGascon2356/G35.jpg', 'FotosGascon2356/G36.jpg', 'FotosGascon2356/G37.jpg'],
+            thumb: 'FotosGascon2356/G35.jpg',
+            estado: 'vendida',
+            destacada: true
+        },
+        '2': {
+            id: '2',
+            titulo: 'Departamento en Arenales',
+            ubicacion: 'Arenales 2445, Mar del Plata',
+            precio: 'USD 55.000',
+            tipo: 'Venta',
+            dormitorios: '1 dorm',
+            banos: '1 baños',
+            superficie: '40 m²',
+            imagenes: ['Arenales2445/PA5.jpg', 'Arenales2445/PA8.jpg', 'Arenales2445/PA9.jpg'],
+            thumb: 'Arenales2445/PA5.jpg',
+            estado: 'disponible',
+            destacada: false
+        },
+        '3': {
+            id: '3',
+            titulo: 'Lote con Construcción en Parque Luro',
+            ubicacion: 'Francia 371, Parque Luro',
+            precio: 'USD 120.000',
+            tipo: 'Venta',
+            dormitorios: '10x33m',
+            banos: '70 m² const.',
+            superficie: '330 m² lote',
+            imagenes: ['Francia371/F3.jpg', 'Francia371/F4.jpg'],
+            thumb: 'Francia371/F3.jpg',
+            estado: 'disponible',
+            destacada: false
+        },
+        '4': {
+            id: '4',
+            titulo: 'Departamento Semipiso de Tres Ambientes',
+            ubicacion: 'Sarmiento 2333, Mar del Plata',
+            precio: 'USD 135.000',
+            tipo: 'Venta',
+            dormitorios: '2 dorm',
+            banos: '1 baño',
+            superficie: '57 m²',
+            imagenes: ['Sarmiento2333/SAR1.jpeg', 'Sarmiento2333/SAR2.jpeg'],
+            thumb: 'Sarmiento2333/SAR1.jpeg',
+            estado: 'vendida',
+            destacada: false
+        },
+        '5': {
+            id: '5',
+            titulo: 'Cochera Fija en Edificio Histórico',
+            ubicacion: 'Corrientes 2048, Mar del Plata',
+            precio: 'USD 18.000',
+            tipo: 'Venta',
+            dormitorios: '1 vehículo',
+            banos: 'Cubierta',
+            superficie: '12.5 m²',
+            imagenes: ['Corrientes2048/C1.jpg', 'Corrientes2048/C2.jpg'],
+            thumb: 'Corrientes2048/C1.jpg',
+            estado: 'disponible',
+            destacada: false
+        },
+        '6': {
+            id: '6',
+            titulo: 'Departamento Semipiso Dos Ambientes - ESTILO CHAUVIN',
+            ubicacion: 'Matheu 3800, Chauvín, Mar del Plata',
+            precio: 'USD 130.000',
+            tipo: 'Venta',
+            dormitorios: '1 dorm',
+            banos: '1 baño',
+            superficie: '50 m²',
+            imagenes: ['Chauvin4455/CH1.jpg', 'Chauvin4455/CH2.jpg', 'Chauvin4455/CH3.jpg'],
+            thumb: 'Chauvin4455/CH1.jpg',
+            estado: 'disponible',
+            destacada: true
+        }
+    };
+
+    // Inyectar estilos autónomos para garantizar funcionamiento en cualquier HTML
+    function inyectarEstilosStory() {
+        if (document.getElementById('estilosStoryAutonomos')) return;
+        const style = document.createElement('style');
+        style.id = 'estilosStoryAutonomos';
+        style.textContent = `
+            #modalCompartirStory.modal-story-overlay {
+                position: fixed !important;
+                inset: 0 !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                background: rgba(10, 5, 8, 0.82) !important;
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+                z-index: 999999 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                padding: 1rem !important;
+                box-sizing: border-box !important;
+                font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+            }
+
+            #modalCompartirStory .story-card {
+                background: #ffffff !important;
+                border-radius: 22px !important;
+                box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45) !important;
+                width: 100% !important;
+                max-width: 760px !important;
+                max-height: 94vh !important;
+                overflow-y: auto !important;
+                padding: 1.5rem !important;
+                position: relative !important;
+                border: 1px solid rgba(226, 232, 240, 0.9) !important;
+                animation: animPopStory 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+                box-sizing: border-box !important;
+            }
+
+            @keyframes animPopStory {
+                from { transform: scale(0.94); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+            }
+
+            @keyframes spinStory {
+                to { transform: rotate(360deg); }
+            }
+
+            #modalCompartirStory .story-header {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding-bottom: 0.85rem !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                margin-bottom: 1rem !important;
+            }
+
+            #modalCompartirStory .story-header h3 {
+                display: flex !important;
+                align-items: center !important;
+                gap: 10px !important;
+                font-size: 1.25rem !important;
+                font-weight: 700 !important;
+                color: #0f172a !important;
+                margin: 0 !important;
+            }
+
+            #modalCompartirStory .story-close-btn {
+                background: #f1f5f9 !important;
+                border: none !important;
+                font-size: 1.6rem !important;
+                color: #64748b !important;
+                cursor: pointer !important;
+                line-height: 1 !important;
+                width: 36px !important;
+                height: 36px !important;
+                border-radius: 50% !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                transition: all 0.2s ease !important;
+            }
+            #modalCompartirStory .story-close-btn:hover {
+                background: #e2e8f0 !important;
+                color: #0f172a !important;
+            }
+
+            #modalCompartirStory .story-layout {
+                display: flex !important;
+                gap: 1.5rem !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            @media (max-width: 720px) {
+                #modalCompartirStory .story-layout {
+                    flex-direction: column !important;
+                }
+                #modalCompartirStory .story-card {
+                    padding: 1rem !important;
+                    max-height: 96vh !important;
+                }
+            }
+
+            #modalCompartirStory .story-preview-box {
+                flex: 0 0 auto !important;
+                width: 220px !important;
+                height: 391px !important;
+                background: #111 !important;
+                border-radius: 18px !important;
+                overflow: hidden !important;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+                border: 3px solid #1e1e1e !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                position: relative !important;
+            }
+
+            @media (max-width: 480px) {
+                #modalCompartirStory .story-preview-box {
+                    width: 170px !important;
+                    height: 302px !important;
+                }
+            }
+
+            #modalCompartirStory .story-preview-box canvas {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                display: block !important;
+            }
+
+            #modalCompartirStory .story-buttons-list {
+                flex: 1 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+                width: 100% !important;
+            }
+
+            #modalCompartirStory .story-action-item {
+                display: flex !important;
+                align-items: center !important;
+                gap: 12px !important;
+                padding: 0.85rem 1.15rem !important;
+                border-radius: 14px !important;
+                border: 1.5px solid #e2e8f0 !important;
+                background: #ffffff !important;
+                cursor: pointer !important;
+                font-size: 0.92rem !important;
+                font-weight: 600 !important;
+                color: #1e293b !important;
+                transition: all 0.2s ease !important;
+                text-align: left !important;
+                text-decoration: none !important;
+                box-sizing: border-box !important;
+                width: 100% !important;
+            }
+
+            #modalCompartirStory .story-action-item:hover {
+                transform: translateY(-2px) !important;
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08) !important;
+            }
+
+            #modalCompartirStory .btn-ig-gradient {
+                background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045) !important;
+                color: #ffffff !important;
+                border: none !important;
+                box-shadow: 0 5px 18px rgba(225, 48, 108, 0.35) !important;
+            }
+            #modalCompartirStory .btn-ig-gradient:hover {
+                box-shadow: 0 8px 24px rgba(225, 48, 108, 0.5) !important;
+            }
+
+            #modalCompartirStory .btn-wsp-green {
+                background: #25d366 !important;
+                color: #ffffff !important;
+                border-color: #25d366 !important;
+                box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25) !important;
+            }
+            #modalCompartirStory .btn-wsp-green:hover {
+                background: #20bd5a !important;
+            }
+
+            #modalCompartirStory .story-toast {
+                position: fixed;
+                bottom: 24px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #0f172a;
+                color: #ffffff;
+                padding: 12px 24px;
+                border-radius: 50px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+                z-index: 1000000;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                animation: toastIn 0.3s ease;
+            }
+            @keyframes toastIn {
+                from { opacity: 0; transform: translate(-50%, 20px); }
+                to { opacity: 1; transform: translate(-50%, 0); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // Helper: Toast de notificación
+    function mostrarToast(mensaje, duracion = 3500) {
+        const toast = document.createElement('div');
+        toast.className = 'story-toast';
+        toast.innerHTML = `<span>✨</span><span>${mensaje}</span>`;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.transition = 'opacity 0.3s ease';
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, duracion);
+    }
+
     // Inyectar modal en el DOM si no existe
     function asegurarModalCompartir() {
+        inyectarEstilosStory();
+
         let modal = document.getElementById('modalCompartirStory');
         if (modal) return modal;
 
         modal = document.createElement('div');
         modal.id = 'modalCompartirStory';
-        modal.className = 'modal-overlay';
+        modal.className = 'modal-story-overlay';
         modal.style.display = 'none';
         modal.innerHTML = `
-            <div class="modal-card" style="max-width: 720px; width: 95%;">
-                <div class="modal-header">
-                    <h3 style="display: flex; align-items: center; gap: 10px;">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d946ef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            <div class="story-card">
+                <div class="story-header">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d946ef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                         <span>Compartir en Historia de Instagram</span>
                     </h3>
-                    <button class="modal-close" id="btnCerrarModalStory">&times;</button>
+                    <button class="story-close-btn" id="btnCerrarModalStory" aria-label="Cerrar">&times;</button>
                 </div>
-                <div class="modal-body" style="padding: 1rem 0;">
-                    <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1rem;">
-                        Placa vertical optimizada (1080x1920 / 9:16) con diseño corporativo Breccia, lista para publicar en Instagram Stories, Estados de WhatsApp o enviar a clientes.
+                <div style="padding: 0.5rem 0;">
+                    <p style="color: #64748b; font-size: 0.88rem; margin: 0 0 1.1rem 0; line-height: 1.45;">
+                        Placa vertical optimizada en alta definición (1080x1920 / 9:16) con diseño corporativo Breccia, lista para Instagram Stories, Estados de WhatsApp o enviar a clientes.
                     </p>
-                    <div class="modal-story-body">
-                        <div class="story-preview-wrapper">
+                    <div class="story-layout">
+                        <div class="story-preview-box">
                             <canvas id="storyCanvas" width="1080" height="1920"></canvas>
                             <div id="storyLoading" style="position: absolute; inset: 0; background: rgba(0,0,0,0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; gap: 10px; font-size: 0.85rem;">
                                 <div style="width: 32px; height: 32px; border: 3px solid rgba(255,255,255,0.2); border-top-color: #c5a059; border-radius: 50%; animation: spinStory 0.8s linear infinite;"></div>
                                 <span>Generando placa...</span>
                             </div>
                         </div>
-                        <div class="story-actions-panel">
-                            <button id="btnDescargarStory" class="story-action-btn btn-ig-primary">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                        <div class="story-buttons-list">
+                            <!-- Botón 1: Instagram Principal -->
+                            <button id="btnCompartirNativoStory" class="story-action-item btn-ig-gradient" type="button">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                                 <div>
-                                    <div style="font-weight: 700;">Descargar Historia (Story 9:16)</div>
-                                    <small style="opacity: 0.9; font-size: 0.75rem;">Guardar imagen en alta resolución (1080x1920 PNG)</small>
+                                    <div style="font-weight: 700; font-size: 0.98rem;">Publicar en Historia de Instagram</div>
+                                    <small style="opacity: 0.92; font-size: 0.74rem; display: block; margin-top: 2px;">Descarga la placa vertical y abre Instagram</small>
                                 </div>
                             </button>
 
-                            <button id="btnCompartirNativoStory" class="story-action-btn" style="border-color: #d946ef; color: #c026d3;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+                            <!-- Botón 2: Descargar Placa -->
+                            <button id="btnDescargarStory" class="story-action-item" type="button" style="border-color: #c5a059; color: #855d14;">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                                 <div>
-                                    <div style="font-weight: 700;">Publicar directo a Instagram / Apps</div>
-                                    <small style="color: #64748b; font-size: 0.75rem;">Abrir menú de compartir del teléfono</small>
+                                    <div style="font-weight: 700;">Descargar Historia (1080x1920)</div>
+                                    <small style="color: #64748b; font-size: 0.74rem; display: block; margin-top: 2px;">Guardar imagen PNG en alta resolución</small>
                                 </div>
                             </button>
 
-                            <button id="btnCompartirWspStory" class="story-action-btn btn-wsp">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                            <!-- Botón 3: WhatsApp -->
+                            <button id="btnCompartirWspStory" class="story-action-item btn-wsp-green" type="button">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                                 <div>
                                     <div style="font-weight: 700;">Compartir en WhatsApp</div>
-                                    <small style="opacity: 0.9; font-size: 0.75rem;">Enviar ficha comercial y link directo</small>
+                                    <small style="opacity: 0.92; font-size: 0.74rem; display: block; margin-top: 2px;">Enviar ficha comercial con enlace web</small>
                                 </div>
                             </button>
 
-                            <button id="btnCopiarLinkStory" class="story-action-btn">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                            <!-- Botón 4: Copiar Enlace Directo -->
+                            <button id="btnCopiarLinkStory" class="story-action-item" type="button">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
                                 <div>
                                     <div style="font-weight: 700;">Copiar Enlace Directo</div>
-                                    <small style="color: #64748b; font-size: 0.75rem;">Para pegar en el Sticker de Enlace de Instagram</small>
+                                    <small style="color: #64748b; font-size: 0.74rem; display: block; margin-top: 2px;">Para pegar en el Sticker de Enlace de Instagram</small>
                                 </div>
                             </button>
                         </div>
@@ -72,16 +393,11 @@
             </div>
         `;
 
-        // Inyectar estilo de animación spinner
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes spinStory { to { transform: rotate(360deg); } }
-        `;
-        document.head.appendChild(style);
-
         document.body.appendChild(modal);
 
-        modal.querySelector('#btnCerrarModalStory').onclick = () => modal.style.display = 'none';
+        modal.querySelector('#btnCerrarModalStory').onclick = () => {
+            modal.style.display = 'none';
+        };
         modal.addEventListener('click', (e) => {
             if (e.target === modal) modal.style.display = 'none';
         });
@@ -91,6 +407,7 @@
 
     // Helper: envolver texto en múltiples líneas para Canvas
     function envolverTexto(ctx, text, x, y, maxWidth, lineHeight, maxLines = 2) {
+        if (!text) return;
         const words = text.split(' ');
         let line = '';
         let linesCount = 0;
@@ -105,7 +422,6 @@
                 y += lineHeight;
                 linesCount++;
                 if (linesCount >= maxLines - 1 && n < words.length - 1) {
-                    // Truncar con ellipsis si supera maxLines
                     line = words.slice(n).join(' ');
                     while (ctx.measureText(line + '...').width > maxWidth && line.length > 0) {
                         line = line.substring(0, line.length - 1);
@@ -223,17 +539,18 @@
 
         let fotoUrl = prop.thumb || (prop.imagenes && prop.imagenes.length > 0 ? prop.imagenes[0] : 'favicon-V3.ico');
 
-        // Cargar imagen
+        // Cargar imagen de manera segura
         try {
-            await new Promise((resolve, reject) => {
+            await new Promise((resolve) => {
                 const img = new Image();
-                img.crossOrigin = 'anonymous';
+                if (/^https?:\/\//i.test(fotoUrl) && !fotoUrl.includes(window.location.hostname)) {
+                    img.crossOrigin = 'anonymous';
+                }
                 img.onload = () => {
                     ctx.save();
                     drawRoundRect(ctx, imgX, imgY, imgW, imgH, imgRadius);
                     ctx.clip();
 
-                    // Object-fit: cover logic
                     const hRatio = imgW / img.width;
                     const vRatio = imgH / img.height;
                     const ratio = Math.max(hRatio, vRatio);
@@ -245,106 +562,100 @@
 
                     // Si está vendida o alquilada, overlay oscuro sobre la imagen
                     const est = prop.estado || 'disponible';
-                    if (est === 'vendida' || est === 'alquilada' || est === 'reservada') {
-                        ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
+                    if (est === 'vendida' || est === 'alquilada') {
+                        ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
                         ctx.fillRect(imgX, imgY, imgW, imgH);
                     }
 
                     ctx.restore();
 
-                    // Marco fino sobre la imagen
-                    ctx.save();
-                    drawRoundRect(ctx, imgX, imgY, imgW, imgH, imgRadius);
+                    // Marco fino alrededor de la foto
                     ctx.strokeStyle = 'rgba(197, 160, 89, 0.4)';
-                    ctx.lineWidth = 2.5;
+                    ctx.lineWidth = 3;
+                    drawRoundRect(ctx, imgX, imgY, imgW, imgH, imgRadius);
                     ctx.stroke();
-                    ctx.restore();
 
                     resolve();
                 };
                 img.onerror = () => {
-                    // Fallback si la imagen no carga
-                    ctx.save();
+                    // Fallback con degradado si la foto falla
+                    ctx.fillStyle = '#2d1420';
                     drawRoundRect(ctx, imgX, imgY, imgW, imgH, imgRadius);
-                    ctx.fillStyle = '#1e1418';
                     ctx.fill();
-                    ctx.restore();
+                    ctx.fillStyle = '#c5a059';
+                    ctx.font = 'bold 36px "Outfit", sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('BRECCIA INMUEBLES', imgX + imgW / 2, imgY + imgH / 2);
                     resolve();
                 };
                 img.src = fotoUrl;
             });
-        } catch (err) {
-            console.error('Error cargando imagen en story:', err);
+        } catch (e) {
+            console.warn('Error cargando imagen para placa Story:', e);
         }
 
-        // 5. Estampa/Banda de Estado sobre la foto si corresponde
+        // 5. Cartel / Ribbon diagonal si está Vendida / Alquilada / Reservada
         const estadoProp = prop.estado || 'disponible';
-        if (estadoProp === 'vendida' || estadoProp === 'alquilada' || estadoProp === 'reservada') {
-            const estadoLabels = {
-                vendida: { txt: 'VENDIDA', bg: '#6b2c3e', col: '#c5a059', border: '#c5a059' },
-                alquilada: { txt: 'ALQUILADA', bg: '#1e40af', col: '#ffffff', border: '#60a5fa' },
-                reservada: { txt: 'RESERVADA', bg: '#d97706', col: '#ffffff', border: '#fbbf24' }
-            };
-            const estInfo = estadoLabels[estadoProp];
-            if (estInfo) {
-                ctx.save();
-                ctx.translate(imgX + imgW - 130, imgY + 80);
-                ctx.rotate(0.35); // Inclinación elegante
-                ctx.fillStyle = estInfo.bg;
-                drawRoundRect(ctx, -140, -32, 280, 64, 12);
-                ctx.fill();
-                ctx.strokeStyle = estInfo.border;
-                ctx.lineWidth = 3;
-                ctx.stroke();
+        if (estadoProp && estadoProp !== 'disponible') {
+            const configRibbon = {
+                vendida: { texto: 'VENDIDA', bg: '#ef4444' },
+                alquilada: { texto: 'ALQUILADA', bg: '#3b82f6' },
+                reservada: { texto: 'RESERVADA', bg: '#f59e0b' }
+            }[estadoProp] || { texto: estadoProp.toUpperCase(), bg: '#ef4444' };
 
-                ctx.textAlign = 'center';
-                ctx.fillStyle = estInfo.col;
-                ctx.font = 'bold 30px "Outfit", "Segoe UI", sans-serif';
-                ctx.fillText(estInfo.txt, 0, 10);
-                ctx.restore();
-            }
+            ctx.save();
+            ctx.beginPath();
+            drawRoundRect(ctx, imgX, imgY, imgW, imgH, imgRadius);
+            ctx.clip();
+
+            ctx.translate(imgX + imgW - 130, imgY + 80);
+            ctx.rotate((38 * Math.PI) / 180);
+            ctx.fillStyle = configRibbon.bg;
+            ctx.fillRect(-200, -28, 400, 56);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 24px "Outfit", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(configRibbon.texto, 0, 8);
+            ctx.restore();
         }
 
-        // 6. Tarjeta de Información Comercial debajo de la foto
-        const cardY = 1100;
+        // 6. Tarjeta Principal con Información y Precio
+        const cardY = 1090;
+        const cardH = 510;
         const cardW = 920;
-        const cardH = 500;
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
-        drawRoundRect(ctx, imgX, cardY, cardW, cardH, 24);
+        const cardX = 80;
+
+        ctx.fillStyle = 'rgba(20, 10, 14, 0.88)';
+        drawRoundRect(ctx, cardX, cardY, cardW, cardH, 28);
         ctx.fill();
-        ctx.strokeStyle = 'rgba(197, 160, 89, 0.2)';
-        ctx.lineWidth = 1.5;
+
+        ctx.strokeStyle = 'rgba(197, 160, 89, 0.45)';
+        ctx.lineWidth = 2;
+        drawRoundRect(ctx, cardX, cardY, cardW, cardH, 28);
         ctx.stroke();
 
-        // Precio en grande
-        ctx.textAlign = 'center';
-        ctx.fillStyle = '#c5a059';
-        ctx.font = 'bold 64px "Outfit", "Segoe UI", sans-serif';
-        ctx.fillText(prop.precio || 'Consultar', W / 2, cardY + 85);
-
-        // Título de la propiedad (hasta 2 líneas)
+        // Título de la propiedad
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 40px "Outfit", "Segoe UI", sans-serif';
-        envolverTexto(ctx, prop.titulo || 'Propiedad en Venta', W / 2, cardY + 160, cardW - 80, 52, 2);
+        ctx.font = 'bold 44px "Outfit", "Segoe UI", sans-serif';
+        ctx.textAlign = 'center';
+        envolverTexto(ctx, prop.titulo || 'Propiedad Exclusiva', W / 2, cardY + 70, 840, 52, 2);
 
         // Ubicación
-        ctx.fillStyle = '#94a3b8';
-        ctx.font = '500 28px "Outfit", "Segoe UI", sans-serif';
-        ctx.fillText(`📍 ${prop.ubicacion || 'Mar del Plata'}`, W / 2, cardY + 285);
+        ctx.fillStyle = '#c5a059';
+        ctx.font = '600 28px "Outfit", "Segoe UI", sans-serif';
+        ctx.fillText(`📍 ${prop.ubicacion || 'Mar del Plata, Buenos Aires'}`, W / 2, cardY + 185);
 
-        // Pastillas de especificaciones
+        // Precio
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 68px "Outfit", "Segoe UI", sans-serif';
+        ctx.fillText(prop.precio || 'Consultar', W / 2, cardY + 275);
+
+        // Especificaciones
         let specs = [];
-        if (prop.esLote) {
-            if (prop.dimensiones) specs.push(`📐 ${prop.dimensiones}`);
-            if (prop.superficieTotal) specs.push(`🌿 ${prop.superficieTotal}`);
-        } else if (prop.esCochera) {
-            specs.push('🚗 Cochera');
-            if (prop.unidades) specs.push(prop.unidades);
-        } else {
-            if (prop.dormitorios) specs.push(`🛏️ ${prop.dormitorios} dorm`);
-            if (prop.banos) specs.push(`🚿 ${prop.banos} baños`);
-            if (prop.superficie) specs.push(`📐 ${prop.superficie}`);
-        }
+        if (prop.dormitorios) specs.push(prop.dormitorios);
+        if (prop.banos) specs.push(prop.banos);
+        if (prop.superficie) specs.push(prop.superficie);
 
         if (specs.length > 0) {
             ctx.font = '600 24px "Outfit", "Segoe UI", sans-serif';
@@ -366,7 +677,7 @@
             });
         }
 
-        // Mensaje de estado en la tarjeta si está vendida
+        // Mensaje de estado
         if (estadoProp === 'vendida') {
             ctx.fillStyle = '#f43f5e';
             ctx.font = 'bold 24px "Outfit", "Segoe UI", sans-serif';
@@ -403,43 +714,76 @@
     // ABRIR MODAL COMPARTIR
     window.abrirModalCompartir = async function (id, esEstatica) {
         let prop = null;
+        const strId = String(id);
 
-        // Si se pasó directamente el objeto de la propiedad
+        // 1. Si se pasó directamente el objeto de la propiedad
         if (typeof esEstatica === 'object' && esEstatica !== null) {
             prop = { ...esEstatica };
-        } else if (esEstatica) {
-            if (window.STATIC_PROPERTIES_MAP && window.STATIC_PROPERTIES_MAP[String(id)]) {
-                prop = { ...window.STATIC_PROPERTIES_MAP[String(id)] };
-            } else if (window.propiedadesDetalle && window.propiedadesDetalle[id]) {
-                prop = { ...window.propiedadesDetalle[id] };
+        } else {
+            // 2. Diccionario local estático garantizado
+            if (BRECCIA_STATIC_PROPERTIES[strId]) {
+                prop = { ...BRECCIA_STATIC_PROPERTIES[strId] };
             }
+
+            // 3. Mapas globales existentes
+            if (!prop && window.STATIC_PROPERTIES_MAP && window.STATIC_PROPERTIES_MAP[strId]) {
+                prop = { ...window.STATIC_PROPERTIES_MAP[strId] };
+            }
+            if (!prop && window.propiedadesDetalle && window.propiedadesDetalle[strId]) {
+                prop = { ...window.propiedadesDetalle[strId] };
+            }
+
+            // 4. Buscar en IndexedDB
+            if (!prop && window.propiedadesDB) {
+                try {
+                    prop = await window.propiedadesDB.getById(id);
+                } catch (e) {}
+            }
+
+            // 5. Fallback del DOM (inspeccionar la tarjeta HTML)
+            if (!prop) {
+                const cardEl = document.querySelector(`.propiedad-card[data-propiedad-id="${strId}"]`);
+                if (cardEl) {
+                    const imgEl = cardEl.querySelector('.propiedad-carousel-item');
+                    let bgImg = '';
+                    if (imgEl && imgEl.style.backgroundImage) {
+                        const m = imgEl.style.backgroundImage.match(/url\(['"]?(.*?)['"]?\)/);
+                        if (m) bgImg = m[1];
+                    }
+                    prop = {
+                        titulo: cardEl.querySelector('h3')?.textContent?.trim() || 'Propiedad Breccia',
+                        ubicacion: cardEl.querySelector('.propiedad-ubicacion span:last-child')?.textContent?.trim() || 'Mar del Plata',
+                        precio: cardEl.querySelector('.propiedad-precio')?.textContent?.trim() || 'Consultar',
+                        tipo: cardEl.querySelector('.propiedad-badge')?.textContent?.trim() || 'Venta',
+                        thumb: bgImg,
+                        imagenes: bgImg ? [bgImg] : [],
+                        destacada: cardEl.classList.contains('es-destacada')
+                    };
+                }
+            }
+        }
+
+        // Si aún no se encontró, fallback genérico
+        if (!prop) {
+            prop = {
+                titulo: 'Propiedad en Mar del Plata',
+                ubicacion: 'Mar del Plata, Buenos Aires',
+                precio: 'Consultar',
+                tipo: 'Venta',
+                imagenes: ['favicon-V3.ico']
+            };
+        }
+
+        // Combinar con overrides y estados de localStorage
+        try {
             const overrides = JSON.parse(localStorage.getItem('breccia_estaticas_overrides') || '{}');
             const estados = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
             const destacadas = JSON.parse(localStorage.getItem('breccia_propiedades_destacadas') || '{}');
 
-            prop = {
-                ...prop,
-                ...(overrides[String(id)] || {}),
-                estado: estados[String(id)] || (prop ? prop.estado : 'disponible'),
-                destacada: !!destacadas[String(id)]
-            };
-        } else {
-            if (window.propiedadesDB) {
-                prop = await window.propiedadesDB.getById(id);
-            }
-            if (!prop && window.propiedadesDetalle && window.propiedadesDetalle[id]) {
-                prop = { ...window.propiedadesDetalle[id] };
-            }
-            const destacadas = JSON.parse(localStorage.getItem('breccia_propiedades_destacadas') || '{}');
-            if (prop) {
-                prop.destacada = !!(destacadas[String(id)] ?? prop.destacada);
-            }
-        }
-
-        if (!prop) {
-            alert('No se pudo cargar la información de la propiedad.');
-            return;
-        }
+            if (overrides[strId]) Object.assign(prop, overrides[strId]);
+            if (estados[strId]) prop.estado = estados[strId];
+            if (destacadas[strId] !== undefined) prop.destacada = !!destacadas[strId];
+        } catch (e) {}
 
         const modal = asegurarModalCompartir();
         const canvas = modal.querySelector('#storyCanvas');
@@ -449,52 +793,88 @@
         loadingEl.style.display = 'flex';
 
         // Dibujar en el canvas
-        await dibujarPlacaCanvas(canvas, prop);
-        loadingEl.style.display = 'none';
+        try {
+            await dibujarPlacaCanvas(canvas, prop);
+        } catch (err) {
+            console.error('Error al dibujar placa Canvas:', err);
+        } finally {
+            loadingEl.style.display = 'none';
+        }
 
         const safeTitle = (prop.titulo || 'propiedad').replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
         const urlPropiedad = `${window.location.origin}${window.location.pathname.replace('admin.html', 'inmobiliaria.html')}#prop-${id}`;
 
-        // 1. Botón Descargar Story
-        modal.querySelector('#btnDescargarStory').onclick = () => {
-            const dataUrl = canvas.toDataURL('image/png');
-            const a = document.createElement('a');
-            a.href = dataUrl;
-            a.download = `historia_breccia_${safeTitle}.png`;
-            a.click();
+        // Generar y descargar la imagen
+        const ejecutarDescargaStory = () => {
+            try {
+                const dataUrl = canvas.toDataURL('image/png');
+                const a = document.createElement('a');
+                a.href = dataUrl;
+                a.download = `historia_breccia_${safeTitle}.png`;
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => a.remove(), 100);
+                return true;
+            } catch (e) {
+                console.error('Error en descarga de placa:', e);
+                return false;
+            }
         };
 
-        // 2. Botón Compartir Nativo (Instagram / Redes)
-        modal.querySelector('#btnCompartirNativoStory').onclick = async () => {
-            canvas.toBlob(async (blob) => {
-                if (!blob) return;
-                const file = new File([blob], `story_${safeTitle}.png`, { type: 'image/png' });
+        // 1. Botón Descargar Story
+        modal.querySelector('#btnDescargarStory').onclick = () => {
+            ejecutarDescargaStory();
+            mostrarToast('📥 ¡Historia descargada en alta resolución!');
+        };
 
-                if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                    try {
-                        await navigator.share({
-                            files: [file],
-                            title: `Breccia Inmuebles - ${prop.titulo}`,
-                            text: `¡Mirá esta propiedad en Breccia Inmuebles! ${prop.titulo} - ${prop.precio}`
-                        });
-                    } catch (e) {
-                        if (e.name !== 'AbortError') console.error('Error al compartir:', e);
+        // 2. Botón Principal: Instagram
+        modal.querySelector('#btnCompartirNativoStory').onclick = async () => {
+            // Paso A: Descargar la imagen de inmediato para tenerla en la galería / fotos
+            ejecutarDescargaStory();
+
+            // Paso B: Intentar Web Share API con archivo si el dispositivo lo soporta
+            let compartioPorShare = false;
+            try {
+                if (canvas.toBlob && navigator.canShare) {
+                    const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
+                    if (blob) {
+                        const file = new File([blob], `story_${safeTitle}.png`, { type: 'image/png' });
+                        if (navigator.canShare({ files: [file] })) {
+                            await navigator.share({
+                                files: [file],
+                                title: `Breccia Inmuebles - ${prop.titulo}`,
+                                text: `¡Mirá esta propiedad en Breccia Inmuebles! ${prop.titulo} - ${prop.precio}`
+                            });
+                            compartioPorShare = true;
+                            return;
+                        }
                     }
-                } else if (navigator.share) {
-                    try {
-                        await navigator.share({
-                            title: `Breccia Inmuebles - ${prop.titulo}`,
-                            text: `¡Mirá esta propiedad en Breccia Inmuebles! ${prop.titulo} - ${prop.precio}\n${urlPropiedad}`,
-                            url: urlPropiedad
-                        });
-                    } catch (e) {
-                        if (e.name !== 'AbortError') console.error('Error al compartir:', e);
-                    }
-                } else {
-                    // Fallback para computadoras de escritorio
-                    alert('Para publicar en Instagram desde la computadora, descargá la placa e importala en Instagram Web o enviala a tu celular.');
                 }
-            }, 'image/png');
+            } catch (e) {
+                if (e.name === 'AbortError') return;
+                console.log('Web Share no disponible o cancelado, procediendo con apertura directa de Instagram');
+            }
+
+            // Paso C: Si no se usó Share Sheet, abrir Instagram directamente
+            mostrarToast('📸 Placa guardada en tus fotos. Abriendo Instagram...');
+            
+            // En dispositivos móviles intentar abrir la app de Instagram
+            const esMovil = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (esMovil) {
+                // Intentar deep link a la cámara de historias de Instagram
+                setTimeout(() => {
+                    window.location.href = 'instagram://story-camera';
+                    // Fallback a la web si no tiene la app instalada
+                    setTimeout(() => {
+                        window.open('https://www.instagram.com/', '_blank');
+                    }, 1200);
+                }, 200);
+            } else {
+                // En PC de escritorio abrir Instagram en nueva pestaña
+                setTimeout(() => {
+                    window.open('https://www.instagram.com/', '_blank');
+                }, 300);
+            }
         };
 
         // 3. Botón WhatsApp
@@ -515,9 +895,9 @@
         modal.querySelector('#btnCopiarLinkStory').onclick = async () => {
             try {
                 await navigator.clipboard.writeText(urlPropiedad);
-                alert('¡Enlace directo copiado al portapapeles! Pegalo en el Sticker de Enlace de Instagram.');
+                mostrarToast('📋 ¡Enlace copiado! Pegalo en el Sticker de Instagram');
             } catch (e) {
-                prompt('Copiá este enlace:', urlPropiedad);
+                prompt('Copiá este enlace para Instagram:', urlPropiedad);
             }
         };
     };

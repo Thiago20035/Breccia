@@ -1784,4 +1784,21 @@
     color: #ffffff;
     transform: scale(1.1);
 }
+
+/* ============================================
+   MODAL COMPARTIR STORY EN WEB PÚBLICA
+   ============================================ */
+#modalCompartirStory.modal-story-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(10, 5, 8, 0.82) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    z-index: 999999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+}
+
 

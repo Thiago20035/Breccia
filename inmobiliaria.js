@@ -659,6 +659,7 @@ const propiedadesDetalle = {
         ]
     }
 };
+window.propiedadesDetalle = propiedadesDetalle;
 
 let propiedadActualDetalle = {};
 let imagenActualDetalle = 0;
@@ -813,9 +814,8 @@ window.abrirDetallePropiedad = function (idPropiedad) {
     const btnShareModal = document.getElementById('btnCompartirDetalleModal');
     if (btnShareModal) {
         btnShareModal.onclick = () => {
-            const esEstatica = /^\d+$/.test(String(idPropiedad)) && parseInt(idPropiedad) <= 5;
             if (typeof window.abrirModalCompartir === 'function') {
-                window.abrirModalCompartir(idPropiedad, esEstatica);
+                window.abrirModalCompartir(idPropiedad, propiedadActualDetalle);
             }
         };
     }
@@ -902,10 +902,11 @@ document.getElementById('modalDetalle').addEventListener('click', function (e) {
 // ============================================
 document.querySelectorAll('.propiedad-card').forEach(card => {
     card.addEventListener('click', function (event) {
-        // Evitar abrir modal si se hizo click en botones o controles del carrusel
+        // Evitar abrir modal si se hizo click en botones o controles del carrusel o botón compartir
         if (event.target.closest('.consultar-btn') ||
             event.target.closest('.carousel-nav') ||
-            event.target.closest('.carousel-dot')) {
+            event.target.closest('.carousel-dot') ||
+            event.target.closest('.btn-card-share')) {
             return;
         }
 
