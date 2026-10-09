@@ -154,7 +154,53 @@ document.addEventListener('DOMContentLoaded', function () {
     if (typeof cargarPropiedadesDinamicas === 'function') {
         cargarPropiedadesDinamicas();
     }
+
+    // Aplicar ribbons de estado a las propiedades estáticas (hardcodeadas en el HTML)
+    aplicarRibbonsEstaticas();
 });
+
+// ============================================
+// RIBBONS PARA PROPIEDADES ESTÁTICAS
+// Lee el estado de localStorage y aplica el ribbon sobre cada card
+// ============================================
+function aplicarRibbonsEstaticas() {
+    const estadosEstaticas = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
+
+    const ribbonConfig = {
+        reservada: { label: 'RESERVADA', cls: 'ribbon-reservada' },
+        alquilada: { label: 'ALQUILADA', cls: 'ribbon-alquilada' },
+        vendida:   { label: 'VENDIDA',   cls: 'ribbon-vendida'   }
+    };
+
+    document.querySelectorAll('.propiedad-card[data-propiedad-id]').forEach(card => {
+        const propId = card.dataset.propiedadId;
+        if (!propId) return;
+
+        // Solo actuar en las estáticas (IDs numéricos 1-5)
+        // Las dinámicas tienen ID tipo "dyn_..."
+        if (!/^\d+$/.test(propId)) return;
+
+        const estado = estadosEstaticas[propId] || 'disponible';
+        const ribbonInfo = ribbonConfig[estado];
+        const container = card.querySelector('.propiedad-image-container');
+        if (!container) return;
+
+        // Eliminar ribbons anteriores si existen
+        container.querySelectorAll('.prop-estado-ribbon, .prop-estado-overlay').forEach(el => el.remove());
+
+        if (ribbonInfo) {
+            const ribbon = document.createElement('div');
+            ribbon.className = `prop-estado-ribbon ${ribbonInfo.cls}`;
+            ribbon.innerHTML = `<span>${ribbonInfo.label}</span>`;
+
+            const overlay = document.createElement('div');
+            overlay.className = 'prop-estado-overlay';
+
+            container.appendChild(ribbon);
+            container.appendChild(overlay);
+        }
+    });
+}
 
 // ============================================
 // FILTROS
