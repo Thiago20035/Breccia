@@ -1701,4 +1701,87 @@
 .propiedad-image-container {
     position: relative;
     overflow: hidden;
-}
+}
+
+/* ============================================
+   BOTÓN CONSULTAR DESHABILITADO (Vendida / Alquilada / Reservada)
+   ============================================ */
+.consultar-btn.btn-deshabilitado,
+.consultar-btn:disabled,
+.consultar-btn-detalle.btn-deshabilitado,
+.consultar-btn-detalle:disabled {
+    background: #94a3b8 !important;
+    background-image: none !important;
+    color: #ffffff !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: none !important;
+    opacity: 0.88 !important;
+    pointer-events: auto !important;
+}
+
+.consultar-btn.btn-deshabilitado:hover,
+.consultar-btn:disabled:hover,
+.consultar-btn-detalle.btn-deshabilitado:hover,
+.consultar-btn-detalle:disabled:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    background: #94a3b8 !important;
+}
+
+/* ============================================
+   PROPIEDAD DESTACADA
+   ============================================ */
+.propiedad-card.es-destacada {
+    border: 1.5px solid rgba(197, 160, 89, 0.45);
+    box-shadow: 0 10px 28px rgba(197, 160, 89, 0.16);
+}
+
+.prop-destacada-ribbon {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: linear-gradient(135deg, #c5a059, #dfba73);
+    color: #1e1418;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 20px;
+    box-shadow: 0 4px 14px rgba(197, 160, 89, 0.4);
+    z-index: 12;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+}
+
+/* Botón flotante para compartir en la tarjeta */
+.btn-card-share {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b2c3e;
+    cursor: pointer;
+    z-index: 12;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-card-share:hover {
+    background: #6b2c3e;
+    color: #ffffff;
+    transform: scale(1.1);
+}
+

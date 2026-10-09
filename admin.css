@@ -1431,3 +1431,193 @@ body.admin-body {
     box-shadow: 0 0 0 3px rgba(107, 44, 62, 0.18);
 }
 
+/* ============================================
+   BOTÓN DESTACADA Y CONTROLES DE ORDEN
+   ============================================ */
+.btn-destacada-pill {
+    font-family: inherit;
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 0.38rem 0.85rem;
+    border-radius: 20px;
+    border: 1.5px solid #cbd5e1;
+    background: #f8fafc;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.btn-destacada-pill:hover {
+    border-color: #c5a059;
+    color: #b45309;
+    transform: translateY(-1px);
+}
+
+.btn-destacada-pill.active {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border-color: #f59e0b;
+    color: #92400e;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+}
+
+/* Controles de posición / Orden */
+.orden-badge-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.badge-orden {
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: #475569;
+    min-width: 22px;
+    text-align: center;
+}
+
+.orden-arrows {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.btn-orden-arr {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 3px;
+    font-size: 0.55rem;
+    line-height: 1;
+    padding: 2px 4px;
+    cursor: pointer;
+    color: #475569;
+    transition: all 0.15s;
+}
+
+.btn-orden-arr:hover:not(:disabled) {
+    background: #6b2c3e;
+    color: #ffffff;
+    border-color: #6b2c3e;
+}
+
+.btn-orden-arr:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Botones de acción específicos */
+.btn-action.top {
+    color: #c5a059;
+    border-color: rgba(197, 160, 89, 0.35);
+}
+.btn-action.top:hover {
+    background: rgba(197, 160, 89, 0.15);
+    color: #92400e;
+    border-color: #c5a059;
+}
+
+.btn-action.instagram {
+    color: #d946ef;
+    border-color: rgba(217, 70, 239, 0.3);
+}
+.btn-action.instagram:hover {
+    background: rgba(217, 70, 239, 0.12);
+    color: #c026d3;
+    border-color: #d946ef;
+}
+
+/* ============================================
+   MODAL COMPARTIR HISTORIA DE INSTAGRAM
+   ============================================ */
+.modal-story-body {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .modal-story-body {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.story-preview-wrapper {
+    flex: 0 0 auto;
+    width: 250px;
+    height: 444px;
+    background: #111;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+    border: 3px solid #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.story-preview-wrapper canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.story-actions-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.story-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.85rem 1.1rem;
+    border-radius: 12px;
+    border: 1.5px solid var(--border-color);
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+    text-align: left;
+    text-decoration: none;
+}
+
+.story-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.story-action-btn.btn-ig-primary {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 16px rgba(225, 48, 108, 0.35);
+}
+
+.story-action-btn.btn-ig-primary:hover {
+    box-shadow: 0 6px 22px rgba(225, 48, 108, 0.5);
+}
+
+.story-action-btn.btn-wsp {
+    background: #25d366;
+    color: #ffffff;
+    border-color: #25d366;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+}
+.story-action-btn.btn-wsp:hover {
+    background: #20bd5a;
+}
+
+

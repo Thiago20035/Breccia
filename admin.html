@@ -132,12 +132,14 @@
                     <table class="admin-table">
                         <thead>
                             <tr>
+                                <th style="width: 75px; text-align: center;">Orden</th>
                                 <th>Foto</th>
                                 <th>Título y Ubicación</th>
                                 <th>Categoría</th>
                                 <th>Operación</th>
                                 <th>Precio</th>
                                 <th>Estado</th>
+                                <th style="text-align: center;">Destacada</th>
                                 <th>Origen</th>
                                 <th style="text-align: right;">Acciones</th>
                             </tr>
@@ -215,6 +217,16 @@
                         <div class="form-group">
                             <label for="propPrecio">Precio Comercial <span class="req">*</span></label>
                             <input type="text" id="propPrecio" required placeholder="Ej: USD 120.000 o Consultar">
+                        </div>
+
+                        <div class="form-group span-2" style="background: rgba(197, 160, 89, 0.08); padding: 0.85rem 1.15rem; border-radius: 12px; border: 1.5px solid rgba(197, 160, 89, 0.35);">
+                            <label for="propDestacada" style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.92rem; font-weight: 700; color: #6b2c3e; margin: 0;">
+                                <input type="checkbox" id="propDestacada" style="width: 18px; height: 18px; accent-color: #c5a059; cursor: pointer;">
+                                <span>⭐ Marcar como Propiedad Destacada</span>
+                            </label>
+                            <p style="margin: 4px 0 0 28px; font-size: 0.78rem; color: #64748b;">
+                                Aparecerá con insignia dorada y al inicio del catálogo en la web pública.
+                            </p>
                         </div>
                     </div>
 
@@ -434,8 +446,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="propiedades-db.js?v=2.2"></script>
-    <script src="admin.js?v=2.2"></script>
+    <script src="propiedades-db.js?v=2.3"></script>
+    <script src="compartir-story.js?v=2.3"></script>
+    <script src="admin.js?v=2.3"></script>
 </body>
 
 </html>

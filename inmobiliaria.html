@@ -705,18 +705,27 @@
                         <ul id="detalleCaracteristicas"></ul>
                     </div>
 
-                    <button class="consultar-btn-detalle"
-                        onclick="cerrarDetallePropiedad(); setTimeout(() => abrirModalConsulta(document.getElementById('detalleTitulo').textContent, document.getElementById('detalleUbicacion').textContent, document.getElementById('detallePrecio').textContent), 400)">
-                        Consultar por esta propiedad
-                    </button>
+                    <div style="display: flex; gap: 12px; margin-top: 1.5rem; flex-wrap: wrap;">
+                        <button class="consultar-btn-detalle" style="flex: 1; min-width: 200px;"
+                            onclick="cerrarDetallePropiedad(); setTimeout(() => abrirModalConsulta(document.getElementById('detalleTitulo').textContent, document.getElementById('detalleUbicacion').textContent, document.getElementById('detallePrecio').textContent), 400)">
+                            Consultar por esta propiedad
+                        </button>
+                        <button id="btnCompartirDetalleModal" type="button" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 22px; border-radius: 50px; background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: #fff; font-weight: 700; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(225, 48, 108, 0.3); transition: transform 0.2s;"
+                            onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'"
+                            title="Compartir en Historia de Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                            <span>Story Instagram</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="breccia.js"></script>
-    <script src="propiedades-db.js?v=2.2"></script>
-    <script src="inmobiliaria.js?v=2.2"></script>
+    <script src="propiedades-db.js?v=2.3"></script>
+    <script src="compartir-story.js?v=2.3"></script>
+    <script src="inmobiliaria.js?v=2.3"></script>
 </body>
 
 </html>

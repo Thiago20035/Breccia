@@ -157,6 +157,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Aplicar ribbons de estado a las propiedades estáticas (hardcodeadas en el HTML)
     aplicarRibbonsEstaticas();
+
+    // Aplicar orden personalizado y ribbons de propiedades destacadas
+    aplicarOrdenYDestacados();
 });
 
 // ============================================
@@ -216,7 +219,115 @@ function aplicarRibbonsEstaticas() {
             container.appendChild(ribbon);
             container.appendChild(overlay);
         }
+
+        // Actualizar botón de consultar: deshabilitar si está vendida / alquilada / reservada
+        const btnConsultar = card.querySelector('.consultar-btn');
+        if (btnConsultar) {
+            if (estado === 'vendida') {
+                btnConsultar.textContent = 'Vendida';
+                btnConsultar.classList.add('btn-deshabilitado');
+                btnConsultar.disabled = true;
+                btnConsultar.setAttribute('title', 'Esta propiedad ya fue vendida');
+                btnConsultar.onclick = (e) => { e.stopPropagation(); e.preventDefault(); };
+            } else if (estado === 'alquilada') {
+                btnConsultar.textContent = 'Alquilada';
+                btnConsultar.classList.add('btn-deshabilitado');
+                btnConsultar.disabled = true;
+                btnConsultar.setAttribute('title', 'Esta propiedad ya fue alquilada');
+                btnConsultar.onclick = (e) => { e.stopPropagation(); e.preventDefault(); };
+            } else if (estado === 'reservada') {
+                btnConsultar.textContent = 'Reservada';
+                btnConsultar.classList.add('btn-deshabilitado');
+                btnConsultar.disabled = true;
+                btnConsultar.setAttribute('title', 'Esta propiedad se encuentra reservada');
+                btnConsultar.onclick = (e) => { e.stopPropagation(); e.preventDefault(); };
+            } else {
+                btnConsultar.textContent = 'Consultar';
+                btnConsultar.classList.remove('btn-deshabilitado');
+                btnConsultar.disabled = false;
+                btnConsultar.removeAttribute('title');
+                const t = card.querySelector('h3')?.textContent || '';
+                const u = card.querySelector('.propiedad-ubicacion span:last-child')?.textContent || '';
+                const p = card.querySelector('.propiedad-precio')?.textContent || '';
+                btnConsultar.onclick = (e) => {
+                    e.stopPropagation();
+                    abrirModalConsulta(t, u, p);
+                };
+            }
+        }
+
+        // Botón flotante para compartir en historia de Instagram
+        if (container && !container.querySelector('.btn-card-share')) {
+            const btnShare = document.createElement('button');
+            btnShare.className = 'btn-card-share';
+            btnShare.title = 'Compartir en Historia de Instagram';
+            btnShare.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>';
+            btnShare.onclick = (e) => {
+                e.stopPropagation();
+                if (typeof abrirModalCompartir === 'function') abrirModalCompartir(propId, true);
+            };
+            container.appendChild(btnShare);
+        }
     });
+}
+
+// ============================================
+// ORDEN Y DESTACADOS EN LA CUADRÍCULA
+// ============================================
+function aplicarOrdenYDestacados() {
+    const grid = document.getElementById('propiedadesGrid');
+    if (!grid) return;
+
+    const destacadas = JSON.parse(localStorage.getItem('breccia_propiedades_destacadas') || '{}');
+    const ordenIds = JSON.parse(localStorage.getItem('breccia_propiedades_orden') || '[]');
+
+    const cards = Array.from(grid.querySelectorAll('.propiedad-card[data-propiedad-id]'));
+    if (cards.length === 0) return;
+
+    cards.forEach(card => {
+        const id = String(card.dataset.propiedadId || '');
+        const container = card.querySelector('.propiedad-image-container');
+
+        // Manejar ribbon de Destacada
+        const ribbonExistente = container ? container.querySelector('.prop-destacada-ribbon') : null;
+        if (destacadas[id]) {
+            card.classList.add('es-destacada');
+            if (container && !ribbonExistente) {
+                const ribbon = document.createElement('div');
+                ribbon.className = 'prop-destacada-ribbon';
+                ribbon.innerHTML = '<span>⭐</span> <span>DESTACADA</span>';
+                container.appendChild(ribbon);
+            }
+        } else {
+            card.classList.remove('es-destacada');
+            if (ribbonExistente) ribbonExistente.remove();
+        }
+    });
+
+    // Reordenar DOM de tarjetas respetando destacadas primero y el orden personalizado
+    cards.sort((a, b) => {
+        const idA = String(a.dataset.propiedadId || '');
+        const idB = String(b.dataset.propiedadId || '');
+
+        const isDestA = !!destacadas[idA];
+        const isDestB = !!destacadas[idB];
+
+        // 1. Destacadas van primero
+        if (isDestA && !isDestB) return -1;
+        if (!isDestA && isDestB) return 1;
+
+        // 2. Orden personalizado guardado
+        const idxA = ordenIds.indexOf(idA);
+        const idxB = ordenIds.indexOf(idB);
+
+        const posA = idxA !== -1 ? idxA : 9999;
+        const posB = idxB !== -1 ? idxB : 9999;
+
+        return posA - posB;
+    });
+
+    // Re-insertar en el nuevo orden en el DOM
+    cards.forEach(card => grid.appendChild(card));
 }
 
 // ============================================
@@ -614,6 +725,55 @@ window.abrirDetallePropiedad = function (idPropiedad) {
     const caracEl = document.getElementById('detalleCaracteristicas');
     caracEl.innerHTML = propiedad.caracteristicas.map(c => `<li>${c}</li>`).join('');
 
+    // Estado de la propiedad y configuración del botón Consultar en Detalle
+    const estadosEstaticas = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
+    const estadoProp = estadosEstaticas[String(idPropiedad)] || propiedad.estado || 'disponible';
+    const btnDetalleConsulta = document.querySelector('.consultar-btn-detalle');
+
+    if (btnDetalleConsulta) {
+        if (estadoProp === 'vendida') {
+            btnDetalleConsulta.textContent = 'Propiedad Vendida';
+            btnDetalleConsulta.classList.add('btn-deshabilitado');
+            btnDetalleConsulta.disabled = true;
+            btnDetalleConsulta.onclick = (e) => { e.preventDefault(); };
+        } else if (estadoProp === 'alquilada') {
+            btnDetalleConsulta.textContent = 'Propiedad Alquilada';
+            btnDetalleConsulta.classList.add('btn-deshabilitado');
+            btnDetalleConsulta.disabled = true;
+            btnDetalleConsulta.onclick = (e) => { e.preventDefault(); };
+        } else if (estadoProp === 'reservada') {
+            btnDetalleConsulta.textContent = 'Propiedad Reservada';
+            btnDetalleConsulta.classList.add('btn-deshabilitado');
+            btnDetalleConsulta.disabled = true;
+            btnDetalleConsulta.onclick = (e) => { e.preventDefault(); };
+        } else {
+            btnDetalleConsulta.textContent = 'Consultar por esta propiedad';
+            btnDetalleConsulta.classList.remove('btn-deshabilitado');
+            btnDetalleConsulta.disabled = false;
+            btnDetalleConsulta.onclick = () => {
+                cerrarDetallePropiedad();
+                setTimeout(() => {
+                    abrirModalConsulta(
+                        document.getElementById('detalleTitulo').textContent,
+                        document.getElementById('detalleUbicacion').textContent,
+                        document.getElementById('detallePrecio').textContent
+                    );
+                }, 350);
+            };
+        }
+    }
+
+    // Botón de Compartir Story de Instagram en Modal de Detalle
+    const btnShareModal = document.getElementById('btnCompartirDetalleModal');
+    if (btnShareModal) {
+        btnShareModal.onclick = () => {
+            const esEstatica = /^\d+$/.test(String(idPropiedad)) && parseInt(idPropiedad) <= 5;
+            if (typeof window.abrirModalCompartir === 'function') {
+                window.abrirModalCompartir(idPropiedad, esEstatica);
+            }
+        };
+    }
+
     // Cargar miniaturas PRIMERO
     cargarMiniaturas();
 
@@ -911,6 +1071,15 @@ async function cargarPropiedadesDinamicas() {
                 ? `<div class="prop-estado-overlay"></div>`
                 : '';
 
+            // ── Botón de Consulta / Estado Bloqueado ────────────────────────
+            const estaBloqueada = (estadoProp === 'vendida' || estadoProp === 'alquilada' || estadoProp === 'reservada');
+            const textoBoton = estadoProp === 'vendida' ? 'Vendida' :
+                               estadoProp === 'alquilada' ? 'Alquilada' :
+                               estadoProp === 'reservada' ? 'Reservada' : 'Consultar';
+            const botonConsultaHTML = estaBloqueada
+                ? `<button class="consultar-btn btn-deshabilitado" disabled title="Esta propiedad ya está ${estadoProp}">${textoBoton}</button>`
+                : `<button class="consultar-btn" onclick="event.stopPropagation(); abrirModalConsulta('${escapeHTMLInmo(prop.titulo).replace(/'/g, "\\'")}', '${escapeHTMLInmo(prop.ubicacion).replace(/'/g, "\\'")}', '${escapeHTMLInmo(prop.precio).replace(/'/g, "\\'")}')">Consultar</button>`;
+
             card.innerHTML = `
                 <div class="propiedad-image-container">
                     <div class="propiedad-carousel" data-carousel="${carouselId}">
@@ -923,6 +1092,9 @@ async function cargarPropiedadesDinamicas() {
                             ${dotsHTML}
                         </div>
                     ` : ''}
+                    <button class="btn-card-share" title="Compartir en Historia de Instagram" onclick="event.stopPropagation(); window.abrirModalCompartir('${propId}', false)">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </button>
                     <div class="propiedad-badge">${escapeHTMLInmo(prop.tipo || 'Venta')}</div>
                     ${ribbonHTML}
                     ${overlayHTML}
@@ -937,8 +1109,7 @@ async function cargarPropiedadesDinamicas() {
                         ${detallesHTML}
                     </div>
                     <div class="propiedad-precio">${escapeHTMLInmo(prop.precio)}</div>
-                    <button class="consultar-btn"
-                        onclick="event.stopPropagation(); abrirModalConsulta('${escapeHTMLInmo(prop.titulo).replace(/'/g, "\\'")}', '${escapeHTMLInmo(prop.ubicacion).replace(/'/g, "\\'")}', '${escapeHTMLInmo(prop.precio).replace(/'/g, "\\'")}')">Consultar</button>
+                    ${botonConsultaHTML}
                 </div>
             `;
 
@@ -946,7 +1117,8 @@ async function cargarPropiedadesDinamicas() {
             card.addEventListener('click', function(e) {
                 if (e.target.closest('.consultar-btn') ||
                     e.target.closest('.carousel-nav') ||
-                    e.target.closest('.carousel-dot')) {
+                    e.target.closest('.carousel-dot') ||
+                    e.target.closest('.btn-card-share')) {
                     return;
                 }
                 e.preventDefault();
@@ -967,6 +1139,9 @@ async function cargarPropiedadesDinamicas() {
 
             grid.appendChild(card);
         });
+
+        // Reordenar todas las tarjetas (estáticas + dinámicas) según orden y destacados
+        aplicarOrdenYDestacados();
 
         console.log(`${dinamicas.length} propiedades dinámicas cargadas correctamente.`);
     } catch (e) {

@@ -124,6 +124,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             esEstatica: true
         }
     };
+    window.STATIC_PROPERTIES_MAP = STATIC_PROPERTIES_MAP;
 
     // ─────────────────────────────────────────────────────────────────
     // 1. ACCESO — protegido por Cloudflare Access (Zero Trust)
@@ -196,7 +197,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const tbody = document.getElementById('tablaPropiedadesBody');
         if (!tbody) return;
 
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:2rem;">Cargando propiedades...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding:2rem;">Cargando propiedades...</td></tr>';
 
         const dinámicas = await window.propiedadesDB.getAll();
         const searchVal = (document.getElementById('searchProp')?.value || '').toLowerCase();
@@ -205,6 +206,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Estados y Overrides de propiedades estáticas (guardados en localStorage)
         const estadosEstaticas = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
         const overridesEstaticas = JSON.parse(localStorage.getItem('breccia_estaticas_overrides') || '{}');
+        const destacadas = JSON.parse(localStorage.getItem('breccia_propiedades_destacadas') || '{}');
+        let ordenIds = JSON.parse(localStorage.getItem('breccia_propiedades_orden') || '[]');
 
         // Propiedades estáticas combinadas con posibles modificaciones
         const hardcodedList = Object.keys(STATIC_PROPERTIES_MAP).map(id => {
@@ -227,24 +230,47 @@ document.addEventListener('DOMContentLoaded', async () => {
             ...hardcodedList
         ];
 
-        // Filtros
+        // Sincronizar ordenIds con todos los IDs existentes
+        combinadas.forEach(p => {
+            const pid = String(p.id);
+            if (!ordenIds.includes(pid)) ordenIds.push(pid);
+        });
+        // Filtrar IDs que ya no existan
+        ordenIds = ordenIds.filter(id => combinadas.some(p => String(p.id) === String(id)));
+        localStorage.setItem('breccia_propiedades_orden', JSON.stringify(ordenIds));
+
+        // Ordenar: primero destacadas, y dentro de cada grupo por el orden personalizado
+        combinadas.sort((a, b) => {
+            const idA = String(a.id);
+            const idB = String(b.id);
+            const destA = !!destacadas[idA];
+            const destB = !!destacadas[idB];
+            if (destA !== destB) return destB ? 1 : -1;
+            const idxA = ordenIds.indexOf(idA);
+            const idxB = ordenIds.indexOf(idB);
+            return (idxA !== -1 ? idxA : 9999) - (idxB !== -1 ? idxB : 9999);
+        });
+
+        // Filtros visuales (búsqueda / categoría)
+        let filtradas = [...combinadas];
         if (searchVal) {
-            combinadas = combinadas.filter(p =>
+            filtradas = filtradas.filter(p =>
                 (p.titulo && p.titulo.toLowerCase().includes(searchVal)) ||
                 (p.ubicacion && p.ubicacion.toLowerCase().includes(searchVal))
             );
         }
 
         if (catVal !== 'todas') {
-            combinadas = combinadas.filter(p => p.categoria === catVal);
+            filtradas = filtradas.filter(p => p.categoria === catVal);
         }
 
-        if (combinadas.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:2rem; color:#64748b;">No se encontraron propiedades.</td></tr>';
+        if (filtradas.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding:2rem; color:#64748b;">No se encontraron propiedades.</td></tr>';
             return;
         }
 
-        tbody.innerHTML = combinadas.map(prop => {
+        tbody.innerHTML = filtradas.map((prop, idxFiltrada) => {
+            const propIdStr = String(prop.id);
             const thumbUrl = prop.thumb || (prop.imagenes && prop.imagenes.length > 0 ? prop.imagenes[0] : 'favicon-V3.ico');
             const badgeTipoClass = prop.tipo === 'Venta' ? 'badge-venta' : 'badge-alquiler';
             const badgeOrigen = prop.esEstatica
@@ -253,6 +279,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Estado actual
             const estadoProp = prop.estado || 'disponible';
+            const esDest = !!destacadas[propIdStr];
+
+            // Posición en la lista completa
+            const posGlobal = combinadas.findIndex(p => String(p.id) === propIdStr);
+            const esPrimero = posGlobal === 0;
+            const esUltimo = posGlobal === combinadas.length - 1;
 
             // SELECTOR DIRECTO DE ESTADO (en la misma columna)
             const selectorEstadoHTML = `
@@ -272,13 +304,29 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l3 3"/></svg>
                 </button>`;
 
+            // Botón poner primera
+            const btnPonerPrimera = `
+                <button class="btn-action top" onclick="ponerPrimeraPropiedad('${prop.id}')" title="Poner en 1° lugar de la web">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><polyline points="5 12 12 5 19 12"/><line x1="5" y1="2" x2="19" y2="2"/></svg>
+                </button>`;
+
+            // Botón Instagram Story
+            const btnInstagramStory = `
+                <button class="btn-action instagram" onclick="abrirStoryInstagram('${prop.id}', ${prop.esEstatica})" title="Crear / Compartir Story de Instagram">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </button>`;
+
             const acciones = prop.esEstatica
                 ? `
+                    ${btnPonerPrimera}
+                    ${btnInstagramStory}
                     <a href="inmobiliaria.html" target="_blank" class="btn-action view" title="Ver en Web"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a>
                     <button class="btn-action edit" onclick="editarPropiedad('${prop.id}', true)" title="Editar propiedad"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
                     ${cambioEstadoBtn}
                 `
                 : `
+                    ${btnPonerPrimera}
+                    ${btnInstagramStory}
                     <a href="inmobiliaria.html" target="_blank" class="btn-action view" title="Ver en Web"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a>
                     <button class="btn-action edit" onclick="editarPropiedad('${prop.id}', false)" title="Editar propiedad"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
                     ${cambioEstadoBtn}
@@ -287,6 +335,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             return `
                 <tr>
+                    <td style="text-align: center;">
+                        <div class="orden-badge-container">
+                            <span class="badge-orden" title="Posición en el catálogo">#${posGlobal + 1}</span>
+                            <div class="orden-arrows">
+                                <button type="button" class="btn-orden-arr" onclick="moverOrdenPropiedad('${prop.id}', -1)" ${esPrimero ? 'disabled' : ''} title="Subir orden">▲</button>
+                                <button type="button" class="btn-orden-arr" onclick="moverOrdenPropiedad('${prop.id}', 1)" ${esUltimo ? 'disabled' : ''} title="Bajar orden">▼</button>
+                            </div>
+                        </div>
+                    </td>
                     <td>
                         <img src="${thumbUrl}" class="prop-thumb" alt="Miniatura" onerror="this.src='favicon-V3.ico'">
                     </td>
@@ -302,6 +359,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </td>
                     <td><strong>${escapeHTML(prop.precio || 'Consultar')}</strong></td>
                     <td>${selectorEstadoHTML}</td>
+                    <td style="text-align: center;">
+                        <button type="button" class="btn-destacada-pill ${esDest ? 'active' : ''}" onclick="toggleDestacadaPropiedad('${prop.id}', ${prop.esEstatica})" title="${esDest ? 'Quitar destacada' : 'Marcar como destacada (aparece primera con cinta dorada)'}">
+                            <span>⭐</span>
+                            <span>${esDest ? 'Destacada' : 'Normal'}</span>
+                        </button>
+                    </td>
                     <td>${badgeOrigen}</td>
                     <td>
                         <div class="action-btns">${acciones}</div>
@@ -312,6 +375,61 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     window._renderPropiedadesTabla = renderPropiedadesTabla;
+
+    // Métodos globales de Orden, Destacadas y Compartir
+    window.moverOrdenPropiedad = async function (id, direccion) {
+        let ordenIds = JSON.parse(localStorage.getItem('breccia_propiedades_orden') || '[]');
+        const strId = String(id);
+        const idx = ordenIds.indexOf(strId);
+        if (idx === -1) return;
+        const nuevoIdx = idx + direccion;
+        if (nuevoIdx < 0 || nuevoIdx >= ordenIds.length) return;
+        // Intercambiar
+        const temp = ordenIds[idx];
+        ordenIds[idx] = ordenIds[nuevoIdx];
+        ordenIds[nuevoIdx] = temp;
+        localStorage.setItem('breccia_propiedades_orden', JSON.stringify(ordenIds));
+        showToast(`Orden actualizado (#${nuevoIdx + 1})`, 'success');
+        await renderPropiedadesTabla();
+    };
+
+    window.ponerPrimeraPropiedad = async function (id) {
+        let ordenIds = JSON.parse(localStorage.getItem('breccia_propiedades_orden') || '[]');
+        const strId = String(id);
+        ordenIds = ordenIds.filter(x => x !== strId);
+        ordenIds.unshift(strId);
+        localStorage.setItem('breccia_propiedades_orden', JSON.stringify(ordenIds));
+        showToast('Propiedad fijada en el 1° lugar de la web', 'success');
+        await renderPropiedadesTabla();
+    };
+
+    window.toggleDestacadaPropiedad = async function (id, esEstatica) {
+        const destacadas = JSON.parse(localStorage.getItem('breccia_propiedades_destacadas') || '{}');
+        const strId = String(id);
+        const nuevoEstado = !destacadas[strId];
+        if (nuevoEstado) {
+            destacadas[strId] = true;
+            // Ponerla al principio del orden para que sea la primera destacada
+            let ordenIds = JSON.parse(localStorage.getItem('breccia_propiedades_orden') || '[]');
+            ordenIds = ordenIds.filter(x => x !== strId);
+            ordenIds.unshift(strId);
+            localStorage.setItem('breccia_propiedades_orden', JSON.stringify(ordenIds));
+            showToast('⭐ Propiedad marcada como DESTACADA', 'success');
+        } else {
+            delete destacadas[strId];
+            showToast('Propiedad desmarcada de destacadas', 'info');
+        }
+        localStorage.setItem('breccia_propiedades_destacadas', JSON.stringify(destacadas));
+        await renderPropiedadesTabla();
+    };
+
+    window.abrirStoryInstagram = async function (id, esEstatica) {
+        if (typeof window.abrirModalCompartir === 'function') {
+            window.abrirModalCompartir(id, esEstatica);
+        } else {
+            showToast('Iniciando generador de historias de Instagram...', 'info');
+        }
+    };
 
     // Filtros de tabla
     document.getElementById('searchProp')?.addEventListener('input', renderPropiedadesTabla);
@@ -519,6 +637,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             const cat = document.getElementById('propCategoria').value;
             const nuevoEstado = document.getElementById('propEstado').value || 'disponible';
+            const esDestacada = document.getElementById('propDestacada')?.checked || false;
 
             // CASO 1: Edición de propiedad estática
             if (editandoEsEstatica && editandoId) {
@@ -526,6 +645,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const estados = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
                 estados[String(editandoId)] = nuevoEstado;
                 localStorage.setItem('breccia_estado_estaticas', JSON.stringify(estados));
+
+                // Guardar destacada
+                const destacadas = JSON.parse(localStorage.getItem('breccia_propiedades_destacadas') || '{}');
+                if (esDestacada) {
+                    destacadas[String(editandoId)] = true;
+                } else {
+                    delete destacadas[String(editandoId)];
+                }
+                localStorage.setItem('breccia_propiedades_destacadas', JSON.stringify(destacadas));
 
                 // Guardar modificaciones de datos en breccia_estaticas_overrides
                 const overrides = JSON.parse(localStorage.getItem('breccia_estaticas_overrides') || '{}');
@@ -555,8 +683,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             // CASO 2: Propiedades dinámicas (Panel Admin / IndexedDB)
+            const nuevoId = editandoId || ('dyn_' + Date.now());
             const propiedadData = {
-                id: editandoId || ('dyn_' + Date.now()),
+                id: nuevoId,
                 titulo: document.getElementById('propTitulo').value.trim(),
                 tipo: document.getElementById('propTipo').value,
                 estado: nuevoEstado,
@@ -585,6 +714,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             await window.propiedadesDB.save(propiedadData);
+
+            // Guardar destacada para dinámicas
+            const destacadas = JSON.parse(localStorage.getItem('breccia_propiedades_destacadas') || '{}');
+            if (esDestacada) {
+                destacadas[String(nuevoId)] = true;
+                let ordenIds = JSON.parse(localStorage.getItem('breccia_propiedades_orden') || '[]');
+                ordenIds = ordenIds.filter(x => x !== String(nuevoId));
+                ordenIds.unshift(String(nuevoId));
+                localStorage.setItem('breccia_propiedades_orden', JSON.stringify(ordenIds));
+            } else {
+                delete destacadas[String(nuevoId)];
+            }
+            localStorage.setItem('breccia_propiedades_destacadas', JSON.stringify(destacadas));
+
             showToast(editandoId ? 'Propiedad actualizada con éxito.' : 'Nueva propiedad creada con éxito.', 'success');
 
             resetFormulario();
@@ -640,6 +783,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('propCategoria').value = prop.categoria || 'departamento';
         document.getElementById('propUbicacion').value = prop.ubicacion || '';
         document.getElementById('propPrecio').value = prop.precio || '';
+
+        // Sincronizar checkbox de propiedad destacada
+        const destacadas = JSON.parse(localStorage.getItem('breccia_propiedades_destacadas') || '{}');
+        const chkDestacada = document.getElementById('propDestacada');
+        if (chkDestacada) {
+            chkDestacada.checked = !!destacadas[String(id)];
+        }
         document.getElementById('propDescripcion').value = prop.descripcion || '';
 
         toggleCamposSegunCategoria();
@@ -743,6 +893,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Reset estado a disponible
         const estadoEl = document.getElementById('propEstado');
         if (estadoEl) estadoEl.value = 'disponible';
+        const chkDestacada = document.getElementById('propDestacada');
+        if (chkDestacada) chkDestacada.checked = false;
         caracteristicasLista = [];
         fotosCargadas = [];
         renderCaracteristicasTags();
@@ -841,7 +993,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // ─────────────────────────────────────────────────────────────────
 // MODAL CAMBIO RÁPIDO DE ESTADO (estáticas + dinámicas)
 // ─────────────────────────────────────────────────────────────────
-window.cambiarEstadoPropiedad = async function(id, esEstatica) {
+window.cambiarEstadoPropiedad = async function (id, esEstatica) {
     // Determinar estado actual según tipo
     let estadoActual = 'disponible';
     let tituloPropiedad = `Propiedad #${id}`;
@@ -947,7 +1099,7 @@ window.cambiarEstadoPropiedad = async function(id, esEstatica) {
             toast.className = 'toast success';
             toast.innerHTML = `<span>✓</span><span>Estado actualizado a <strong>${labels[nuevoEstado]}</strong></span>`;
             toastContainer.appendChild(toast);
-            setTimeout(() => { toast.style.opacity='0'; setTimeout(() => toast.remove(), 300); }, 3500);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3500);
 
             // Recargar tabla de inmediato
             if (window._renderPropiedadesTabla) {
