@@ -165,6 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // ============================================
 function aplicarRibbonsEstaticas() {
     const estadosEstaticas = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
+    const overridesEstaticas = JSON.parse(localStorage.getItem('breccia_estaticas_overrides') || '{}');
 
     const ribbonConfig = {
         reservada: { label: 'RESERVADA', cls: 'ribbon-reservada' },
@@ -174,11 +175,27 @@ function aplicarRibbonsEstaticas() {
 
     document.querySelectorAll('.propiedad-card[data-propiedad-id]').forEach(card => {
         const propId = card.dataset.propiedadId;
-        if (!propId) return;
+        if (!propId || !/^\d+$/.test(propId)) return;
 
-        // Solo actuar en las estáticas (IDs numéricos 1-5)
-        // Las dinámicas tienen ID tipo "dyn_..."
-        if (!/^\d+$/.test(propId)) return;
+        // Si la propiedad fue editada desde el Panel Admin, reflejar cambios en la tarjeta
+        if (overridesEstaticas[propId]) {
+            const ov = overridesEstaticas[propId];
+            if (ov.titulo) {
+                const titleEl = card.querySelector('h3');
+                if (titleEl) titleEl.textContent = ov.titulo;
+            }
+            if (ov.precio) {
+                const precioEl = card.querySelector('.propiedad-precio');
+                if (precioEl) precioEl.textContent = ov.precio;
+            }
+            if (ov.ubicacion) {
+                const ubiEl = card.querySelector('.propiedad-ubicacion span:last-child');
+                if (ubiEl) ubiEl.textContent = ov.ubicacion;
+            }
+            if (typeof propiedadesDetalle !== 'undefined' && propiedadesDetalle[propId]) {
+                Object.assign(propiedadesDetalle[propId], ov);
+            }
+        }
 
         const estado = estadosEstaticas[propId] || 'disponible';
         const ribbonInfo = ribbonConfig[estado];

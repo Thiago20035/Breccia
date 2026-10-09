@@ -5,8 +5,125 @@
 document.addEventListener('DOMContentLoaded', async () => {
     // Estado del Formulario
     let editandoId = null;
+    let editandoEsEstatica = false;
     let fotosCargadas = []; // Array de DataURLs de imágenes
     let caracteristicasLista = []; // Array de strings de características
+
+    // Mapa base de las 5 propiedades estáticas del sitio
+    const STATIC_PROPERTIES_MAP = {
+        '1': {
+            id: '1',
+            titulo: 'Departamento Tipo Semipiso de Tres (3) Ambientes',
+            ubicacion: 'Gascón 2356, Plaza Colón',
+            precio: 'USD 169.000',
+            tipo: 'Venta',
+            categoria: 'departamento',
+            dormitorios: '2',
+            banos: '2',
+            superficie: '69 m²',
+            descripcion: 'Impecable departamento tipo semipiso de tres (3) ambientes con cochera doble. Ubicado en una excelente zona como lo es próximo a la Plaza Colón, al entorno al Shopping Paseo Aldrey y a la comercial calle Alberti.',
+            caracteristicas: [
+                'Cocina equipada con mobiliario moderno',
+                'Living comedor amplio con salida a balcón',
+                'Dormitorio principal en suite con vestidor',
+                'Segundo dormitorio con placard',
+                'Toilette de recepción con ducha',
+                'Cochera doble cubierta con control remoto',
+                'Calefacción por radiadores'
+            ],
+            thumb: 'FotosGascon2356/G35.jpg',
+            imagenes: ['FotosGascon2356/G35.jpg'],
+            esEstatica: true
+        },
+        '2': {
+            id: '2',
+            titulo: 'Departamento en Arenales',
+            ubicacion: 'Arenales 2445, Mar del Plata',
+            precio: 'USD 55.000',
+            tipo: 'Venta',
+            categoria: 'departamento',
+            dormitorios: '1',
+            banos: '1',
+            superficie: '40 m²',
+            descripcion: 'Ubicado en una zona privilegiada de Mar del Plata a 200 metros de la Plaza Colón, de la Av. Colón y de la comercial calle Alberti. Se trata de un departamento de 2 ambientes al lateral y al contrafrente, luminoso y muy cómodo.',
+            caracteristicas: [
+                'Amplio living-comedor con pisos cerámicos',
+                'Dormitorio con placard',
+                'Cocina cómoda y funcional',
+                'Baño completo',
+                'A 200 metros de Plaza Colón'
+            ],
+            thumb: 'Arenales2445/PA3.jpg',
+            imagenes: ['Arenales2445/PA3.jpg'],
+            esEstatica: true
+        },
+        '3': {
+            id: '3',
+            titulo: 'Lote con Construcción en Parque Luro',
+            ubicacion: 'Francia 371, Parque Luro',
+            precio: 'USD 120.000',
+            tipo: 'Venta',
+            categoria: 'lote',
+            esLote: true,
+            dimensiones: '10x33m',
+            construccion: '70 m²',
+            superficieTotal: '330 m²',
+            descripcion: '¡Excelente oportunidad de inversión en la zona del residencial barrio de Parque Luro! Ubicado a 100 metros de la comercial Av. Jara. Se trata de una construcción al fondo de 70 m² a reciclar sobre un lote de 10 metros de frente por 33 metros de profundidad.',
+            caracteristicas: [
+                'Lote de 10m x 33m (330 m²)',
+                'Construcción existente de 70 m²',
+                'A 100 metros de Av. Jara',
+                'Zona residencial Parque Luro',
+                'Ideal para desarrollo inmobiliario'
+            ],
+            thumb: 'Francia371/F3.jpg',
+            imagenes: ['Francia371/F3.jpg', 'Francia371/F4.jpg'],
+            esEstatica: true
+        },
+        '4': {
+            id: '4',
+            titulo: 'Departamento de 4 Ambientes con Gran Patio',
+            ubicacion: 'San Juan y Avellaneda, Mar del Plata',
+            precio: 'USD 85.000',
+            tipo: 'Venta',
+            categoria: 'departamento',
+            dormitorios: '3',
+            banos: '1',
+            superficie: '129 m²',
+            descripcion: 'Ubicado en la zona de San Juan y Avellaneda, esta unidad se caracteriza por ser muy cómoda para una familia numerosa y por contar con un amplio patio propio con plantas.',
+            caracteristicas: [
+                'Living-comedor con salida al patio',
+                'Tres dormitorios con pisos de parquet',
+                'Todos los dormitorios con placard',
+                'Baño completo',
+                'Patio propio amplio con plantas'
+            ],
+            thumb: 'SanJuan3052/SJ8.jpg',
+            imagenes: ['SanJuan3052/SJ8.jpg'],
+            esEstatica: true
+        },
+        '5': {
+            id: '5',
+            titulo: 'Cocheras en Edificio Céntrico',
+            ubicacion: 'Corrientes entre Rivadavia',
+            precio: 'USD 13.000 c/u',
+            tipo: 'Venta',
+            categoria: 'cochera',
+            esCochera: true,
+            unidades: 'Cocheras fijas',
+            expensas: 'Bajas',
+            antiguedad: 'Seguridad 24hs',
+            descripcion: 'Cocheras en edificio céntrico con excelente acceso y seguridad.',
+            caracteristicas: [
+                'Portón automático',
+                'Seguridad 24hs',
+                'Excelente ubicación céntrica'
+            ],
+            thumb: 'LeblonCochera/L1.jpeg',
+            imagenes: ['LeblonCochera/L1.jpeg'],
+            esEstatica: true
+        }
+    };
 
     // ─────────────────────────────────────────────────────────────────
     // 1. ACCESO — protegido por Cloudflare Access (Zero Trust)
@@ -45,7 +162,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
-    window.cambiarTab = function(tabId) {
+    window.cambiarTab = function (tabId) {
         const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
         if (btn) btn.click();
     };
@@ -79,23 +196,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         const tbody = document.getElementById('tablaPropiedadesBody');
         if (!tbody) return;
 
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:2rem;">Cargando propiedades...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:2rem;">Cargando propiedades...</td></tr>';
 
         const dinámicas = await window.propiedadesDB.getAll();
         const searchVal = (document.getElementById('searchProp')?.value || '').toLowerCase();
         const catVal = document.getElementById('filterCategoria')?.value || 'todas';
 
-        // Estados de propiedades estáticas (guardados en localStorage)
+        // Estados y Overrides de propiedades estáticas (guardados en localStorage)
         const estadosEstaticas = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
+        const overridesEstaticas = JSON.parse(localStorage.getItem('breccia_estaticas_overrides') || '{}');
 
-        // Propiedades harcodeadas para referencia en la tabla
-        const hardcodedList = [
-            { id: 1, titulo: 'Departamento Tipo Semipiso de Tres (3) Ambientes', ubicacion: 'Gascón 2356', precio: 'USD 169.000', tipo: 'Venta', categoria: 'departamento', thumb: 'FotosGascon2356/G35.jpg', esEstatica: true, estado: estadosEstaticas[1] || 'disponible' },
-            { id: 2, titulo: 'Departamento en Arenales', ubicacion: 'Arenales 2445', precio: 'USD 55.000', tipo: 'Venta', categoria: 'departamento', thumb: 'Arenales2445/PA3.jpg', esEstatica: true, estado: estadosEstaticas[2] || 'disponible' },
-            { id: 3, titulo: 'Lote con Construcción en Parque Luro', ubicacion: 'Francia 371', precio: 'USD 120.000', tipo: 'Venta', categoria: 'lote', thumb: 'Francia371/F3.jpg', esEstatica: true, estado: estadosEstaticas[3] || 'disponible' },
-            { id: 4, titulo: 'Departamento de 4 Ambientes con Gran Patio', ubicacion: 'San Juan y Avellaneda', precio: 'USD 85.000', tipo: 'Venta', categoria: 'departamento', thumb: 'SanJuan3052/SJ8.jpg', esEstatica: true, estado: estadosEstaticas[4] || 'disponible' },
-            { id: 5, titulo: 'Cocheras en Edificio Céntrico', ubicacion: 'Corrientes entre Rivadavia', precio: 'USD 13.000 c/u', tipo: 'Venta', categoria: 'cochera', thumb: 'LeblonCochera/L1.jpeg', esEstatica: true, estado: estadosEstaticas[5] || 'disponible' }
-        ];
+        // Propiedades estáticas combinadas con posibles modificaciones
+        const hardcodedList = Object.keys(STATIC_PROPERTIES_MAP).map(id => {
+            const base = STATIC_PROPERTIES_MAP[id];
+            const override = overridesEstaticas[id] || {};
+            return {
+                ...base,
+                ...override,
+                estado: estadosEstaticas[id] || base.estado || 'disponible',
+                esEstatica: true
+            };
+        });
 
         let combinadas = [
             ...dinámicas.map(p => ({
@@ -119,45 +240,51 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         if (combinadas.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:2rem; color:#64748b;">No se encontraron propiedades.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:2rem; color:#64748b;">No se encontraron propiedades.</td></tr>';
             return;
         }
 
         tbody.innerHTML = combinadas.map(prop => {
-            const thumbUrl = prop.thumb || 'favicon-V3.ico';
+            const thumbUrl = prop.thumb || (prop.imagenes && prop.imagenes.length > 0 ? prop.imagenes[0] : 'favicon-V3.ico');
             const badgeTipoClass = prop.tipo === 'Venta' ? 'badge-venta' : 'badge-alquiler';
             const badgeOrigen = prop.esEstatica
                 ? '<span class="badge-estatico">Estática (HTML)</span>'
                 : '<span class="badge-dinamico">Panel Admin</span>';
 
-            // Badge de Estado
+            // Estado actual
             const estadoProp = prop.estado || 'disponible';
-            const estadoConfig = {
-                disponible: { label: 'Disponible', cls: 'badge-estado-disponible' },
-                reservada:  { label: 'Reservada',  cls: 'badge-estado-reservada'  },
-                alquilada:  { label: 'Alquilada',  cls: 'badge-estado-alquilada'  },
-                vendida:    { label: 'Vendida',    cls: 'badge-estado-vendida'    }
-            };
-            const estadoInfo = estadoConfig[estadoProp] || estadoConfig.disponible;
-            const badgeEstado = `<span class="badge-estado ${estadoInfo.cls}">${estadoInfo.label}</span>`;
 
-            // Botón cambiar estado (todas las propiedades, incluso estáticas)
+            // SELECTOR DIRECTO DE ESTADO (en la misma columna)
+            const selectorEstadoHTML = `
+                <div class="estado-select-container">
+                    <select class="select-estado-directo estado-${estadoProp}" onchange="cambiarEstadoDirecto('${prop.id}', this.value, ${prop.esEstatica})" title="Cambiar estado comercial de la propiedad">
+                        <option value="disponible" ${estadoProp === 'disponible' ? 'selected' : ''}>🟢 Disponible</option>
+                        <option value="reservada" ${estadoProp === 'reservada' ? 'selected' : ''}>🔒 Reservada</option>
+                        <option value="alquilada" ${estadoProp === 'alquilada' ? 'selected' : ''}>🏠 Alquilada</option>
+                        <option value="vendida" ${estadoProp === 'vendida' ? 'selected' : ''}>✔️ Vendida</option>
+                    </select>
+                </div>
+            `;
+
+            // Botón modal de cambio rápido
             const cambioEstadoBtn = `
-                <button class="btn-action estado" onclick="cambiarEstadoPropiedad('${prop.id}', ${prop.esEstatica})" title="Cambiar estado">
+                <button class="btn-action estado" onclick="cambiarEstadoPropiedad('${prop.id}', ${prop.esEstatica})" title="Cambiar estado (Modal rápido)">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l3 3"/></svg>
                 </button>`;
 
             const acciones = prop.esEstatica
                 ? `
                     <a href="inmobiliaria.html" target="_blank" class="btn-action view" title="Ver en Web"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a>
+                    <button class="btn-action edit" onclick="editarPropiedad('${prop.id}', true)" title="Editar propiedad"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
                     ${cambioEstadoBtn}
                 `
                 : `
                     <a href="inmobiliaria.html" target="_blank" class="btn-action view" title="Ver en Web"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a>
-                    <button class="btn-action edit" onclick="editarPropiedad('${prop.id}')" title="Editar"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                    <button class="btn-action edit" onclick="editarPropiedad('${prop.id}', false)" title="Editar propiedad"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
                     ${cambioEstadoBtn}
                     <button class="btn-action delete" onclick="eliminarPropiedad('${prop.id}', '${(prop.titulo || '').replace(/'/g, "\\'")}')" title="Eliminar"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
                 `;
+
             return `
                 <tr>
                     <td>
@@ -174,7 +301,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <span class="badge-tipo ${badgeTipoClass}">${prop.tipo || 'Venta'}</span>
                     </td>
                     <td><strong>${escapeHTML(prop.precio || 'Consultar')}</strong></td>
-                    <td>${badgeEstado}</td>
+                    <td>${selectorEstadoHTML}</td>
                     <td>${badgeOrigen}</td>
                     <td>
                         <div class="action-btns">${acciones}</div>
@@ -183,6 +310,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             `;
         }).join('');
     }
+
+    window._renderPropiedadesTabla = renderPropiedadesTabla;
 
     // Filtros de tabla
     document.getElementById('searchProp')?.addEventListener('input', renderPropiedadesTabla);
@@ -389,12 +518,48 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         try {
             const cat = document.getElementById('propCategoria').value;
+            const nuevoEstado = document.getElementById('propEstado').value || 'disponible';
 
+            // CASO 1: Edición de propiedad estática
+            if (editandoEsEstatica && editandoId) {
+                // Guardar estado en breccia_estado_estaticas
+                const estados = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
+                estados[String(editandoId)] = nuevoEstado;
+                localStorage.setItem('breccia_estado_estaticas', JSON.stringify(estados));
+
+                // Guardar modificaciones de datos en breccia_estaticas_overrides
+                const overrides = JSON.parse(localStorage.getItem('breccia_estaticas_overrides') || '{}');
+                overrides[String(editandoId)] = {
+                    titulo: document.getElementById('propTitulo').value.trim(),
+                    precio: document.getElementById('propPrecio').value.trim(),
+                    ubicacion: document.getElementById('propUbicacion').value.trim(),
+                    tipo: document.getElementById('propTipo').value,
+                    categoria: cat,
+                    descripcion: document.getElementById('propDescripcion').value.trim(),
+                    dormitorios: document.getElementById('propDormitorios')?.value.trim() || '',
+                    banos: document.getElementById('propBanos')?.value.trim() || '',
+                    superficie: document.getElementById('propSuperficie')?.value.trim() || '',
+                    dimensiones: document.getElementById('propDimensiones')?.value.trim() || '',
+                    construccion: document.getElementById('propConstruccion')?.value.trim() || '',
+                    superficieTotal: document.getElementById('propSuperficieTotal')?.value.trim() || '',
+                    caracteristicas: [...caracteristicasLista],
+                    imagenes: [...fotosCargadas]
+                };
+                localStorage.setItem('breccia_estaticas_overrides', JSON.stringify(overrides));
+
+                showToast('Propiedad actualizada con éxito.', 'success');
+                resetFormulario();
+                await cargarPanel();
+                cambiarTab('tabListado');
+                return;
+            }
+
+            // CASO 2: Propiedades dinámicas (Panel Admin / IndexedDB)
             const propiedadData = {
                 id: editandoId || ('dyn_' + Date.now()),
                 titulo: document.getElementById('propTitulo').value.trim(),
                 tipo: document.getElementById('propTipo').value,
-                estado: document.getElementById('propEstado').value || 'disponible',
+                estado: nuevoEstado,
                 categoria: cat,
                 ubicacion: document.getElementById('propUbicacion').value.trim(),
                 precio: document.getElementById('propPrecio').value.trim(),
@@ -434,15 +599,40 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    window.editarPropiedad = async function (id) {
-        const prop = await window.propiedadesDB.getById(id);
+    // Editar propiedad (dinámica o estática)
+    window.editarPropiedad = async function (id, esEstatica) {
+        let prop = null;
+
+        if (esEstatica) {
+            const base = STATIC_PROPERTIES_MAP[String(id)];
+            if (!base) {
+                showToast('No se encontró la propiedad estática.', 'error');
+                return;
+            }
+            const overrides = JSON.parse(localStorage.getItem('breccia_estaticas_overrides') || '{}');
+            const estados = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
+            prop = {
+                ...base,
+                ...(overrides[String(id)] || {}),
+                estado: estados[String(id)] || base.estado || 'disponible',
+                esEstatica: true
+            };
+            editandoEsEstatica = true;
+            editandoId = String(id);
+        } else {
+            prop = await window.propiedadesDB.getById(id);
+            editandoEsEstatica = false;
+            if (prop) editandoId = prop.id;
+        }
+
         if (!prop) {
             showToast('No se encontró la propiedad a editar.', 'error');
             return;
         }
 
-        editandoId = prop.id;
-        document.getElementById('formTituloHeader').textContent = `Editar Propiedad #${prop.id}`;
+        document.getElementById('formTituloHeader').textContent = esEstatica
+            ? `Editar Propiedad Estática: ${prop.titulo}`
+            : `Editar Propiedad #${prop.id}`;
 
         document.getElementById('propTitulo').value = prop.titulo || '';
         document.getElementById('propTipo').value = prop.tipo || 'Venta';
@@ -471,10 +661,41 @@ document.addEventListener('DOMContentLoaded', async () => {
         caracteristicasLista = [...(prop.caracteristicas || [])];
         renderCaracteristicasTags();
 
-        fotosCargadas = [...(prop.imagenes || [])];
+        fotosCargadas = [...(prop.imagenes || (prop.thumb ? [prop.thumb] : []))];
         renderFotosPreview();
 
         cambiarTab('tabFormulario');
+    };
+
+    // Cambiar estado directo desde el select de la tabla
+    window.cambiarEstadoDirecto = async function (id, nuevoEstado, esEstatica) {
+        try {
+            if (esEstatica) {
+                const estados = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
+                estados[String(id)] = nuevoEstado;
+                localStorage.setItem('breccia_estado_estaticas', JSON.stringify(estados));
+            } else {
+                const prop = await window.propiedadesDB.getById(id);
+                if (prop) {
+                    prop.estado = nuevoEstado;
+                    await window.propiedadesDB.save(prop);
+                }
+            }
+
+            const labels = {
+                disponible: 'Disponible',
+                reservada: 'Reservada',
+                alquilada: 'Alquilada',
+                vendida: 'Vendida'
+            };
+            showToast(`Estado cambiado a: ${labels[nuevoEstado] || nuevoEstado}`, 'success');
+
+            // Actualizar la tabla sin recargar toda la página
+            await renderPropiedadesTabla();
+        } catch (e) {
+            console.error('Error al cambiar estado directo:', e);
+            showToast('Error al actualizar el estado.', 'error');
+        }
     };
 
     let idAEliminar = null;
@@ -516,6 +737,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     window.resetFormulario = function () {
         editandoId = null;
+        editandoEsEstatica = false;
         document.getElementById('formTituloHeader').textContent = 'Crear Nueva Propiedad';
         document.getElementById('formPropiedad').reset();
         // Reset estado a disponible
@@ -727,8 +949,12 @@ window.cambiarEstadoPropiedad = async function(id, esEstatica) {
             toastContainer.appendChild(toast);
             setTimeout(() => { toast.style.opacity='0'; setTimeout(() => toast.remove(), 300); }, 3500);
 
-            // Recargar tabla
-            location.reload();
+            // Recargar tabla de inmediato
+            if (window._renderPropiedadesTabla) {
+                await window._renderPropiedadesTabla();
+            } else {
+                location.reload();
+            }
         };
     });
 
