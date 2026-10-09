@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             ],
             thumb: 'FotosGascon2356/G35.jpg',
             imagenes: ['FotosGascon2356/G35.jpg'],
+            estado: 'vendida',
             esEstatica: true
         },
         '2': {
@@ -100,6 +101,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             ],
             thumb: 'SanJuan3052/SJ8.jpg',
             imagenes: ['SanJuan3052/SJ8.jpg'],
+            estado: 'vendida',
             esEstatica: true
         },
         '5': {
@@ -203,8 +205,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const searchVal = (document.getElementById('searchProp')?.value || '').toLowerCase();
         const catVal = document.getElementById('filterCategoria')?.value || 'todas';
 
-        // Estados y Overrides de propiedades estáticas (guardados en localStorage)
-        const estadosEstaticas = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
+        // Estados y Overrides de propiedades estáticas
+        const estadosGuardados = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
         const overridesEstaticas = JSON.parse(localStorage.getItem('breccia_estaticas_overrides') || '{}');
         const destacadas = JSON.parse(localStorage.getItem('breccia_propiedades_destacadas') || '{}');
         let ordenIds = JSON.parse(localStorage.getItem('breccia_propiedades_orden') || '[]');
@@ -216,7 +218,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             return {
                 ...base,
                 ...override,
-                estado: estadosEstaticas[id] || base.estado || 'disponible',
+                estado: estadosGuardados[id] || base.estado || 'disponible',
                 esEstatica: true
             };
         });

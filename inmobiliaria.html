@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
     <title>Servicios Inmobiliarios | Breccia</title>
     <meta name="description" content="Servicios inmobiliarios en Mar del Plata: compra, venta, alquiler y tasaciones de propiedades. Breccia Inmuebles y Negocios, más de 25 años de experiencia.">
-    <link rel="stylesheet" href="breccia.css">
-    <link rel="stylesheet" href="inmobiliaria.css">
-    <link rel="stylesheet" href="premium.css">
+    <link rel="stylesheet" href="breccia.css?v=20261009_1640">
+    <link rel="stylesheet" href="inmobiliaria.css?v=20261009_1640">
+    <link rel="stylesheet" href="premium.css?v=20261009_1640">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon-V3.ico?v=20260125143000">
     <link rel="shortcut icon" href="/favicon-V3.ico?v=20260125143000">
@@ -130,7 +130,12 @@
                         <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(0, 3)"></span>
                         <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(0, 4)"></span>
                     </div>
+                    <button class="btn-card-share" title="Compartir en Historia de Instagram" onclick="event.stopPropagation(); abrirModalCompartir('1', true)">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </button>
                     <div class="propiedad-badge">Venta</div>
+                    <div class="prop-estado-ribbon ribbon-vendida"><span>VENDIDA</span></div>
+                    <div class="prop-estado-overlay"></div>
                 </div>
                 <div class="propiedad-content">
                     <h3>Departamento Tipo Semipiso de Tres (3) Ambientes</h3>
@@ -153,8 +158,7 @@
                         </div>
                     </div>
                     <div class="propiedad-precio">USD 169.000</div>
-                    <button class="consultar-btn"
-                        onclick="event.stopPropagation(); abrirModalConsulta('Departamento Tipo Semipiso de Tres (3) Ambientes', 'Gascón 2356, Plaza Colón', 'USD 169.000')">Consultar</button>
+                    <button class="consultar-btn btn-deshabilitado" disabled title="Esta propiedad ya fue vendida">Vendida</button>
                 </div>
             </div>
 
@@ -273,7 +277,12 @@
                         <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(3, 3)"></span>
                         <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(3, 4)"></span>
                     </div>
+                    <button class="btn-card-share" title="Compartir en Historia de Instagram" onclick="event.stopPropagation(); abrirModalCompartir('4', true)">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </button>
                     <div class="propiedad-badge">Venta</div>
+                    <div class="prop-estado-ribbon ribbon-vendida"><span>VENDIDA</span></div>
+                    <div class="prop-estado-overlay"></div>
                 </div>
                 <div class="propiedad-content">
                     <h3>Departamento de 4 Ambientes con Gran Patio</h3>
@@ -296,8 +305,7 @@
                         </div>
                     </div>
                     <div class="propiedad-precio">USD 85.000</div>
-                    <button class="consultar-btn"
-                        onclick="event.stopPropagation(); abrirModalConsulta('Departamento de 4 Ambientes con Gran Patio', 'San Juan y Avellaneda, Mar del Plata', 'USD 85.000')">Consultar</button>
+                    <button class="consultar-btn btn-deshabilitado" disabled title="Esta propiedad ya fue vendida">Vendida</button>
                 </div>
             </div>
             <!-- NUEVA PROPIEDAD 5 - Cocheras Leblon -->
@@ -722,10 +730,10 @@
         </div>
     </div>
 
-    <script src="breccia.js"></script>
-    <script src="propiedades-db.js?v=2.3"></script>
-    <script src="compartir-story.js?v=2.3"></script>
-    <script src="inmobiliaria.js?v=2.3"></script>
+    <script src="breccia.js?v=20261009_1640"></script>
+    <script src="propiedades-db.js?v=20261009_1640"></script>
+    <script src="compartir-story.js?v=20261009_1640"></script>
+    <script src="inmobiliaria.js?v=20261009_1640"></script>
 </body>
 
 </html>

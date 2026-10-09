@@ -163,11 +163,23 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ============================================
+// ESTADOS BASE POR DEFECTO PARA PROPIEDADES ESTÁTICAS
+// ============================================
+const ESTADOS_BASE_ESTATICAS = {
+    '1': 'vendida',
+    '2': 'disponible',
+    '3': 'disponible',
+    '4': 'vendida',
+    '5': 'disponible'
+};
+
+// ============================================
 // RIBBONS PARA PROPIEDADES ESTÁTICAS
-// Lee el estado de localStorage y aplica el ribbon sobre cada card
+// Combina los estados base del negocio con modificaciones de localStorage
 // ============================================
 function aplicarRibbonsEstaticas() {
-    const estadosEstaticas = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
+    const guardados = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
+    const estadosEstaticas = { ...ESTADOS_BASE_ESTATICAS, ...guardados };
     const overridesEstaticas = JSON.parse(localStorage.getItem('breccia_estaticas_overrides') || '{}');
 
     const ribbonConfig = {
@@ -726,7 +738,8 @@ window.abrirDetallePropiedad = function (idPropiedad) {
     caracEl.innerHTML = propiedad.caracteristicas.map(c => `<li>${c}</li>`).join('');
 
     // Estado de la propiedad y configuración del botón Consultar en Detalle
-    const estadosEstaticas = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
+    const guardados = JSON.parse(localStorage.getItem('breccia_estado_estaticas') || '{}');
+    const estadosEstaticas = { ...ESTADOS_BASE_ESTATICAS, ...guardados };
     const estadoProp = estadosEstaticas[String(idPropiedad)] || propiedad.estado || 'disponible';
     const btnDetalleConsulta = document.querySelector('.consultar-btn-detalle');
 
