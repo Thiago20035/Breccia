@@ -124,6 +124,41 @@ document.addEventListener('DOMContentLoaded', async () => {
             thumb: 'LeblonCochera/L1.jpeg',
             imagenes: ['LeblonCochera/L1.jpeg'],
             esEstatica: true
+        },
+        '6': {
+            id: '6',
+            titulo: 'ESTILO CHAUVIN | Departamentos de 2 Ambientes con Balcón y Parrilla',
+            ubicacion: 'Catamarca 4455, Mar del Plata, Buenos Aires',
+            precio: 'Consultar precio y financiación',
+            tipo: 'Venta',
+            categoria: 'departamento',
+            dormitorios: '1',
+            banos: '1',
+            superficie: 'Desde 45 m²',
+            descripcion: 'ESTILO CHAUVIN | Diseño contemporáneo en una ubicación estratégica de Mar del Plata. Exclusivo desarrollo residencial de CIVILMAR Construcciones en Catamarca 4455.',
+            caracteristicas: [
+                'Departamentos de 2 ambientes con distribuciones funcionales',
+                'Superficies cubiertas desde 45 m²',
+                'Cocina integrada al estar-comedor',
+                'Amplios ventanales que favorecen la iluminación natural',
+                'Balcones privados con parrilla propia',
+                'Diseño arquitectónico contemporáneo',
+                'Cocheras subterráneas disponibles',
+                'Espacio destinado a bicicletas',
+                'Lobby de acceso de doble altura',
+                'Unidad dúplex exclusiva con terraza y amenities privados'
+            ],
+            thumb: 'Chauvin4455/C1.png',
+            imagenes: [
+                'Chauvin4455/C1.png',
+                'Chauvin4455/C2.png',
+                'Chauvin4455/C3.png',
+                'Chauvin4455/C4.png',
+                'Chauvin4455/C5.png',
+                'Chauvin4455/C6.png'
+            ],
+            estado: 'disponible',
+            esEstatica: true
         }
     };
     window.STATIC_PROPERTIES_MAP = STATIC_PROPERTIES_MAP;
@@ -179,11 +214,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function renderStats() {
         const dinámicas = await window.propiedadesDB.getAll();
-        const estaticasCount = 5; // Las 5 propiedades harcodeadas
+        const estaticasCount = Object.keys(STATIC_PROPERTIES_MAP).length;
         const total = dinámicas.length + estaticasCount;
 
-        const ventasCount = dinámicas.filter(p => p.tipo === 'Venta').length + 5; // Hardcoded are all Venta
-        const alquileresCount = dinámicas.filter(p => p.tipo === 'Alquiler').length;
+        const ventasCount = dinámicas.filter(p => p.tipo === 'Venta').length + Object.values(STATIC_PROPERTIES_MAP).filter(p => p.tipo === 'Venta').length;
+        const alquileresCount = dinámicas.filter(p => p.tipo === 'Alquiler').length + Object.values(STATIC_PROPERTIES_MAP).filter(p => p.tipo === 'Alquiler').length;
 
         let totalFotos = 0;
         dinámicas.forEach(p => totalFotos += (p.imagenes ? p.imagenes.length : 0));

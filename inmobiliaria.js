@@ -625,6 +625,39 @@ const propiedadesDetalle = {
         ],
         imagenes: Array.from({ length: 9 }, (_, i) => `LeblonCochera/L${i + 1}.jpeg`)
     },
+    '6': {
+        titulo: 'ESTILO CHAUVIN | Departamentos de 2 Ambientes con Balcón y Parrilla',
+        ubicacion: 'Catamarca 4455, Mar del Plata, Buenos Aires',
+        precio: 'Consultar precio y financiación',
+        tipo: 'Venta',
+        categoria: 'departamento',
+        dormitorios: '1',
+        banos: '1',
+        superficie: 'Desde 45 m²',
+        descripcion: 'ESTILO CHAUVIN | Diseño contemporáneo en una ubicación estratégica de Mar del Plata.\n\nDescubrí Estilo Chauvin, un exclusivo desarrollo residencial de CIVILMAR Construcciones que combina arquitectura contemporánea, inspiración clásica y espacios diseñados para disfrutar de una experiencia de vida superior.\n\nUbicado en Catamarca 4455, a metros de las avenidas Independencia y Juan B. Justo, el emprendimiento ofrece una excelente conectividad con los principales puntos de Mar del Plata, incluyendo el centro comercial, el Paseo Güemes, las playas y el puerto.\n\nEL EMPRENDIMIENTO:\nEstilo Chauvin cuenta con 25 departamentos de 2 ambientes y una exclusiva unidad dúplex con terraza y espacio de amenities privados. Su arquitectura se distingue por una fachada de ladrillo visto, amplios ventanales, balcones panorámicos y vegetación integrada, logrando un equilibrio entre elegancia, modernidad y naturaleza.',
+        caracteristicas: [
+            'Departamentos de 2 ambientes con distribuciones funcionales',
+            'Superficies cubiertas desde 45 m²',
+            'Cocina integrada al estar-comedor',
+            'Amplios ventanales que favorecen la iluminación natural',
+            'Balcones privados con parrilla propia',
+            'Diseño arquitectónico contemporáneo',
+            'Cocheras subterráneas disponibles',
+            'Espacio destinado a bicicletas',
+            'Lobby de acceso de doble altura',
+            'Unidad dúplex exclusiva con terraza y amenities privados',
+            'A metros de Av. Independencia y Av. Juan B. Justo',
+            'A 1,8 km del Paseo Comercial Güemes'
+        ],
+        imagenes: [
+            'Chauvin4455/C1.png',
+            'Chauvin4455/C2.png',
+            'Chauvin4455/C3.png',
+            'Chauvin4455/C4.png',
+            'Chauvin4455/C5.png',
+            'Chauvin4455/C6.png'
+        ]
+    }
 };
 
 let propiedadActualDetalle = {};
