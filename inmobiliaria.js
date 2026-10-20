@@ -22,6 +22,7 @@
             titulo: 'Departamento tipo semipiso de tres (3) ambientes',
             ubicacion: 'Gascón 2356, Plaza Colón',
             precio: 'USD 169.000',
+            raw: { dormitorios: '2', banos: '2', superficie: '69 m²' },
             cardSpecs: [['bed', '2 dorm.'], ['bath', '2 baños'], ['area', '69 m²'], ['car', 'Cochera doble']],
             specs: [['bed', 'Dormitorios', '2'], ['bath', 'Baños', '2'], ['area', 'Superficie', '69 m²']],
             portada: ['G35', 'G15', 'G18', 'G3', 'G13'].map(n => `FotosGascon2356/${n}.jpg`),
@@ -42,6 +43,7 @@
             titulo: 'Departamento de dos ambientes',
             ubicacion: 'Arenales 2445, Mar del Plata',
             precio: 'USD 55.000',
+            raw: { dormitorios: '1', banos: '1', superficie: '40 m²' },
             cardSpecs: [['bed', '1 dorm.'], ['bath', '1 baño'], ['area', '40 m²']],
             specs: [['bed', 'Dormitorios', '1'], ['bath', 'Baños', '1'], ['area', 'Superficie', '40 m²']],
             portada: ['PA3', 'PA5', 'PA8', 'PA9'].map(n => `Arenales2445/${n}.jpg`),
@@ -63,6 +65,7 @@
             titulo: 'Lote con construcción en Parque Luro',
             ubicacion: 'Francia 371, Parque Luro',
             precio: 'USD 120.000',
+            raw: { dimensiones: '10x33m', construccion: '70 m²', superficieTotal: '330 m²' },
             cardSpecs: [['area', '10 × 33 m'], ['hammer', '70 m² const.'], ['layers', '330 m² lote']],
             specs: [['area', 'Dimensiones', '10 × 33 m'], ['hammer', 'Construcción', '70 m²'], ['layers', 'Superficie', '330 m²']],
             portada: ['Francia371/F3.jpg', 'Francia371/F4.jpg'],
@@ -84,6 +87,7 @@
             titulo: 'Departamento de 4 ambientes con gran patio',
             ubicacion: 'San Juan y Avellaneda, Mar del Plata',
             precio: 'USD 85.000',
+            raw: { dormitorios: '3', banos: '1', superficie: '129 m²' },
             cardSpecs: [['bed', '3 dorm.'], ['bath', '1 baño'], ['tree', 'Patio propio']],
             specs: [['bed', 'Dormitorios', '3'], ['bath', 'Baños', '1'], ['area', 'Superficie', '129,71 m²']],
             portada: ['SJ8', 'SJ28', 'SJ21', 'SJ24', 'SJ19'].map(n => `SanJuan3052/${n}.jpg`),
@@ -104,6 +108,7 @@
             titulo: 'Cocheras en edificio céntrico — 2 unidades disponibles',
             ubicacion: 'Corrientes entre Rivadavia y Belgrano, Centro',
             precio: 'USD 13.000 c/u',
+            raw: {},
             cardSpecs: [['car', '2 cocheras'], ['shield', 'Seguridad 24 hs'], ['building', 'UF 702 / 703']],
             specs: [['building', 'Unidades', '702 y 703'], ['coins', 'Expensas', '$70.000'], ['calendar', 'Antigüedad', '45 años']],
             portada: ['L1', 'L3', 'L2', 'L5', 'L9'].map(n => `LeblonCochera/${n}.jpeg`),
@@ -117,6 +122,35 @@
                 "Expensas: $70.000", "Antigüedad: 45 años", "Escribanía designada", "Agua corriente", "Cloacas",
                 "Electricidad", "Edificio bien mantenido"
             ]
+        },
+        {
+            id: 6,
+            categoria: 'departamento',
+            operacion: 'Venta',
+            titulo: 'Estilo Chauvin — Departamentos de 2 ambientes con balcón y parrilla',
+            ubicacion: 'Catamarca 4455, Mar del Plata, Buenos Aires',
+            precio: 'Consultar precio y financiación',
+            raw: { dormitorios: '1', banos: '1', superficie: 'Desde 45 m²' },
+            cardSpecs: [['bed', '1 dorm.'], ['bath', '1 baño'], ['area', 'Desde 45 m²']],
+            specs: [['bed', 'Dormitorios', '1'], ['bath', 'Baños', '1'], ['area', 'Superficie', 'Desde 45 m²']],
+            portada: range(1, 6, n => `Chauvin4455/C${n}.png`),
+            imagenes: range(1, 6, n => `Chauvin4455/C${n}.png`),
+            descripcion: `ESTILO CHAUVIN | Diseño contemporáneo en una ubicación estratégica de Mar del Plata.
+
+Descubrí Estilo Chauvin, un exclusivo desarrollo residencial de CIVILMAR Construcciones que combina arquitectura contemporánea, inspiración clásica y espacios diseñados para disfrutar de una experiencia de vida superior.
+
+Ubicado en Catamarca 4455, a metros de las avenidas Independencia y Juan B. Justo, el emprendimiento ofrece una excelente conectividad con los principales puntos de Mar del Plata, incluyendo el centro comercial, el Paseo Güemes, las playas y el puerto.
+
+EL EMPRENDIMIENTO:
+Estilo Chauvin cuenta con 25 departamentos de 2 ambientes y una exclusiva unidad dúplex con terraza y espacio de amenities privados. Su arquitectura se distingue por una fachada de ladrillo visto, amplios ventanales, balcones panorámicos y vegetación integrada, logrando un equilibrio entre elegancia, modernidad y naturaleza.`,
+            caracteristicas: [
+                'Departamentos de 2 ambientes con distribuciones funcionales', 'Superficies cubiertas desde 45 m²',
+                'Cocina integrada al estar-comedor', 'Amplios ventanales que favorecen la iluminación natural',
+                'Balcones privados con parrilla propia', 'Diseño arquitectónico contemporáneo',
+                'Cocheras subterráneas disponibles', 'Espacio destinado a bicicletas', 'Lobby de acceso de doble altura',
+                'Unidad dúplex exclusiva con terraza y amenities privados', 'A metros de Av. Independencia y Av. Juan B. Justo',
+                'A 1,8 km del Paseo Comercial Güemes'
+            ]
         }
     ];
 
@@ -125,11 +159,122 @@
     };
     const SINGULAR = { departamento: 'Departamento', casa: 'Casa', lote: 'Lote', cochera: 'Cochera', local: 'Local' };
 
+    // ============================================
+    // INTEGRACIÓN CON EL PANEL ADMIN (admin.html)
+    // El panel guarda en este navegador: estados, ediciones, destacadas, orden
+    // (localStorage) y propiedades nuevas (IndexedDB vía propiedades-db.js).
+    // ============================================
+    const ESTADOS_BASE = { '1': 'vendida', '4': 'vendida' };
+    const ESTADO_LABEL = { vendida: 'Vendida', alquilada: 'Alquilada', reservada: 'Reservada' };
+    const readLS = (key, fallback) => {
+        try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch { return fallback; }
+    };
+    const panel = {
+        estados: { ...ESTADOS_BASE, ...readLS('breccia_estado_estaticas', {}) },
+        overrides: readLS('breccia_estaticas_overrides', {}),
+        destacadas: readLS('breccia_propiedades_destacadas', {}),
+        orden: readLS('breccia_propiedades_orden', [])
+    };
+    const isClosed = p => !!ESTADO_LABEL[p.estado];
+    const num = v => /^\d+$/.test(String(v).trim());
+
+    // Arma las especificaciones a partir de los campos crudos (los mismos que edita el panel)
+    function buildSpecs(p) {
+        const r = p.raw || {};
+        let card, sheetSpecs;
+        if (p.categoria === 'lote') {
+            card = [['area', r.dimensiones], ['hammer', r.construccion && `${r.construccion} const.`], ['layers', r.superficieTotal && `${r.superficieTotal} lote`]];
+            sheetSpecs = [['area', 'Dimensiones', r.dimensiones], ['hammer', 'Construcción', r.construccion], ['layers', 'Superficie', r.superficieTotal]];
+        } else if (p.categoria === 'cochera') {
+            card = [['car', r.unidades || 'Cochera'], ['coins', r.expensas], ['calendar', r.antiguedad]];
+            sheetSpecs = [['building', 'Unidades', r.unidades], ['coins', 'Expensas', r.expensas], ['calendar', 'Antigüedad', r.antiguedad]];
+        } else {
+            const dorm = r.dormitorios && (num(r.dormitorios) ? `${r.dormitorios} dorm.` : r.dormitorios);
+            const banos = r.banos && (num(r.banos) ? `${r.banos} ${+r.banos === 1 ? 'baño' : 'baños'}` : r.banos);
+            card = [['bed', dorm], ['bath', banos], ['area', r.superficie]];
+            sheetSpecs = [['bed', 'Dormitorios', r.dormitorios], ['bath', 'Baños', r.banos], ['area', 'Superficie', r.superficie]];
+        }
+        p.cardSpecs = card.filter(([, v]) => v);
+        p.specs = sheetSpecs.filter(([, , v]) => v);
+        if (!p.specs.length) p.specs = [['home', 'Tipo', SINGULAR[p.categoria] || 'Propiedad']];
+    }
+
+    // Aplica a las propiedades fijas lo editado en el panel
+    function aplicarPanel(p, index) {
+        const id = String(p.id);
+        const ov = panel.overrides[id];
+        if (ov) {
+            ['titulo', 'precio', 'ubicacion', 'descripcion'].forEach(k => { if (ov[k]) p[k] = ov[k]; });
+            if (ov.tipo) p.operacion = ov.tipo;
+            const catChanged = ov.categoria && ov.categoria !== p.categoria;
+            if (ov.categoria && CATEGORIAS[ov.categoria]) p.categoria = ov.categoria;
+            if (ov.caracteristicas?.length) p.caracteristicas = ov.caracteristicas;
+            if (ov.imagenes?.length) { p.imagenes = ov.imagenes; p.portada = ov.imagenes.slice(0, 5); }
+            const keys = ['dormitorios', 'banos', 'superficie', 'dimensiones', 'construccion', 'superficieTotal'];
+            const specsChanged = keys.some(k => ov[k] && ov[k] !== (p.raw || {})[k]);
+            if (catChanged || specsChanged) {
+                p.raw = { ...p.raw };
+                keys.forEach(k => { if (ov[k]) p.raw[k] = ov[k]; });
+                buildSpecs(p);
+            }
+        }
+        p.estado = panel.estados[id] || p.estado || 'disponible';
+        p.destacada = !!panel.destacadas[id];
+        p.orden = index;
+    }
+
+    // Convierte una propiedad creada en el panel (IndexedDB) al formato del sitio
+    function desdePanel(d, index) {
+        const cat = (d.categoria || 'departamento').toLowerCase();
+        const imgs = d.imagenes?.length ? d.imagenes : ['favicon-V3.ico'];
+        const p = {
+            id: String(d.id),
+            dinamica: true,
+            categoria: CATEGORIAS[cat] ? cat : 'departamento',
+            operacion: d.tipo || 'Venta',
+            titulo: d.titulo || 'Propiedad',
+            ubicacion: d.ubicacion || 'Mar del Plata',
+            precio: d.precio || 'Consultar',
+            raw: {
+                dormitorios: d.dormitorios, banos: d.banos, superficie: d.superficie,
+                dimensiones: d.dimensiones, construccion: d.construccion, superficieTotal: d.superficieTotal,
+                unidades: d.unidades, expensas: d.expensas, antiguedad: d.antiguedad
+            },
+            portada: imgs.slice(0, 5),
+            imagenes: imgs,
+            descripcion: d.descripcion || 'Sin descripción disponible.',
+            caracteristicas: d.caracteristicas || [],
+            estado: d.estado || 'disponible'
+        };
+        buildSpecs(p);
+        p.destacada = !!panel.destacadas[p.id];
+        p.orden = index;
+        return p;
+    }
+
+    // compartir-story.js busca los datos en window.propiedadesDetalle
+    function exponerParaCompartir() {
+        window.propiedadesDetalle = Object.fromEntries(propiedades.map(p => [String(p.id), {
+            // la placa muestra estos tres campos como chips (mismo criterio que admin.js)
+            dormitorios: p.cardSpecs[0]?.[1] || '', banos: p.cardSpecs[1]?.[1] || '', superficie: p.cardSpecs[2]?.[1] || '',
+            titulo: p.titulo, ubicacion: p.ubicacion, precio: p.precio, tipo: p.operacion,
+            categoria: p.categoria, imagenes: p.imagenes, thumb: p.portada[0], estado: p.estado,
+            destacada: p.destacada, descripcion: p.descripcion, caracteristicas: p.caracteristicas
+        }]));
+    }
+
+    function compartirHistoria(p) {
+        if (p && typeof window.abrirModalCompartir === 'function') window.abrirModalCompartir(String(p.id), !p.dinamica);
+        else toast('No se pudo abrir el generador de historias');
+    }
+
     const precioNumero = p => {
         const digits = p.precio.replace(/[^\d]/g, '');
         return digits ? parseInt(digits, 10) : Infinity;
     };
-    const byId = id => propiedades.find(p => p.id === id);
+    const byId = id => propiedades.find(p => String(p.id) === String(id));
+
+    propiedades.forEach(aplicarPanel);
     const escape = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     const linkTo = p => `${location.origin}${location.pathname}#propiedad-${p.id}`;
     const waLink = p => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hola, quiero consultar por: ${p.titulo} (${p.ubicacion}) — ${p.precio}. ${linkTo(p)}`)}`;
@@ -159,11 +304,17 @@
         const nav = p.portada.length > 1 ? `
             <button type="button" class="prop-nav prop-nav--prev" data-dir="-1" aria-label="Foto anterior">${icon('chev-l', 'icon--sm')}</button>
             <button type="button" class="prop-nav prop-nav--next" data-dir="1" aria-label="Foto siguiente">${icon('chev-r', 'icon--sm')}</button>` : '';
+        const closed = isClosed(p);
+        const actions = closed
+            ? `<span class="prop-closed-label">${ESTADO_LABEL[p.estado]}</span>`
+            : `<a class="icon-btn" href="${waLink(p)}" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp" data-stop>${icon('whatsapp')}</a>
+                        <button type="button" class="icon-btn icon-btn--signal" data-consultar="${p.id}" aria-label="Consultar por esta propiedad">${icon('mail')}</button>`;
         return `
-        <article class="prop" data-id="${p.id}" style="animation-delay:${i * 60}ms">
+        <article class="prop${closed ? ' is-closed' : ''}" data-id="${p.id}" style="animation-delay:${i * 60}ms">
             <div class="prop-media">
                 <div class="prop-track">${slides}</div>
-                <div class="prop-badges"><span class="badge badge--signal">${p.operacion}</span><span class="badge">${SINGULAR[p.categoria]}</span></div>
+                <div class="prop-badges">${p.destacada ? '<span class="badge badge--star">★ Destacada</span>' : ''}<span class="badge badge--signal">${escape(p.operacion)}</span><span class="badge">${SINGULAR[p.categoria]}</span></div>
+                ${closed ? `<div class="prop-status"><span>${ESTADO_LABEL[p.estado]}</span></div>` : ''}
                 <span class="badge prop-count">${p.imagenes.length} fotos</span>
                 ${nav}
                 <div class="prop-dots" aria-hidden="true">${dots}</div>
@@ -175,8 +326,8 @@
                 <div class="prop-foot">
                     <div class="prop-price"><small>Precio</small>${escape(p.precio)}</div>
                     <div class="prop-actions">
-                        <a class="icon-btn" href="${waLink(p)}" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp" data-stop>${icon('whatsapp')}</a>
-                        <button type="button" class="icon-btn icon-btn--signal" data-consultar="${p.id}" aria-label="Consultar por esta propiedad">${icon('mail')}</button>
+                        <button type="button" class="icon-btn icon-btn--ig" data-historia="${p.id}" aria-label="Compartir en historia de Instagram" title="Historia de Instagram">${icon('instagram')}</button>
+                        ${actions}
                     </div>
                 </div>
             </div>
@@ -185,6 +336,8 @@
 
     function renderGrid() {
         let list = propiedades.filter(p => state.categoria === 'todas' || p.categoria === state.categoria);
+        const pos = p => { const i = panel.orden.indexOf(String(p.id)); return i === -1 ? 9999 + p.orden : i; };
+        if (state.sort === 'default') list = [...list].sort((a, b) => (b.destacada - a.destacada) || (pos(a) - pos(b)));
         if (state.sort === 'asc') list = [...list].sort((a, b) => precioNumero(a) - precioNumero(b));
         if (state.sort === 'desc') list = [...list].sort((a, b) => (precioNumero(b) === Infinity ? -1 : precioNumero(b)) - (precioNumero(a) === Infinity ? -1 : precioNumero(a)));
 
@@ -204,7 +357,7 @@
     }
 
     function moveCard(card, dir) {
-        const id = +card.dataset.id;
+        const id = card.dataset.id;
         const total = card.querySelectorAll('.prop-slide').length;
         if (total < 2) return;
         loadSlides(card);
@@ -219,10 +372,12 @@
         const nav = e.target.closest('.prop-nav');
         if (nav) { e.preventDefault(); moveCard(card, +nav.dataset.dir); return; }
         const consult = e.target.closest('[data-consultar]');
-        if (consult) { e.preventDefault(); abrirConsulta(+consult.dataset.consultar); return; }
+        if (consult) { e.preventDefault(); abrirConsulta(consult.dataset.consultar); return; }
+        const historia = e.target.closest('[data-historia]');
+        if (historia) { e.preventDefault(); compartirHistoria(byId(historia.dataset.historia)); return; }
         if (e.target.closest('[data-stop]')) return;
         e.preventDefault();
-        abrirFicha(+card.dataset.id);
+        abrirFicha(card.dataset.id);
     });
 
     // Autoplay al pasar el mouse (solo dispositivos con hover)
@@ -303,7 +458,15 @@
         document.getElementById('detalleSpecs').innerHTML = p.specs.map(([ic, label, value]) =>
             `<div class="sheet-spec">${icon(ic)}<small>${label}</small><strong>${escape(value)}</strong></div>`).join('');
         document.getElementById('detalleCaracteristicas').innerHTML = p.caracteristicas.map(c => `<li>${escape(c)}</li>`).join('');
-        document.getElementById('detalleWhatsapp').href = waLink(p);
+        const wa = document.getElementById('detalleWhatsapp');
+        const consultar = document.getElementById('detalleConsultar');
+        const closed = isClosed(p);
+        wa.href = waLink(p);
+        wa.hidden = closed;
+        consultar.disabled = closed;
+        consultar.innerHTML = closed
+            ? `Propiedad ${ESTADO_LABEL[p.estado].toLowerCase()}`
+            : `Consultar por esta propiedad ${icon('arrow', 'icon--move')}`;
 
         sheet.desc.textContent = p.descripcion;
         sheet.desc.classList.add('is-clamped');
@@ -380,7 +543,7 @@
     });
 
     sheet.modal.addEventListener('modal:close', () => {
-        if (location.hash.startsWith('#propiedad-')) history.replaceState(null, '', location.pathname + location.search);
+        if (/^#prop(iedad)?-/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
     });
 
     document.getElementById('detalleConsultar').addEventListener('click', () => {
@@ -388,6 +551,8 @@
         closeModal('modalDetalle');
         setTimeout(() => abrirConsulta(id), 250);
     });
+
+    document.getElementById('detalleHistoria').addEventListener('click', () => compartirHistoria(sheet.current));
 
     document.getElementById('detalleCompartir').addEventListener('click', async () => {
         const p = sheet.current;
@@ -400,10 +565,10 @@
         }
     });
 
-    // Deep link: inmobiliaria.html#propiedad-3 abre la ficha directamente
+    // Deep link: #propiedad-3 o #prop-3 (link de las historias) abre la ficha directamente
     function abrirDesdeHash() {
-        const match = location.hash.match(/^#propiedad-(\d+)$/);
-        if (match && byId(+match[1])) abrirFicha(+match[1], { updateHash: false });
+        const match = location.hash.match(/^#prop(?:iedad)?-([\w-]+)$/);
+        if (match && byId(match[1])) abrirFicha(match[1], { updateHash: false });
     }
     window.addEventListener('hashchange', abrirDesdeHash);
 
@@ -522,7 +687,30 @@ Fecha: ${new Date().toLocaleString('es-AR')}`.trim()
     // ============================================
     // INIT
     // ============================================
-    renderChips();
-    renderGrid();
-    document.addEventListener('DOMContentLoaded', abrirDesdeHash);
+    function renderAll() {
+        exponerParaCompartir();
+        renderChips();
+        renderGrid();
+    }
+
+    // Propiedades creadas desde el panel admin
+    async function cargarDinamicas() {
+        if (!window.propiedadesDB) return;
+        try {
+            const dinamicas = await window.propiedadesDB.getAll();
+            if (!dinamicas?.length) return;
+            const base = propiedades.length;
+            dinamicas.forEach((d, i) => { if (!byId(d.id)) propiedades.push(desdePanel(d, base + i)); });
+            renderAll();
+            if (!sheet.modal.classList.contains('is-open')) abrirDesdeHash();
+        } catch (err) {
+            console.error('Error al cargar propiedades del panel:', err);
+        }
+    }
+
+    renderAll();
+    document.addEventListener('DOMContentLoaded', () => {
+        abrirDesdeHash();
+        cargarDinamicas();
+    });
 })();
