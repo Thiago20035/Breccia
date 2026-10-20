@@ -1,224 +1,156 @@
 // ============================================
-// CARRUSEL DE SERVICIOS
+// ADMINISTRACIÓN — directorio de edificios
 // ============================================
-let currentSlide = 0;
-const track = document.getElementById('carouselTrack');
-const slides = document.querySelectorAll('.carousel-slide');
-const indicators = document.querySelectorAll('.indicator');
-const totalSlides = slides.length;
+(function () {
+    'use strict';
 
-function updateCarousel() {
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    // Datos en edificios.js (padrón de consorcios administrados)
+    const edificios = (window.BRECCIA_EDIFICIOS || []).map((ed, i) => ({ ...ed, orden: i }));
 
-    indicators.forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === currentSlide);
+    const ZONAS = { todas: 'Todas', centro: 'Centro', 'playa grande': 'Playa Grande', camet: 'Camet' };
+    const ITEMS_PER_PAGE = 12;
+    const { icon } = window.Breccia;
 
-        if (index === currentSlide) {
-            indicator.style.animation = 'none';
-            setTimeout(() => {
-                indicator.style.animation = '';
-            }, 10);
-        }
-    });
-}
+    const state = { query: '', zona: 'todas', sort: 'default', page: 1 };
 
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateCarousel();
-}
-
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateCarousel();
-}
-
-document.getElementById('nextBtn').addEventListener('click', nextSlide);
-document.getElementById('prevBtn').addEventListener('click', prevSlide);
-
-indicators.forEach((indicator, index) => {
-    indicator.addEventListener('click', () => {
-        currentSlide = index;
-        updateCarousel();
-    });
-});
-
-let autoplayInterval = setInterval(nextSlide, 5000);
-
-const carouselContainer = document.querySelector('.carousel-container');
-carouselContainer.addEventListener('mouseenter', () => {
-    clearInterval(autoplayInterval);
-});
-
-carouselContainer.addEventListener('mouseleave', () => {
-    autoplayInterval = setInterval(nextSlide, 5000);
-});
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') prevSlide();
-    if (e.key === 'ArrowRight') nextSlide();
-});
-
-// ============================================
-// SISTEMA DE EDIFICIOS - DATOS DEFINITIVOS
-// ============================================
-
-const edificios = [
-    { nombre: "Leblon", direccion: "Corrientes 1847", zona: "centro", unidades: 278, pisos: 10 },
-    { nombre: "Vista del Cabo", direccion: "Bolivar 989", zona: "centro", unidades: 6, pisos: 6 },
-    { nombre: "Consorcio 25 de Mayo 3020", direccion: "25 de Mayo 3020", zona: "centro", unidades: 53, pisos: 10 },
-    { nombre: "Consorcio Edificio San Lorenzo", direccion: "San Lorenzo 1641", zona: "centro", unidades: 9, pisos: 4 },
-    { nombre: "San Juan 3052", direccion: "San Juan 3052", zona: "centro", unidades: 32, pisos: 3 }, // ✅ CORREGIDO: 3 pisos
-    { nombre: "Consorcio Edificio Ocean View", direccion: "F.U Camet 1101", zona: "camet", unidades: 12, pisos: 6 },
-    { nombre: "Consorcio Propietarios Brown 2317", direccion: "Brown 2317", zona: "centro", unidades: 6, pisos: 1 },
-    { nombre: "Consorcio Neptuno XII", direccion: "La Rioja 3147", zona: "centro", unidades: 30, pisos: 4 },
-    { nombre: "Consorcio Propietarios Puro Centro", direccion: "Gascon 2358", zona: "centro", unidades: 15, pisos: 11 },
-    { nombre: "Buenos Aires 2861", direccion: "Buenos Aires 2861", zona: "centro", unidades: 12, pisos: 2 },
-    { nombre: "Gascon 2744", direccion: "Gascon 2744", zona: "centro", unidades: 12, pisos: 6 },
-    { nombre: "Edificio Playa Grande Office", direccion: "Formosa 203", zona: "playa grande", unidades: 4, pisos: 3 },
-    { nombre: "Edificio Natura", direccion: "Almirante Brown 2569", zona: "centro", unidades: 78, pisos: 9 },
-    { nombre: "Consorcio de Propietarios Chernomar II", direccion: "Catamarca 1271", zona: "centro", unidades: 59, pisos: 6 },
-    { nombre: "Consorcio de Propietarios Olague XII", direccion: "Arenales 2445", zona: "centro", unidades: 105, pisos: 9 },
-    { nombre: "Edificio Gacela", direccion: "Bolivar 3229", zona: "centro", unidades: 94, pisos: 12 },
-    // ❌ ELIMINADO: Luchetti XV (Bvard Maritimo 1411)
-    { nombre: "Fideicomiso Terminal Guemes Trust", direccion: "Castelli 1575", zona: "centro", unidades: 9, pisos: 5 },
-    { nombre: "Consorcio de Propietarios Ondina IV", direccion: "Jose Marmol 1053", zona: "centro", unidades: 13, pisos: 0 },
-    { nombre: "Consorcio Oriana", direccion: "Bv. Maritimo P.P. Ramos 1599", zona: "playa grande", unidades: 9, pisos: 6 },
-    { nombre: "Consorcio de Propietarios", direccion: "Mejico 731", zona: "centro", unidades: 7, pisos: 1 },
-    { nombre: "Consorcio de Propietarios Pasteur", direccion: "Pasteur Esq. Chapeaurouge", zona: "centro", unidades: 5, pisos: 2 },
-    { nombre: "Consorcio de Propietarios", direccion: "Uruguay 287", zona: "centro", unidades: 6, pisos: 1 },
-    { nombre: "Consorcio de Propietarios", direccion: "Lopez de Gomara 4050", zona: "centro", unidades: 8, pisos: 1 },
-    { nombre: "Consorcio de Propietarios San Mar II", direccion: "Falucho 2513/15", zona: "centro", unidades: 37, pisos: 9 },
-    { nombre: "Condor II", direccion: "Falucho 4841", zona: "centro", unidades: 35, pisos: 6 },
-    { nombre: "Condor I", direccion: "Alte. Brown 4840", zona: "centro", unidades: 34, pisos: 6 },
-    { nombre: "Consorcio de Propietarios Evemar 5", direccion: "Cardiel 3935", zona: "centro", unidades: 11, pisos: 2 },
-    { nombre: "Consorcio de Propietarios Evamar 6", direccion: "Zacagnini 4505", zona: "centro", unidades: 16, pisos: 2 },
-    { nombre: "Edificio Linehouse Offices", direccion: "Hipolito Yrigoyen 2281", zona: "centro", unidades: 27, pisos: 10 },
-    { nombre: "French 3741", direccion: "French 3741", zona: "centro", unidades: 22, pisos: 2 },
-    { nombre: "Arizona Cumbre", direccion: "San Luis 2390", zona: "centro", unidades: 17, pisos: 8 },
-    { nombre: "1° de Octubre Torre I", direccion: "Av. Independencia 4320", zona: "centro", unidades: 112, pisos: 14 },
-    { nombre: "Consorcio de Propietarios Esmeralda", direccion: "Belgrano 2321", zona: "centro", unidades: 34, pisos: 8 },
-    // ❌ ELIMINADO: Torreta IV (Derqui 1015)
-    { nombre: "Consorcio de Propietarios Magaluf V", direccion: "Sarmiento 2465", zona: "centro", unidades: 57, pisos: 10 },
-    { nombre: "Majes", direccion: "Hipolito Yrigoyen 3415", zona: "centro", unidades: 7, pisos: 3 }, // ✅ ACTUALIZADO: Nombre
-    { nombre: "Consorcio de Propietarios", direccion: "Las Heras 2876/90", zona: "centro", unidades: 39, pisos: 6 },
-    { nombre: "Consorcio de Propietarios", direccion: "Hipolito Yrigoyen 1206", zona: "centro", unidades: 19, pisos: 10 },
-    { nombre: "Edificio Uruguay 1604/16", direccion: "Uruguay 1604/16", zona: "centro", unidades: 11, pisos: 4 },
-    { nombre: "Vitto", direccion: "J. Acevedo 4217", zona: "centro", unidades: 20, pisos: 4 }, // ✅ ACTUALIZADO: Nombre
-    { nombre: "Consorcio de Propietarios", direccion: "Salta 4342", zona: "centro", unidades: 15, pisos: 2 },
-    { nombre: "Consorcio Independencia 4149", direccion: "Independencia 4149", zona: "centro", unidades: 16, pisos: 3 },
-    { nombre: "Consorcio de Propietarios Storni II", direccion: "Alice 4380", zona: "centro", unidades: 14, pisos: 5 },
-    { nombre: "Consorcio de Propietarios Storni III", direccion: "Sargento Cabral 31", zona: "centro", unidades: 16, pisos: 6 },
-    { nombre: "Consorcio de Propietarios Orbia", direccion: "25 de Mayo 3073", zona: "centro", unidades: 72, pisos: 9 },
-    { nombre: "Consorcio de Propietarios Costa Alsina", direccion: "Alsina 2478", zona: "centro", unidades: 15, pisos: 9 },
-    { nombre: "Consorcio de Propietarios San Luis 1729", direccion: "San Luis 1729", zona: "centro", unidades: 4, pisos: 4 },
-    // ✅ NUEVOS EDIFICIOS - DATOS COMPLETOS:
-    { nombre: "Santana", direccion: "Corrientes 2927", zona: "centro", unidades: 9, pisos: 5 }, // ✅ ACTUALIZADO: 5 pisos
-    { nombre: "Consorcio de Propietarios Rondeau 112", direccion: "Rondeau 112", zona: "centro", unidades: 6, pisos: 2 }, // ✅ ACTUALIZADO: 2 pisos
-    { nombre: "Ripalda IX", direccion: "9 de Julio 2857", zona: "centro", unidades: 45, pisos: 10 } // ✅ COMPLETO: 45 UF, 10 pisos
-];
-
-let filteredEdificios = [...edificios];
-let currentPage = 1;
-const itemsPerPage = 12;
-
-function renderEdificios() {
     const grid = document.getElementById('edificiosGrid');
-    if (!grid) return;
+    const pager = document.getElementById('pagination');
+    const summary = document.getElementById('bldSummary');
+    const chips = document.getElementById('zoneChips');
+    const search = document.getElementById('searchEdificio');
+    const sort = document.getElementById('sortEdificios');
 
-    const start = (currentPage - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    const pageEdificios = filteredEdificios.slice(start, end);
+    const normalize = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const escape = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-    grid.innerHTML = pageEdificios.map(ed => `
-        <div class="edificio-card">
-            <h3>🏢 ${ed.nombre}</h3>
-            <div class="edificio-ubicacion">📍 ${ed.direccion}</div>
-            <div class="edificio-info">
-                <div class="info-badge"><strong>${ed.unidades}</strong> unidades</div>
-                <div class="info-badge"><strong>${ed.pisos}</strong> pisos</div>
-            </div>
-        </div>
-    `).join('');
+    const bldTotal = document.getElementById('bldTotal');
+    if (bldTotal) bldTotal.textContent = edificios.length;
 
-    const showingEl = document.getElementById('showing');
-    const totalEl = document.getElementById('total');
-    if (showingEl) showingEl.textContent = pageEdificios.length;
-    if (totalEl) totalEl.textContent = filteredEdificios.length;
-}
+    // ============================================
+    // FILTRO + ORDEN
+    // ============================================
+    function filtered() {
+        const q = normalize(state.query.trim());
+        const list = edificios.filter(ed =>
+            (state.zona === 'todas' || ed.zona === state.zona) &&
+            (!q || normalize(`${ed.nombre} ${ed.direccion}`).includes(q))
+        );
+        const sorters = {
+            default: (a, b) => a.orden - b.orden,
+            nombre: (a, b) => a.nombre.localeCompare(b.nombre, 'es'),
+            unidades: (a, b) => b.unidades - a.unidades,
+            pisos: (a, b) => b.pisos - a.pisos
+        };
+        return list.sort(sorters[state.sort]);
+    }
 
-function renderPagination() {
-    const pagination = document.getElementById('pagination');
-    if (!pagination) return;
+    function renderChips() {
+        if (!chips) return;
+        chips.innerHTML = Object.entries(ZONAS).map(([key, label]) => {
+            const count = key === 'todas' ? edificios.length : edificios.filter(ed => ed.zona === key).length;
+            return `<button type="button" class="chip" data-zona="${key}" aria-pressed="${state.zona === key}">${label}<span class="chip-count">${count}</span></button>`;
+        }).join('');
+    }
 
-    const totalPages = Math.ceil(filteredEdificios.length / itemsPerPage);
+    function render() {
+        if (!grid) return;
+        const list = filtered();
+        const totalPages = Math.max(1, Math.ceil(list.length / ITEMS_PER_PAGE));
+        state.page = Math.min(state.page, totalPages);
+        const start = (state.page - 1) * ITEMS_PER_PAGE;
+        const page = list.slice(start, start + ITEMS_PER_PAGE);
 
-    let buttons = `
-        <button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>‹</button>
-    `;
-
-    for (let i = 1; i <= totalPages; i++) {
-        if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
-            buttons += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
-        } else if (i === currentPage - 2 || i === currentPage + 2) {
-            buttons += `<span style="padding: 0 5px;">...</span>`;
+        if (!list.length) {
+            grid.style.border = '0';
+            grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><strong>No encontramos edificios</strong>Probá con otra calle o nombre, o elegí "Todas" las zonas.</div>`;
+        } else {
+            grid.style.border = '';
+            grid.innerHTML = page.map((ed, i) => {
+                const maps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${ed.direccion}, Mar del Plata`)}`;
+                const pisos = ed.pisos > 0 ? `<span class="bld-pill"><strong>${ed.pisos}</strong> ${ed.pisos === 1 ? 'piso' : 'pisos'}</span>` : '';
+                return `
+                <article class="bld" style="animation-delay:${i * 30}ms">
+                    <span class="bld-index">${String(ed.orden + 1).padStart(2, '0')}</span>
+                    <span class="bld-zone">${ZONAS[ed.zona]}</span>
+                    <h3>${escape(ed.nombre)}</h3>
+                    <span class="bld-addr">${icon('pin')}${escape(ed.direccion)}</span>
+                    <div class="bld-meta">
+                        <span class="bld-pill"><strong>${ed.unidades}</strong> unidades</span>
+                        ${pisos}
+                    </div>
+                    <a class="bld-map" href="${maps}" target="_blank" rel="noopener noreferrer" aria-label="Ver ${escape(ed.direccion)} en el mapa">${icon('arrow-ur', 'icon--sm')}</a>
+                </article>`;
+            }).join('');
         }
+
+        if (summary) {
+            const shown = list.length ? `${start + 1}–${start + page.length}` : '0';
+            summary.textContent = `Mostrando ${shown} de ${list.length} edificios`;
+        }
+        renderPager(totalPages);
     }
 
-    buttons += `
-        <button class="page-btn" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>›</button>
-    `;
-
-    pagination.innerHTML = buttons;
-}
-
-function changePage(page) {
-    const totalPages = Math.ceil(filteredEdificios.length / itemsPerPage);
-    if (page < 1 || page > totalPages) return;
-    currentPage = page;
-    renderEdificios();
-    renderPagination();
-
-    const section = document.querySelector('.edificios-section');
-    if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    function renderPager(totalPages) {
+        if (!pager) return;
+        if (totalPages <= 1) { pager.innerHTML = ''; return; }
+        const p = state.page;
+        let html = `<button type="button" data-page="${p - 1}" ${p === 1 ? 'disabled' : ''} aria-label="Página anterior">${icon('chev-l', 'icon--sm')}</button>`;
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === 1 || i === totalPages || Math.abs(i - p) <= 1) {
+                html += `<button type="button" data-page="${i}" ${i === p ? 'aria-current="page"' : ''}>${String(i).padStart(2, '0')}</button>`;
+            } else if (Math.abs(i - p) === 2) {
+                html += `<span class="gap">…</span>`;
+            }
+        }
+        html += `<button type="button" data-page="${p + 1}" ${p === totalPages ? 'disabled' : ''} aria-label="Página siguiente">${icon('chev-r', 'icon--sm')}</button>`;
+        pager.innerHTML = html;
     }
-}
 
-function filterEdificios() {
-    const searchInput = document.getElementById('searchEdificio');
-    const activeBtn = document.querySelector('.filter-btn.active');
-
-    if (!searchInput || !activeBtn) return;
-
-    const searchTerm = searchInput.value.toLowerCase();
-    const activeZona = activeBtn.dataset.zona;
-
-    filteredEdificios = edificios.filter(ed => {
-        const matchSearch = ed.nombre.toLowerCase().includes(searchTerm) ||
-            ed.direccion.toLowerCase().includes(searchTerm);
-        const matchZona = activeZona === 'todas' || ed.zona === activeZona;
-        return matchSearch && matchZona;
+    // ============================================
+    // EVENTOS
+    // ============================================
+    let searchTimer;
+    search?.addEventListener('input', () => {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => {
+            state.query = search.value;
+            state.page = 1;
+            render();
+        }, 120);
     });
 
-    currentPage = 1;
-    renderEdificios();
-    renderPagination();
-}
-
-// Event listeners
-const searchInput = document.getElementById('searchEdificio');
-if (searchInput) {
-    searchInput.addEventListener('input', filterEdificios);
-}
-
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        filterEdificios();
+    chips?.addEventListener('click', e => {
+        const btn = e.target.closest('[data-zona]');
+        if (!btn) return;
+        state.zona = btn.dataset.zona;
+        state.page = 1;
+        renderChips();
+        render();
     });
-});
 
-// Inicializar
-renderEdificios();
-renderPagination();
+    sort?.addEventListener('change', () => {
+        state.sort = sort.value;
+        state.page = 1;
+        render();
+    });
+
+    pager?.addEventListener('click', e => {
+        const btn = e.target.closest('[data-page]');
+        if (!btn || btn.disabled) return;
+        state.page = parseInt(btn.dataset.page, 10);
+        render();
+        document.getElementById('edificios')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ============================================
+    // AVATARES CON INICIALES
+    // ============================================
+    document.querySelectorAll('[data-initials]').forEach(el => {
+        const words = el.textContent.trim().split(/\s+/);
+        el.textContent = (words[0][0] + (words.length > 1 ? words[words.length - 1][0] : '')).toUpperCase();
+        el.setAttribute('aria-hidden', 'true');
+    });
+
+    renderChips();
+    render();
+})();

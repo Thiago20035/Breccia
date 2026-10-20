@@ -1,703 +1,482 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
-    <title>Servicios Inmobiliarios | Breccia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propiedades y Servicios Inmobiliarios en Mar del Plata | Breccia</title>
     <meta name="description" content="Servicios inmobiliarios en Mar del Plata: compra, venta, alquiler y tasaciones de propiedades. Breccia Inmuebles y Negocios, más de 25 años de experiencia.">
+    <link rel="canonical" href="https://www.brecciainmuebles.com.ar/inmobiliaria.html">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Propiedades en venta | Breccia Inmuebles y Negocios">
+    <meta property="og:description" content="Departamentos, lotes y cocheras en Mar del Plata. Compra, venta, alquiler y tasaciones.">
+
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="breccia.css">
-    <link rel="stylesheet" href="inmobiliaria.css">
-    <link rel="stylesheet" href="premium.css">
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon-V3.ico?v=20260125143000">
     <link rel="shortcut icon" href="/favicon-V3.ico?v=20260125143000">
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon-V3.ico?v=20260125143000">
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon-V3.ico?v=20260125143000">
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon-V3.ico?v=20260125143000">
     <link rel="manifest" href="/site.webmanifest?v=20260125143000">
     <meta name="theme-color" content="#6b2c3e">
 </head>
 
 <body>
-    <div id="scroll-progress"></div>
-    <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/5492235771240?text=Hola,%20quiero%20consultar%20sobre%20" class="whatsapp-float" target="_blank"
-        rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-        <svg viewBox="0 0 32 32" fill="white" width="28" height="28">
-            <path
-                d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.16-2.141c2.324 1.274 4.93 1.947 7.84 1.947 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.297c-2.547 0-5.043-0.688-7.245-1.984l-0.52-0.296-5.381 1.412 1.44-5.264-0.324-0.548c-1.453-2.259-2.217-4.871-2.217-7.617 0-7.699 6.265-13.964 13.964-13.964s13.964 6.265 13.964 13.964-6.265 13.964-13.964 13.964zM23.28 19.281c-0.391-0.195-2.313-1.141-2.671-1.271s-0.619-0.195-0.879 0.195c-0.26 0.391-1.009 1.271-1.237 1.531s-0.456 0.293-0.847 0.099c-0.391-0.195-1.651-0.608-3.144-1.939-1.163-1.036-1.948-2.316-2.176-2.707s-0.024-0.601 0.171-0.796c0.176-0.175 0.391-0.456 0.587-0.684s0.26-0.391 0.391-0.651c0.13-0.26 0.065-0.488-0.033-0.684s-0.879-2.119-1.204-2.901c-0.317-0.76-0.639-0.657-0.879-0.669-0.228-0.011-0.488-0.013-0.748-0.013s-0.684 0.097-1.041 0.488c-0.358 0.391-1.368 1.337-1.368 3.261s1.401 3.781 1.596 4.041c0.195 0.26 2.751 4.199 6.665 5.889 0.931 0.403 1.657 0.643 2.223 0.823 0.935 0.297 1.785 0.255 2.457 0.155 0.749-0.112 2.313-0.945 2.639-1.857s0.326-1.695 0.228-1.857c-0.097-0.163-0.358-0.26-0.749-0.456z" />
-        </svg>
-    </a>
-    <header>
-        <nav>
-            <div class="logo">
-                <span class="logo-main">BRECCIA</span>
-                <span class="logo-sub">Inmuebles y Negocios</span>
-            </div>
-            <button class="hamburger-btn" aria-label="Menú">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html#inicio">Inicio</a></li>
-                <li><a href="index.html#servicios">Servicios</a></li>
-                <li><a href="index.html#nosotros">Nosotros</a></li>
-                <li><a href="index.html#contacto">Contacto</a></li>
-                <li>
-                    <a href="https://joinup.i-data.com.ar/ingresar" class="portal-link" target="_blank"
-                        rel="noopener noreferrer">
-                        Acceso Propietarios
-                    </a>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- ========== HEADER ========== -->
+    <header class="site-header">
+        <nav class="nav" aria-label="Principal">
+            <a class="brand" href="index.html" aria-label="Breccia Inmuebles y Negocios — inicio">
+                <span class="brand-main">BRECCIA</span>
+                <span class="brand-sub">Inmuebles y Negocios</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="administracion.html"><span class="nav-num">01</span>Administración</a></li>
+                <li><a href="inmobiliaria.html" aria-current="page"><span class="nav-num">02</span>Inmobiliaria</a></li>
+                <li><a href="index.html#nosotros"><span class="nav-num">03</span>Nosotros</a></li>
+                <li><a href="index.html#contacto"><span class="nav-num">04</span>Contacto</a></li>
+                <li class="mobile-only">
+                    <a class="btn btn--light" href="https://joinup.i-data.com.ar/ingresar" target="_blank" rel="noopener noreferrer">Portal propietarios</a>
+                    <a class="btn btn--ghost" href="tel:2234260505">Emergencias 24 hs · 223 426-0505</a>
                 </li>
             </ul>
+            <div class="nav-actions">
+                <a class="btn btn--outline" href="https://joinup.i-data.com.ar/ingresar" target="_blank" rel="noopener noreferrer">
+                    Portal propietarios
+                    <svg class="icon icon--sm icon--move-ur" aria-hidden="true"><use href="#i-arrow-ur"/></svg>
+                </a>
+                <button class="menu-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Abrir menú">
+                    <span></span><span></span>
+                </button>
+            </div>
         </nav>
     </header>
 
-    <section class="inmo-hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="VideoHeroInmo.mp4" type="video/mp4">
-            Tu navegador no soporta videos HTML5.
-        </video>
-        <div class="hero-overlay"></div>
-        <div style="position: relative; z-index: 2;">
-            <h1>Servicios Inmobiliarios</h1>
-            <p>Tu aliado en cada paso del camino inmobiliario</p>
-        </div>
-    </section>
-
-    <!-- Propiedades Destacadas -->
-    <section class="propiedades-section">
-        <a href="index.html#servicios" class="back-button">← Volver a Todos los Servicios</a>
-        <h2 class="fade-in" style="text-align: center; color: #6b2c3e; font-size: 2.5rem; margin-bottom: 1rem;">
-            Propiedades Destacadas</h2>
-        <p style="text-align: center; color: #666; margin-bottom: 3rem;">Propiedades disponibles en venta</p>
-
-        <!-- FILTROS DE TIPO DE PROPIEDAD -->
-        <div class="propiedades-controls">
-            <button class="filter-btn-prop active" data-tipo="todas">
-                <span class="filter-icon">🏠</span>
-                <span>Todas</span>
-            </button>
-            <button class="filter-btn-prop" data-tipo="departamento">
-                <span class="filter-icon">🏢</span>
-                <span>Departamentos</span>
-            </button>
-            <button class="filter-btn-prop" data-tipo="casa">
-                <span class="filter-icon">🏡</span>
-                <span>Casas</span>
-            </button>
-            <button class="filter-btn-prop" data-tipo="lote">
-                <span class="filter-icon">📐</span>
-                <span>Lotes</span>
-            </button>
-            <button class="filter-btn-prop" data-tipo="cochera">
-                <span class="filter-icon">🚗</span>
-                <span>Cocheras</span>
-            </button>
-            <button class="filter-btn-prop" data-tipo="local">
-                <span class="filter-icon">🏪</span>
-                <span>Locales</span>
-            </button>
-        </div>
-
-        <div class="propiedades-grid" id="propiedadesGrid">
-            <!-- Propiedad 1 - Gascón 2356 -->
-            <div class="propiedad-card" data-tipo="venta" data-categoria="departamento" data-propiedad-id="1">
-                <div class="propiedad-image-container">
-                    <div class="propiedad-carousel" data-carousel="0">
-                        <div class="propiedad-carousel-item" style="background-image: url('FotosGascon2356/G35.jpg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('FotosGascon2356/G15.jpg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('FotosGascon2356/G18.jpg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('FotosGascon2356/G3.jpg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('FotosGascon2356/G13.jpg');">
-                        </div>
+    <main id="main">
+        <!-- ========== HERO ========== -->
+        <section class="hero hero--page grain">
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="VideoHeroInmo.mp4" type="video/mp4">
+            </video>
+            <div class="hero-shade" aria-hidden="true"></div>
+            <div class="container">
+                <div class="hero-copy">
+                    <a href="index.html#servicios" class="back-link">
+                        <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-l"/></svg>
+                        Todos los servicios
+                    </a>
+                    <h1 class="display" style="margin-top: 28px;">
+                        Servicios<br><span class="serif">inmobiliarios.</span>
+                    </h1>
+                    <p class="lead">Tu aliado en cada paso del camino inmobiliario: compra, venta, alquiler, tasaciones y asesoramiento en inversiones en Mar del Plata.</p>
+                    <div class="hero-ctas">
+                        <a href="#propiedades" class="btn btn--signal btn--pill">
+                            Ver propiedades
+                            <svg class="icon icon--move" aria-hidden="true"><use href="#i-arrow"/></svg>
+                        </a>
+                        <button type="button" class="btn btn--ghost btn--pill" data-open-modal="modalContactoGeneral" data-preset="Tasación">Tasá tu propiedad</button>
                     </div>
-                    <button class="carousel-nav prev" onclick="event.stopPropagation(); moveCarousel(0, -1)">‹</button>
-                    <button class="carousel-nav next" onclick="event.stopPropagation(); moveCarousel(0, 1)">›</button>
-                    <div class="carousel-dots">
-                        <span class="carousel-dot active" onclick="event.stopPropagation(); goToSlide(0, 0)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(0, 1)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(0, 2)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(0, 3)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(0, 4)"></span>
-                    </div>
-                    <div class="propiedad-badge">Venta</div>
-                </div>
-                <div class="propiedad-content">
-                    <h3>Departamento Tipo Semipiso de Tres (3) Ambientes</h3>
-                    <div class="propiedad-ubicacion">
-                        <span>📍</span>
-                        <span>Gascón 2356, Plaza Colón</span>
-                    </div>
-                    <div class="propiedad-detalles">
-                        <div class="detalle-item">
-                            <span>🛏️</span>
-                            <span>2 dorm</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>🚿</span>
-                            <span>2 baños</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>📏</span>
-                            <span>69 m²</span>
-                        </div>
-                    </div>
-                    <div class="propiedad-precio">USD 169.000</div>
-                    <button class="consultar-btn"
-                        onclick="event.stopPropagation(); abrirModalConsulta('Departamento Tipo Semipiso de Tres (3) Ambientes', 'Gascón 2356, Plaza Colón', 'USD 169.000')">Consultar</button>
                 </div>
             </div>
+        </section>
 
-            <!-- Propiedad 2 - Arenales 2445 -->
-            <div class="propiedad-card" data-tipo="venta" data-categoria="departamento" data-propiedad-id="2">
-                <div class="propiedad-image-container">
-                    <div class="propiedad-carousel" data-carousel="1">
-                        <div class="propiedad-carousel-item" style="background-image: url('Arenales2445/PA3.jpg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('Arenales2445/PA5.jpg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('Arenales2445/PA8.jpg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('Arenales2445/PA9.jpg');">
-                        </div>
-                    </div>
-                    <button class="carousel-nav prev" onclick="event.stopPropagation(); moveCarousel(1, -1)">‹</button>
-                    <button class="carousel-nav next" onclick="event.stopPropagation(); moveCarousel(1, 1)">›</button>
-                    <div class="carousel-dots">
-                        <span class="carousel-dot active" onclick="event.stopPropagation(); goToSlide(1, 0)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(1, 1)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(1, 2)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(1, 3)"></span>
-                    </div>
-                    <div class="propiedad-badge">Venta</div>
+        <!-- ========== PROPIEDADES ========== -->
+        <section class="section section--tint" id="propiedades">
+            <div class="container">
+                <div class="stamp-row" data-reveal>
+                    <h2 class="stamp">Propiedades</h2>
+                    <span class="stamp-meta">Disponibles en venta</span>
                 </div>
-                <div class="propiedad-content">
-                    <h3>Departamento en Arenales</h3>
-                    <div class="propiedad-ubicacion">
-                        <span>📍</span>
-                        <span>Arenales 2445, Mar del Plata</span>
+
+                <div class="toolbar">
+                    <div class="chips" id="propChips" role="group" aria-label="Filtrar por tipo de propiedad"></div>
+                    <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+                        <span class="result-meta" id="propSummary" aria-live="polite"></span>
+                        <label>
+                            <span class="sr-only">Ordenar propiedades</span>
+                            <select class="select-inline" id="propSort">
+                                <option value="default">Orden: destacadas</option>
+                                <option value="asc">Menor precio</option>
+                                <option value="desc">Mayor precio</option>
+                            </select>
+                        </label>
                     </div>
-                    <div class="propiedad-detalles">
-                        <div class="detalle-item">
-                            <span>🛏️</span>
-                            <span>1 dorm</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>🚿</span>
-                            <span>1 baños</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>📏</span>
-                            <span>40 m²</span>
-                        </div>
-                    </div>
-                    <div class="propiedad-precio">USD 55.000</div>
-                    <button class="consultar-btn"
-                        onclick="event.stopPropagation(); abrirModalConsulta('Departamento en Arenales', 'Arenales 2445, Mar del Plata', 'Consultar')">Consultar</button>
                 </div>
+
+                <div class="prop-grid" id="propiedadesGrid"></div>
             </div>
+        </section>
 
-            <!-- Propiedad 3 - Francia 3741 -->
-            <div class="propiedad-card" data-tipo="venta" data-categoria="lote" data-propiedad-id="3">
-                <div class="propiedad-image-container">
-                    <div class="propiedad-carousel" data-carousel="2">
-                        <div class="propiedad-carousel-item" style="background-image: url('Francia371/F3.jpg');"></div>
-                        <div class="propiedad-carousel-item" style="background-image: url('Francia371/F4.jpg');"></div>
-                    </div>
-                    <button class="carousel-nav prev" onclick="event.stopPropagation(); moveCarousel(2, -1)">‹</button>
-                    <button class="carousel-nav next" onclick="event.stopPropagation(); moveCarousel(2, 1)">›</button>
-                    <div class="carousel-dots">
-                        <span class="carousel-dot active" onclick="event.stopPropagation(); goToSlide(2, 0)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(2, 1)"></span>
-                    </div>
-                    <div class="propiedad-badge">Venta</div>
+        <!-- ========== SERVICIOS ========== -->
+        <section class="section" id="servicios">
+            <div class="container">
+                <div class="stamp-row" data-reveal>
+                    <h2 class="stamp">Servicios</h2>
+                    <span class="stamp-meta">04 áreas</span>
                 </div>
-                <div class="propiedad-content">
-                    <h3>Lote con Construcción en Parque Luro</h3>
-                    <div class="propiedad-ubicacion">
-                        <span>📍</span>
-                        <span>Francia 371, Parque Luro</span>
-                    </div>
-                    <div class="propiedad-detalles">
-                        <div class="detalle-item">
-                            <span>📐</span>
-                            <span>10x33m</span>
+                <div class="svc-rows">
+                    <article class="svc-row" data-reveal>
+                        <div class="svc-row-head">
+                            <span class="row-num">01</span>
+                            <h3 class="h3"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span>Compra-venta</h3>
                         </div>
-                        <div class="detalle-item">
-                            <span>🏗️</span>
-                            <span>70 m² const.</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>📏</span>
-                            <span>330 m² lote</span>
-                        </div>
-                    </div>
-                    <div class="propiedad-precio">USD 120.000</div>
-                    <button class="consultar-btn"
-                        onclick="event.stopPropagation(); abrirModalConsulta('Lote con Construcción en Parque Luro', 'Francia 3741, Parque Luro', 'Consultar')">Consultar</button>
-                </div>
-            </div>
-            <!-- NUEVA PROPIEDAD 4 - San Juan 3052 -->
-            <!-- Agregar DESPUÉS de la Propiedad 3 (Francia 3741) y ANTES de la ficticia -->
-
-            <div class="propiedad-card" data-tipo="venta" data-categoria="departamento" data-propiedad-id="4">
-                <div class="propiedad-image-container">
-                    <div class="propiedad-carousel" data-carousel="3">
-                        <div class="propiedad-carousel-item" style="background-image: url('SanJuan3052/SJ8.jpg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('SanJuan3052/SJ28.jpg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('SanJuan3052/SJ21.jpg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('SanJuan3052/SJ24.jpg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('SanJuan3052/SJ19.jpg');">
-                        </div>
-                    </div>
-                    <button class="carousel-nav prev" onclick="event.stopPropagation(); moveCarousel(3, -1)">‹</button>
-                    <button class="carousel-nav next" onclick="event.stopPropagation(); moveCarousel(3, 1)">›</button>
-                    <div class="carousel-dots">
-                        <span class="carousel-dot active" onclick="event.stopPropagation(); goToSlide(3, 0)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(3, 1)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(3, 2)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(3, 3)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(3, 4)"></span>
-                    </div>
-                    <div class="propiedad-badge">Venta</div>
-                </div>
-                <div class="propiedad-content">
-                    <h3>Departamento de 4 Ambientes con Gran Patio</h3>
-                    <div class="propiedad-ubicacion">
-                        <span>📍</span>
-                        <span>San Juan y Avellaneda, Mar del Plata</span>
-                    </div>
-                    <div class="propiedad-detalles">
-                        <div class="detalle-item">
-                            <span>🛏️</span>
-                            <span>3 dorm</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>🚿</span>
-                            <span>1 baño</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>🌳</span>
-                            <span>Patio propio</span>
-                        </div>
-                    </div>
-                    <div class="propiedad-precio">USD 85.000</div>
-                    <button class="consultar-btn"
-                        onclick="event.stopPropagation(); abrirModalConsulta('Departamento de 4 Ambientes con Gran Patio', 'San Juan y Avellaneda, Mar del Plata', 'USD 85.000')">Consultar</button>
-                </div>
-            </div>
-            <!-- NUEVA PROPIEDAD 5 - Cocheras Leblon -->
-            <div class="propiedad-card" data-tipo="venta" data-categoria="cochera" data-propiedad-id="5">
-                <div class="propiedad-image-container">
-                    <div class="propiedad-carousel" data-carousel="4">
-                        <div class="propiedad-carousel-item" style="background-image: url('LeblonCochera/L1.jpeg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('LeblonCochera/L3.jpeg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('LeblonCochera/L2.jpeg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('LeblonCochera/L5.jpeg');">
-                        </div>
-                        <div class="propiedad-carousel-item" style="background-image: url('LeblonCochera/L9.jpeg');">
-                        </div>
-                    </div>
-                    <button class="carousel-nav prev" onclick="event.stopPropagation(); moveCarousel(4, -1)">‹</button>
-                    <button class="carousel-nav next" onclick="event.stopPropagation(); moveCarousel(4, 1)">›</button>
-                    <div class="carousel-dots">
-                        <span class="carousel-dot active" onclick="event.stopPropagation(); goToSlide(4, 0)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(4, 1)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(4, 2)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(4, 3)"></span>
-                        <span class="carousel-dot" onclick="event.stopPropagation(); goToSlide(4, 4)"></span>
-                    </div>
-                    <div class="propiedad-badge">Venta</div>
-                </div>
-                <div class="propiedad-content">
-                    <h3>Cocheras en Edificio Céntrico - 2 Unidades Disponibles</h3>
-                    <div class="propiedad-ubicacion">
-                        <span>📍</span>
-                        <span>Corrientes entre Rivadavia y Belgrano</span>
-                    </div>
-                    <div class="propiedad-detalles">
-                        <div class="detalle-item">
-                            <span>🚗</span>
-                            <span>2 cocheras</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>🔒</span>
-                            <span>Seguridad 24hs</span>
-                        </div>
-                        <div class="detalle-item">
-                            <span>🏢</span>
-                            <span>Unidades 702/703</span>
-                        </div>
-                    </div>
-                    <div class="propiedad-precio">USD 13.000 c/u</div>
-                    <button class="consultar-btn"
-                        onclick="event.stopPropagation(); abrirModalConsulta('Cocheras en Edificio Céntrico - 2 Unidades Disponibles', 'Corrientes entre Rivadavia y Belgrano', 'USD 13.000 cada una')">Consultar</button>
-                </div>
-            </div>
-    </section>
-
-    <!-- Servicios Inmobiliarios -->
-    <section class="servicios-inmo-section">
-        <h2 class="fade-in" style="text-align: center; color: #6b2c3e; font-size: 2.5rem; margin-bottom: 3rem;">Nuestros
-            Servicios Inmobiliarios</h2>
-
-        <!-- CARRUSEL -->
-        <div class="carousel-section-inmo">
-            <div class="carousel-container-inmo">
-                <div class="carousel-track-inmo" id="carouselTrackInmo">
-                    <!-- Slide 1 -->
-                    <div class="carousel-slide-inmo">
-                        <h3><span>🏘️</span> Compra-Venta</h3>
-                        <ul>
-                            <li>Tasación profesional de propiedades</li>
-                            <li>Publicación en portales inmobiliarios</li>
-                            <li>Visitas coordinadas</li>
-                            <li>Asesoramiento legal</li>
-                            <li>Gestión de documentación</li>
-                            <li>Acompañamiento hasta la escritura</li>
+                        <ul class="check-list">
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Tasación profesional de propiedades</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Publicación en portales inmobiliarios</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Visitas coordinadas</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Asesoramiento legal</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Gestión de documentación</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Acompañamiento hasta la escritura</li>
                         </ul>
-                    </div>
-
-                    <!-- Slide 2 -->
-                    <div class="carousel-slide-inmo">
-                        <h3><span>🔑</span> Alquileres</h3>
-                        <ul>
-                            <li>Alquileres permanentes</li>
-                            <li>Alquileres temporarios</li>
-                            <li>Evaluación de inquilinos</li>
-                            <li>Confección de contratos</li>
-                            <li>Garantías propietarias y bancarias</li>
-                            <li>Administración de alquileres</li>
+                    </article>
+                    <article class="svc-row" data-reveal>
+                        <div class="svc-row-head">
+                            <span class="row-num">02</span>
+                            <h3 class="h3"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg></span>Alquileres</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Alquileres permanentes</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Alquileres temporarios</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Evaluación de inquilinos</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Confección de contratos</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Garantías propietarias y bancarias</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Administración de alquileres</li>
                         </ul>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="carousel-slide-inmo">
-                        <h3><span>💼</span> Inversiones</h3>
-                        <ul>
-                            <li>Análisis de mercado inmobiliario</li>
-                            <li>Oportunidades de inversión</li>
-                            <li>Proyección de rentabilidad</li>
-                            <li>Asesoramiento en pozo</li>
-                            <li>Gestión de cartera inmobiliaria</li>
-                            <li>Informes periódicos</li>
+                    </article>
+                    <article class="svc-row" data-reveal>
+                        <div class="svc-row-head">
+                            <span class="row-num">03</span>
+                            <h3 class="h3"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span>Inversiones</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Análisis de mercado inmobiliario</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Oportunidades de inversión</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Proyección de rentabilidad</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Asesoramiento en pozo</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Gestión de cartera inmobiliaria</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Informes periódicos</li>
                         </ul>
-                    </div>
-
-                    <!-- Slide 4 -->
-                    <div class="carousel-slide-inmo">
-                        <h3><span>📋</span> Administración</h3>
-                        <ul>
-                            <li>Administración de propiedades</li>
-                            <li>Control de pagos y vencimientos</li>
-                            <li>Coordinación de mantenimiento</li>
-                            <li>Gestión de reclamos</li>
-                            <li>Rendición de cuentas</li>
-                            <li>Renovación de contratos</li>
+                    </article>
+                    <article class="svc-row" data-reveal>
+                        <div class="svc-row-head">
+                            <span class="row-num">04</span>
+                            <h3 class="h3"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg></span>Administración</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Administración de propiedades</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Control de pagos y vencimientos</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Coordinación de mantenimiento</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Gestión de reclamos</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Rendición de cuentas</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Renovación de contratos</li>
                         </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== RED DE PROFESIONALES ========== -->
+        <section class="section section--tint" id="red">
+            <div class="container">
+                <div class="stamp-row" data-reveal>
+                    <h2 class="stamp">Red</h2>
+                    <span class="stamp-meta">Profesionales inmobiliarios</span>
+                </div>
+                <p class="lead" style="margin-bottom: 48px;" data-reveal>Trabajamos en conjunto con destacados profesionales del sector inmobiliario.</p>
+                <div class="team-grid" data-reveal>
+                    <div class="member">
+                        <span class="avatar" aria-hidden="true">MB</span>
+                        <h3>María Luján Breccia</h3>
+                        <span class="role">Breccia Inmuebles y Negocios</span>
+                        <p>Responsable principal de operaciones de compra-venta, alquileres y administración de propiedades</p>
+                        <span class="loc"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg>Mar del Plata</span>
+                    </div>
+                    <div class="member">
+                        <span class="avatar" aria-hidden="true">JB</span>
+                        <h3>Joaquín Sánchez Breccia</h3>
+                        <span class="role">Breccia Inmuebles y Negocios</span>
+                        <p>Encargado de gestión operativa inmobiliaria y coordinación de servicios</p>
+                        <span class="loc"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg>Mar del Plata</span>
+                    </div>
+                    <a class="member" href="https://schaferprop.com.ar/" target="_blank" rel="noopener noreferrer">
+                        <svg class="icon ext" aria-hidden="true"><use href="#i-arrow-ur"/></svg>
+                        <span class="avatar" aria-hidden="true">PS</span>
+                        <h3>Patricia Schafer</h3>
+                        <span class="role">Schafer y Asoc. Negocios Inmobiliarios</span>
+                        <p>Profesional inmobiliaria con amplia experiencia en el mercado de Mar del Plata</p>
+                        <span class="loc"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg>Mar del Plata · Visitar sitio</span>
+                    </a>
+                    <a class="member" href="https://ferrecciopropiedades.com.ar/" target="_blank" rel="noopener noreferrer">
+                        <svg class="icon ext" aria-hidden="true"><use href="#i-arrow-ur"/></svg>
+                        <span class="avatar" aria-hidden="true">PF</span>
+                        <h3>Pablo Ferreccio</h3>
+                        <span class="role">Ferreccio Propiedades</span>
+                        <p>Experto en tasaciones y operaciones inmobiliarias en la zona</p>
+                        <span class="loc"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg>Mar del Plata · Visitar sitio</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CTA ========== -->
+        <section class="section section--tint section--flush-top">
+            <div class="container">
+                <div class="bloom-card cta-band" data-reveal>
+                    <div>
+                        <span class="eyebrow" style="color: rgba(247,249,250,.8);">Hablemos</span>
+                        <h2 class="h2">¿Buscás comprar, vender <span class="serif">o alquilar?</span></h2>
+                        <p>Te ayudamos a encontrar la propiedad ideal.</p>
+                    </div>
+                    <div class="cta-band-actions">
+                        <button type="button" class="btn btn--light btn--pill" data-open-modal="modalContactoGeneral">
+                            Contactar ahora
+                            <svg class="icon icon--move" aria-hidden="true"><use href="#i-arrow"/></svg>
+                        </button>
+                        <a href="https://wa.me/5492235771240?text=Hola,%20quiero%20consultar%20sobre%20una%20propiedad" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--pill">
+                            <svg class="icon icon--sm" aria-hidden="true"><use href="#i-whatsapp"/></svg> WhatsApp
+                        </a>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="carousel-controls-inmo">
-                <button class="carousel-btn-inmo" id="prevBtnInmo">‹</button>
-                <div class="carousel-indicators-inmo" id="indicatorsInmo">
-                    <div class="indicator-inmo active" data-slide="0"></div>
-                    <div class="indicator-inmo" data-slide="1"></div>
-                    <div class="indicator-inmo" data-slide="2"></div>
-                    <div class="indicator-inmo" data-slide="3"></div>
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-cta">
+                <div>
+                    <span class="eyebrow">Breccia Inmuebles y Negocios</span>
+                    <h2 class="h2">Tu propiedad, <span class="serif">en buenas manos.</span></h2>
                 </div>
-                <button class="carousel-btn-inmo" id="nextBtnInmo">›</button>
+                <div class="cta-band-actions">
+                    <a href="index.html#contacto" class="btn btn--light btn--pill">
+                        Contactanos
+                        <svg class="icon icon--move" aria-hidden="true"><use href="#i-arrow"/></svg>
+                    </a>
+                    <a href="tel:2234260505" class="btn btn--ghost btn--pill">
+                        <svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg> Emergencias 24 hs
+                    </a>
+                </div>
+            </div>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <span class="footer-brand"><span class="brand-main">BRECCIA</span><span class="brand-sub">Inmuebles y Negocios</span></span>
+                    <p>Administración de consorcios y servicios inmobiliarios en Mar del Plata desde hace más de 25 años.</p>
+                    <span class="live" data-office><span class="live-dot"></span><span data-office-text>Lun a Vie · 9 a 13:30</span></span>
+                </div>
+                <div class="footer-col">
+                    <h4>Sitio</h4>
+                    <ul>
+                        <li><a href="administracion.html">Administración</a></li>
+                        <li><a href="inmobiliaria.html">Inmobiliaria</a></li>
+                        <li><a href="index.html#nosotros">Nosotros</a></li>
+                        <li><a href="https://joinup.i-data.com.ar/ingresar" target="_blank" rel="noopener noreferrer">Portal propietarios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="tel:2234957908">495-7908</a></li>
+                        <li><a href="mailto:contacto@breccianegocios.com.ar">contacto@breccianegocios.com.ar</a></li>
+                        <li><a href="https://wa.me/5492235771240" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Emergencias 24/7</h4>
+                    <ul>
+                        <li><a href="tel:2234260505">223 426-0505</a></li>
+                        <li><span>Olavarría 2838 2°B</span></li>
+                        <li><span>Mar del Plata, Bs. As.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-stamp">
+                <div class="left">
+                    <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+                    <span>&copy; <span data-year>2026</span> Breccia Inmuebles y Negocios. Todos los derechos reservados.</span>
+                </div>
+                <div class="right">
+                    <span class="coords">38°00′20″S 57°32′33″W · MDQ <span data-clock>--:--</span></span>
+                    <svg class="icon heart" aria-hidden="true"><use href="#i-heart"/></svg>
+                </div>
             </div>
         </div>
-    </section>
-
-    <!-- Equipo -->
-    <!-- Equipo -->
-    <section class="equipo-section">
-        <h2 class="fade-in" style="text-align: center; color: #6b2c3e; font-size: 2.5rem; margin-bottom: 1rem;">Red de
-            Profesionales Inmobiliarios</h2>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #666;">
-            Trabajamos en conjunto con destacados profesionales del sector inmobiliario
-        </p>
-
-        <!-- Fila 1: María Luján y Joaquín -->
-        <div style="max-width: 800px; margin: 0 auto 2rem;">
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
-                <!-- María Luján Breccia -->
-                <div class="team-card scale-in team-card-clickable">
-                    <div class="team-avatar">👩‍💼</div>
-                    <h3>María Luján Breccia</h3>
-                    <p class="team-role">Breccia Inmuebles y Negocios</p>
-                    <p style="color: #666;">Responsable principal de operaciones de compra-venta, alquileres y
-                        administración de propiedades</p>
-                    <div class="team-location">📍 Mar del Plata</div>
-                </div>
-
-                <!-- Joaquín Sánchez Breccia -->
-                <div class="team-card scale-in stagger-1 team-card-clickable">
-                    <div class="team-avatar">👨‍💼</div>
-                    <h3>Joaquín Sánchez Breccia</h3>
-                    <p class="team-role">Breccia Inmuebles y Negocios</p>
-                    <p style="color: #666;">Encargado de gestión operativa inmobiliaria y coordinación de servicios</p>
-                    <div class="team-location">📍 Mar del Plata</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Fila 2: Patricia y Pablo -->
-        <div style="max-width: 800px; margin: 0 auto;">
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
-                <!-- Patricia Schafer -->
-                <a href="https://schaferprop.com.ar/" target="_blank" rel="noopener noreferrer"
-                    class="team-card scale-in stagger-2 team-card-clickable">
-                    <div class="external-link-badge">🔗</div>
-                    <div class="team-avatar">👩‍💼</div>
-                    <h3>Patricia Schafer</h3>
-                    <p class="team-role">SCHAFER Y ASOC. Negocios Inmobiliarios</p>
-                    <p style="color: #666;">Profesional inmobiliaria con amplia experiencia en el mercado de Mar del
-                        Plata</p>
-                    <div class="team-location">📍 Mar del Plata</div>
-                    <div class="visit-website">Visitar sitio web →</div>
-                </a>
-
-                <!-- Pablo Ferreccio -->
-                <a href="https://ferrecciopropiedades.com.ar/" target="_blank" rel="noopener noreferrer"
-                    class="team-card scale-in stagger-3 team-card-clickable">
-                    <div class="external-link-badge">🔗</div>
-                    <div class="team-avatar">👨‍💼</div>
-                    <h3>Pablo Ferreccio</h3>
-                    <p class="team-role">Ferreccio Propiedades - Mar del Plata</p>
-                    <p style="color: #666;">Experto en tasaciones y operaciones inmobiliarias en la zona</p>
-                    <div class="team-location">📍 Mar del Plata</div>
-                    <div class="visit-website">Visitar sitio web →</div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-inmo-section"
-        style="background: linear-gradient(135deg, #6b2c3e, #8b3a4f); padding: 80px 2rem; text-align: center; color: white;">
-        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">¿Buscás comprar, vender o alquilar?</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">Te ayudamos a encontrar la propiedad ideal</p>
-        <button onclick="abrirModalContactoGeneral()" class="cta-button" style="cursor: pointer; border: none;">
-            Contactar Ahora
-        </button>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Breccia Inmuebles y Negocios. Todos los derechos reservados.</p>
     </footer>
-    <!-- MODAL DE CONTACTO GENERAL -->
-    <div id="modalContactoGeneral" class="modal-consulta">
-        <div class="modal-content-consulta">
-            <button class="close-modal-consulta" onclick="cerrarModalContactoGeneral()">×</button>
 
-            <div class="success-message" id="successMessageGeneral">
-                ✓ Tu mensaje ha sido enviado correctamente. Te contactaremos a la brevedad.
+    <a href="https://wa.me/5492235771240?text=Hola,%20quiero%20consultar%20sobre%20una%20propiedad" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+        <span>¿Consultas?</span>
+    </a>
+
+    <!-- ========== MODAL: FICHA DE PROPIEDAD ========== -->
+    <div id="modalDetalle" class="modal modal--sheet" role="dialog" aria-modal="true" aria-labelledby="detalleTitulo" aria-hidden="true">
+        <div class="modal-panel">
+            <button type="button" class="modal-close" data-close-modal aria-label="Cerrar ficha">
+                <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>
+            </button>
+            <div class="sheet-gallery">
+                <div class="sheet-main" id="sheetMain">
+                    <div class="sheet-main-img" id="imagenPrincipal" role="img" aria-label="Foto de la propiedad"></div>
+                    <button type="button" class="sheet-nav sheet-nav--prev" id="detallePrevBtn" aria-label="Foto anterior"><svg class="icon" aria-hidden="true"><use href="#i-chev-l"/></svg></button>
+                    <button type="button" class="sheet-nav sheet-nav--next" id="detalleNextBtn" aria-label="Foto siguiente"><svg class="icon" aria-hidden="true"><use href="#i-chev-r"/></svg></button>
+                    <span class="badge sheet-counter" id="contadorImagenes">1 / 1</span>
+                </div>
+                <div class="sheet-thumbs" id="miniaturas"></div>
             </div>
-
-            <h2>Contactanos</h2>
-            <p class="modal-subtitle">Completá tus datos y nos pondremos en contacto</p>
-
-            <form id="formContactoGeneral" onsubmit="enviarContactoGeneral(event)">
-                <div class="form-row">
-                    <div class="form-group-consulta">
-                        <label>Nombre *</label>
-                        <input type="text" name="nombre" required placeholder="Tu nombre">
-                    </div>
-                    <div class="form-group-consulta">
-                        <label>Apellido *</label>
-                        <input type="text" name="apellido" required placeholder="Tu apellido">
-                    </div>
+            <div class="sheet-info">
+                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                    <span class="badge badge--signal" id="detalleBadge">Venta</span>
+                    <span class="badge" id="detalleCategoria">Departamento</span>
                 </div>
-
-                <div class="form-row">
-                    <div class="form-group-consulta">
-                        <label>Email *</label>
-                        <input type="email" name="email" required placeholder="tu@email.com">
-                    </div>
-                    <div class="form-group-consulta">
-                        <label>Teléfono *</label>
-                        <input type="tel" name="telefono" required placeholder="223 xxx-xxxx">
-                    </div>
+                <h2 class="h3" id="detalleTitulo"></h2>
+                <span class="prop-loc" id="detalleUbicacionWrap"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span id="detalleUbicacion"></span></span>
+                <div class="sheet-price" id="detallePrecio"></div>
+                <div class="sheet-specs" id="detalleSpecs"></div>
+                <div>
+                    <span class="eyebrow eyebrow--plain" style="display:block; margin-bottom:12px;">Descripción</span>
+                    <p class="sheet-desc is-clamped" id="detalleDescripcion"></p>
                 </div>
-
-                <div class="form-group-consulta">
-                    <label>Motivo de Consulta *</label>
-                    <select name="motivoConsulta" required>
-                        <option value="">Seleccionar...</option>
-                        <option value="Comprar Propiedad">Comprar Propiedad</option>
-                        <option value="Vender Propiedad">Vender Propiedad</option>
-                        <option value="Alquilar Propiedad">Alquilar Propiedad</option>
-                        <option value="Tasación">Tasación</option>
-                        <option value="Consulta General">Consulta General</option>
-                        <option value="Otro">Otro</option>
-                    </select>
+                <button type="button" class="sheet-more" id="detalleMas">Leer descripción completa</button>
+                <div>
+                    <span class="eyebrow eyebrow--plain" style="display:block; margin-bottom:12px;">Características</span>
+                    <ul class="sheet-feats" id="detalleCaracteristicas"></ul>
                 </div>
-
-                <div class="form-group-consulta">
-                    <label>Mensaje *</label>
-                    <textarea name="mensaje" required placeholder="Dejanos tu consulta o comentario..."></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn-consulta" id="submitBtnGeneral">
-                    Enviar Mensaje
-                </button>
-            </form>
-        </div>
-    </div>
-    <!-- MODAL DE CONSULTA -->
-    <div id="modalConsulta" class="modal-consulta">
-        <div class="modal-content-consulta">
-            <button class="close-modal-consulta" onclick="cerrarModalConsulta()">×</button>
-
-            <div class="success-message" id="successMessage">
-                ✓ Tu consulta ha sido enviada correctamente. Te contactaremos a la brevedad.
-            </div>
-
-            <h2>Consultar Propiedad</h2>
-            <p class="modal-subtitle">Completá tus datos y nos pondremos en contacto</p>
-
-            <div class="propiedad-info-modal" id="propiedadInfoModal">
-                <!-- Se llena dinámicamente -->
-            </div>
-
-            <form id="formConsulta" onsubmit="enviarConsulta(event)">
-                <div class="form-row">
-                    <div class="form-group-consulta">
-                        <label>Nombre *</label>
-                        <input type="text" name="nombre" required placeholder="Tu nombre">
-                    </div>
-                    <div class="form-group-consulta">
-                        <label>Apellido *</label>
-                        <input type="text" name="apellido" required placeholder="Tu apellido">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group-consulta">
-                        <label>Email *</label>
-                        <input type="email" name="email" required placeholder="tu@email.com">
-                    </div>
-                    <div class="form-group-consulta">
-                        <label>Teléfono *</label>
-                        <input type="tel" name="telefono" required placeholder="223 xxx-xxxx">
-                    </div>
-                </div>
-
-                <div class="form-group-consulta">
-                    <label>Tipo de Consulta *</label>
-                    <select name="tipoConsulta" required>
-                        <option value="">Seleccionar...</option>
-                        <option value="Compra">Consulta de Compra</option>
-                        <option value="Alquiler">Consulta de Alquiler</option>
-                        <option value="Visita">Solicitar Visita</option>
-                        <option value="Mas Info">Más Información</option>
-                    </select>
-                </div>
-
-                <div class="form-group-consulta">
-                    <label>Mensaje</label>
-                    <textarea name="mensaje" placeholder="Dejanos tu consulta o comentario..."></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn-consulta" id="submitBtn">
-                    Enviar Consulta
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL DE DETALLE DE PROPIEDAD -->
-    <div id="modalDetalle" class="modal-detalle">
-        <div class="modal-detalle-content">
-            <button class="close-modal-detalle" onclick="cerrarDetallePropiedad()">×</button>
-
-            <div class="detalle-container">
-                <!-- Galería Principal -->
-                <div class="detalle-galeria">
-                    <div class="detalle-imagen-principal" id="imagenPrincipal"></div>
-                    <div class="detalle-carousel-controls">
-                        <button class="detalle-nav-btn" id="detallePrevBtn">‹</button>
-                        <button class="detalle-nav-btn" id="detalleNextBtn">›</button>
-                    </div>
-                    <div class="detalle-contador" id="contadorImagenes">1 / 40</div>
-                </div>
-
-                <!-- Miniaturas -->
-                <div class="detalle-miniaturas" id="miniaturas">
-                    <!-- Se llenan dinámicamente con JavaScript -->
-                </div>
-
-                <!-- Información -->
-                <div class="detalle-info">
-                    <div class="detalle-badge-modal" id="detalleBadge">Venta</div>
-                    <h2 id="detalleTitulo">Casa en Playa Grande</h2>
-                    <div class="detalle-ubicacion-modal">
-                        <span>📍</span>
-                        <span id="detalleUbicacion">Playa Grande, Mar del Plata</span>
-                    </div>
-                    <div class="detalle-precio-modal" id="detallePrecio">USD 280.000</div>
-
-                    <div class="detalle-specs">
-                        <div class="spec-item">
-                            <span class="spec-icon">🛏️</span>
-                            <div>
-                                <strong>Dormitorios</strong>
-                                <p id="detalleDormitorios">3</p>
-                            </div>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-icon">🚿</span>
-                            <div>
-                                <strong>Baños</strong>
-                                <p id="detalleBanos">2</p>
-                            </div>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-icon">📏</span>
-                            <div>
-                                <strong>Superficie</strong>
-                                <p id="detalleSuperficie">180 m²</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="detalle-descripcion">
-                        <h3>Descripción</h3>
-                        <p id="detalleDescripcion"></p>
-                    </div>
-
-                    <div class="detalle-caracteristicas">
-                        <h3>Características</h3>
-                        <ul id="detalleCaracteristicas"></ul>
-                    </div>
-
-                    <button class="consultar-btn-detalle"
-                        onclick="cerrarDetallePropiedad(); setTimeout(() => abrirModalConsulta(document.getElementById('detalleTitulo').textContent, document.getElementById('detalleUbicacion').textContent, document.getElementById('detallePrecio').textContent), 400)">
+                <div class="sheet-actions">
+                    <button type="button" class="btn btn--signal" id="detalleConsultar">
                         Consultar por esta propiedad
+                        <svg class="icon icon--move" aria-hidden="true"><use href="#i-arrow"/></svg>
+                    </button>
+                    <a class="icon-btn" id="detalleWhatsapp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp">
+                        <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+                    </a>
+                    <button type="button" class="icon-btn" id="detalleCompartir" aria-label="Compartir propiedad">
+                        <svg class="icon" aria-hidden="true"><use href="#i-share"/></svg>
                     </button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- ========== MODAL: CONSULTA DE PROPIEDAD ========== -->
+    <div id="modalConsulta" class="modal" role="dialog" aria-modal="true" aria-labelledby="consultaTitulo" aria-hidden="true">
+        <div class="modal-panel">
+            <button type="button" class="modal-close" data-close-modal aria-label="Cerrar">
+                <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>
+            </button>
+            <span class="eyebrow">Consulta</span>
+            <h2 class="h3" id="consultaTitulo">Consultar propiedad</h2>
+            <p class="modal-sub">Completá tus datos y nos pondremos en contacto.</p>
+            <div class="modal-ref" id="propiedadInfoModal"></div>
+
+            <form id="formConsulta">
+                <div class="form-status" role="status" aria-live="polite"></div>
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="q-nombre">Nombre *</label>
+                        <input id="q-nombre" type="text" name="nombre" required autocomplete="given-name" placeholder="Tu nombre">
+                    </div>
+                    <div class="field">
+                        <label for="q-apellido">Apellido *</label>
+                        <input id="q-apellido" type="text" name="apellido" required autocomplete="family-name" placeholder="Tu apellido">
+                    </div>
+                    <div class="field">
+                        <label for="q-email">Email *</label>
+                        <input id="q-email" type="email" name="email" required autocomplete="email" placeholder="tu@email.com">
+                    </div>
+                    <div class="field">
+                        <label for="q-tel">Teléfono *</label>
+                        <input id="q-tel" type="tel" name="telefono" required autocomplete="tel" placeholder="223 xxx-xxxx">
+                    </div>
+                    <div class="field field--full">
+                        <label for="q-tipo">Tipo de consulta *</label>
+                        <select id="q-tipo" name="tipoConsulta" required>
+                            <option value="">Seleccionar…</option>
+                            <option value="Compra">Consulta de compra</option>
+                            <option value="Alquiler">Consulta de alquiler</option>
+                            <option value="Visita">Solicitar visita</option>
+                            <option value="Mas Info">Más información</option>
+                        </select>
+                    </div>
+                    <div class="field field--full">
+                        <label for="q-msg">Mensaje</label>
+                        <textarea id="q-msg" name="mensaje" placeholder="Dejanos tu consulta o comentario…"></textarea>
+                    </div>
+                </div>
+                <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <div class="form-foot">
+                    <small>Respondemos en máximo 24 hs hábiles.</small>
+                    <button type="submit" class="btn btn--signal btn--pill" id="submitBtn">
+                        Enviar consulta
+                        <svg class="icon icon--move" aria-hidden="true"><use href="#i-send"/></svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== MODAL: CONTACTO GENERAL ========== -->
+    <div id="modalContactoGeneral" class="modal" role="dialog" aria-modal="true" aria-labelledby="contactoTitulo" aria-hidden="true">
+        <div class="modal-panel">
+            <button type="button" class="modal-close" data-close-modal aria-label="Cerrar">
+                <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>
+            </button>
+            <span class="eyebrow">Contacto</span>
+            <h2 class="h3" id="contactoTitulo">Contactanos</h2>
+            <p class="modal-sub">Completá tus datos y nos pondremos en contacto.</p>
+
+            <form id="formContactoGeneral">
+                <div class="form-status" role="status" aria-live="polite"></div>
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="g-nombre">Nombre *</label>
+                        <input id="g-nombre" type="text" name="nombre" required autocomplete="given-name" placeholder="Tu nombre">
+                    </div>
+                    <div class="field">
+                        <label for="g-apellido">Apellido *</label>
+                        <input id="g-apellido" type="text" name="apellido" required autocomplete="family-name" placeholder="Tu apellido">
+                    </div>
+                    <div class="field">
+                        <label for="g-email">Email *</label>
+                        <input id="g-email" type="email" name="email" required autocomplete="email" placeholder="tu@email.com">
+                    </div>
+                    <div class="field">
+                        <label for="g-tel">Teléfono *</label>
+                        <input id="g-tel" type="tel" name="telefono" required autocomplete="tel" placeholder="223 xxx-xxxx">
+                    </div>
+                    <div class="field field--full">
+                        <label for="g-motivo">Motivo de consulta *</label>
+                        <select id="g-motivo" name="motivoConsulta" required>
+                            <option value="">Seleccionar…</option>
+                            <option value="Comprar Propiedad">Comprar propiedad</option>
+                            <option value="Vender Propiedad">Vender propiedad</option>
+                            <option value="Alquilar Propiedad">Alquilar propiedad</option>
+                            <option value="Tasación">Tasación</option>
+                            <option value="Consulta General">Consulta general</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="field field--full">
+                        <label for="g-msg">Mensaje *</label>
+                        <textarea id="g-msg" name="mensaje" required placeholder="Dejanos tu consulta o comentario…"></textarea>
+                    </div>
+                </div>
+                <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <div class="form-foot">
+                    <small>Respondemos en máximo 24 hs hábiles.</small>
+                    <button type="submit" class="btn btn--signal btn--pill" id="submitBtnGeneral">
+                        Enviar mensaje
+                        <svg class="icon icon--move" aria-hidden="true"><use href="#i-send"/></svg>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 

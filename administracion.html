@@ -1,359 +1,412 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
-    <title>Administración de Consorcios | Breccia</title>
-    <meta name="description" content="Administración profesional de consorcios en Mar del Plata. Breccia gestiona más de 49 edificios con transparencia, tecnología y más de 25 años de experiencia.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Consorcios en Mar del Plata | Breccia</title>
+    <meta name="description" content="Administración profesional de consorcios en Mar del Plata. Breccia gestiona más de 50 edificios con transparencia, tecnología y más de 25 años de experiencia.">
+    <link rel="canonical" href="https://www.brecciainmuebles.com.ar/administracion.html">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Administración de Consorcios | Breccia Inmuebles y Negocios">
+    <meta property="og:description" content="Gestión profesional y transparente para tu edificio en Mar del Plata.">
+
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="breccia.css">
-    <link rel="stylesheet" href="admi.css">
-    <link rel="stylesheet" href="premium.css">
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon-V3.ico?v=20260125143000">
     <link rel="shortcut icon" href="/favicon-V3.ico?v=20260125143000">
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon-V3.ico?v=20260125143000">
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon-V3.ico?v=20260125143000">
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon-V3.ico?v=20260125143000">
     <link rel="manifest" href="/site.webmanifest?v=20260125143000">
     <meta name="theme-color" content="#6b2c3e">
 </head>
 
 <body>
-    <div id="scroll-progress"></div>
-    <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/5492235771240?text=Hola,%20quiero%20consultar%20sobre%20" class="whatsapp-float" target="_blank"
-        rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-        <svg viewBox="0 0 32 32" fill="white" width="28" height="28">
-            <path
-                d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.16-2.141c2.324 1.274 4.93 1.947 7.84 1.947 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.297c-2.547 0-5.043-0.688-7.245-1.984l-0.52-0.296-5.381 1.412 1.44-5.264-0.324-0.548c-1.453-2.259-2.217-4.871-2.217-7.617 0-7.699 6.265-13.964 13.964-13.964s13.964 6.265 13.964 13.964-6.265 13.964-13.964 13.964zM23.28 19.281c-0.391-0.195-2.313-1.141-2.671-1.271s-0.619-0.195-0.879 0.195c-0.26 0.391-1.009 1.271-1.237 1.531s-0.456 0.293-0.847 0.099c-0.391-0.195-1.651-0.608-3.144-1.939-1.163-1.036-1.948-2.316-2.176-2.707s-0.024-0.601 0.171-0.796c0.176-0.175 0.391-0.456 0.587-0.684s0.26-0.391 0.391-0.651c0.13-0.26 0.065-0.488-0.033-0.684s-0.879-2.119-1.204-2.901c-0.317-0.76-0.639-0.657-0.879-0.669-0.228-0.011-0.488-0.013-0.748-0.013s-0.684 0.097-1.041 0.488c-0.358 0.391-1.368 1.337-1.368 3.261s1.401 3.781 1.596 4.041c0.195 0.26 2.751 4.199 6.665 5.889 0.931 0.403 1.657 0.643 2.223 0.823 0.935 0.297 1.785 0.255 2.457 0.155 0.749-0.112 2.313-0.945 2.639-1.857s0.326-1.695 0.228-1.857c-0.097-0.163-0.358-0.26-0.749-0.456z" />
-        </svg>
-    </a>
-    <header>
-        <nav>
-            <div class="logo">
-                <span class="logo-main">BRECCIA</span>
-                <span class="logo-sub">Inmuebles y Negocios</span>
-            </div>
-            <button class="hamburger-btn" aria-label="Menú">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html#inicio">Inicio</a></li>
-                <li><a href="index.html#servicios">Servicios</a></li>
-                <li><a href="index.html#nosotros">Nosotros</a></li>
-                <li><a href="index.html#contacto">Contacto</a></li>
-                <li>
-                    <a href="https://joinup.i-data.com.ar/ingresar" class="portal-link" target="_blank"
-                        rel="noopener noreferrer">
-                        Acceso Propietarios
-                    </a>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- ========== HEADER ========== -->
+    <header class="site-header">
+        <nav class="nav" aria-label="Principal">
+            <a class="brand" href="index.html" aria-label="Breccia Inmuebles y Negocios — inicio">
+                <span class="brand-main">BRECCIA</span>
+                <span class="brand-sub">Inmuebles y Negocios</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="administracion.html" aria-current="page"><span class="nav-num">01</span>Administración</a></li>
+                <li><a href="inmobiliaria.html"><span class="nav-num">02</span>Inmobiliaria</a></li>
+                <li><a href="index.html#nosotros"><span class="nav-num">03</span>Nosotros</a></li>
+                <li><a href="index.html#contacto"><span class="nav-num">04</span>Contacto</a></li>
+                <li class="mobile-only">
+                    <a class="btn btn--light" href="https://joinup.i-data.com.ar/ingresar" target="_blank" rel="noopener noreferrer">Portal propietarios</a>
+                    <a class="btn btn--ghost" href="tel:2234260505">Emergencias 24 hs · 223 426-0505</a>
                 </li>
             </ul>
+            <div class="nav-actions">
+                <a class="btn btn--outline" href="https://joinup.i-data.com.ar/ingresar" target="_blank" rel="noopener noreferrer">
+                    Portal propietarios
+                    <svg class="icon icon--sm icon--move-ur" aria-hidden="true"><use href="#i-arrow-ur"/></svg>
+                </a>
+                <button class="menu-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Abrir menú">
+                    <span></span><span></span>
+                </button>
+            </div>
         </nav>
     </header>
 
-    <section class="admin-hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="VideoHeroAdministracion.mp4" type="video/mp4">
-            Tu navegador no soporta videos HTML5.
-        </video>
-        <div class="hero-overlay"></div>
-        <div style="position: relative; z-index: 2;">
-            <h1>Administración de Consorcios</h1>
-            <p>Gestión profesional y transparente para tu edificio</p>
-        </div>
-    </section>
-
-    <!-- SECCIÓN DE ESTADÍSTICAS Y CTA -->
-    <section style="background: #f8f9fa; padding: 60px 2rem;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <a href="index.html#servicios" class="back-button">
-                    ← Volver a Todos los Servicios
-                </a>
-            </div>
-
-            <!-- Stats destacados — diseño premium -->
-            <div class="stats-breccia-grid" style="margin-bottom: 2rem;">
-                <div class="stat-breccia-item">
-                    <span class="stat-breccia-icon">🏢</span>
-                    <span class="stat-breccia-number" data-target="48" data-suffix="+">48+</span>
-                    <span class="stat-breccia-label">Edificios</span>
-                </div>
-                <div class="stat-breccia-item">
-                    <span class="stat-breccia-icon">🏠</span>
-                    <span class="stat-breccia-number" data-target="1500" data-suffix="+">1500+</span>
-                    <span class="stat-breccia-label">Unidades</span>
-                </div>
-                <div class="stat-breccia-item">
-                    <span class="stat-breccia-icon">⭐</span>
-                    <span class="stat-breccia-number" data-target="25" data-suffix="+">25+</span>
-                    <span class="stat-breccia-label">Años</span>
-                </div>
-                <div class="stat-breccia-item">
-                    <span class="stat-breccia-icon">🕐</span>
-                    <span class="stat-breccia-number" data-target="24" data-suffix="/7">24/7</span>
-                    <span class="stat-breccia-label">Soporte</span>
+    <main id="main">
+        <!-- ========== HERO ========== -->
+        <section class="hero hero--page grain">
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="VideoHeroAdministracion.mp4" type="video/mp4">
+            </video>
+            <div class="hero-shade" aria-hidden="true"></div>
+            <div class="container">
+                <div class="hero-copy">
+                    <a href="index.html#servicios" class="back-link">
+                        <svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow-l"/></svg>
+                        Todos los servicios
+                    </a>
+                    <h1 class="display" style="margin-top: 28px;">
+                        Administración<br><span class="serif">de consorcios.</span>
+                    </h1>
+                    <p class="lead">Gestión profesional y transparente para tu edificio. Liquidaciones claras, proveedores coordinados y presencia semanal en cada consorcio.</p>
+                    <div class="hero-ctas">
+                        <a href="#propuesta" class="btn btn--signal btn--pill">
+                            Solicitar propuesta
+                            <svg class="icon icon--move" aria-hidden="true"><use href="#i-arrow"/></svg>
+                        </a>
+                        <a href="#edificios" class="btn btn--ghost btn--pill">Ver edificios administrados</a>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="cta-breccia-card"
-                style="background: linear-gradient(135deg, #6b2c3e, #8b3a4f); padding: 3rem 2rem; border-radius: 20px; text-align: center; color: white;">
-                <h2 style="font-size: 2rem; margin-bottom: 1rem;">¿Querés que administremos tu consorcio?</h2>
-                <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">
-                    Consulta gratuita y sin compromiso • Respuesta en 24hs
-                </p>
-                <a href="index.html#contacto" class="cta-button" style="background: white; color: #6b2c3e;">
-                    Solicitar Información →
-                </a>
+        <!-- ========== MÉTRICAS ========== -->
+        <section class="section" aria-label="Administración en números">
+            <div class="container">
+                <div class="route">
+                    <div class="route-card" data-reveal>
+                        <span class="route-index">01</span>
+                        <span class="route-number" data-count="51" data-stat="edificios">51</span>
+                        <span class="route-label">Edificios administrados</span>
+                    </div>
+                    <div class="route-card" data-reveal style="--d:.08s">
+                        <span class="route-index">02</span>
+                        <span class="route-number" data-count="1575" data-stat="unidades">1.575</span>
+                        <span class="route-label">Unidades funcionales</span>
+                    </div>
+                    <div class="route-card" data-reveal style="--d:.16s">
+                        <span class="route-index">03</span>
+                        <span class="route-number" data-count="25" data-suffix="+">25+</span>
+                        <span class="route-label">Años de experiencia</span>
+                    </div>
+                    <div class="route-card" data-reveal style="--d:.24s">
+                        <span class="route-index">04</span>
+                        <span class="route-number">24/7</span>
+                        <span class="route-label">Soporte de emergencias</span>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CARRUSEL DE SERVICIOS -->
-    <section class="carousel-section">
-        <h2 class="fade-in" style="text-align: center; color: #6b2c3e; font-size: 2.5rem; margin-bottom: 3rem;">Nuestros
-            Servicios</h2>
+        <!-- ========== SERVICIOS ========== -->
+        <section class="section section--tint" id="servicios">
+            <div class="container">
+                <div class="stamp-row" data-reveal>
+                    <h2 class="stamp">Servicios</h2>
+                    <span class="stamp-meta">04 áreas de gestión</span>
+                </div>
 
-        <div class="carousel-container">
-            <div class="carousel-track" id="carouselTrack">
-                <!-- Slide 1 -->
-                <div class="carousel-slide">
-                    <h3><span>📋</span> Gestión Administrativa</h3>
-                    <ul>
-                        <li>Liquidación mensual de expensas ordinarias y extraordinarias</li>
-                        <li>Control y seguimiento de morosidad</li>
-                        <li>Gestión de cobranzas judiciales y extrajudiciales</li>
-                        <li>Confección de presupuestos anuales</li>
-                        <li>Rendición de cuentas mensual detallada</li>
-                        <li>Archivo digital de toda la documentación</li>
+                <div class="svc-rows">
+                    <article class="svc-row" data-reveal>
+                        <div class="svc-row-head">
+                            <span class="row-num">01</span>
+                            <h3 class="h3"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg></span>Gestión administrativa</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Liquidación mensual de expensas ordinarias y extraordinarias</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Control y seguimiento de morosidad</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Gestión de cobranzas judiciales y extrajudiciales</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Confección de presupuestos anuales</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Rendición de cuentas mensual detallada</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Archivo digital de toda la documentación</li>
+                        </ul>
+                    </article>
+                    <article class="svc-row" data-reveal>
+                        <div class="svc-row-head">
+                            <span class="row-num">02</span>
+                            <h3 class="h3"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-wrench"/></svg></span>Mantenimiento y obras</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Coordinación de proveedores y contratistas</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Supervisión de trabajos de mantenimiento</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Gestión de obras y refacciones</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Pedido y evaluación de presupuestos</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Control de calidad de servicios</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Planificación de mantenimiento preventivo</li>
+                        </ul>
+                    </article>
+                    <article class="svc-row" data-reveal>
+                        <div class="svc-row-head">
+                            <span class="row-num">03</span>
+                            <h3 class="h3"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-scale"/></svg></span>Asesoramiento legal</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Consultas sobre Ley de Propiedad Horizontal</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Asesoramiento en asambleas de propietarios</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Redacción y actualización de reglamentos</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Gestión de conflictos entre propietarios</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Tramitación de seguros del consorcio</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Interpretación de normativas vigentes</li>
+                        </ul>
+                    </article>
+                    <article class="svc-row" data-reveal>
+                        <div class="svc-row-head">
+                            <span class="row-num">04</span>
+                            <h3 class="h3"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-monitor"/></svg></span>Portal digital</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Acceso 24/7 a información del consorcio</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Descarga de liquidaciones de expensas</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Estado de cuenta actualizado</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Pago online de expensas</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Sistema de reclamos y consultas</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Notificaciones automáticas por email</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== EDIFICIOS ========== -->
+        <section class="section" id="edificios">
+            <div class="container">
+                <div class="stamp-row" data-reveal>
+                    <h2 class="stamp">Edificios</h2>
+                    <span class="stamp-meta"><span id="bldTotal">51</span> consorcios en Mar del Plata</span>
+                </div>
+
+                <div class="toolbar">
+                    <label class="search">
+                        <span class="sr-only">Buscar edificio</span>
+                        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+                        <input type="search" id="searchEdificio" placeholder="Buscá por nombre o dirección…" autocomplete="off">
+                    </label>
+                    <div class="chips" id="zoneChips" role="group" aria-label="Filtrar por zona"></div>
+                    <label>
+                        <span class="sr-only">Ordenar</span>
+                        <select class="select-inline" id="sortEdificios">
+                            <option value="default">Orden: destacados</option>
+                            <option value="nombre">Nombre A–Z</option>
+                            <option value="unidades">Más unidades</option>
+                            <option value="pisos">Más pisos</option>
+                        </select>
+                    </label>
+                </div>
+
+                <p class="result-meta" id="bldSummary" aria-live="polite" style="margin-bottom: 16px;"></p>
+                <div class="bld-grid" id="edificiosGrid"></div>
+                <nav class="pager" id="pagination" aria-label="Paginación de edificios"></nav>
+            </div>
+        </section>
+
+        <!-- ========== EQUIPO ========== -->
+        <section class="section section--tint" id="equipo">
+            <div class="container">
+                <div class="stamp-row" data-reveal>
+                    <h2 class="stamp">Equipo</h2>
+                    <span class="stamp-meta">10 profesionales</span>
+                </div>
+                <p class="lead" style="margin-bottom: 56px;" data-reveal>Profesionales comprometidos con la excelencia en la administración de consorcios.</p>
+
+                <div class="team-group" data-reveal>
+                    <div class="team-group-title"><span class="eyebrow eyebrow--plain">Dirección</span></div>
+                    <div class="team-grid">
+                        <div class="member"><span class="avatar" data-initials>María Luján Breccia</span><h3>María Luján Breccia</h3><span class="role">Administradora principal</span><p>Responsable de la gestión integral de todos los consorcios administrados</p></div>
+                        <div class="member"><span class="avatar" data-initials>María José Zwicker</span><h3>María José Zwicker</h3><span class="role">Contadora</span><p>Área contable</p></div>
+                        <div class="member"><span class="avatar" data-initials>Esteban Bianca</span><h3>Esteban Bianca</h3><span class="role">Arquitecto</span><p>Área técnica – Arquitectura y obras</p></div>
+                    </div>
+                </div>
+
+                <div class="team-group" data-reveal>
+                    <div class="team-group-title"><span class="eyebrow eyebrow--plain">Gestión administrativa</span></div>
+                    <div class="team-grid">
+                        <div class="member"><span class="avatar" data-initials>Magali Parodi</span><h3>Magali Parodi</h3><span class="role">Gestión administrativa</span><p>Coordinación de trámites y documentación de consorcios</p></div>
+                        <div class="member"><span class="avatar" data-initials>Joaquín Parodi</span><h3>Joaquín Parodi</h3><span class="role">Gestión administrativa</span><p>Organización y seguimiento de procesos administrativos</p></div>
+                        <div class="member"><span class="avatar" data-initials>Valentina Sánchez Breccia</span><h3>Valentina Sánchez Breccia</h3><span class="role">Gestión administrativa</span><p>Coordinación general y soporte operativo</p></div>
+                        <div class="member"><span class="avatar" data-initials>Rosario Montiel</span><h3>Rosario Montiel</h3><span class="role">Atención al cliente</span><p>Gestión de reclamos, consultas y atención a propietarios</p></div>
+                    </div>
+                </div>
+
+                <div class="team-group" data-reveal>
+                    <div class="team-group-title"><span class="eyebrow eyebrow--plain">Inspectores</span></div>
+                    <div class="team-grid">
+                        <div class="member"><span class="avatar" data-initials>Adán Tarricone</span><h3>Adán Tarricone</h3><span class="role">Inspector</span><p>Inspección y control de mantenimiento en consorcios</p></div>
+                        <div class="member"><span class="avatar" data-initials>Juan Ignacio Barros Sirochinsky</span><h3>Juan Ignacio Barros Sirochinsky</h3><span class="role">Inspector</span><p>Supervisión de obras y tareas de mantenimiento</p></div>
+                        <div class="member"><span class="avatar" data-initials>Thiago Tarricone</span><h3>Thiago Tarricone</h3><span class="role">Inspector</span><p>Control de calidad y seguimiento de proveedores</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PORTAL CTA ========== -->
+        <section class="section section--tint section--flush-top">
+            <div class="container">
+                <div class="bloom-card cta-band" data-reveal>
+                    <div>
+                        <span class="eyebrow" style="color: rgba(247,249,250,.8);">Propietarios</span>
+                        <h2 class="h2">¿Ya sos propietario en un consorcio <span class="serif">administrado por nosotros?</span></h2>
+                        <p>Accedé a tu información 24/7 desde nuestro portal digital.</p>
+                    </div>
+                    <div class="cta-band-actions">
+                        <a href="https://joinup.i-data.com.ar/ingresar" target="_blank" rel="noopener noreferrer" class="btn btn--light btn--pill">
+                            <svg class="icon icon--sm" aria-hidden="true"><use href="#i-lock"/></svg>
+                            Acceder al portal
+                        </a>
+                        <a href="index.html#contacto" class="btn btn--ghost btn--pill">Soporte</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PROPUESTA ========== -->
+        <section class="section" id="propuesta">
+            <div class="container form-wrap">
+                <div data-reveal>
+                    <span class="eyebrow">Propuesta sin cargo</span>
+                    <h2 class="h2" style="margin: 20px 0 24px;">¿Querés que administremos <span class="serif">tu consorcio?</span></h2>
+                    <p class="lead" style="margin-bottom: 32px;">Consulta gratuita y sin compromiso. Respuesta en 24 hs.</p>
+                    <ul class="emergency-side" style="max-width: 420px;">
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><div><strong>495-7908</strong><span>Lunes a viernes de 9 a 13:30 hs</span></div></li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><div><strong>contacto@breccianegocios.com.ar</strong><span>Máximo 24 hs hábiles</span></div></li>
                     </ul>
                 </div>
+                <form class="form-card" data-form data-subject="Solicitud de propuesta de administración" data-success="¡Gracias! Recibimos los datos de tu consorcio. Te contactamos dentro de las próximas 24 hs." data-reveal>
+                    <div class="form-status" role="status" aria-live="polite"></div>
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="p-nombre">Nombre y apellido *</label>
+                            <input id="p-nombre" name="nombre" type="text" required autocomplete="name" placeholder="Tu nombre">
+                        </div>
+                        <div class="field">
+                            <label for="p-tel">Teléfono *</label>
+                            <input id="p-tel" name="telefono" type="tel" required autocomplete="tel" placeholder="223 xxx-xxxx">
+                        </div>
+                        <div class="field field--full">
+                            <label for="p-email">Email *</label>
+                            <input id="p-email" name="email" type="email" required autocomplete="email" placeholder="tu@email.com">
+                        </div>
+                        <div class="field">
+                            <label for="p-dir">Dirección del edificio *</label>
+                            <input id="p-dir" name="direccion" type="text" required placeholder="Calle y altura">
+                        </div>
+                        <div class="field">
+                            <label for="p-uf">Cantidad de unidades</label>
+                            <input id="p-uf" name="unidades" type="number" min="1" inputmode="numeric" placeholder="Ej: 24">
+                        </div>
+                        <div class="field field--full">
+                            <label for="p-rol">Soy *</label>
+                            <select id="p-rol" name="rol" required>
+                                <option value="">Seleccionar…</option>
+                                <option>Propietario/a</option>
+                                <option>Miembro del consejo de administración</option>
+                                <option>Desarrollador/a o constructora</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="field field--full">
+                            <label for="p-msg">Comentarios</label>
+                            <textarea id="p-msg" name="mensaje" placeholder="Contanos cómo está hoy la administración del edificio…"></textarea>
+                        </div>
+                    </div>
+                    <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="form-foot">
+                        <small>Consulta gratuita y sin compromiso.</small>
+                        <button type="submit" class="btn btn--signal btn--pill">
+                            Solicitar propuesta
+                            <svg class="icon icon--move" aria-hidden="true"><use href="#i-send"/></svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
 
-                <!-- Slide 2 -->
-                <div class="carousel-slide">
-                    <h3><span>🔧</span> Mantenimiento y Obras</h3>
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-cta">
+                <div>
+                    <span class="eyebrow">Breccia Inmuebles y Negocios</span>
+                    <h2 class="h2">Tu propiedad, <span class="serif">en buenas manos.</span></h2>
+                </div>
+                <div class="cta-band-actions">
+                    <a href="index.html#contacto" class="btn btn--light btn--pill">
+                        Contactanos
+                        <svg class="icon icon--move" aria-hidden="true"><use href="#i-arrow"/></svg>
+                    </a>
+                    <a href="tel:2234260505" class="btn btn--ghost btn--pill">
+                        <svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg> Emergencias 24 hs
+                    </a>
+                </div>
+            </div>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <span class="footer-brand"><span class="brand-main">BRECCIA</span><span class="brand-sub">Inmuebles y Negocios</span></span>
+                    <p>Administración de consorcios y servicios inmobiliarios en Mar del Plata desde hace más de 25 años.</p>
+                    <span class="live" data-office><span class="live-dot"></span><span data-office-text>Lun a Vie · 9 a 13:30</span></span>
+                </div>
+                <div class="footer-col">
+                    <h4>Sitio</h4>
                     <ul>
-                        <li>Coordinación de proveedores y contratistas</li>
-                        <li>Supervisión de trabajos de mantenimiento</li>
-                        <li>Gestión de obras y refacciones</li>
-                        <li>Pedido y evaluación de presupuestos</li>
-                        <li>Control de calidad de servicios</li>
-                        <li>Planificación de mantenimiento preventivo</li>
+                        <li><a href="administracion.html">Administración</a></li>
+                        <li><a href="inmobiliaria.html">Inmobiliaria</a></li>
+                        <li><a href="index.html#nosotros">Nosotros</a></li>
+                        <li><a href="https://joinup.i-data.com.ar/ingresar" target="_blank" rel="noopener noreferrer">Portal propietarios</a></li>
                     </ul>
                 </div>
-
-                <!-- Slide 3 -->
-                <div class="carousel-slide">
-                    <h3><span>⚖️</span> Asesoramiento Legal</h3>
+                <div class="footer-col">
+                    <h4>Contacto</h4>
                     <ul>
-                        <li>Consultas sobre Ley de Propiedad Horizontal</li>
-                        <li>Asesoramiento en asambleas de propietarios</li>
-                        <li>Redacción y actualización de reglamentos</li>
-                        <li>Gestión de conflictos entre propietarios</li>
-                        <li>Tramitación de seguros del consorcio</li>
-                        <li>Interpretación de normativas vigentes</li>
+                        <li><a href="tel:2234957908">495-7908</a></li>
+                        <li><a href="mailto:contacto@breccianegocios.com.ar">contacto@breccianegocios.com.ar</a></li>
+                        <li><a href="https://wa.me/5492235771240" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
                     </ul>
                 </div>
-
-                <!-- Slide 4 -->
-                <div class="carousel-slide">
-                    <h3><span>💻</span> Portal Digital</h3>
+                <div class="footer-col">
+                    <h4>Emergencias 24/7</h4>
                     <ul>
-                        <li>Acceso 24/7 a información del consorcio</li>
-                        <li>Descarga de liquidaciones de expensas</li>
-                        <li>Estado de cuenta actualizado</li>
-                        <li>Pago online de expensas</li>
-                        <li>Sistema de reclamos y consultas</li>
-                        <li>Notificaciones automáticas por email</li>
+                        <li><a href="tel:2234260505">223 426-0505</a></li>
+                        <li><span>Olavarría 2838 2°B</span></li>
+                        <li><span>Mar del Plata, Bs. As.</span></li>
                     </ul>
                 </div>
             </div>
-        </div>
-
-        <div class="carousel-controls">
-            <button class="carousel-btn" id="prevBtn">‹</button>
-            <div class="carousel-indicators" id="indicators">
-                <div class="indicator active" data-slide="0"></div>
-                <div class="indicator" data-slide="1"></div>
-                <div class="indicator" data-slide="2"></div>
-                <div class="indicator" data-slide="3"></div>
-            </div>
-            <button class="carousel-btn" id="nextBtn">›</button>
-        </div>
-    </section>
-
-    <!-- Edificios Administrados -->
-    <section class="edificios-section">
-        <div style="text-align: center; max-width: 900px; margin: 0 auto 3rem;">
-            <h2 class="fade-in" style="color: #6b2c3e; font-size: 2.5rem; margin-bottom: 1rem;">
-                Edificios que Administramos
-            </h2>
-            <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem;">
-                Más de 49 consorcios en Mar del Plata confían en nuestra gestión profesional
-            </p>
-
-            <!-- Badges informativos — premium -->
-            <div class="info-badges-grid">
-                <div class="info-badge-pill">
-                    <span>🏢</span>
-                    <span>49 Edificios</span>
+            <div class="footer-stamp">
+                <div class="left">
+                    <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+                    <span>&copy; <span data-year>2026</span> Breccia Inmuebles y Negocios. Todos los derechos reservados.</span>
                 </div>
-                <div class="info-badge-pill">
-                    <span>📍</span>
-                    <span>Toda la ciudad</span>
-                </div>
-                <div class="info-badge-pill">
-                    <span>✓</span>
-                    <span>Gestión integral</span>
+                <div class="right">
+                    <span class="coords">38°00′20″S 57°32′33″W · MDQ <span data-clock>--:--</span></span>
+                    <svg class="icon heart" aria-hidden="true"><use href="#i-heart"/></svg>
                 </div>
             </div>
         </div>
-
-        <!-- Grid de Edificios -->
-        <div class="edificios-grid" id="edificiosGrid">
-            <!-- Los edificios se cargan aquí dinámicamente -->
-        </div>
-
-        <!-- Paginación -->
-        <div class="pagination" id="pagination">
-            <!-- Botones de paginación se generan dinámicamente -->
-        </div>
-
-        <div class="edificios-summary">
-            <p>Mostrando <span id="showing">12</span> de <span id="total">49</span> edificios</p>
-        </div>
-    </section>
-
-    <!-- Equipo -->
-    <section class="equipo-section">
-        <h2 class="fade-in" style="text-align: center; color: #6b2c3e; font-size: 2.5rem; margin-bottom: 1rem;">Nuestro
-            Equipo</h2>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #666;">
-            Profesionales comprometidos con la excelencia en la administración de consorcios
-        </p>
-
-        <!-- GRUPO 1: Dirección (3 personas) -->
-        <div class="equipo-grupo">
-            <h3 class="equipo-grupo-titulo">Dirección</h3>
-            <div class="equipo-grid equipo-grid-3">
-                <div class="team-card scale-in">
-                    <div class="team-avatar">👩‍💼</div>
-                    <h3>María Luján Breccia</h3>
-                    <p class="team-role">Administradora Principal</p>
-                    <p style="color: #666;">Responsable de la gestión integral de todos los consorcios administrados</p>
-                </div>
-
-                <div class="team-card scale-in stagger-1">
-                    <div class="team-avatar">👩‍💼</div>
-                    <h3>María José Zwicker</h3>
-                    <p class="team-role">Contadora</p>
-                    <p style="color: #666;">Área Contable</p>
-                </div>
-
-                <div class="team-card scale-in stagger-2">
-                    <div class="team-avatar">👨‍💼</div>
-                    <h3>Esteban Bianca</h3>
-                    <p class="team-role">Arquitecto</p>
-                    <p style="color: #666;">Área Técnica – Arquitectura y Obras</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- GRUPO 2: Gestión Administrativa (4 personas) -->
-        <div class="equipo-grupo">
-            <h3 class="equipo-grupo-titulo">Gestión Administrativa</h3>
-            <div class="equipo-grid equipo-grid-4">
-                <div class="team-card scale-in stagger-3">
-                    <div class="team-avatar">👩‍💻</div>
-                    <h3>Magali Parodi</h3>
-                    <p class="team-role">Gestión Administrativa</p>
-                    <p style="color: #666;">Coordinación de trámites y documentación de consorcios</p>
-                </div>
-
-                <div class="team-card scale-in stagger-1">
-                    <div class="team-avatar">👨‍💻</div>
-                    <h3>Joaquín Parodi</h3>
-                    <p class="team-role">Gestión Administrativa</p>
-                    <p style="color: #666;">Organización y seguimiento de procesos administrativos</p>
-                </div>
-
-                <div class="team-card scale-in stagger-2">
-                    <div class="team-avatar">👩‍💼</div>
-                    <h3>Valentina Sánchez Breccia</h3>
-                    <p class="team-role">Gestión Administrativa</p>
-                    <p style="color: #666;">Coordinación general y soporte operativo</p>
-                </div>
-
-                <div class="team-card scale-in stagger-3">
-                    <div class="team-avatar">👩‍💻</div>
-                    <h3>Rosario Montiel</h3>
-                    <p class="team-role">Atención al Cliente</p>
-                    <p style="color: #666;">Gestión de reclamos, consultas y atención a propietarios</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- GRUPO 3: Inspectores (3 personas) -->
-        <div class="equipo-grupo">
-            <h3 class="equipo-grupo-titulo">Inspectores</h3>
-            <div class="equipo-grid equipo-grid-3">
-                <div class="team-card scale-in stagger-1">
-                    <div class="team-avatar">👨‍🔧</div>
-                    <h3>Adán Tarricone</h3>
-                    <p class="team-role">Inspector</p>
-                    <p style="color: #666;">Inspección y control de mantenimiento en consorcios</p>
-                </div>
-
-                <div class="team-card scale-in stagger-2">
-                    <div class="team-avatar">👨‍🔧</div>
-                    <h3>Juan Ignacio Barros Sirochinsky</h3>
-                    <p class="team-role">Inspector</p>
-                    <p style="color: #666;">Supervisión de obras y tareas de mantenimiento</p>
-                </div>
-
-                <div class="team-card scale-in stagger-3">
-                    <div class="team-avatar">👨‍🔧</div>
-                    <h3>Thiago Tarricone</h3>
-                    <p class="team-role">Inspector</p>
-                    <p style="color: #666;">Control de calidad y seguimiento de proveedores</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section
-        style="background: linear-gradient(135deg, #6b2c3e, #8b3a4f); padding: 80px 2rem; text-align: center; color: white;">
-        <div style="max-width: 900px; margin: 0 auto;">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">¿Ya sos propietario de un consorcio administrado por
-                nosotros?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.95;">
-                Accedé a tu información 24/7 desde nuestro portal digital
-            </p>
-            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <a href="https://joinup.i-data.com.ar/ingresar" target="_blank" class="cta-button"
-                    style="background: white; color: #6b2c3e;">
-                    🔐 Acceder al Portal
-                </a>
-                <a href="index.html#contacto" class="cta-button"
-                    style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white;">
-                    📞 Soporte
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Breccia Inmuebles y Negocios. Todos los derechos reservados.</p>
     </footer>
 
+    <a href="https://wa.me/5492235771240?text=Hola,%20quiero%20consultar%20sobre%20la%20administraci%C3%B3n%20de%20mi%20consorcio" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+        <span>¿Consultas?</span>
+    </a>
+
+    <script src="edificios.js"></script>
     <script src="breccia.js"></script>
     <script src="admi.js"></script>
 </body>
