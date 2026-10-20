@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración | Breccia Inmuebles</title>
 
-    <link rel="stylesheet" href="breccia.css?v=20261009_1640">
-    <link rel="stylesheet" href="admin.css?v=20261009_1640">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css?v=20261020">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon-V3.ico?v=20260125143000">
@@ -22,10 +25,10 @@
     <header class="admin-header">
         <div class="admin-header-brand">
             <div class="logo">
-                <span class="logo-main" style="font-size: 1.3rem;">BRECCIA</span>
-                <span class="logo-sub" style="font-size: 0.65rem;">Inmuebles y Negocios</span>
+                <span class="logo-main">BRECCIA</span>
+                <span class="logo-sub">Inmuebles y Negocios</span>
             </div>
-            <span class="admin-badge">PANEL DE CONTROL</span>
+            <span class="admin-badge">Panel de control</span>
         </div>
         <div class="admin-header-actions">
             <a href="inmobiliaria.html" class="btn-header-link" target="_blank">
@@ -187,10 +190,10 @@
                         <div class="form-group">
                             <label for="propEstado">Estado de la Propiedad</label>
                             <select id="propEstado">
-                                <option value="disponible">✅ Disponible</option>
-                                <option value="reservada">🔒 Reservada</option>
-                                <option value="alquilada">🏠 Alquilada</option>
-                                <option value="vendida">✔️ Vendida</option>
+                                <option value="disponible">Disponible</option>
+                                <option value="reservada">Reservada</option>
+                                <option value="alquilada">Alquilada</option>
+                                <option value="vendida">Vendida</option>
                             </select>
                         </div>
 
@@ -217,14 +220,12 @@
                             <input type="text" id="propPrecio" required placeholder="Ej: USD 120.000 o Consultar">
                         </div>
 
-                        <div class="form-group span-2" style="background: rgba(197, 160, 89, 0.08); padding: 0.85rem 1.15rem; border-radius: 12px; border: 1.5px solid rgba(197, 160, 89, 0.35);">
-                            <label for="propDestacada" style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.92rem; font-weight: 700; color: #6b2c3e; margin: 0;">
-                                <input type="checkbox" id="propDestacada" style="width: 18px; height: 18px; accent-color: #c5a059; cursor: pointer;">
-                                <span>⭐ Marcar como Propiedad Destacada</span>
+                        <div class="form-group span-2 destacada-box">
+                            <label for="propDestacada">
+                                <input type="checkbox" id="propDestacada">
+                                <span>★ Marcar como propiedad destacada</span>
                             </label>
-                            <p style="margin: 4px 0 0 28px; font-size: 0.78rem; color: #64748b;">
-                                Aparecerá con insignia dorada y al inicio del catálogo en la web pública.
-                            </p>
+                            <p>Aparece con la insignia "Destacada" y al inicio del catálogo en la web pública.</p>
                         </div>
                     </div>
 
@@ -305,8 +306,8 @@
                     </div>
 
                     <!-- Sección 4: Fotos -->
-                    <div class="form-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <div class="form-section-title" style="justify-content: space-between; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
                             <span>Galería de Fotografías</span>
                         </div>
@@ -378,7 +379,7 @@
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                <div class="backup-actions">
                     <button class="btn-primary" id="btnExportarJSON">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                         <span>Descargar Respaldo JSON</span>
@@ -390,7 +391,7 @@
                     <input type="file" id="inputFileImport" accept=".json" style="display: none;">
                 </div>
 
-                <hr style="border: none; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+                <hr class="admin-divider">
 
                 <div class="panel-card-header">
                     <div>
@@ -398,12 +399,12 @@
                         <p class="panel-card-subtitle">Cambiar la contraseña de acceso al panel de control</p>
                     </div>
                 </div>
-                <form id="formCambiarPass" style="max-width: 480px;">
-                    <div class="form-group" style="margin-bottom: 1.25rem;">
+                <form id="formCambiarPass">
+                    <div class="form-group">
                         <label for="newPass">Nueva Contraseña</label>
                         <input type="password" id="newPass" required placeholder="Mínimo 6 caracteres">
                     </div>
-                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <div class="form-group">
                         <label for="confirmPass">Confirmar Nueva Contraseña</label>
                         <input type="password" id="confirmPass" required placeholder="Repita la contraseña">
                     </div>
@@ -428,25 +429,23 @@
                 <button class="modal-close" id="btnCerrarModalEliminar">&times;</button>
             </div>
             <div class="modal-body">
-                <p style="color: #334155; font-size: 1rem; line-height: 1.5;">¿Estás seguro de que deseas eliminar la propiedad <strong id="modalNombrePropiedad" style="color: #0f172a;"></strong>?</p>
-                <p style="font-size: 0.85rem; color: #ef4444; margin-top: 0.75rem; background: #fef2f2; padding: 0.65rem 0.85rem; border-radius: 8px; border: 1px solid #fee2e2;">
-                    ⚠️ Esta acción eliminará permanentemente la propiedad de la base de datos y de la web pública.
-                </p>
+                <p>¿Querés eliminar la propiedad <strong id="modalNombrePropiedad"></strong>?</p>
+                <p class="modal-warning">Esta acción elimina la propiedad del panel y de la web pública de forma permanente.</p>
             </div>
-            <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+            <div class="modal-footer">
                 <button type="button" class="btn-secondary" id="btnCancelarEliminar">Cancelar</button>
-                <button type="button" class="btn-primary" id="btnConfirmarEliminar" style="background: #ef4444; border-color: #ef4444; box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);">
+                <button type="button" class="btn-primary btn-danger" id="btnConfirmarEliminar">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                    <span>Eliminar Definitivemente</span>
+                    <span>Eliminar definitivamente</span>
                 </button>
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
-    <script src="propiedades-db.js?v=20261009_1820"></script>
-    <script src="compartir-story.js?v=20261009_1820"></script>
-    <script src="admin.js?v=20261009_1820"></script>
+    <script src="propiedades-db.js?v=20261020"></script>
+    <script src="compartir-story.js?v=20261020"></script>
+    <script src="admin.js?v=20261020"></script>
 </body>
 
 </html>

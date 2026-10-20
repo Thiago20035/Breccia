@@ -116,7 +116,7 @@
                 justify-content: center !important;
                 padding: 1rem !important;
                 box-sizing: border-box !important;
-                font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
             }
 
             #modalCompartirStory .story-card {
@@ -347,7 +347,7 @@
                         <div class="story-preview-box">
                             <canvas id="storyCanvas" width="1080" height="1920"></canvas>
                             <div id="storyLoading" style="position: absolute; inset: 0; background: rgba(0,0,0,0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; gap: 10px; font-size: 0.85rem;">
-                                <div style="width: 32px; height: 32px; border: 3px solid rgba(255,255,255,0.2); border-top-color: #c5a059; border-radius: 50%; animation: spinStory 0.8s linear infinite;"></div>
+                                <div style="width: 32px; height: 32px; border: 3px solid rgba(255,255,255,0.2); border-top-color: #f2cdd7; border-radius: 50%; animation: spinStory 0.8s linear infinite;"></div>
                                 <span>Generando placa...</span>
                             </div>
                         </div>
@@ -362,7 +362,7 @@
                             </button>
 
                             <!-- Botón 2: Descargar Placa -->
-                            <button id="btnDescargarStory" class="story-action-item" type="button" style="border-color: #c5a059; color: #855d14;">
+                            <button id="btnDescargarStory" class="story-action-item" type="button" style="border-color: #6b2c3e; color: #6b2c3e;">
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                                 <div>
                                     <div style="font-weight: 700;">Descargar Historia (1080x1920)</div>
@@ -451,264 +451,284 @@
         ctx.closePath();
     }
 
-    // Dibujar la placa vertical (1080x1920)
+    // Dibujar la placa vertical (1080x1920) — estilo editorial Breccia:
+    // marfil + bordó, foto en arco, sello con monograma, Cormorant + Inter.
     async function dibujarPlacaCanvas(canvas, prop) {
         const ctx = canvas.getContext('2d');
         const W = 1080;
         const H = 1920;
+        const C = {
+            ivory: '#fbf7f4', paper: '#f4ece8', ink: '#1a1214', muted: '#7a6c70',
+            brand: '#6b2c3e', brand2: '#8b3a4f', deep: '#34131d', rose: '#f2cdd7',
+            line: 'rgba(107, 44, 62, 0.22)'
+        };
+        const SERIF = '"Cormorant Garamond", Garamond, "Times New Roman", serif';
+        const SANS = '"Inter", "Segoe UI", Arial, sans-serif';
 
-        // 1. Fondo degradado de lujo (Bordeaux a negro)
-        const bgGrad = ctx.createLinearGradient(0, 0, W, H);
-        bgGrad.addColorStop(0, '#2d0f19');
-        bgGrad.addColorStop(0.45, '#19080e');
-        bgGrad.addColorStop(1, '#0c0407');
-        ctx.fillStyle = bgGrad;
-        ctx.fillRect(0, 0, W, H);
-
-        // Resplandor dorado circular en la parte superior
-        const glowGrad = ctx.createRadialGradient(W / 2, 550, 40, W / 2, 550, 650);
-        glowGrad.addColorStop(0, 'rgba(197, 160, 89, 0.15)');
-        glowGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-        ctx.fillStyle = glowGrad;
-        ctx.fillRect(0, 0, W, H);
-
-        // Marco perimetral dorado elegante
-        ctx.strokeStyle = 'rgba(197, 160, 89, 0.3)';
-        ctx.lineWidth = 3;
-        ctx.strokeRect(36, 36, W - 72, H - 72);
-
-        // 2. Cabecera de Marca
-        ctx.textAlign = 'center';
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 50px "Outfit", "Segoe UI", sans-serif';
-        ctx.fillText('BRECCIA', W / 2, 130);
-
-        ctx.fillStyle = '#c5a059';
-        ctx.font = '600 22px "Outfit", "Segoe UI", sans-serif';
-        ctx.fillText('INMUEBLES & NEGOCIOS', W / 2, 172);
-
-        // Línea divisoria dorada
-        const lineGrad = ctx.createLinearGradient(W / 2 - 220, 0, W / 2 + 220, 0);
-        lineGrad.addColorStop(0, 'rgba(197, 160, 89, 0)');
-        lineGrad.addColorStop(0.5, 'rgba(197, 160, 89, 0.85)');
-        lineGrad.addColorStop(1, 'rgba(197, 160, 89, 0)');
-        ctx.strokeStyle = lineGrad;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(W / 2 - 220, 202);
-        ctx.lineTo(W / 2 + 220, 202);
-        ctx.stroke();
-
-        // 3. Badges horizontales (Operación y Destacada)
-        let badges = [];
-        if (prop.destacada) {
-            badges.push({ text: '⭐ DESTACADA', bg: '#c5a059', color: '#1e1418', border: '#dfba73' });
-        }
-        badges.push({
-            text: (prop.tipo || 'Venta').toUpperCase(),
-            bg: prop.tipo === 'Alquiler' ? '#1e40af' : '#6b2c3e',
-            color: '#ffffff',
-            border: 'rgba(255,255,255,0.25)'
-        });
-
-        // Calcular ancho y dibujar badges centrados
-        ctx.font = 'bold 22px "Outfit", "Segoe UI", sans-serif';
-        let totalBadgesW = badges.reduce((acc, b) => acc + ctx.measureText(b.text).width + 48, 0) + (badges.length - 1) * 16;
-        let startBadgeX = (W - totalBadgesW) / 2;
-        badges.forEach(b => {
-            const bWidth = ctx.measureText(b.text).width + 48;
-            ctx.fillStyle = b.bg;
-            drawRoundRect(ctx, startBadgeX, 230, bWidth, 44, 22);
-            ctx.fill();
-            ctx.strokeStyle = b.border;
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-
-            ctx.fillStyle = b.color;
-            ctx.textAlign = 'center';
-            ctx.fillText(b.text, startBadgeX + bWidth / 2, 260);
-            startBadgeX += bWidth + 16;
-        });
-
-        // 4. Imagen de la propiedad
-        const imgX = 80;
-        const imgY = 300;
-        const imgW = 920;
-        const imgH = 760;
-        const imgRadius = 32;
-
-        let fotoUrl = prop.thumb || (prop.imagenes && prop.imagenes.length > 0 ? prop.imagenes[0] : 'favicon-V3.ico');
-
-        // Cargar imagen de manera segura
+        // Esperar las tipografías del sitio (si la página las tiene cargadas)
         try {
-            await new Promise((resolve) => {
-                const img = new Image();
-                if (/^https?:\/\//i.test(fotoUrl) && !fotoUrl.includes(window.location.hostname)) {
-                    img.crossOrigin = 'anonymous';
-                }
-                img.onload = () => {
-                    ctx.save();
-                    drawRoundRect(ctx, imgX, imgY, imgW, imgH, imgRadius);
-                    ctx.clip();
+            await Promise.all([
+                document.fonts.load(`600 80px ${SERIF}`),
+                document.fonts.load(`italic 500 60px ${SERIF}`),
+                document.fonts.load(`500 28px ${SANS}`),
+                document.fonts.load(`600 24px ${SANS}`)
+            ]);
+        } catch (e) { /* sigue con las alternativas */ }
 
-                    const hRatio = imgW / img.width;
-                    const vRatio = imgH / img.height;
-                    const ratio = Math.max(hRatio, vRatio);
-                    const centerShiftX = (imgW - img.width * ratio) / 2;
-                    const centerShiftY = (imgH - img.height * ratio) / 2;
+        const estado = prop.estado || 'disponible';
+        const cerrada = ['vendida', 'alquilada', 'reservada'].includes(estado);
+        const ESTADO_TXT = { vendida: 'Vendida', alquilada: 'Alquilada', reservada: 'Reservada' };
 
-                    ctx.drawImage(img, 0, 0, img.width, img.height,
-                        imgX + centerShiftX, imgY + centerShiftY, img.width * ratio, img.height * ratio);
-
-                    // Si está vendida o alquilada, overlay oscuro sobre la imagen
-                    const est = prop.estado || 'disponible';
-                    if (est === 'vendida' || est === 'alquilada') {
-                        ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
-                        ctx.fillRect(imgX, imgY, imgW, imgH);
-                    }
-
-                    ctx.restore();
-
-                    // Marco fino alrededor de la foto
-                    ctx.strokeStyle = 'rgba(197, 160, 89, 0.4)';
-                    ctx.lineWidth = 3;
-                    drawRoundRect(ctx, imgX, imgY, imgW, imgH, imgRadius);
-                    ctx.stroke();
-
-                    resolve();
-                };
-                img.onerror = () => {
-                    // Fallback con degradado si la foto falla
-                    ctx.fillStyle = '#2d1420';
-                    drawRoundRect(ctx, imgX, imgY, imgW, imgH, imgRadius);
-                    ctx.fill();
-                    ctx.fillStyle = '#c5a059';
-                    ctx.font = 'bold 36px "Outfit", sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.fillText('BRECCIA INMUEBLES', imgX + imgW / 2, imgY + imgH / 2);
-                    resolve();
-                };
-                img.src = fotoUrl;
-            });
-        } catch (e) {
-            console.warn('Error cargando imagen para placa Story:', e);
+        // Texto con espaciado entre letras (tracking), alineado al centro o a la izquierda
+        function tracked(text, x, y, spacing, align = 'center') {
+            const chars = [...text];
+            const widths = chars.map(ch => ctx.measureText(ch).width);
+            const total = widths.reduce((a, b) => a + b, 0) + spacing * (chars.length - 1);
+            let cx = align === 'center' ? x - total / 2 : x;
+            const prev = ctx.textAlign;
+            ctx.textAlign = 'left';
+            chars.forEach((ch, i) => { ctx.fillText(ch, cx, y); cx += widths[i] + spacing; });
+            ctx.textAlign = prev;
+            return total;
         }
 
-        // 5. Cartel / Ribbon diagonal si está Vendida / Alquilada / Reservada
-        const estadoProp = prop.estado || 'disponible';
-        if (estadoProp && estadoProp !== 'disponible') {
-            const configRibbon = {
-                vendida: { texto: 'VENDIDA', bg: '#ef4444' },
-                alquilada: { texto: 'ALQUILADA', bg: '#3b82f6' },
-                reservada: { texto: 'RESERVADA', bg: '#f59e0b' }
-            }[estadoProp] || { texto: estadoProp.toUpperCase(), bg: '#ef4444' };
-
-            ctx.save();
-            ctx.beginPath();
-            drawRoundRect(ctx, imgX, imgY, imgW, imgH, imgRadius);
-            ctx.clip();
-
-            ctx.translate(imgX + imgW - 130, imgY + 80);
-            ctx.rotate((38 * Math.PI) / 180);
-            ctx.fillStyle = configRibbon.bg;
-            ctx.fillRect(-200, -28, 400, 56);
-
-            ctx.fillStyle = '#ffffff';
-            ctx.font = '900 24px "Outfit", sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText(configRibbon.texto, 0, 8);
-            ctx.restore();
+        // Ajusta el tamaño de fuente hasta que el texto entre en maxWidth
+        function fitFont(text, weight, family, size, minSize, maxWidth) {
+            let s = size;
+            do { ctx.font = `${weight} ${s}px ${family}`; s -= 2; } while (ctx.measureText(text).width > maxWidth && s >= minSize);
+            return s + 2;
         }
 
-        // 6. Tarjeta Principal con Información y Precio
-        const cardY = 1090;
-        const cardH = 510;
-        const cardW = 920;
-        const cardX = 80;
+        // ── 1. Fondo marfil con resplandor bordó muy suave ─────────────────
+        ctx.fillStyle = C.ivory;
+        ctx.fillRect(0, 0, W, H);
+        const glow = ctx.createRadialGradient(W * 0.85, 120, 20, W * 0.85, 120, 820);
+        glow.addColorStop(0, 'rgba(139, 58, 79, 0.10)');
+        glow.addColorStop(1, 'rgba(139, 58, 79, 0)');
+        ctx.fillStyle = glow;
+        ctx.fillRect(0, 0, W, H);
 
-        ctx.fillStyle = 'rgba(20, 10, 14, 0.88)';
-        drawRoundRect(ctx, cardX, cardY, cardW, cardH, 28);
-        ctx.fill();
-
-        ctx.strokeStyle = 'rgba(197, 160, 89, 0.45)';
+        // Marco interior fino
+        ctx.strokeStyle = C.line;
         ctx.lineWidth = 2;
-        drawRoundRect(ctx, cardX, cardY, cardW, cardH, 28);
+        drawRoundRect(ctx, 40, 40, W - 80, H - 80, 34);
         ctx.stroke();
 
-        // Título de la propiedad
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 44px "Outfit", "Segoe UI", sans-serif';
+        // ── 2. Marca ───────────────────────────────────────────────────────
+        ctx.textBaseline = 'alphabetic';
+        ctx.fillStyle = C.brand;
+        ctx.font = `600 64px ${SERIF}`;
+        tracked('BRECCIA', W / 2, 232, 22);
+        ctx.fillStyle = C.muted;
+        ctx.font = `600 19px ${SANS}`;
+        tracked('INMUEBLES Y NEGOCIOS', W / 2, 274, 7);
+
+        // ── 3. Foto en arco ────────────────────────────────────────────────
+        const ax = 110, ay = 320, aw = W - 220, ah = 830;
+        const r = aw / 2;
+        function archPath() {
+            ctx.beginPath();
+            ctx.moveTo(ax, ay + ah);
+            ctx.lineTo(ax, ay + r);
+            ctx.arc(ax + r, ay + r, r, Math.PI, 0);
+            ctx.lineTo(ax + aw, ay + ah - 26);
+            ctx.quadraticCurveTo(ax + aw, ay + ah, ax + aw - 26, ay + ah);
+            ctx.lineTo(ax + 26, ay + ah);
+            ctx.quadraticCurveTo(ax, ay + ah, ax, ay + ah - 26);
+            ctx.closePath();
+        }
+
+        const fotoUrl = prop.thumb || (prop.imagenes && prop.imagenes.length > 0 ? prop.imagenes[0] : '');
+        ctx.save();
+        archPath();
+        ctx.clip();
+        ctx.fillStyle = C.paper;
+        ctx.fillRect(ax, ay, aw, ah);
+        if (fotoUrl) {
+            try {
+                const img = await new Promise((resolve, reject) => {
+                    const im = new Image();
+                    if (/^https?:\/\//i.test(fotoUrl) && !fotoUrl.includes(window.location.hostname)) im.crossOrigin = 'anonymous';
+                    im.onload = () => resolve(im);
+                    im.onerror = reject;
+                    im.src = fotoUrl;
+                });
+                const ratio = Math.max(aw / img.width, ah / img.height);
+                const dw = img.width * ratio, dh = img.height * ratio;
+                if (cerrada) ctx.filter = 'grayscale(0.85) brightness(0.92)';
+                ctx.drawImage(img, ax + (aw - dw) / 2, ay + (ah - dh) * 0.45, dw, dh);
+                ctx.filter = 'none';
+            } catch (e) {
+                ctx.fillStyle = C.brand;
+                ctx.font = `600 120px ${SERIF}`;
+                ctx.textAlign = 'center';
+                ctx.fillText('B', ax + aw / 2, ay + ah / 2 + 40);
+            }
+        }
+        // Velado bordó inferior para dar profundidad
+        const veil = ctx.createLinearGradient(0, ay + ah * 0.55, 0, ay + ah);
+        veil.addColorStop(0, 'rgba(52, 19, 29, 0)');
+        veil.addColorStop(1, 'rgba(52, 19, 29, 0.55)');
+        ctx.fillStyle = veil;
+        ctx.fillRect(ax, ay, aw, ah);
+
+        // Etiquetas sobre la foto
+        ctx.font = `600 20px ${SANS}`;
+        const etiquetas = [];
+        if (prop.destacada) etiquetas.push({ t: '★  DESTACADA', bg: C.ivory, fg: C.brand });
+        etiquetas.push({ t: (prop.tipo || 'Venta').toUpperCase(), bg: C.brand, fg: '#ffffff' });
+        let ex = ax + 46;
+        const ey = ay + ah - 92;
+        etiquetas.forEach(e => {
+            const tw = [...e.t].reduce((a, ch) => a + ctx.measureText(ch).width + 4, -4) + 52;
+            ctx.fillStyle = e.bg;
+            drawRoundRect(ctx, ex, ey, tw, 50, 25);
+            ctx.fill();
+            ctx.fillStyle = e.fg;
+            tracked(e.t, ex + 26, ey + 33, 4, 'left');
+            ex += tw + 12;
+        });
+
+        // Estado cerrado: placa central
+        if (cerrada) {
+            const label = ESTADO_TXT[estado].toUpperCase();
+            ctx.font = `600 30px ${SANS}`;
+            const lw = [...label].reduce((a, ch) => a + ctx.measureText(ch).width + 12, -12) + 110;
+            const lx = ax + (aw - lw) / 2, ly = ay + ah / 2 - 20;
+            ctx.fillStyle = 'rgba(251, 247, 244, 0.95)';
+            drawRoundRect(ctx, lx, ly, lw, 80, 40);
+            ctx.fill();
+            ctx.fillStyle = C.brand;
+            tracked(label, W / 2, ly + 51, 12);
+        }
+        ctx.restore();
+
+        // Contorno del arco
+        ctx.strokeStyle = 'rgba(107, 44, 62, 0.18)';
+        ctx.lineWidth = 2;
+        archPath();
+        ctx.stroke();
+
+        // ── 4. Sello circular con monograma ────────────────────────────────
+        const sx = ax + aw - 110, sy = ay + ah, sr = 96;
+        ctx.fillStyle = C.ivory;
+        ctx.beginPath(); ctx.arc(sx, sy, sr, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = C.line; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(sx, sy, sr, 0, Math.PI * 2); ctx.stroke();
+        const sello = 'ADMINISTRACIÓN · INMOBILIARIA · MAR DEL PLATA · ';
+        ctx.font = `600 15px ${SANS}`;
+        ctx.fillStyle = C.brand;
         ctx.textAlign = 'center';
-        envolverTexto(ctx, prop.titulo || 'Propiedad Exclusiva', W / 2, cardY + 70, 840, 52, 2);
+        const step = (Math.PI * 2) / [...sello].length;
+        [...sello].forEach((ch, i) => {
+            ctx.save();
+            ctx.translate(sx, sy);
+            ctx.rotate(-Math.PI / 2 + i * step);
+            ctx.fillText(ch, 0, -sr + 30);
+            ctx.restore();
+        });
+        ctx.fillStyle = C.brand;
+        ctx.beginPath(); ctx.arc(sx, sy, 44, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = `600 54px ${SERIF}`;
+        ctx.textBaseline = 'middle';
+        ctx.fillText('B', sx, sy + 2);
+        ctx.textBaseline = 'alphabetic';
+
+        // ── 5. Información ─────────────────────────────────────────────────
+        ctx.textAlign = 'center';
+        const cat = prop.categoria ? String(prop.categoria).charAt(0).toUpperCase() + String(prop.categoria).slice(1) : 'Propiedad';
+        ctx.fillStyle = C.brand2;
+        ctx.font = `600 21px ${SANS}`;
+        tracked(`${cat.toUpperCase()}  ·  MAR DEL PLATA`, W / 2, 1262, 6);
+
+        // Título: hasta 2 líneas, con "…" solo si de verdad no entra
+        function wrapLines(text, maxWidth, maxLines) {
+            const words = text.split(/\s+/);
+            const lines = [];
+            let line = '';
+            words.forEach(w => {
+                const test = line ? `${line} ${w}` : w;
+                if (ctx.measureText(test).width > maxWidth && line) { lines.push(line); line = w; }
+                else line = test;
+            });
+            if (line) lines.push(line);
+            if (lines.length > maxLines) {
+                const kept = lines.slice(0, maxLines);
+                let last = kept[maxLines - 1];
+                while (ctx.measureText(`${last}…`).width > maxWidth && last.length) last = last.slice(0, -1).trimEnd();
+                kept[maxLines - 1] = `${last}…`;
+                return kept;
+            }
+            return lines;
+        }
+        ctx.fillStyle = C.ink;
+        const titulo = prop.titulo || 'Propiedad exclusiva';
+        ctx.font = `600 66px ${SERIF}`;
+        let lineas = wrapLines(titulo, 860, 2);
+        if (lineas.length === 2 && ctx.measureText(lineas[1]).width > 860 * 0.98) {
+            ctx.font = `600 58px ${SERIF}`;
+            lineas = wrapLines(titulo, 860, 2);
+        }
+        let y = 1340;
+        lineas.forEach(l => { ctx.fillText(l, W / 2, y); y += 72; });
 
         // Ubicación
-        ctx.fillStyle = '#c5a059';
-        ctx.font = '600 28px "Outfit", "Segoe UI", sans-serif';
-        ctx.fillText(`📍 ${prop.ubicacion || 'Mar del Plata, Buenos Aires'}`, W / 2, cardY + 185);
+        y += 8;
+        ctx.fillStyle = C.muted;
+        ctx.font = `500 27px ${SANS}`;
+        ctx.fillText(prop.ubicacion || 'Mar del Plata, Buenos Aires', W / 2, y);
 
-        // Precio
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '900 68px "Outfit", "Segoe UI", sans-serif';
-        ctx.fillText(prop.precio || 'Consultar', W / 2, cardY + 275);
+        // Ornamento: línea — rombo — línea
+        const oy = y + 46;
+        ctx.strokeStyle = C.line; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(W / 2 - 150, oy); ctx.lineTo(W / 2 - 18, oy); ctx.moveTo(W / 2 + 18, oy); ctx.lineTo(W / 2 + 150, oy); ctx.stroke();
+        ctx.fillStyle = C.brand;
+        ctx.save(); ctx.translate(W / 2, oy); ctx.rotate(Math.PI / 4); ctx.fillRect(-6, -6, 12, 12); ctx.restore();
 
-        // Especificaciones
-        let specs = [];
-        if (prop.dormitorios) specs.push(prop.dormitorios);
-        if (prop.banos) specs.push(prop.banos);
-        if (prop.superficie) specs.push(prop.superficie);
+        // Precio (o estado). Cifras en Inter fina (Cormorant usa números
+        // de estilo antiguo y canvas no permite cambiarlos); texto en serif.
+        const precio = cerrada ? `${ESTADO_TXT[estado]} por Breccia` : (prop.precio || 'Consultar');
+        const py = oy + 100;
+        ctx.fillStyle = cerrada ? C.muted : C.brand;
+        if (!cerrada && /\d/.test(precio)) fitFont(precio, '300', SANS, 86, 44, 880);
+        else fitFont(precio, cerrada ? 'italic 500' : '600', SERIF, 92, 48, 880);
+        ctx.fillText(precio, W / 2, py);
 
-        if (specs.length > 0) {
-            ctx.font = '600 24px "Outfit", "Segoe UI", sans-serif';
-            let specsTotalW = specs.reduce((acc, s) => acc + ctx.measureText(s).width + 36, 0) + (specs.length - 1) * 14;
-            let startSpecX = (W - specsTotalW) / 2;
-            specs.forEach(s => {
-                const sW = ctx.measureText(s).width + 36;
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
-                drawRoundRect(ctx, startSpecX, cardY + 340, sW, 46, 12);
-                ctx.fill();
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
-                ctx.lineWidth = 1;
-                ctx.stroke();
-
-                ctx.fillStyle = '#e2e8f0';
-                ctx.textAlign = 'center';
-                ctx.fillText(s, startSpecX + sW / 2, cardY + 372);
-                startSpecX += sW + 14;
+        // Especificaciones separadas por líneas finas
+        const specs = [prop.dormitorios, prop.banos, prop.superficie].filter(Boolean).map(s => String(s).toUpperCase());
+        if (specs.length) {
+            ctx.font = `600 21px ${SANS}`;
+            const gap = 64;
+            const widths = specs.map(s => [...s].reduce((a, ch) => a + ctx.measureText(ch).width + 4, -4));
+            const total = widths.reduce((a, b) => a + b, 0) + gap * (specs.length - 1);
+            let x = W / 2 - total / 2;
+            ctx.fillStyle = C.ink;
+            specs.forEach((s, i) => {
+                tracked(s, x, py + 72, 4, 'left');
+                x += widths[i];
+                if (i < specs.length - 1) {
+                    ctx.strokeStyle = C.line; ctx.lineWidth = 2;
+                    ctx.beginPath(); ctx.moveTo(x + gap / 2, py + 48); ctx.lineTo(x + gap / 2, py + 80); ctx.stroke();
+                    x += gap;
+                }
             });
         }
 
-        // Mensaje de estado
-        if (estadoProp === 'vendida') {
-            ctx.fillStyle = '#f43f5e';
-            ctx.font = 'bold 24px "Outfit", "Segoe UI", sans-serif';
-            ctx.fillText('¡PROPIEDAD VENDIDA POR BRECCIA!', W / 2, cardY + 445);
-        } else {
-            ctx.fillStyle = '#c5a059';
-            ctx.font = '600 24px "Outfit", "Segoe UI", sans-serif';
-            ctx.fillText('⭐ EXCELENTE OPORTUNIDAD', W / 2, cardY + 445);
-        }
-
-        // 7. Pie de Contacto e Instagram
-        const footerY = 1660;
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '600 30px "Outfit", "Segoe UI", sans-serif';
-        ctx.fillText('📲 Consultanos por Mensaje Directo o WhatsApp', W / 2, footerY);
-
-        ctx.fillStyle = '#c5a059';
-        ctx.font = 'bold 26px "Outfit", "Segoe UI", sans-serif';
-        ctx.fillText('Instagram: @breccianegocios • breccianegocios.com.ar', W / 2, footerY + 50);
-
-        // Indicador de Sticker de enlace
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-        drawRoundRect(ctx, (W - 540) / 2, footerY + 90, 540, 54, 27);
+        // ── 6. Franja bordó de contacto ────────────────────────────────────
+        const by = 1742, bh = 118;
+        const band = ctx.createLinearGradient(80, 0, W - 80, 0);
+        band.addColorStop(0, C.deep);
+        band.addColorStop(1, C.brand);
+        ctx.fillStyle = band;
+        drawRoundRect(ctx, 80, by, W - 160, bh, 59);
         ctx.fill();
-        ctx.strokeStyle = 'rgba(197, 160, 89, 0.4)';
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-
-        ctx.fillStyle = '#f8fafc';
-        ctx.font = '600 22px "Outfit", "Segoe UI", sans-serif';
-        ctx.fillText('🔗 Tocá el sticker de enlace para ver más', W / 2, footerY + 125);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
+        ctx.font = `600 18px ${SANS}`;
+        tracked('CONSULTÁ POR MENSAJE DIRECTO O WHATSAPP', W / 2, by + 46, 4);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = `500 30px ${SANS}`;
+        ctx.fillText('@breccianegocios  ·  breccianegocios.com.ar', W / 2, by + 88);
     }
 
     // ABRIR MODAL COMPARTIR

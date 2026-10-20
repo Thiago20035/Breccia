@@ -327,10 +327,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             const selectorEstadoHTML = `
                 <div class="estado-select-container">
                     <select class="select-estado-directo estado-${estadoProp}" onchange="cambiarEstadoDirecto('${prop.id}', this.value, ${prop.esEstatica})" title="Cambiar estado comercial de la propiedad">
-                        <option value="disponible" ${estadoProp === 'disponible' ? 'selected' : ''}>🟢 Disponible</option>
-                        <option value="reservada" ${estadoProp === 'reservada' ? 'selected' : ''}>🔒 Reservada</option>
-                        <option value="alquilada" ${estadoProp === 'alquilada' ? 'selected' : ''}>🏠 Alquilada</option>
-                        <option value="vendida" ${estadoProp === 'vendida' ? 'selected' : ''}>✔️ Vendida</option>
+                        <option value="disponible" ${estadoProp === 'disponible' ? 'selected' : ''}>Disponible</option>
+                        <option value="reservada" ${estadoProp === 'reservada' ? 'selected' : ''}>Reservada</option>
+                        <option value="alquilada" ${estadoProp === 'alquilada' ? 'selected' : ''}>Alquilada</option>
+                        <option value="vendida" ${estadoProp === 'vendida' ? 'selected' : ''}>Vendida</option>
                     </select>
                 </div>
             `;
@@ -1071,19 +1071,19 @@ window.cambiarEstadoPropiedad = async function (id, esEstatica) {
                     <p id="modalEstadoPropNombre" style="font-weight:600;color:#0f172a;margin-bottom:1.25rem;font-size:0.95rem;"></p>
                     <div class="estado-options-grid">
                         <button class="estado-option-btn" data-estado="disponible">
-                            <span class="estado-icon">✅</span>
+                            <span class="estado-icon is-disponible"></span>
                             <span>Disponible</span>
                         </button>
                         <button class="estado-option-btn" data-estado="reservada">
-                            <span class="estado-icon">🔒</span>
+                            <span class="estado-icon is-reservada"></span>
                             <span>Reservada</span>
                         </button>
                         <button class="estado-option-btn" data-estado="alquilada">
-                            <span class="estado-icon">🏠</span>
+                            <span class="estado-icon is-alquilada"></span>
                             <span>Alquilada</span>
                         </button>
                         <button class="estado-option-btn" data-estado="vendida">
-                            <span class="estado-icon">✔️</span>
+                            <span class="estado-icon is-vendida"></span>
                             <span>Vendida</span>
                         </button>
                     </div>
